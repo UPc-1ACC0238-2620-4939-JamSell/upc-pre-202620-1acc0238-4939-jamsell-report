@@ -256,6 +256,41 @@ El flujo principal de comunicación dentro del bounded context sigue los siguien
 5. Los repositorios definidos en el dominio son implementados por la capa de infraestructura para acceder a los mecanismos de persistencia.
 6. La información procesada es retornada nuevamente hacia la aplicación móvil.
 
+---
+
+### 2.6.1.6. Bounded Context Software Architecture Code Level Diagrams
+
+En esta sección se presentan los diagramas correspondientes al nivel de código del bounded context **Livestock Management**, siguiendo la propuesta de diseño basada en Domain-Driven Design.
+
+Estos diagramas permiten representar la estructura interna del contexto a nivel de implementación, mostrando las principales clases, relaciones y componentes que forman parte de la capa de dominio.
+
+El diseño mantiene la separación de responsabilidades definida previamente, donde la lógica de negocio permanece encapsulada dentro del dominio, mientras que las capas externas se encargan de la comunicación con interfaces de usuario, aplicación e infraestructura.
+
+---
+
+### 2.6.1.6.1. Bounded Context Domain Layer Class Diagrams
+
+En esta sección se presenta el diagrama de clases UML correspondiente a la capa de dominio del bounded context **Livestock Management**.
+
+El diagrama representa las principales entidades, objetos de valor y contratos definidos dentro del dominio para gestionar la información relacionada con animales y fincas.
+
+La entidad **Animal** representa el agregado principal del contexto, debido a que concentra la información necesaria para identificar y administrar cada animal registrado dentro del sistema. Asimismo, la entidad **Farm** representa la finca donde se organizan los animales pertenecientes al usuario.
+
+Además, se incluyen los objetos de valor utilizados para representar identificadores únicos y códigos QR, así como las interfaces de repositorio encargadas de definir las operaciones necesarias para acceder a la información del dominio sin depender de una implementación tecnológica específica.
+
+**Livestock Management Domain Layer Class Diagram**
+
+![Livestock Management Domain Layer Class Diagram](images/BoundedContextSoftwareArchitectureCodeLevel.png)
+
+El diseño del dominio permite mantener las reglas de negocio independientes de los mecanismos de persistencia, facilitando la evolución del sistema y manteniendo los principios establecidos por Domain-Driven Design.
+
+Las principales relaciones representadas en el diagrama son:
+
+- **Farm** mantiene una relación de composición con múltiples objetos **Animal**, debido a que una finca puede contener varios animales registrados.
+- **Animal** utiliza objetos de valor como **AnimalId** y **QRCode** para garantizar una identificación única dentro del sistema.
+- **AnimalRepository** y **FarmRepository** definen los contratos necesarios para almacenar y recuperar información de las entidades principales.
+- La separación entre entidades, objetos de valor y repositorios permite mantener una arquitectura desacoplada y preparada para cambios futuros.
+
 
 Esta separación permite mantener la lógica de negocio independiente de los mecanismos tecnológicos utilizados para almacenar información o comunicarse con servicios externos, siguiendo los principios establecidos por Domain-Driven Design y facilitando la evolución futura del sistema.
 
