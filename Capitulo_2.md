@@ -214,4 +214,48 @@ Asimismo, `LocalLivestockDataSource` permite contemplar el almacenamiento local 
 
 ---
 
+### 2.6.1.5. Bounded Context Software Architecture Component Level Diagrams
+
+En esta sección se presenta el Component Diagram correspondiente al bounded context **Livestock Management**, siguiendo el enfoque del modelo C4 y la arquitectura basada en Domain-Driven Design.
+
+El objetivo del diagrama es representar la estructura interna del bounded context, mostrando los principales componentes que participan en la gestión del ganado, sus responsabilidades y la comunicación existente entre las diferentes capas definidas previamente: Interface Layer, Application Layer, Domain Layer e Infrastructure Layer.
+
+Dentro de **Livestock Management**, la aplicación móvil permite a los usuarios gestionar la información principal de los animales registrados en una finca, incluyendo operaciones como el registro, actualización, consulta e identificación mediante códigos QR.
+
+El flujo principal inicia cuando el usuario interactúa con la aplicación móvil. Las solicitudes realizadas son recibidas por los componentes pertenecientes a la capa de interfaz, los cuales delegan la ejecución hacia los servicios correspondientes de la capa de aplicación. Posteriormente, esta capa coordina los casos de uso utilizando las reglas definidas en el dominio, donde se encuentran los agregados principales como **Animal** y **Farm**. Finalmente, la capa de infraestructura proporciona los mecanismos necesarios para la persistencia y comunicación con servicios externos.
+
+**Livestock Management Software Architecture Component Level Diagram**
+
+![Livestock Management Software Architecture Component Level Diagram](images/BoundedContextSoftwareArchitecture.png)
+
+
+El diagrama representa los siguientes componentes principales:
+
+| Componente | Responsabilidad |
+|---|---|
+| Animal Controller | Recibe las solicitudes relacionadas con la gestión de animales desde la aplicación móvil. |
+| Farm Controller | Gestiona las operaciones relacionadas con la administración de fincas. |
+| Animal Application Services | Coordina los casos de uso relacionados con el registro, actualización y consulta de animales. |
+| Farm Application Services | Coordina las operaciones relacionadas con la gestión de fincas. |
+| Animal Aggregate | Representa la entidad principal del dominio y contiene las reglas relacionadas con el ciclo de vida del animal. |
+| Farm Aggregate | Representa la unidad productiva donde se organizan los animales registrados. |
+| Animal Repository Interface | Define las operaciones necesarias para almacenar y recuperar información relacionada con animales. |
+| Farm Repository Interface | Define las operaciones necesarias para almacenar y recuperar información relacionada con fincas. |
+| Animal Repository Implementation | Implementa el acceso a los datos correspondientes al agregado Animal. |
+| Farm Repository Implementation | Implementa el acceso a los datos correspondientes al agregado Farm. |
+| Local Data Source | Permite almacenar información localmente para soportar escenarios con conectividad limitada. |
+| API Client | Permite la comunicación con servicios externos mediante solicitudes REST. |
+
+
+El flujo principal de comunicación dentro del bounded context sigue los siguientes pasos:
+
+1. El usuario interactúa con la aplicación móvil para registrar, actualizar o consultar información relacionada con un animal o una finca.
+2. La solicitud es recibida por los componentes de la Interface Layer, como los controladores correspondientes.
+3. La capa de aplicación procesa la solicitud mediante los casos de uso definidos utilizando Commands y Queries.
+4. La capa de dominio valida las reglas de negocio asociadas a los agregados principales del contexto.
+5. Los repositorios definidos en el dominio son implementados por la capa de infraestructura para acceder a los mecanismos de persistencia.
+6. La información procesada es retornada nuevamente hacia la aplicación móvil.
+
+
+Esta separación permite mantener la lógica de negocio independiente de los mecanismos tecnológicos utilizados para almacenar información o comunicarse con servicios externos, siguiendo los principios establecidos por Domain-Driven Design y facilitando la evolución futura del sistema.
 
