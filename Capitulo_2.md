@@ -363,3 +363,102 @@ Además, se establece una restricción de unicidad para el atributo `qr_code`, e
 El diseño de base de datos mantiene la consistencia con el modelo de dominio previamente definido, donde **Animal** representa el agregado principal encargado de mantener la información individual del ganado, mientras que **Farm** representa el contexto organizativo donde estos registros son almacenados.
 
 ---
+
+## 2.6.2. Bounded Context: Sanitary Tracking
+
+El bounded context **Sanitary Tracking** se encarga de gestionar el seguimiento de los eventos sanitarios asociados a los animales registrados dentro de Gethics.
+
+Su objetivo es permitir que los ganaderos puedan organizar y monitorear actividades preventivas relacionadas con la salud del ganado, como vacunaciones, desparasitaciones y controles programados, evitando depender únicamente de registros manuales.
+
+Este bounded context mantiene la responsabilidad de administrar la planificación y seguimiento de eventos sanitarios, mientras que la información relacionada con diagnósticos médicos y tratamientos específicos realizados por veterinarios pertenece al bounded context **Veterinary Care**.
+
+Sanitary Tracking utiliza la identificación del animal proporcionada por **Livestock Management**, permitiendo asociar cada evento sanitario con el animal correspondiente sin modificar directamente la información interna de dicho contexto.
+
+---
+
+### Diccionario de clases
+
+Las principales clases identificadas para el bounded context **Sanitary Tracking** son las siguientes:
+
+| Clase | Tipo | Propósito | Atributos principales | Métodos principales | Relaciones |
+|---|---|---|---|---|---|
+| `SanitaryEvent` | Aggregate Root / Entity | Representa una actividad sanitaria programada o realizada sobre un animal. | `id`, `animalId`, `type`, `scheduledDate`, `status`, `description` | `schedule()`, `complete()`, `cancel()` | Se relaciona con un animal mediante `animalId`. |
+| `SanitaryCalendar` | Entity | Representa la planificación de eventos sanitarios de una finca o animal. | `id`, `ownerId`, `createdAt` | `addEvent()`, `removeEvent()`, `getUpcomingEvents()` | Contiene múltiples eventos sanitarios. |
+| `Reminder` | Entity | Representa una notificación preventiva asociada a un evento sanitario próximo. | `id`, `eventId`, `date`, `status` | `send()`, `markAsSent()` | Se relaciona con un evento sanitario. |
+| `SanitaryType` | Enumeration | Define el tipo de actividad sanitaria registrada. | `VACCINATION`, `DEWORMING`, `CHECKUP`, `OTHER` | No aplica | Es utilizado por `SanitaryEvent`. |
+| `SanitaryStatus` | Enumeration | Define el estado actual del evento sanitario. | `PENDING`, `COMPLETED`, `CANCELLED` | No aplica | Es utilizado por `SanitaryEvent`. |
+| `ScheduleDate` | Value Object | Representa una fecha válida para programar un evento sanitario. | `date` | `validate()` | Es utilizado por `SanitaryEvent`. |
+| `SanitaryEventRepository` | Repository Interface | Define las operaciones necesarias para almacenar y consultar eventos sanitarios. | No aplica | `save()`, `findByAnimalId()`, `findUpcoming()` | Trabaja con `SanitaryEvent`. |
+| `ReminderRepository` | Repository Interface | Define las operaciones necesarias para gestionar recordatorios. | No aplica | `save()`, `findPending()` | Trabaja con `Reminder`. |
+| `SanitaryScheduleService` | Domain Service | Contiene reglas relacionadas con la programación sanitaria. | No aplica | `validateSchedule()`, `createReminder()` | Utiliza eventos sanitarios. |
+
+---
+
+## 2.6.2.1. Domain Layer
+
+El **Domain Layer** contiene las reglas principales relacionadas con el seguimiento sanitario preventivo del ganado.
+
+El agregado principal del contexto es `SanitaryEvent`, encargado de representar cada actividad sanitaria asociada a un animal. Este agregado permite controlar el ciclo de vida del evento desde su programación hasta su finalización o cancelación.
+
+`SanitaryCalendar` representa la organización de los eventos sanitarios programados, permitiendo consultar actividades próximas y mantener un seguimiento ordenado.
+
+Los Value Objects permiten representar conceptos que requieren validación propia. Por ejemplo, `ScheduleDate` permite controlar que las fechas utilizadas para programar eventos sean válidas dentro del dominio.
+
+Las enumeraciones `SanitaryType` y `SanitaryStatus` permiten restringir los valores aceptados para los tipos y estados de los eventos sanitarios.
+
+Finalmente, las interfaces `SanitaryEventRepository` y `ReminderRepository` definen las operaciones necesarias para acceder a la información persistida sin depender de una tecnología específica.
+
+---
+
+## 2.6.2.2. Interface Layer
+
+El **Interface Layer** contiene los componentes encargados de recibir las solicitudes provenientes de la aplicación móvil relacionadas con el seguimiento sanitario.
+
+Esta capa permite que los usuarios puedan consultar eventos próximos, registrar actividades sanitarias y visualizar recordatorios asociados al ganado.
+
+| Clase | Tipo | Propósito | Operaciones principales |
+|---|---|---|---|
+| `SanitaryEventController` | Controller | Gestiona las operaciones relacionadas con eventos sanitarios. | `createEvent()`, `getEvents()`, `updateEvent()`, `completeEvent()` |
+| `SanitaryCalendarController` | Controller | Gestiona la consulta del calendario sanitario. | `getCalendar()`, `getUpcomingEvents()` |
+| `ReminderController` | Controller | Gestiona los recordatorios generados por eventos sanitarios. | `getReminders()`, `markAsRead()` |
+
+Los Controllers reciben las solicitudes del usuario y delegan la ejecución hacia los casos de uso correspondientes definidos en la capa de aplicación.
+
+---
+
+## 2.6.2.3. Application Layer
+
+El **Application Layer** coordina los casos de uso relacionados con la planificación y seguimiento de eventos sanitarios.
+
+Esta capa no contiene reglas de negocio propias, sino que coordina la interacción entre los Controllers, los agregados del dominio y los repositorios correspondientes.
+
+| Clase | Tipo | Propósito |
+|---|---|---|
+| `CreateSanitaryEventCommandHandler` | Command Handler | Coordina la creación de un nuevo evento sanitario. |
+| `UpdateSanitaryEventCommandHandler` | Command Handler | Coordina la actualización de información de un evento sanitario. |
+| `CompleteSanitaryEventCommandHandler` | Command Handler | Coordina el cambio de estado de un evento sanitario completado. |
+| `CancelSanitaryEventCommandHandler` | Command Handler | Coordina la cancelación de una actividad sanitaria. |
+| `GetSanitaryCalendarQueryHandler` | Query Handler | Obtiene el calendario sanitario asociado al usuario. |
+| `GetUpcomingEventsQueryHandler` | Query Handler | Obtiene próximos eventos sanitarios pendientes. |
+| `GenerateReminderEventHandler` | Event Handler | Genera recordatorios asociados a eventos próximos. |
+
+Por ejemplo, cuando un usuario programa una vacunación desde la aplicación móvil, la solicitud llega al Controller correspondiente, el Application Handler coordina la operación y finalmente el dominio valida que el evento pueda ser registrado correctamente.
+
+---
+
+## 2.6.2.4. Infrastructure Layer
+
+El **Infrastructure Layer** contiene las implementaciones técnicas necesarias para almacenar información y comunicarse con servicios externos utilizados por Sanitary Tracking.
+
+Esta capa implementa las interfaces definidas por el dominio y permite que los componentes internos permanezcan independientes de la tecnología utilizada.
+
+| Clase | Tipo | Propósito |
+|---|---|---|
+| `SanitaryEventRepositoryImpl` | Repository Implementation | Implementa las operaciones de persistencia de eventos sanitarios. |
+| `ReminderRepositoryImpl` | Repository Implementation | Implementa las operaciones de persistencia de recordatorios. |
+| `SanitaryDataSource` | Data Source | Gestiona el acceso a la fuente de datos sanitaria. |
+| `LocalSanitaryDataSource` | Local Data Source | Permite almacenar información sanitaria localmente en el dispositivo móvil. |
+| `SanitaryApiClient` | API Client | Permite la comunicación con servicios REST relacionados con eventos sanitarios. |
+| `NotificationService` | External Service Adapter | Permite enviar recordatorios y notificaciones al usuario. |
+
+La separación entre capas permite que la lógica relacionada con eventos sanitarios pueda evolucionar sin depender directamente de la base de datos, servicios de notificación o mecanismos específicos de comunicación.
