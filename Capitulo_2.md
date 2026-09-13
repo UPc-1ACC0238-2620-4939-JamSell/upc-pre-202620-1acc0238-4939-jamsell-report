@@ -294,3 +294,72 @@ Las principales relaciones representadas en el diagrama son:
 
 Esta separación permite mantener la lógica de negocio independiente de los mecanismos tecnológicos utilizados para almacenar información o comunicarse con servicios externos, siguiendo los principios establecidos por Domain-Driven Design y facilitando la evolución futura del sistema.
 
+---
+
+##### 2.6.1.6.2. Bounded Context Database Design Diagram
+
+En esta sección se presenta el diseño de base de datos correspondiente al bounded context **Livestock Management**.
+
+El modelo de persistencia representa la información necesaria para gestionar las fincas y los animales registrados dentro de Gethics. Este diseño mantiene la separación de responsabilidades definida en el modelo de dominio, permitiendo almacenar únicamente la información perteneciente a este bounded context.
+
+La estructura principal está conformada por las entidades **Farm** y **Animal**, donde una finca puede contener múltiples animales registrados, mientras que cada animal pertenece únicamente a una finca determinada.
+
+Asimismo, se considera la identificación mediante código QR como parte de la información principal del animal, debido a que esta característica permite facilitar la identificación rápida del ganado, una de las responsabilidades principales definidas para este bounded context.
+
+**Livestock Management Database Design Diagram**
+
+![Livestock Management Database Design Diagram](images/BoundedContextDatabaseDesign.png)
+
+
+El diseño propuesto contiene las siguientes entidades:
+
+| Entidad | Descripción |
+|---|---|
+| Farm | Representa la información principal de una finca registrada dentro de Gethics. |
+| Animal | Representa cada animal perteneciente a una finca y contiene la información necesaria para su identificación y gestión. |
+
+
+### Entidad Farm
+
+| Campo | Tipo | Restricción | Descripción |
+|---|---|---|---|
+| id | UUID | Primary Key | Identificador único de la finca. |
+| owner_id | UUID | Foreign Key | Identificador del usuario propietario de la finca. |
+| name | VARCHAR | NOT NULL | Nombre asignado a la finca. |
+| location | VARCHAR | NOT NULL | Ubicación registrada de la finca. |
+| status | VARCHAR | NOT NULL | Estado actual de la finca. |
+| created_at | DATETIME | NOT NULL | Fecha de creación del registro. |
+
+
+### Entidad Animal
+
+| Campo | Tipo | Restricción | Descripción |
+|---|---|---|---|
+| id | UUID | Primary Key | Identificador único del animal. |
+| farm_id | UUID | Foreign Key | Identificador de la finca a la que pertenece. |
+| qr_code | VARCHAR | UNIQUE, NOT NULL | Código QR utilizado para identificar al animal. |
+| name | VARCHAR | NULL | Nombre asignado al animal. |
+| breed | VARCHAR | NOT NULL | Raza del animal registrado. |
+| birth_date | DATE | NOT NULL | Fecha de nacimiento del animal. |
+| sex | VARCHAR | NOT NULL | Sexo del animal. |
+| status | VARCHAR | NOT NULL | Estado actual del animal. |
+| created_at | DATETIME | NOT NULL | Fecha de creación del registro. |
+
+
+### Relaciones principales
+
+La relación principal del modelo es:
+
+- Una entidad **Farm** puede tener múltiples entidades **Animal** asociadas.
+- Cada entidad **Animal** pertenece únicamente a una entidad **Farm**.
+
+La multiplicidad de la relación se representa como:
+Farm 1 -------- 0..* Animal
+
+Esta relación permite organizar el ganado dentro de una estructura jerárquica donde cada animal se encuentra asociado a la finca correspondiente.
+
+Además, se establece una restricción de unicidad para el atributo `qr_code`, evitando que dos animales diferentes posean el mismo código de identificación dentro del sistema.
+
+El diseño de base de datos mantiene la consistencia con el modelo de dominio previamente definido, donde **Animal** representa el agregado principal encargado de mantener la información individual del ganado, mientras que **Farm** representa el contexto organizativo donde estos registros son almacenados.
+
+---
