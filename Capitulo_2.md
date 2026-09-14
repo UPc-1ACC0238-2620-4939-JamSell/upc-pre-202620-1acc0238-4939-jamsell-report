@@ -561,3 +561,81 @@ Las principales relaciones representadas en el diagrama son:
 - `ReminderRepository` define las operaciones necesarias para recuperar y persistir recordatorios.
 
 Esta estructura permite mantener centralizada la información sanitaria dentro de Sanitary Tracking y evita que otros bounded contexts modifiquen directamente el historial clínico. De esta forma, las interacciones provenientes de **Veterinary Care** deben realizarse mediante las operaciones expuestas por Sanitary Tracking, manteniendo el límite de consistencia definido para el contexto.
+
+---
+
+#### 2.6.2.6.2. Bounded Context Database Design Diagram
+
+En esta sección se presenta el Database Design Diagram correspondiente al bounded context **Sanitary Tracking**. El modelo representa las estructuras de persistencia necesarias para almacenar el historial clínico de los animales, los eventos sanitarios registrados y los recordatorios asociados a dichos eventos.
+
+De acuerdo con las decisiones establecidas durante el Strategic-Level Domain-Driven Design, **Sanitary Tracking es el propietario de la información relacionada con el historial clínico**. Por ello, las estructuras de persistencia correspondientes al historial y sus eventos pertenecen exclusivamente a este bounded context.
+
+La identificación del animal se mantiene mediante el atributo `animal_id`, el cual representa una referencia al animal administrado por **Livestock Management**. Esta referencia no se implementa como una Foreign Key hacia una tabla externa, debido a que ambos elementos pertenecen a bounded contexts diferentes. De esta manera se mantiene la independencia y el desacoplamiento entre sus respectivos modelos de persistencia.
+
+**Sanitary Tracking Database Design Diagram**
+
+![Sanitary Tracking Database Design Diagram](images/SanitaryTrackingDatabaseDesign.png)
+
+El diseño de base de datos está conformado por las siguientes entidades:
+
+### Clinical Histories
+
+La tabla `CLINICAL_HISTORIES` representa el historial clínico asociado a cada animal. Cada animal mantiene un único historial dentro del bounded context Sanitary Tracking.
+
+| Campo | Tipo | Restricción | Descripción |
+|---|---|---|---|
+| `id` | UUID | Primary Key, NOT NULL | Identificador único del historial clínico. |
+| `animal_id` | UUID | UNIQUE, NOT NULL | Identificador externo del animal administrado por Livestock Management. |
+| `created_at` | DATETIME | NOT NULL | Fecha y hora de creación del historial clínico. |
+| `updated_at` | DATETIME | NOT NULL | Fecha y hora de la última actualización del historial. |
+
+El atributo `animal_id` se define como una Alternate Key dentro del modelo para garantizar que un mismo animal no posea más de un historial clínico dentro de Sanitary Tracking.
+
+### Sanitary Events
+
+La tabla `SANITARY_EVENTS` almacena los diferentes eventos sanitarios registrados dentro del historial clínico de un animal. Estos eventos pueden representar vacunaciones, tratamientos, enfermedades, controles médicos u otras actividades relacionadas con la salud del ganado.
+
+| Campo | Tipo | Restricción | Descripción |
+|---|---|---|---|
+| `id` | UUID | Primary Key, NOT NULL | Identificador único del evento sanitario. |
+| `clinical_history_id` | UUID | Foreign Key, NOT NULL | Identificador del historial clínico al que pertenece el evento. |
+| `type` | VARCHAR | NOT NULL | Tipo de evento sanitario registrado. |
+| `scheduled_date` | DATE | NULL | Fecha programada para la realización del evento, cuando corresponda. |
+| `occurred_at` | DATETIME | NULL | Fecha y hora en la que el evento ocurrió o fue realizado. |
+| `severity` | VARCHAR | NOT NULL | Nivel de severidad asociado al evento sanitario. |
+| `status` | VARCHAR | NOT NULL | Estado actual del evento sanitario. |
+| `description` | TEXT | NULL | Información adicional relacionada con el evento. |
+| `created_at` | DATETIME | NOT NULL | Fecha y hora de creación del registro. |
+
+El atributo `clinical_history_id` funciona como Foreign Key hacia `CLINICAL_HISTORIES.id`, estableciendo la relación entre cada evento sanitario y su respectivo historial clínico.
+
+### Reminders
+
+La tabla `REMINDERS` almacena los recordatorios generados a partir de eventos sanitarios programados. Estos recordatorios permiten informar al usuario sobre actividades próximas, como vacunaciones, tratamientos o controles sanitarios.
+
+| Campo | Tipo | Restricción | Descripción |
+|---|---|---|---|
+| `id` | UUID | Primary Key, NOT NULL | Identificador único del recordatorio. |
+| `sanitary_event_id` | UUID | Foreign Key, NOT NULL | Identificador del evento sanitario asociado. |
+| `scheduled_for` | DATETIME | NOT NULL | Fecha y hora programada para generar el recordatorio. |
+| `status` | VARCHAR | NOT NULL | Estado actual del recordatorio. |
+| `created_at` | DATETIME | NOT NULL | Fecha y hora de creación del registro. |
+
+El atributo `sanitary_event_id` funciona como Foreign Key hacia `SANITARY_EVENTS.id`, permitiendo relacionar cada recordatorio con el evento sanitario que lo originó.
+
+### Relaciones del modelo
+
+El modelo establece las siguientes relaciones principales:
+
+- Un `CLINICAL_HISTORY` puede contener cero o múltiples `SANITARY_EVENTS`.
+- Cada `SANITARY_EVENT` pertenece obligatoriamente a un único `CLINICAL_HISTORY`.
+- Un `SANITARY_EVENT` puede generar cero o múltiples `REMINDERS`.
+- Cada `REMINDER` pertenece obligatoriamente a un único `SANITARY_EVENT`.
+- Cada `CLINICAL_HISTORY` corresponde a un único animal identificado mediante `animal_id`.
+
+Las cardinalidades principales pueden representarse de la siguiente manera:
+
+```text
+CLINICAL_HISTORIES  1 ───────── 0..* SANITARY_EVENTS
+
+SANITARY_EVENTS     1 ───────── 0..* REMINDERS
