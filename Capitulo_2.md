@@ -521,3 +521,43 @@ Además de este flujo interno, Sanitary Tracking mantiene las siguientes relacio
 - **Sanitary Tracking → Servicio de Notificaciones Push:** solicita el envío de recordatorios y alertas sanitarias hacia los usuarios.
 
 Esta organización permite mantener a **Sanitary Tracking** como propietario de la información sanitaria y del historial clínico, evitando que otros bounded contexts modifiquen directamente sus datos. Al mismo tiempo, la separación por capas reduce el acoplamiento entre las reglas de negocio y los mecanismos técnicos de persistencia, sincronización y notificación.
+
+---
+
+### 2.6.2.6. Bounded Context Software Architecture Code Level Diagrams
+
+En esta sección se presentan los diagramas de nivel de código correspondientes al bounded context **Sanitary Tracking**. Estos diagramas permiten detallar la implementación de los componentes definidos previamente, manteniendo consistencia con las decisiones tomadas durante el Strategic-Level Domain-Driven Design.
+
+Para este bounded context se consideran el **Domain Layer Class Diagram**, encargado de representar las clases y relaciones que conforman el dominio sanitario, y el **Database Design Diagram**, encargado de representar los objetos necesarios para persistir su información.
+
+---
+
+#### 2.6.2.6.1. Bounded Context Domain Layer Class Diagrams
+
+En esta sección se presenta el Class Diagram UML correspondiente al Domain Layer del bounded context **Sanitary Tracking**.
+
+El modelo representa las clases responsables de gestionar el historial clínico y los eventos sanitarios asociados a los animales de Gethics. De acuerdo con las decisiones tomadas en el diseño estratégico, **Sanitary Tracking es el propietario del agregado ClinicalHistory**, garantizando que la información sanitaria sea modificada únicamente mediante las operaciones controladas por este bounded context.
+
+`ClinicalHistory` funciona como Aggregate Root y mantiene los eventos sanitarios correspondientes a un animal. Cada `SanitaryEvent` representa una vacuna, tratamiento, enfermedad, control u otra actividad sanitaria registrada.
+
+Asimismo, `SanitaryCalendar` permite organizar los eventos programados, mientras que `Reminder` representa los recordatorios asociados a actividades próximas. `SanitaryScheduleService` concentra las reglas de dominio necesarias para validar la programación de eventos y generar recordatorios.
+
+Las interfaces de Repository permiten definir las operaciones necesarias para recuperar y persistir la información del dominio sin acoplarla directamente a una tecnología de almacenamiento.
+
+**Sanitary Tracking Domain Layer Class Diagram**
+
+![Sanitary Tracking Domain Layer Class Diagram](images/SanitaryTrackingDomainLayerClassDiagram.png)
+
+Las principales relaciones representadas en el diagrama son:
+
+- Un `ClinicalHistory` pertenece a un único animal identificado mediante `animalId`.
+- Un `ClinicalHistory` puede contener cero o múltiples `SanitaryEvent`.
+- Cada `SanitaryEvent` pertenece a un único `ClinicalHistory`.
+- Un `SanitaryEvent` utiliza `SanitaryEventType`, `SanitaryEventStatus` y `Severity` para mantener valores controlados dentro del dominio.
+- Un `SanitaryEvent` puede generar cero o múltiples `Reminder`.
+- `SanitaryCalendar` organiza los eventos sanitarios programados.
+- `SanitaryScheduleService` aplica reglas relacionadas con la programación de eventos y generación de recordatorios.
+- `ClinicalHistoryRepository` define las operaciones de persistencia correspondientes al Aggregate Root.
+- `ReminderRepository` define las operaciones necesarias para recuperar y persistir recordatorios.
+
+Esta estructura permite mantener centralizada la información sanitaria dentro de Sanitary Tracking y evita que otros bounded contexts modifiquen directamente el historial clínico. De esta forma, las interacciones provenientes de **Veterinary Care** deben realizarse mediante las operaciones expuestas por Sanitary Tracking, manteniendo el límite de consistencia definido para el contexto.
