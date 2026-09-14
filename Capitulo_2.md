@@ -639,3 +639,125 @@ Las cardinalidades principales pueden representarse de la siguiente manera:
 CLINICAL_HISTORIES  1 ───────── 0..* SANITARY_EVENTS
 
 SANITARY_EVENTS     1 ───────── 0..* REMINDERS
+```
+
+---
+
+## 2.6.3. Bounded Context: Veterinary Care
+
+El bounded context **Veterinary Care** se encarga de gestionar la relación profesional entre veterinarios y ganaderos dentro de Gethics, permitiendo administrar asignaciones, consultar los pacientes asociados a cada cliente y realizar el seguimiento clínico de los animales atendidos.
+
+Este bounded context tiene como concepto principal la **Veterinary Assignment**, que representa la relación existente entre un veterinario y un cliente. A partir de dicha asignación, el profesional puede consultar los animales pertenecientes al ganadero y registrar información relacionada con su seguimiento clínico.
+
+Los datos maestros de los animales no son administrados directamente por Veterinary Care, sino que se consultan desde **Livestock Management**, que mantiene la propiedad de dicha información.
+
+De manera similar, Veterinary Care no es propietario del historial clínico. Cuando un veterinario registra información que debe formar parte del historial sanitario de un paciente, la actualización se realiza mediante las operaciones expuestas por **Sanitary Tracking**, evitando el acceso directo a las estructuras internas de dicho bounded context.
+
+Veterinary Care también contempla la recepción de información proveniente de sensores o dispositivos IoT. Debido a que estos dispositivos pueden manejar protocolos y estructuras de datos propias, su integración se realiza mediante una Anti-Corruption Layer que transforma las lecturas externas en conceptos comprensibles por el dominio.
+
+### Class Dictionary
+
+Las principales clases identificadas para el bounded context **Veterinary Care** son las siguientes:
+
+| Clase | Tipo | Propósito | Atributos principales | Métodos principales | Relaciones |
+|---|---|---|---|---|---|
+| `VeterinaryAssignment` | Aggregate Root | Representa la asignación entre un veterinario y un cliente ganadero. | `id`, `veterinarianId`, `clientId`, `assignedAt`, `status` | `assign()`, `activate()`, `deactivate()` | Relaciona un veterinario con un cliente. |
+| `ClinicalFollowUp` | Entity | Representa el seguimiento profesional realizado sobre un paciente. | `id`, `assignmentId`, `patientId`, `notes`, `status`, `updatedAt` | `update()`, `registerObservation()`, `registerAnomaly()` | Pertenece a una asignación y referencia a un paciente. |
+| `VeterinaryAssignmentId` | Value Object | Representa el identificador de una asignación veterinaria. | `value` | `validate()` | Identifica a `VeterinaryAssignment`. |
+| `VeterinaryAssignmentStatus` | Enumeration | Representa el estado actual de una asignación. | `ACTIVE`, `INACTIVE` | No aplica | Utilizado por `VeterinaryAssignment`. |
+| `FollowUpStatus` | Enumeration | Representa el estado del seguimiento clínico. | `NORMAL`, `OBSERVATION`, `ALERT` | No aplica | Utilizado por `ClinicalFollowUp`. |
+| `VeterinaryAssignmentRepository` | Repository Interface | Define las operaciones necesarias para persistir y consultar asignaciones veterinarias. | No aplica | `save()`, `findById()`, `findByVeterinarianId()` | Trabaja con `VeterinaryAssignment`. |
+| `ClinicalFollowUpRepository` | Repository Interface | Define las operaciones necesarias para almacenar y consultar seguimientos clínicos. | No aplica | `save()`, `findByPatientId()` | Trabaja con `ClinicalFollowUp`. |
+| `ClinicalMonitoringService` | Domain Service | Evalúa información clínica y determina si un paciente requiere seguimiento o alerta. | No aplica | `evaluateReading()`, `detectAnomaly()` | Trabaja con `ClinicalFollowUp`. |
+
+---
+
+### 2.6.3.1. Domain Layer
+
+El **Domain Layer** contiene las reglas de negocio relacionadas con la asignación de veterinarios a clientes y el seguimiento profesional de los pacientes atendidos.
+
+El agregado principal del bounded context es `VeterinaryAssignment`, encargado de representar la relación entre un veterinario y un cliente. Una misma persona con rol Veterinarian puede mantener múltiples asignaciones activas, permitiéndole consultar los diferentes ganaderos bajo su atención profesional.
+
+Cada asignación mantiene las referencias necesarias hacia el veterinario y el cliente mediante sus respectivos identificadores. Veterinary Care no mantiene una copia del modelo completo de usuario, debido a que la información de identidad y roles es proporcionada por **Identity & Access**.
+
+La clase `ClinicalFollowUp` representa el seguimiento clínico que el veterinario realiza sobre un paciente. El paciente se identifica mediante `patientId`, correspondiente al identificador del animal administrado por **Livestock Management**. De esta manera, Veterinary Care utiliza al animal como una referencia externa sin apropiarse de su información maestra.
+
+`ClinicalMonitoringService` concentra las reglas necesarias para evaluar observaciones clínicas y las lecturas recibidas desde dispositivos IoT. Cuando una lectura indica una anomalía, el dominio puede actualizar el estado del seguimiento clínico para reflejar que el paciente requiere observación o atención.
+
+El historial clínico completo no forma parte del modelo interno de Veterinary Care. Cuando una observación o atención debe incorporarse al historial sanitario del animal, el bounded context solicita dicha actualización a **Sanitary Tracking**, que mantiene la propiedad del agregado correspondiente.
+
+Las interfaces `VeterinaryAssignmentRepository` y `ClinicalFollowUpRepository` permiten que el Domain Layer defina sus necesidades de persistencia sin depender directamente de una tecnología de almacenamiento específica.
+
+---
+
+### 2.6.3.2. Interface Layer
+
+El **Interface Layer** contiene los componentes responsables de recibir las solicitudes relacionadas con las operaciones del módulo veterinario.
+
+Esta capa permite gestionar las asignaciones veterinarias, consultar los clientes atendidos por un profesional, acceder a los pacientes asociados y registrar actualizaciones relacionadas con su seguimiento clínico.
+
+| Clase | Tipo | Propósito | Operaciones principales |
+|---|---|---|---|
+| `VeterinaryAssignmentController` | Controller | Gestiona las operaciones relacionadas con asignaciones entre veterinarios y clientes. | `createAssignment()`, `getAssignments()`, `deactivateAssignment()` |
+| `VeterinaryClientController` | Controller | Permite consultar los clientes asignados a un veterinario. | `getAssignedClients()`, `getClient()` |
+| `VeterinaryPatientController` | Controller | Permite consultar los pacientes pertenecientes a los clientes asignados. | `getPatients()`, `getPatientById()` |
+| `ClinicalFollowUpController` | Controller | Gestiona las operaciones relacionadas con el seguimiento clínico de los pacientes. | `getFollowUp()`, `updateFollowUp()`, `registerObservation()` |
+
+Los Controllers reciben las solicitudes provenientes de la aplicación y delegan la ejecución de cada operación hacia los casos de uso definidos en el Application Layer.
+
+La información detallada de los pacientes no se obtiene directamente desde una estructura propia de Veterinary Care. Las solicitudes correspondientes son coordinadas con **Livestock Management**, respetando los límites establecidos entre ambos bounded contexts.
+
+---
+
+### 2.6.3.3. Application Layer
+
+El **Application Layer** coordina los casos de uso relacionados con la atención veterinaria y la interacción con los bounded contexts y servicios externos necesarios.
+
+Esta capa organiza el flujo de ejecución entre los Controllers, los elementos del dominio y las interfaces necesarias para acceder a información administrada por otros contextos.
+
+| Clase | Tipo | Propósito |
+|---|---|---|
+| `AssignVeterinarianToClientCommandHandler` | Command Handler | Coordina la creación de una nueva asignación entre un veterinario y un cliente. |
+| `DeactivateVeterinaryAssignmentCommandHandler` | Command Handler | Coordina la desactivación de una asignación veterinaria. |
+| `GetAssignedClientsQueryHandler` | Query Handler | Obtiene los clientes asignados a un veterinario. |
+| `GetPatientQueryHandler` | Query Handler | Obtiene la información de un paciente mediante Livestock Management. |
+| `GetClientPatientsQueryHandler` | Query Handler | Obtiene los pacientes pertenecientes a un cliente asignado. |
+| `UpdateClinicalFollowUpCommandHandler` | Command Handler | Coordina la actualización manual del seguimiento clínico de un paciente. |
+| `ProcessIoTReadingCommandHandler` | Command Handler | Procesa una lectura proveniente de un dispositivo IoT y coordina la actualización del seguimiento clínico cuando corresponde. |
+| `UpdateClinicalHistoryCommandHandler` | Command Handler | Coordina el envío de una actualización hacia Sanitary Tracking cuando la información debe incorporarse al historial clínico. |
+
+Cuando un veterinario consulta un paciente, el Application Layer verifica la asignación correspondiente y coordina la obtención de la información del animal desde **Livestock Management**.
+
+Cuando el profesional registra una nueva observación, `UpdateClinicalFollowUpCommandHandler` coordina la modificación del seguimiento clínico interno. Si dicha información debe formar parte del historial clínico del animal, se utiliza la integración correspondiente con **Sanitary Tracking**.
+
+De manera similar, cuando se recibe información proveniente de un dispositivo IoT, `ProcessIoTReadingCommandHandler` coordina su procesamiento. Una vez que la lectura ha sido transformada al lenguaje del dominio, `ClinicalMonitoringService` puede evaluar si existe una anomalía y actualizar el seguimiento del paciente.
+
+---
+
+### 2.6.3.4. Infrastructure Layer
+
+El **Infrastructure Layer** contiene las implementaciones técnicas necesarias para persistir la información de Veterinary Care y comunicarse con otros bounded contexts o servicios externos.
+
+Esta capa mantiene aisladas las dependencias técnicas para evitar que los elementos del dominio dependan directamente de APIs, protocolos de comunicación, bases de datos o dispositivos físicos.
+
+| Clase | Tipo | Propósito |
+|---|---|---|
+| `VeterinaryAssignmentRepositoryImpl` | Repository Implementation | Implementa las operaciones de persistencia de las asignaciones veterinarias. |
+| `ClinicalFollowUpRepositoryImpl` | Repository Implementation | Implementa las operaciones de persistencia del seguimiento clínico. |
+| `VeterinaryDataSource` | Data Source | Gestiona el acceso a los datos propios del bounded context Veterinary Care. |
+| `LivestockManagementClient` | External Context Client | Permite consultar la información de los animales administrados por Livestock Management. |
+| `SanitaryTrackingClient` | External Context Client | Permite solicitar actualizaciones del historial clínico administrado por Sanitary Tracking. |
+| `IoTDeviceAdapter` | Anti-Corruption Layer Adapter | Transforma las lecturas provenientes de sensores o dispositivos IoT al modelo utilizado por Veterinary Care. |
+| `IoTReadingMapper` | Mapper | Traduce las estructuras de datos externas provenientes de dispositivos IoT a conceptos utilizados por el dominio. |
+
+La integración con los sensores o dispositivos IoT se realiza mediante una **Anti-Corruption Layer**. De esta forma, los formatos, protocolos o estructuras propias de cada dispositivo permanecen aislados de los elementos internos del bounded context.
+
+El `IoTDeviceAdapter` recibe la información externa y utiliza `IoTReadingMapper` para convertirla en un formato comprensible para Veterinary Care. Posteriormente, la lectura puede ser evaluada por los servicios del dominio para determinar si existe alguna anomalía que requiera modificar el seguimiento clínico.
+
+Por otro lado, `LivestockManagementClient` permite consultar los datos de los pacientes sin replicar el modelo de Animal dentro de Veterinary Care, mientras que `SanitaryTrackingClient` permite solicitar la actualización controlada del historial clínico sin realizar escrituras directas sobre los datos de Sanitary Tracking.
+
+Esta separación permite que Veterinary Care mantenga su propio modelo centrado en la relación veterinario-cliente-paciente y en el seguimiento profesional, mientras que las responsabilidades correspondientes a los animales y al historial clínico permanecen dentro de sus respectivos bounded contexts.
+
+---
+
+
