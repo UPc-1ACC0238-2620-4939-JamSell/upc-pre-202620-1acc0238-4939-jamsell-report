@@ -462,3 +462,62 @@ Esta capa implementa las interfaces definidas por el dominio y permite que los c
 | `NotificationService` | External Service Adapter | Permite enviar recordatorios y notificaciones al usuario. |
 
 La separación entre capas permite que la lógica relacionada con eventos sanitarios pueda evolucionar sin depender directamente de la base de datos, servicios de notificación o mecanismos específicos de comunicación.
+
+---
+
+### 2.6.2.5. Bounded Context Software Architecture Component Level Diagrams
+
+En esta sección se presenta el Component Level Diagram correspondiente al bounded context **Sanitary Tracking**, siguiendo el enfoque del modelo C4 y manteniendo consistencia con las decisiones establecidas previamente en el Strategic-Level Domain-Driven Design de Gethics Mobile.
+
+El objetivo del diagrama es representar la organización interna de los componentes responsables del seguimiento sanitario de los animales, así como las interacciones entre las capas de Interface, Application, Domain e Infrastructure.
+
+Sanitary Tracking tiene como responsabilidad principal registrar y dar seguimiento a los eventos sanitarios asociados a los animales, incluyendo vacunas, tratamientos y enfermedades. Asimismo, permite programar actividades sanitarias, mantener actualizado el historial clínico y generar recordatorios o alertas cuando corresponda.
+
+Este bounded context recibe la identificación y datos generales del animal desde **Livestock Management**, manteniendo separados ambos modelos. Asimismo, Sanitary Tracking es propietario del historial clínico, por lo que las actualizaciones realizadas desde **Veterinary Care** deben efectuarse mediante las operaciones expuestas por este contexto y no mediante acceso directo a sus datos.
+
+Finalmente, la información sanitaria generada puede ser utilizada por **Analytics & Alerts** para el análisis de tendencias, mientras que el envío de recordatorios y alertas se delega al **Servicio de Notificaciones Push** definido como sistema externo.
+
+**Sanitary Tracking Software Architecture Component Level Diagram**
+
+![Sanitary Tracking Software Architecture Component Level Diagram](images/SanitaryTracking.png)
+
+El diagrama presenta los componentes principales que participan en el bounded context:
+
+| Componente | Responsabilidad |
+|---|---|
+| `Sanitary Event Controller` | Recibe las solicitudes relacionadas con el registro, consulta, actualización y finalización de eventos sanitarios. |
+| `Sanitary Calendar Controller` | Gestiona las solicitudes relacionadas con la consulta y planificación del calendario sanitario. |
+| `Reminder Controller` | Gestiona las solicitudes relacionadas con los recordatorios sanitarios. |
+| `Sanitary Event Application Service` | Coordina los casos de uso relacionados con el registro y actualización de eventos sanitarios. |
+| `Calendar Application Service` | Coordina los casos de uso relacionados con la programación y consulta del calendario sanitario. |
+| `Reminder Application Service` | Coordina la generación y administración de recordatorios relacionados con los eventos sanitarios. |
+| `Sanitary Event Aggregate` | Representa el agregado principal del contexto y controla el ciclo de vida de los eventos sanitarios. |
+| `Sanitary Calendar` | Organiza los eventos sanitarios programados y permite consultar las actividades próximas. |
+| `Reminder` | Representa un recordatorio asociado a un evento sanitario próximo. |
+| `Sanitary Schedule Service` | Contiene las reglas de dominio necesarias para validar la programación de actividades sanitarias y la generación de recordatorios. |
+| `Sanitary Event Repository Interface` | Define las operaciones requeridas por el dominio para almacenar y recuperar eventos sanitarios. |
+| `Reminder Repository Interface` | Define las operaciones requeridas para almacenar y consultar recordatorios. |
+| `Sanitary Event Repository Implementation` | Implementa las operaciones de persistencia definidas por el dominio para los eventos sanitarios. |
+| `Reminder Repository Implementation` | Implementa las operaciones de persistencia correspondientes a los recordatorios. |
+| `Local Sanitary Data Source` | Permite mantener temporalmente información sanitaria en el dispositivo móvil para soportar el registro sin conexión. |
+| `Sanitary API Client` | Permite la comunicación entre la aplicación móvil y los servicios RESTful asociados al bounded context. |
+| `Notification Service` | Adaptador encargado de solicitar el envío de recordatorios y alertas mediante el servicio externo de notificaciones push. |
+
+El flujo principal de comunicación dentro de Sanitary Tracking se desarrolla de la siguiente manera:
+
+1. El usuario interactúa con Gethics Mobile para registrar, consultar o actualizar información sanitaria de un animal.
+2. Los Controllers de la Interface Layer reciben la solicitud y delegan su procesamiento hacia los servicios correspondientes del Application Layer.
+3. Los Application Services coordinan el caso de uso y utilizan los elementos del Domain Layer para aplicar las reglas de negocio.
+4. `SanitaryEvent` controla el ciclo de vida del evento sanitario, mientras que `SanitaryScheduleService` valida las reglas relacionadas con su programación.
+5. Las interfaces de Repository definidas en el dominio permiten solicitar la persistencia de la información sin depender de una tecnología concreta.
+6. Los Repository Implementations y Data Sources de la Infrastructure Layer realizan el almacenamiento y recuperación de la información.
+7. Cuando un evento sanitario requiere generar un recordatorio o alerta, la infraestructura solicita el envío correspondiente al Servicio de Notificaciones Push.
+
+Además de este flujo interno, Sanitary Tracking mantiene las siguientes relaciones con otros bounded contexts y sistemas:
+
+- **Livestock Management → Sanitary Tracking:** proporciona los datos necesarios para identificar al animal relacionado con el evento sanitario.
+- **Veterinary Care → Sanitary Tracking:** solicita la actualización del historial clínico mediante las operaciones expuestas por Sanitary Tracking.
+- **Sanitary Tracking → Analytics & Alerts:** expone la información del historial clínico actualizado para apoyar el análisis de tendencias.
+- **Sanitary Tracking → Servicio de Notificaciones Push:** solicita el envío de recordatorios y alertas sanitarias hacia los usuarios.
+
+Esta organización permite mantener a **Sanitary Tracking** como propietario de la información sanitaria y del historial clínico, evitando que otros bounded contexts modifiquen directamente sus datos. Al mismo tiempo, la separación por capas reduce el acoplamiento entre las reglas de negocio y los mecanismos técnicos de persistencia, sincronización y notificación.
