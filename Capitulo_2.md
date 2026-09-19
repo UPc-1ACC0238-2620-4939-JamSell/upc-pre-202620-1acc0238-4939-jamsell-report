@@ -144,11 +144,6 @@ La **User Task Matrix** permite sistematizar y jerarquizar la operatividad cotid
 
 ---
 
-#### **Síntesis de Prioridades Operativas**
-
-* **Tareas Críticas (Alta Frecuencia + Alta Importancia):** El control del **calendario sanitario**, la **gestión financiera** y la **consulta del historial clínico** constituyen el núcleo de valor que la aplicación debe resolver prioritariamente para garantizar una alta adopción.
-* **Vector de Colaboración:** La intersección entre las tareas del ganadero y del veterinario demuestra que centralizar la información sanitaria en una única plataforma móvil elimina las asimetrías de información en el campo.
-
 ### 2.3.3. User Journey Mapping
 
 
