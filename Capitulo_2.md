@@ -41,9 +41,64 @@ Evaluar la propuesta de valor, modelo de negocio, alcance funcional y capacidade
 * **Automatización mediante notificaciones push:** Implementar un sistema de alertas automáticas para calendarios de vacunación, tratamientos y eventos reproductivos, reduciendo olvidos operativos y garantizando el uso continuo de la aplicación.
 
 ## 2.2. Entrevistas
+Las entrevistas son una herramienta esencial para comprender a fondo a nuestro público objetivo. Para que sean efectivas, deben seguir una estructura clara y directa, utilizando preguntas específicas que permitan recolectar información de valor y datos precisos de los participantes.
 
 ### 2.2.1. Diseño de entrevistas
+A continuación se detalla la guía de entrevista estructurada por segmentos y categorías temáticas:
+#### **Segmento 1: Pequeños y Medianos Ganaderos**
 
+* **1. Características Demográficas, Antecedentes y Biografía**
+  * **Pregunta Principal:** ¿Podría presentarse brevemente y contarnos a qué se dedica en su finca?
+    * *Pregunta Complementaria:* ¿Qué edad tiene, cuál es su estado civil y cuántas personas integran su hogar?
+    * *Pregunta Complementaria:* ¿En qué distrito reside y cuántas cabezas de ganado maneja actualmente?
+
+* **2. Hábitos Tecnológicos, Dispositivos y Canales Digitales**
+  * **Pregunta Principal:** ¿Qué dispositivos (smartphone, tablet, computadora) utiliza a diario en el campo?
+    * *Pregunta Complementaria:* ¿Qué marcas de celular, navegador web y aplicaciones móviles usa más seguido?
+    * *Pregunta Complementaria:* ¿A través de qué canales digitales se comunica e informa (WhatsApp, Facebook, YouTube)?
+    * *Pregunta Complementaria:* ¿Qué marcas de insumos, instituciones o personas influyen en sus decisiones ganaderas?
+
+* **3. Habilidades y Procesos Actuales de Gestión Ganadera**
+  * **Pregunta Principal:** ¿Cómo registra hoy la salud, vacunas, partos y gastos de sus animales?
+    * *Pregunta Complementaria:* ¿Qué tan hábil se considera manejando aplicaciones móviles?
+    * *Pregunta Complementaria:* ¿Depende de cuadernos de papel o usa alguna herramienta digital para organizar su hato?
+
+* **4. Objetivos y Motivaciones**
+  * **Pregunta Principal:** ¿Cuál es su principal meta para su negocio ganadero a corto y mediano plazo?
+    * *Pregunta Complementaria:* ¿Qué le gustaría mejorar en la productividad, control o trazabilidad de su hato?
+
+* **5. Frustraciones, Dolores y Desafíos**
+  * **Pregunta Principal:** ¿Cuál es la mayor dificultad que enfrenta en la gestión diaria de su ganado?
+    * *Pregunta Complementaria:* ¿Ha olvidado vacunaciones, perdido información o tenido pérdidas económicas por no llevar un registro ordenado?
+    * *Pregunta Complementaria:* ¿Qué inconvenientes percibe al usar tecnología en el campo (poca señal, apps complejas)?
+
+---
+
+#### **Segmento 2: Veterinarios y Técnicos Agropecuarios**
+
+* **1. Características Demográficas, Antecedentes y Biografía**
+  * **Pregunta Principal:** ¿Podría resumir su formación profesional y los distritos donde presta sus servicios?
+    * *Pregunta Complementaria:* ¿Qué edad tiene y cuántos años lleva trabajando en la atención veterinaria de campo?
+    * *Pregunta Complementaria:* ¿A qué tipo de ganaderos u organizaciones asesora o atiende habitualmente?
+
+* **2. Hábitos Tecnológicos, Dispositivos y Canales Digitales**
+  * **Pregunta Principal:** ¿Qué equipo tecnológico lleva consigo durante sus visitas a los establos o predios?
+    * *Pregunta Complementaria:* ¿Qué marcas de tecnología, navegador web y apps profesionales prefiere usar?
+    * *Pregunta Complementaria:* ¿A través de qué canales digitales o redes interactúa con otros colegas del sector?
+    * *Pregunta Complementaria:* ¿Qué laboratorios o marcas de fármacos veterinarios prefiere o ejercen mayor influencia en su criterio técnico?
+
+* **3. Habilidades y Atención Clínica en Campo**
+  * **Pregunta Principal:** ¿Cómo registra las fichas clínicas, tratamientos y eventos sanitarios de sus pacientes en el campo?
+    * *Pregunta Complementaria:* ¿Qué facilidades o problemas tiene al usar aplicaciones móviles en zonas con baja conectividad?
+    * *Pregunta Complementaria:* ¿De qué manera le comunica al ganadero el plan sanitario o tratamiento asignado?
+
+* **4. Objetivos y Motivaciones**
+  * **Pregunta Principal:** ¿Qué busca lograr para hacer más eficientes sus servicios veterinarios en el campo?
+    * *Pregunta Complementaria:* ¿Cómo le gustaría agilizar el seguimiento clínico de sus pacientes y clientes asignados?
+
+* **5. Frustraciones, Dolores y Desafíos**
+  * **Pregunta Principal:** ¿Qué es lo más frustrante al atender a un cliente que no cuenta con registros de su ganado?
+    * *Pregunta Complementaria:* ¿Qué fallas en el seguimiento de recetas o historial sanitario entorpecen su trabajo médico diario?
 
 ### 2.2.2. Registro de entrevistas
 
