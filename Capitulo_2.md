@@ -109,12 +109,42 @@ A continuación se detalla la guía de entrevista estructurada por segmentos y c
 ---
 
 ## 2.3. Needfinding
+En esta sección se presentarán los artefactos resultantes del proceso de análisis de la información recolectada de los segmentos objetivos. Aquí se incluyen secciones para User Personas, User Task Matrix, User Journey Maps, Empathy Mapping y As-is Scenario Mapping.
 
 ### 2.3.1. User Personas
+En esta sección se exponen los User Personas construidos para caracterizar a los segmentos objetivo definidos durante la investigación de campo. Estos arquetipos sintetizan atributos demográficos, perfiles psicográficos, patrones de comportamiento, así como los principales pains (frustraciones) y gains (metas) observados en su operativa cotidiana. Adicionalmente, se examina el nivel de madurez digital de cada perfil y su relación con las herramientas tecnológicas pecuarias. El diseño visual y la sistematización de estos hallazgos se realizaron mediante UXPressia a partir de los datos cualitativos obtenidos en las entrevistas. 
 
+#### **User Persona 1: Pequeños y Medianos Ganaderos**
+
+![User Persona Ganadero](./images/user_persona_ganadero.png)
+
+---
+
+#### **User Persona 2: Veterinarios y Técnicos Agropecuarios**
+
+![User Persona Veterinario](./images/user_persona_veterinario.png)
 
 ### 2.3.2. User Task Matrix
+La **User Task Matrix** permite sistematizar y jerarquizar la operatividad cotidiana de los actores del ecosistema pecuario. Al evaluar la recurrencia (*frecuencia*) y la relevancia (*importancia*) de cada tarea en la gestión actual, este artefacto visibiliza los cuellos de botella y puntos de fricción del proceso, sentando las bases para priorizar las funcionalidades clave de la solución móvil **Gethics**.
 
+#### **Matriz de Tareas por Segmento Objetivo**
+
+| Tarea / Actividad | Segmento Objetivo | Frecuencia | Importancia | Canal / Método Actual | Dificultad Actual | Oportunidad de Solución en Gethics |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| **Registro de partos e identificación individual** | Ganaderos | Media | Alta | Cuaderno de apuntes / Memoria | **Alta:** Pérdida de fechas exactas y confusión en la genealogía. | Registro móvil rápido con ficha individual digital y código QR. |
+| **Control de calendario sanitario y vacunas** | Ganaderos / Veterinarios | Alta | Alta | Calendario físico / Ninguno | **Alta:** Olvido de refuerzos y exposición a brotes de enfermedades. | Notificaciones *push* automáticas y calendario sanitario interactivo. |
+| **Registro de ingresos y egresos (Finanzas)** | Ganaderos | Alta | Alta | Cuaderno / Apuntes sueltos | **Alta:** Desconocimiento de la rentabilidad real de la unidad productiva. | Control económico simplificado por categorías (ventas, insumos, medicinas). |
+| **Consulta de historial clínico de animales** | Veterinarios | Alta | Alta | Fichas físicas / Consulta verbal | **Alta:** Ausencia de antecedentes médicos confiables al atender al paciente. | Módulo veterinario con acceso in situ al historial clínico unificado. |
+| **Registro de diagnósticos y tratamientos** | Veterinarios | Media | Alta | Recetario de papel / Mensajes | **Media:** Dificultad para verificar si el ganadero cumplió la receta. | Registro digital de eventos sanitarios vinculado a la ficha del animal. |
+| **Visualización de reportes de producción** | Ganaderos | Mensual | Media | Cálculos manuales / Ninguno | **Alta:** Imposibilidad de evaluar tendencias de producción a mediano plazo. | Panel de estadísticas con gráficos interactivos y alertas de tendencia. |
+| **Monitoreo de anomalías o salud del hato** | Ganaderos / Veterinarios | Diaria | Media | Observación visual directa | **Media:** Detección tardía de síntomas o cambios de comportamiento. | Integración con dispositivos IoT y alertas automáticas por anomalías. |
+
+---
+
+#### **Síntesis de Prioridades Operativas**
+
+* **Tareas Críticas (Alta Frecuencia + Alta Importancia):** El control del **calendario sanitario**, la **gestión financiera** y la **consulta del historial clínico** constituyen el núcleo de valor que la aplicación debe resolver prioritariamente para garantizar una alta adopción.
+* **Vector de Colaboración:** La intersección entre las tareas del ganadero y del veterinario demuestra que centralizar la información sanitaria en una única plataforma móvil elimina las asimetrías de información en el campo.
 
 ### 2.3.3. User Journey Mapping
 
