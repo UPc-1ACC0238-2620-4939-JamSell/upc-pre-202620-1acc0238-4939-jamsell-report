@@ -12,7 +12,7 @@ Para evaluar el posicionamiento de **Gethics** en el mercado de soluciones digit
 **¿Por qué llevar a cabo este análisis?**  
 Evaluar la propuesta de valor, modelo de negocio, alcance funcional y capacidades tecnológicas de los principales competidores frente a **Gethics**, identificando brechas en el mercado para consolidar una ventaja competitiva sostenible.
 
-| Criterio / Perfil | Gethics | Contigo Pecuario | iambov | Control Ganadero |
+| Criterio / Perfil | <img src="./images/GethicsIcon.png" width="100" alt="Gethics Logo"><br>**Gethics** | <img src="./images/conTigoIcon.png" width="100" alt="Contigo Pecuario Logo"><br>**Contigo Pecuario** | <img src="./images/iambovIcon.png" width="100" alt="iambov Logo"><br>**iambov** | <img src="./images/PecuarioIcon.png" width="100" alt="Control Ganadero Logo"><br>**Control Ganadero** |
 | :--- | :--- | :--- | :--- | :--- |
 | **Overview** | Startup móvil enfocada en la gestión integral del hato, control sanitario, trazabilidad y módulo colaborativo para veterinarios de campo. | Empresa peruana AgTech de software y análisis de datos ganaderos orientada a la productividad. | Plataforma peruana de gestión ganadera asistida por Inteligencia Artificial de Nauka Labs. | Aplicación móvil para el registro individual de animales, producción y costos de finca. |
 | **Ventaja competitiva** | Solución *mobile-first* con perfil nativo exclusivo para veterinarios, registro *in situ* y alertas *push* automáticas. | Análisis de datos enfocado en el fortalecimiento de la asociatividad y cadenas de suministro. | Asistencia por IA y análisis predictivo del hato desde plataforma web/móvil. | Amplia base de usuarios y simplicidad como libreta de registro digital accesible. |
