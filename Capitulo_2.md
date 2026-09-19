@@ -129,15 +129,18 @@ La **User Task Matrix** permite sistematizar y jerarquizar la operatividad cotid
 
 #### **Matriz de Tareas por Segmento Objetivo**
 
-| Tarea / Actividad | Segmento Objetivo | Frecuencia | Importancia | Canal / Método Actual | Dificultad Actual | Oportunidad de Solución en Gethics |
-| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| **Registro de partos e identificación individual** | Ganaderos | Media | Alta | Cuaderno de apuntes / Memoria | **Alta:** Pérdida de fechas exactas y confusión en la genealogía. | Registro móvil rápido con ficha individual digital y código QR. |
-| **Control de calendario sanitario y vacunas** | Ganaderos / Veterinarios | Alta | Alta | Calendario físico / Ninguno | **Alta:** Olvido de refuerzos y exposición a brotes de enfermedades. | Notificaciones *push* automáticas y calendario sanitario interactivo. |
-| **Registro de ingresos y egresos (Finanzas)** | Ganaderos | Alta | Alta | Cuaderno / Apuntes sueltos | **Alta:** Desconocimiento de la rentabilidad real de la unidad productiva. | Control económico simplificado por categorías (ventas, insumos, medicinas). |
-| **Consulta de historial clínico de animales** | Veterinarios | Alta | Alta | Fichas físicas / Consulta verbal | **Alta:** Ausencia de antecedentes médicos confiables al atender al paciente. | Módulo veterinario con acceso in situ al historial clínico unificado. |
-| **Registro de diagnósticos y tratamientos** | Veterinarios | Media | Alta | Recetario de papel / Mensajes | **Media:** Dificultad para verificar si el ganadero cumplió la receta. | Registro digital de eventos sanitarios vinculado a la ficha del animal. |
-| **Visualización de reportes de producción** | Ganaderos | Mensual | Media | Cálculos manuales / Ninguno | **Alta:** Imposibilidad de evaluar tendencias de producción a mediano plazo. | Panel de estadísticas con gráficos interactivos y alertas de tendencia. |
-| **Monitoreo de anomalías o salud del hato** | Ganaderos / Veterinarios | Diaria | Media | Observación visual directa | **Media:** Detección tardía de síntomas o cambios de comportamiento. | Integración con dispositivos IoT y alertas automáticas por anomalías. |
+| USER TASK | Jorge Luis Rivas (Frecuencia) | Jorge Luis Rivas (Importancia) | Valeria Mendoza (Frecuencia) | Valeria Mendoza (Importancia) |
+| :--- | :--- | :--- | :--- | :--- |
+| **Anotar el nacimiento o compra de un nuevo animal en cuadernos físicos** | Sometimes | High | Rarely | Medium |
+| **Registrar manualmente vacunas y tratamientos del ganado** | Often | High | Always | High |
+| **Revisar fechas de vacunación en notas, calendarios o cuadernos** | Often | High | Often | High |
+| **Recordar manualmente vacunas o controles pendientes** | Sometimes | High | Sometimes | High |
+| **Anotar peso y crecimiento del ganado durante controles** | Often | Medium | Often | Medium |
+| **Revisar manualmente información sobre productividad y rendimiento** | Sometimes | Medium | Often | Medium |
+| **Compartir documentos físicos o fotografías de registros con asociaciones o compradores** | Rarely | Medium | Rarely | Low |
+| **Buscar información o capacitaciones ganaderas en internet y redes sociales** | Sometimes | Low | Sometimes | Medium |
+| **Llevar el control reproductivo mediante anotaciones manuales** | Rarely | Medium | Rarely | Medium |
+| **Buscar antecedentes médicos y sanitarios en cuadernos o archivos físicos** | Sometimes | High | Sometimes | High |
 
 ---
 
