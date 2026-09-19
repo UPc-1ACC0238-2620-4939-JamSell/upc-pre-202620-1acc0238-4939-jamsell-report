@@ -1,14 +1,44 @@
 # Capítulo II: Requirements Development and Software Solution Design
 
 ## 2.1. Competidores
+Para evaluar el posicionamiento de **Gethics** en el mercado de soluciones digitales para la gestión pecuaria y ganadera, se identifican tres competidores clave (directos e indirectos) con presencia en el mercado nacional y regional:
 
+* **Contigo Pecuario (Competidor Directo):** Plataforma de software ganadero y AgTech desarrollada por una empresa peruana, orientada a pequeños, medianos y grandes productores del Perú. Permite realizar el seguimiento del hato, control de producción, visualización de reportes interactivos y fortalecimiento de la asociatividad.
+* **iambov (Competidor Directo):** Plataforma y asistente de gestión ganadera impulsado por Inteligencia Artificial y análisis de datos, desarrollado por Nauka Labs S.A.C. en Perú. Permite llevar un control digitalizado del hato bovino, monitoreo reproductivo, sanitario y asistencia inteligente.
+* **Control Ganadero (Competidor Indirecto):** Aplicación móvil utilizada para el registro individual de animales, salud, producción de leche y costos de finca. Funciona principalmente como un cuaderno de registro digital sin herramientas colaborativas en tiempo real para médicos veterinarios.
 ### 2.1.1. Análisis competitivo
+#### **Competitive Analysis Landscape**
 
+**¿Por qué llevar a cabo este análisis?**  
+Evaluar la propuesta de valor, modelo de negocio, alcance funcional y capacidades tecnológicas de los principales competidores frente a **Gethics**, identificando brechas en el mercado para consolidar una ventaja competitiva sostenible.
+
+| Criterio / Perfil | Gethics | Contigo Pecuario | iambov | Control Ganadero |
+| :--- | :--- | :--- | :--- | :--- |
+| **Overview** | Startup móvil enfocada en la gestión integral del hato, control sanitario, trazabilidad y módulo colaborativo para veterinarios de campo. | Empresa peruana AgTech de software y análisis de datos ganaderos orientada a la productividad. | Plataforma peruana de gestión ganadera asistida por Inteligencia Artificial de Nauka Labs. | Aplicación móvil para el registro individual de animales, producción y costos de finca. |
+| **Ventaja competitiva** | Solución *mobile-first* con perfil nativo exclusivo para veterinarios, registro *in situ* y alertas *push* automáticas. | Análisis de datos enfocado en el fortalecimiento de la asociatividad y cadenas de suministro. | Asistencia por IA y análisis predictivo del hato desde plataforma web/móvil. | Amplia base de usuarios y simplicidad como libreta de registro digital accesible. |
+| **Mercado objetivo** | Pequeños y medianos ganaderos, y veterinarios de campo en Perú y LATAM. | Pequeños, medianos y grandes productores y cooperativas en el Perú. | Ganaderos y empresas pecuarias que buscan analítica avanzada e IA. | Ganaderos independientes y pequeños productores en Latinoamérica. |
+| **Estrategias de marketing** | Alianzas con gremios y asociaciones locales, difusión con profesionales veterinarios y prueba *in-app* con contenido educativo. | Contenido educativo (blogs/tutoriales), participación en programas AgTech (ProInnóvate) y alianzas con cooperativas. | Posicionamiento como solución innovadora con IA y marketing digital agropecuario. | Posicionamiento orgánico en tiendas de aplicaciones y comunidades pecuarias. |
+| **Productos & Servicios** | App móvil con gestión de animales, sanidad, calendario sanitario, módulo veterinario, finanzas y reportes. | Plataforma Web y App con reportes de producción, salud, finanzas y módulo asociativo. | Plataforma Web y App con asistentes de IA, monitoreo reproductivo, sanitario y tableros. | App móvil para registro individual de animales, control de leche, reproducciones y gastos. |
+| **Precios & Costos** | Modelo de suscripción *in-app* según el tamaño del hato y licencias institucionales. | Planes de suscripción y licenciamiento de software para productores y cooperativas. | Suscripción mensual/anual SaaS por volumen de uso e IA. | Modelo *Freemium* con pagos por funcionalidades avanzadas. |
+| **Canales de distribución** | Aplicación móvil (Android e iOS) optimizada para smartphones y tablets. | Plataforma Web interactiva y aplicación móvil. | Plataforma Web interactiva y aplicación móvil. | Aplicación móvil (Android e iOS). |
+| **Fortalezas (SWOT)** | Módulo nativo para veterinarios, interfaz *mobile-first* intuitiva, sistema de alertas *push* e integración IoT. | Adaptado al contexto peruano, buen sistema de reportes y enfoque en asociatividad. | Tecnología de vanguardia con IA y análisis predictivo del hato. | Facilidad de uso, reconocimiento de marca y rápida instalación. |
+| **Debilidades (SWOT)** | Marca nueva en fase de introducción e inicio de penetración de mercado. | Dependencia de conexión web para ciertas funciones analíticas complejas. | Requiere mayor capacitación para usuarios con bajo nivel de alfabetización digital. | Carece de módulo para veterinarios y herramientas colaborativas en tiempo real. |
+| **Oportunidades (SWOT)** | Creciente adopción de smartphones en zonas rurales de LATAM y falta de digitalización sanitaria. | Alianzas con programas estatales de desarrollo ganadero en el Perú. | Integración con dispositivos IoT y sensores pecuarios en el mercado nacional. | Creciente demanda de herramientas sencillas de registro individual. |
+| **Amenazas (SWOT)** | Resistencia al cambio tecnológico en productores ganaderos tradicionales. | Ingreso de soluciones internacionales con presupuestos de marketing más elevados. | Plataformas globales que incorporen asistentes de IA genéricos. | Competidores emergentes con ofertas totalmente gratuitas. |
 
 ### 2.1.2. Estrategias y tácticas frente a competidores
 
+#### **Estrategia de Diferenciación por Propuesta de Valor Dual**
+* **Módulo nativo colaborativo Ganadero-Veterinario:** A diferencia de competidores orientados únicamente al productor como *Control Ganadero* o *Contigo Pecuario*, **Gethics** ofrece un perfil exclusivo para médicos veterinarios de campo, permitiendo compartir historiales clínicos en tiempo real y coordinar tratamientos directamente *in situ*.
+* **Experiencia Mobile-First intuitiva:** Frente a plataformas complejas como *iambov* que demandan mayor alfabetización digital, **Gethics** implementa un diseño simplificado para pantallas táctiles, optimizado para ser utilizado por productores rurales en condiciones de campo.
 
----
+#### **Tácticas de Penetración de Mercado y Crecimiento**
+* **Alianzas con gremios e instituciones clave:** Establecer convenios con cooperativas ganaderas, asociaciones locales y entidades del sector (como SENASA) para acelerar la adopción en pequeños y medianos hatos frente al posicionamiento de *Contigo Pecuario*.
+* **Modelo Freemium escalable:** Mitigar la resistencia a la adopción tecnológica mediante un plan gratuito con funciones esenciales de registro individual, facilitando la conversión posterior a suscripciones *in-app* según el crecimiento del hato.
+
+#### **Tácticas de Producto y Retención**
+* **Arquitectura Offline-First:** Permitir la recolección de datos sanitarios y económicos sin dependencia de conexión continua a internet en zonas rurales remotas, superando las limitaciones de soluciones basadas predominantemente en web.
+* **Automatización mediante notificaciones push:** Implementar un sistema de alertas automáticas para calendarios de vacunación, tratamientos y eventos reproductivos, reduciendo olvidos operativos y garantizando el uso continuo de la aplicación.
 
 ## 2.2. Entrevistas
 
