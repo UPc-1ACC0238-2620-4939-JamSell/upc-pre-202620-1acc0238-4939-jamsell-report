@@ -171,31 +171,367 @@ La **User Task Matrix** permite sistematizar y jerarquizar la operatividad cotid
 
 ---
 
-## 2.5. Strategic-Level Domain-Driven Design
+## 2.5. Strategic-Level Domain-Driven Design.
 
-### 2.5.1. EventStorming
+En esta sección se presenta el proceso realizado para las decisiones de nivel estratégico del dominio de Gethics Mobile, aplicando los principios de Domain-Driven Design (DDD). El objetivo de este nivel es descomponer el sistema en subconjuntos con límites naturales, conocidos como Bounded Contexts, que permitan al equipo de desarrollo trabajar con un lenguaje ubicuo consistente dentro de cada límite y evitar la ambigüedad conceptual que surge al modelar un dominio complejo como un único bloque monolítico.
 
-#### 2.5.1.1. Candidate Context Discovery
+### 2.5.1. EventStorming.
 
+La sesión se desarrolló de manera colaborativa en Miro, siguiendo la secuencia de pasos recomendada para el EventStorming de diseño: Pivotal Events, Commands, Policies, Read Models, External Systems y Aggregates. El agrupamiento de agregados relacionados obtenido al final de esta secuencia constituye la base para la identificación de los candidate bounded contexts que se detalla en la sección 2.5.1.1.
+
+Como parte de esta sesión, el equipo incorporó además el flujo de identificación de animales mediante código QR dentro de Gestión de Animales, evidenciando el feature de aprendizaje autónomo del proyecto: cada animal registrado genera automáticamente un código QR de identificación (mediante una política de automatización), el cual puede escanearse posteriormente en campo para acceder a su ficha sin necesidad de una búsqueda manual. Asimismo, se evidenció en el flujo de Sanidad la posibilidad de registrar un evento sanitario sin conexión a internet, sustentando el requisito de almacenamiento local de la aplicación móvil.
+
+![EventStorming - Modelling Space](images/2-5-1-event-storming-board.png)
+
+Link del tablero en Miro: [https://miro.com/app/board/uXjVHoAKl0Q=/?share_link_id=820485524389](https://miro.com/app/board/uXjVHoAKl0Q=/?share_link_id=820485524389)
+
+#### 2.5.1.1. Candidate Context Discovery.
+
+A partir de los agregados identificados en el Event Storming de diseño (Animal, RegistroSanitario, AsignaciónVeterinaria, Finanzas y Analítica), el equipo realizó una sesión de Candidate Context Discovery con una duración de 1 hora.
+
+El equipo identificó los siguientes candidate bounded contexts para Gethics Mobile:
+
+| # | Candidate Bounded Context | Agregado principal | Justificación (técnica aplicada) |
+|---|---|---|---|
+| 1 | **Livestock Management** (Gestión de Animales) | Animal | *Start-with-value*: es el registro maestro sobre el que giran los demás contextos; incorpora además el feature de aprendizaje autónomo (identificación por código QR). |
+| 2 | **Sanitary Tracking** (Sanidad) | RegistroSanitario | *Look-for-pivotal-events*: el evento *sanitario registrado* es pivotal porque dispara políticas de recordatorio y alerta, y requiere un límite de consistencia propio por el registro sin conexión en campo. |
+| 3 | **Veterinary Care** (Módulo Veterinario) | AsignaciónVeterinaria | *Start-with-simple*: agrupa el flujo de asignación veterinario-cliente y consulta profesional, con un ritmo y actor protagonista distintos a Sanidad. |
+| 4 | **Financial Management** (Finanzas) | Finanzas | *Start-with-simple*: agrupa el registro de ingresos, egresos y confirmación de pago de suscripción, con una razón de cambio (contable/financiera) ajena al dominio ganadero. |
+| 5 | **Analytics & Alerts** (Reportes y Alertas) | Analítica | *Look-for-pivotal-events*: el evento *Tendencia del ganado analizada* es pivotal porque consolida datos de Sanidad y Finanzas y dispara la política de notificación push. |
+| 6 | **Identity & Access** | (no modelado como agregado en esta sesión) | Contexto de soporte identificado por necesidad general del sistema: los cuatro actores (Ganadero, Veterinario, Técnico Agropecuario, Administrador del Sistema) requieren autenticación y control de roles; al no generar eventos de negocio propios del dominio ganadero, se trata como subdominio genérico, no derivado directamente del EventStorm. |
+
+![Candidate Context Discovery](images/2-5-1-1-candidate-context-discovery.png)
+
+Link del tablero en Miro: [https://miro.com/app/board/uXjVHoAKl0Q=/?share_link_id=820485524389](https://miro.com/app/board/uXjVHoAKl0Q=/?share_link_id=820485524389)
 
 #### 2.5.1.2. Domain Message Flows Modeling
 
+Se aplicó la técnica de **Domain Storytelling**, construyendo las historias de dominio para los dos escenarios que el equipo consideró más representativos de la colaboración entre contextos, priorizando aquellos que involucran a más de un bounded context.
 
-#### 2.5.1.3. Bounded Context Canvases
+**Domain Story 1 - "El ganadero registra un evento sanitario grave y el veterinario es notificado"**
 
+| # | Actor/Sistema | Acción | Objeto de trabajo | Bounded Context |
+|---|---|---|---|---|
+| 1 | Ganadero | consulta | Ficha del animal | Livestock Management |
+| 2 | Ganadero | registra | Evento sanitario | Sanitary Tracking |
+| 3 | Sanitary Tracking | evalúa gravedad y dispara política | Alerta sanitaria | Sanitary Tracking |
+| 4 | Sanitary Tracking | envía solicitud a | Servicio de notificaciones push | Sistema externo |
+| 5 | Servicio de notificaciones push | entrega notificación a | Veterinario | Sistema externo |
+| 6 | Veterinario | consulta | Ficha del paciente/cliente | Veterinary Care |
+| 7 | Veterinario | actualiza | Seguimiento clínico | Veterinary Care |
 
-### 2.5.2. Context Mapping
+![Domain Story 1 - Evento sanitario grave notificado al veterinario](images/2-5-1-2-domain-story-1.png)
 
+**Domain Story 2 - "El sistema analiza tendencias combinando Sanidad y Finanzas, y el ganadero recibe una alerta"**
 
-### 2.5.3. Software Architecture
+| # | Actor/Sistema | Acción | Objeto de trabajo | Bounded Context |
+|---|---|---|---|---|
+| 1 | Sanitary Tracking | expone | Historial clínico actualizado | Sanitary Tracking |
+| 2 | Financial Management | expone | Reporte financiero generado | Financial Management |
+| 3 | Administrador del sistema | analiza | Tendencia del ganado | Analytics & Alerts |
+| 4 | Analytics & Alerts | evalúa riesgo y dispara política | Notificación push | Analytics & Alerts |
+| 5 | Analytics & Alerts | envía solicitud a | Servicio de notificaciones push | Sistema externo |
+| 6 | Servicio de notificaciones push | entrega notificación a | Ganadero | Sistema externo |
 
-#### 2.5.3.1. Software Architecture Context Level Diagrams
+![Domain Story 2 - Alerta de tendencia por análisis de Sanidad y Finanzas](images/2-5-1-2-domain-story-2.png)
 
+**Nota:** Identity & Access no se representa explícitamente en ninguna de las dos historias porque su participación es transversal —autenticación previa a cualquier acción— y no constituye en sí misma un paso de colaboración de negocio entre contextos.
 
-#### 2.5.3.2. Software Architecture Container Level Diagrams
+Link del tablero en Miro: [https://miro.com/app/board/uXjVHoEjNcw=/?share_link_id=344537401259](https://miro.com/app/board/uXjVHoEjNcw=/?share_link_id=344537401259)
 
+#### 2.5.1.3. Bounded Context Canvases.
 
-#### 2.5.3.3. Software Architecture Deployment Diagrams
+Siguiendo el orden de importancia obtenido en el Candidate Context Discovery, el equipo elaboró el Bounded Context Canvas de los tres contextos considerados más críticos para el negocio: **Sanitary Tracking**, **Livestock Management** y **Analytics & Alerts**. Cada canvas se construyó de forma iterativa, cubriendo los pasos de Context Overview Definition, Business Rules Distillation & Ubiquitous Language Capture, Capability Analysis, Capability Layering, Dependencies Capture y Design Critique.
+
+### Bounded Context Canvas - Sanitary Tracking
+
+**1. Context Overview Definition**
+
+| Campo | Detalle |
+|---|---|
+| Nombre | Sanitary Tracking |
+| Propósito | Registrar y dar seguimiento a los eventos sanitarios del animal (vacunas, tratamientos, enfermedades), incluso sin conexión en campo, y disparar recordatorios y alertas automáticas. |
+| Rol estratégico | Core Domain (mayor valor directo del negocio: reduce pérdidas por enfermedades no atendidas a tiempo). |
+
+**2. Business Rules Distillation & Ubiquitous Language Capture**
+
+- Un EventoSanitario siempre pertenece a un único Animal.
+- Un EventoSanitario registrado sin conexión debe sincronizarse automáticamente al recuperar conectividad.
+- Cuando un EventoSanitario está próximo a vencer (vacuna), se genera un RecordatorioDeVacunación.
+- Cuando un EventoSanitario indica gravedad alta, se genera una AlertaSanitaria enviada por el Servicio de Notificaciones Push.
+- Términos del lenguaje ubicuo: EventoSanitario, Vacuna, Tratamiento, HistorialClínico, RecordatorioDeVacunación, AlertaSanitaria.
+
+**3. Capability Analysis**
+
+- Programar visita médica.
+- Registrar evento sanitario (con o sin conexión).
+- Generar recordatorio de vacunación y alerta sanitaria.
+- Registrar atención veterinaria y actualizar historial clínico.
+
+**4. Capability Layering**
+
+- Core (diferenciador): registro y sincronización de eventos sanitarios sin conexión.
+- Supporting: generación de recordatorios y alertas automáticas.
+
+**5. Dependencies Capture**
+
+| Dependencia | Tipo | Contexto/Sistema |
+|---|---|---|
+| Entrante | Consulta | Livestock Management (datos del animal) |
+| Saliente | Solicita envío de alerta | Servicio de Notificaciones Push (externo) |
+| Saliente | Expone | Analytics & Alerts (historial clínico actualizado) |
+| Relacionada | Comparte agregado HistorialClínico | Veterinary Care |
+
+**6. Design Critique**
+
+- Fortaleza: el límite de consistencia local (registro offline) resuelve directamente la restricción de conectividad rural identificada en las entrevistas.
+- Riesgo: tanto Sanitary Tracking como Veterinary Care leen/actualizan el historial clínico. El equipo decide que Sanitary Tracking es el dueño (owner) del agregado, y que Veterinary Care solo lo modifica a través de un comando expuesto por Sanitary Tracking (relación Customer/Supplier, ver 2.5.2), evitando inconsistencias por doble escritura.
+
+### Bounded Context Canvas - Livestock Management
+
+**1. Context Overview Definition**
+
+| Campo | Detalle |
+|---|---|
+| Nombre | Livestock Management |
+| Propósito | Mantener el registro maestro de animales y habilitar su identificación rápida en campo mediante código QR (feature de aprendizaje autónomo). |
+| Rol estratégico | Core Domain (fuente de verdad; contexto raíz del que dependen los demás). |
+
+**2. Business Rules Distillation & Ubiquitous Language Capture**
+
+- Un Animal se identifica de forma única mediante su CódigoQR, generado automáticamente al registrarlo.
+- Un Animal no puede eliminarse si tiene eventos sanitarios asociados; sólo puede marcarse como vendido o dado de baja.
+- Términos del lenguaje ubicuo: Animal, CódigoQR, FichaDelAnimal.
+
+**3. Capability Analysis**
+
+- Registrar animal (genera código QR automáticamente).
+- Escanear código QR para identificar animal.
+- Editar ficha del animal.
+- Buscar/filtrar animales.
+- Vender/dar de baja animal.
+
+**4. Capability Layering**
+
+- Core (diferenciador/aprendizaje autónomo): generación y escaneo del código QR de identificación.
+- Generic: búsqueda y filtro estándar de registros.
+
+**5. Dependencies Capture**
+
+| Dependencia | Tipo | Contexto/Sistema |
+|---|---|---|
+| Saliente | Expone | Sanitary Tracking, Veterinary Care (datos del animal) |
+| Entrante | Ninguna | Contexto raíz |
+
+**6. Design Critique**
+
+- Fortaleza: al ser contexto raíz, sus cambios son poco frecuentes una vez estabilizado el modelo.
+- Riesgo: depende de la biblioteca externa mobile_scanner para el escaneo QR; si se cambia de proveedor, esa dependencia debe quedar aislada en la capa de infraestructura, sin afectar el agregado Animal.
+
+### Bounded Context Canvas - Veterinary Care
+
+**1. Context Overview Definition**
+
+| Campo | Detalle |
+|---|---|
+| Nombre | Veterinary Care |
+| Propósito | Gestionar la asignación de veterinarios a clientes (ganaderos) y el registro de la atención profesional a los pacientes (animales), incluyendo el seguimiento clínico apoyado por sensores/dispositivos IoT. |
+| Rol estratégico | Core Domain (la relación profesional veterinario-cliente-paciente es un diferenciador frente a soluciones que no ofrecen seguimiento veterinario integrado). |
+
+**2. Business Rules Distillation & Ubiquitous Language Capture**
+
+- Un Veterinario puede estar asignado a varios Clientes (ganaderos).
+- Un Cliente consultado por veterinario debe tener al menos un Paciente (animal) asociado.
+- Cuando un sensor/dispositivo IoT reporta una anomalía, se debe actualizar automáticamente el seguimiento clínico.
+- Términos del lenguaje ubicuo: AsignaciónVeterinaria, Cliente, Paciente, SeguimientoClínico.
+
+**3. Capability Analysis**
+
+- Asignar veterinario a cliente.
+- Consultar cliente asignado.
+- Consultar paciente.
+- Actualizar seguimiento clínico (manual o automático por IoT).
+
+**4. Capability Layering**
+
+- Core: la relación profesional veterinario-cliente-paciente y su seguimiento clínico especializado.
+- Generic: la recepción de datos del sensor IoT (delegada a infraestructura).
+
+**5. Dependencies Capture**
+
+| Dependencia | Tipo | Contexto/Sistema |
+|---|---|---|
+| Entrante | Consulta | Livestock Management (datos del animal/paciente) |
+| Entrante | Recibe dato de sensor | Sensor/Dispositivo IoT (externo) |
+| Relacionada | Actualiza agregado HistorialClínico vía comando expuesto | Sanitary Tracking (owner) |
+
+**6. Design Critique**
+
+- Fortaleza: separar la vista veterinario-céntrica de la vista ganadero-céntrica (Sanitary Tracking) permite que cada una evolucione según las necesidades de su actor principal.
+- Riesgo: la integración con el sensor IoT depende de un dispositivo físico externo cuya disponibilidad/conectividad no está garantizada; se debe definir tolerancia a fallos si el sensor no reporta.
+
+### Bounded Context Canvas - Financial Management
+
+**1. Context Overview Definition**
+
+| Campo | Detalle |
+|---|---|
+| Nombre | Financial Management |
+| Propósito | Registrar los ingresos y egresos de la operación ganadera y gestionar la confirmación de pagos de suscripción a la plataforma. |
+| Rol estratégico | Supporting Domain (necesario para la sostenibilidad del negocio, pero no es el diferenciador principal frente a la competencia). |
+
+**2. Business Rules Distillation & Ubiquitous Language Capture**
+
+- Un Ingreso o Egreso siempre pertenece a la operación del Ganadero.
+- Un PagoDeSuscripción debe confirmarse a través de la Pasarela de Pagos antes de habilitar funcionalidades premium.
+- Un ReporteFinanciero se genera a partir del historial de ingresos y egresos.
+- Términos del lenguaje ubicuo: Ingreso, Egreso, PagoDeSuscripción, ReporteFinanciero.
+
+**3. Capability Analysis**
+
+- Registrar ingreso.
+- Registrar egreso.
+- Confirmar pago de suscripción.
+- Generar reporte financiero.
+
+**4. Capability Layering**
+
+- Core: el cálculo y consolidación del reporte financiero (valor para la toma de decisiones del ganadero).
+- Generic: el procesamiento del pago en sí (delegado a la pasarela externa).
+
+**5. Dependencies Capture**
+
+| Dependencia | Tipo | Contexto/Sistema |
+|---|---|---|
+| Saliente | Solicita confirmación de pago | Pasarela de Pagos (externo) |
+| Saliente | Expone | Analytics & Alerts (reporte financiero generado) |
+
+**6. Design Critique**
+
+- Fortaleza: aislar la lógica financiera del resto del dominio ganadero facilita cumplir a futuro con regulaciones contables sin afectar otros contextos.
+- Riesgo: depender de una pasarela de pagos externa introduce latencia/fallos fuera del control del equipo; se debe definir qué ocurre si la confirmación de pago no llega (reintentos, estado pendiente).
+
+### Bounded Context Canvas - Analytics & Alerts
+
+**1. Context Overview Definition**
+
+| Campo | Detalle |
+|---|---|
+| Nombre | Analytics & Alerts |
+| Propósito | Consolidar información de Sanidad y Finanzas para detectar tendencias relevantes del ganado y alertar oportunamente al ganadero. |
+| Rol estratégico | Supporting Domain (agrega valor analítico transversal sobre otros contextos). |
+
+**2. Business Rules Distillation & Ubiquitous Language Capture**
+
+- Una TendenciaDelGanado se calcula a partir de HistorialClínicoActualizado (Sanitary Tracking) y ReporteFinancieroGenerado (Financial Management).
+- Cuando la tendencia indica riesgo, se dispara automáticamente una NotificaciónPush.
+- Términos del lenguaje ubicuo: TendenciaDelGanado, NotificaciónPush.
+
+**3. Capability Analysis**
+
+- Analizar tendencia del ganado (proceso periódico).
+- Generar y enviar notificación push ante riesgo detectado.
+
+**4. Capability Layering**
+
+- Core: la regla/algoritmo de detección de tendencias de riesgo (valor diferencial del negocio).
+- Generic: el envío de la notificación en sí (delegado al servicio externo).
+
+**5. Dependencies Capture**
+
+| Dependencia | Tipo | Contexto/Sistema |
+|---|---|---|
+| Entrante | Consume | Sanitary Tracking (historial clínico actualizado) |
+| Entrante | Consume | Financial Management (reporte financiero generado) |
+| Saliente | Solicita envío de notificación | Servicio de Notificaciones Push (externo) |
+
+**6. Design Critique**
+
+- Fortaleza: aislar el análisis en su propio contexto evita que Sanitary Tracking o Financial Management se sobrecarguen con lógica ajena a su propósito principal.
+- Riesgo: al ser un proceso periódico/automático (no disparado por un actor humano), debe definirse claramente su disparador (tarea programada) en la capa de infraestructura del nivel táctico.
+
+### Bounded Context Canvas - Identity & Access
+
+**1. Context Overview Definition**
+
+| Campo | Detalle |
+|---|---|
+| Nombre | Identity & Access |
+| Propósito | Gestionar la autenticación y autorización de los cuatro roles de usuario de la plataforma: Ganadero, Veterinario, Técnico Agropecuario y Administrador del Sistema. |
+| Rol estratégico | Generic Subdomain (necesario para todos los contextos, pero no aporta ventaja competitiva directa). |
+
+**2. Business Rules Distillation & Ubiquitous Language Capture**
+
+- Un Usuario tiene un único Rol activo a la vez.
+- Solo el Administrador del Sistema puede asignar el rol de Veterinario o Técnico Agropecuario a un Usuario.
+- Una Sesión expira tras un periodo de inactividad definido.
+- Términos del lenguaje ubicuo: Usuario, Rol, Sesión.
+
+**3. Capability Analysis**
+
+- Registrar/autenticar usuario.
+- Asignar rol.
+- Gestionar sesión (incluye expiración y cierre).
+
+**4. Capability Layering**
+
+- Generic/Supporting en su totalidad: no forma parte de la propuesta de valor ganadera, pero es indispensable para todos los demás contextos.
+
+**5. Dependencies Capture**
+
+| Dependencia | Tipo | Contexto/Sistema |
+|---|---|---|
+| Saliente | Provee modelo Usuario/Rol como Shared Kernel | Todos los demás contextos (ver 2.5.2) |
+
+**6. Design Critique**
+
+- Fortaleza: mantenerlo como shared kernel evita duplicar lógica de autenticación en cada contexto.
+- Riesgo: cualquier cambio en el modelo de Usuario/Rol impacta a todo el sistema y requiere coordinación entre todos los desarrolladores del equipo antes de desplegarlo.
+
+### 2.5.2. Context Mapping.
+
+A partir de los seis candidate bounded contexts y sus respectivos canvases, el equipo elaboró el Context Map de Gethics Mobile.
+
+**Relaciones identificadas:**
+
+| Upstream | Downstream | Patrón DDD | Justificación |
+|---|---|---|---|
+| Identity & Access | Livestock Management, Sanitary Tracking, Veterinary Care, Financial Management, Analytics & Alerts | Shared Kernel | El modelo de Usuario/Rol es compartido y estable; el equipo acepta coordinar cambios entre todos dado su tamaño reducido. |
+| Livestock Management | Sanitary Tracking | Customer/Supplier | Sanitary Tracking depende de los datos de Animal, pero Livestock Management planifica sus cambios considerando a Sanitary Tracking como cliente prioritario. |
+| Livestock Management | Veterinary Care | Customer/Supplier | Veterinary Care consulta la ficha del paciente (animal); misma relación de prioridad de cliente. |
+| Sanitary Tracking | Veterinary Care | Customer/Supplier | Sanitary Tracking es dueño (owner) del agregado HistorialClínico; Veterinary Care lo actualiza únicamente a través de un comando expuesto por Sanitary Tracking, nunca por escritura directa. |
+| Sanitary Tracking | Analytics & Alerts | Customer/Supplier | Analytics & Alerts consume el historial clínico actualizado como insumo de su análisis de tendencia. |
+| Financial Management | Analytics & Alerts | Customer/Supplier | Analytics & Alerts consume el reporte financiero generado como segundo insumo de su análisis. |
+| Pasarela de Pagos (terceros) | Financial Management | Anticorruption Layer (ACL) | Se traduce el modelo de datos propietario de la pasarela (identificadores de transacción, estados de pago) al lenguaje ubicuo propio (PagoDeSuscripción), evitando que un cambio de proveedor de pagos impacte el dominio financiero. |
+| Sensor/Dispositivo IoT (terceros) | Veterinary Care | Anticorruption Layer (ACL) | Se traduce la lectura cruda del sensor (formato propio del fabricante) al concepto de dominio SeguimientoClínico, evitando acoplar el contexto a un protocolo de hardware específico. |
+| Servicio de Notificaciones Push (terceros) | Sanitary Tracking, Analytics & Alerts | Conformist | Ambos contextos se ajustan directamente al formato de mensaje que exige el servicio de notificaciones (título, cuerpo, token del dispositivo), sin necesidad de una capa de traducción adicional dado lo simple del contrato. |
+
+![Context Map - Gethics Mobile](images/2-5-2-context-map.png)
+
+Link del tablero en Miro: [https://miro.com/app/board/uXjVHnjkDzI=/?share_link_id=677793613271](https://miro.com/app/board/uXjVHnjkDzI=/?share_link_id=677793613271)
+
+### 2.5.3. Software Architecture.
+
+Se presentan a continuación tres niveles del C4 Model: el Software Architecture Context Level Diagram, que muestra a Gethics Mobile como un único sistema rodeado de sus actores y de los sistemas externos con los que se integra (Pasarela de Pagos, Sensor/Dispositivo IoT y Servicio de Notificaciones Push); el Software Architecture Container Level Diagram, que descompone el sistema en sus unidades desplegables de alto nivel (aplicación móvil, landing page, API RESTful y bases de datos); y el Software Architecture Deployment Diagram, que describe cómo estos contenedores se despliegan sobre la infraestructura física real.
+
+#### 2.5.3.1. Software Architecture Context Level Diagrams.
+
+El Context Diagram muestra a Gethics Mobile como un único sistema en el centro, rodeado de sus cuatro actores Ganadero, Veterinario, Técnico Agropecuario y Administrador del Sistema y de los tres sistemas externos con los que se integra: la Pasarela de Pagos (confirmación de pagos de suscripción), el Sensor/Dispositivo IoT (monitoreo del seguimiento clínico) y el Servicio de Notificaciones Push (entrega de alertas sanitarias y de tendencia). Este nivel permite comunicar, sin detalle técnico, quién usa el sistema y de qué depende para funcionar.
+
+![Software Architecture Context Level Diagram](images/2-5-3-1-context-diagram.png)
+
+#### 2.5.3.2. Software Architecture Container Level Diagrams.
+
+El Container Diagram descompone Gethics Mobile en sus unidades desplegables de alto nivel: la aplicación móvil multiplataforma desarrollada en Flutter (con su base de datos local para el registro sin conexión), la landing page estática, la API RESTful desarrollada en ASP.NET Core y la base de datos del backend. Aquí se evidencian también las principales decisiones de tecnología y cómo se comunican los contenedores entre sí.
+
+![Software Architecture Container Level Diagram](images/2-5-3-2-container-diagram.png)
+
+#### 2.5.3.3. Software Architecture Deployment Diagrams.
+
+El Deployment Diagram muestra la distribución física de Gethics Mobile sobre la infraestructura de hardware real: el dispositivo móvil del usuario final (con su base de datos local embebida y el sensor/dispositivo IoT conectado vía Bluetooth), el proveedor cloud que hospeda la API y la base de datos gestionada, el servicio de hosting estático para la landing page, y los servicios de terceros (Pasarela de Pagos y Firebase para notificaciones push). Su objetivo es describir cómo se implementa el sistema en la infraestructura real, más allá de sus contenedores lógicos ya presentados en 2.5.3.2.
+
+![Software Architecture Deployment Diagram](images/2-5-3-3-deployment-diagram.png)
+
 
 
 ---
