@@ -146,15 +146,45 @@ La **User Task Matrix** permite sistematizar y jerarquizar la operatividad cotid
 
 ### 2.3.3. User Journey Mapping
 
+### Segmento #1 - Ganaderos
+
+![User Journey Mapping - Ganaderos](images/user-journey-ganaderos.png)
+
+### Segmento #2 - Veterinarios
+
+![User Journey Mapping - Veterinarios](images/user-journey-veterinarios.png)
 
 ### 2.3.4. Empathy Mapping
 
+### Segmento #1 - Ganaderos
+
+![Empathy Mapping - Ganaderos](images/empathy-map-ganaderos.png)
+
+### Segmento #2 - Veterinarios
+
+![Empathy Mapping - Veterinarios](images/empathy-map-veterinarios.png)
 
 ### 2.3.5. Big Picture EventStorming
 
+![Big Picture EventStorming](images/big-picture-eventstorming.png)
 
 ### 2.3.6. Ubiquitous Language
 
+| Term | Definition |
+|---|---|
+| **Animal** | Unidad individual del ganado registrada en el sistema, con atributos como raza, edad, sexo y estado de salud. |
+| **Herd** | Conjunto de animales que pertenecen a un mismo ganadero o granja. |
+| **Farm** | Unidad productiva o terreno donde se ubica el ganado gestionado por el ganadero. |
+| **Sanitary Event** | Registro de una acción médica realizada a un animal (vacuna, tratamiento, diagnóstico, enfermedad). |
+| **Sanitary Calendar** | Módulo que organiza y recuerda fechas de vacunación, tratamientos y controles veterinarios. |
+| **Push Notification** | Notificación automática enviada al usuario ante un evento relevante (vacuna próxima, anomalía detectada). |
+| **Assigned Client** | Ganadero vinculado a un veterinario específico para la atención de su ganado. |
+| **Patient** | Animal que está bajo seguimiento clínico de un veterinario. |
+| **Clinical History** | Registro cronológico de todos los eventos sanitarios de un animal. |
+| **Financial Management** | Módulo de registro de ingresos y egresos asociados a la actividad ganadera. |
+| **Report / Statistics** | Visualización de datos consolidados del ganado para apoyar la toma de decisiones. |
+| **Subscription Plan** | Modalidad de acceso a la app (gratuito o pago) según el tamaño del ganado o funcionalidades contratadas. |
+| **IoT Device** | Sensor o dispositivo conectado que provee datos en tiempo real sobre el ganado. |
 
 ---
 
@@ -162,12 +192,263 @@ La **User Task Matrix** permite sistematizar y jerarquizar la operatividad cotid
 
 ### 2.4.1. User Stories
 
+| Épica | Descripción |
+|---|---|
+| **EPIC-01: Product Landing Page** | Como visitante interesado en Gethics, quiero conocer el propósito, beneficios y principales funcionalidades de la solución para decidir si deseo utilizarla. |
+| **EPIC-02: Cuenta y Perfil de Usuario** | Como usuario (ganadero o veterinario), quiero gestionar mi cuenta para acceder de forma segura a la aplicación. |
+| **EPIC-03: Gestión de Animales** | Como ganadero, quiero registrar y administrar la información de mis animales para tener control individual de mi ganado. |
+| **EPIC-04: Gestión de Granjas** | Como ganadero, quiero administrar mis granjas para organizar mi producción por ubicación. |
+| **EPIC-05: Sanidad y Calendario** | Como ganadero, quiero registrar y recibir recordatorios de eventos sanitarios para no descuidar la salud de mi ganado. |
+| **EPIC-06: Control Económico** | Como ganadero, quiero registrar ingresos y egresos para conocer la rentabilidad de mi actividad. |
+| **EPIC-07: Módulo Veterinario** | Como veterinario, quiero consultar mis clientes y pacientes asignados para dar seguimiento clínico desde el campo. |
+| **EPIC-08: Reportes y Estadísticas** | Como ganadero, quiero visualizar reportes y alertas de tendencias para tomar mejores decisiones. |
+| **EPIC-09: Notificaciones y Dispositivos IoT** | Como usuario, quiero recibir alertas automáticas y conectar dispositivos para mejorar el monitoreo del ganado. |
+| **EPIC-10: Monetización** | Como usuario de Gethics, quiero acceder a planes de suscripción para utilizar funcionalidades según el plan contratado. |
+
+---
+
+#### US-25 — Propuesta de valor del producto
+
+Como visitante, quiero conocer la propuesta de valor de Gethics para comprender cómo la solución puede ayudarme a gestionar el ganado.
+
+- **Escenario 1:** Dado que el visitante accede al Landing Page, cuando la página termina de cargar, entonces el sistema muestra el propósito y la propuesta de valor de Gethics.
+- **Escenario 2:** Dado que el visitante revisa la sección principal, cuando consulta la información del producto, entonces puede identificar el problema que Gethics busca resolver y su beneficio principal.
+
+#### US-26 — Principales funcionalidades
+
+Como visitante, quiero conocer las principales funcionalidades de Gethics para identificar qué problemas de gestión ganadera puedo resolver con la aplicación.
+
+- **Escenario 1:** Dado que el visitante se encuentra en el Landing Page, cuando revisa la sección de funcionalidades, entonces el sistema muestra las principales capacidades de la solución.
+- **Escenario 2:** Dado que el visitante selecciona una funcionalidad, cuando consulta su descripción, entonces el sistema muestra una explicación breve de su utilidad.
+
+#### US-27 — Call To Action
+
+Como visitante, quiero acceder a un Call To Action para poder iniciar el proceso de uso de Gethics.
+
+- **Escenario 1:** Dado que el visitante se encuentra en el Landing Page, cuando selecciona el CTA principal, entonces el sistema lo dirige a la sección de acceso o registro correspondiente.
+- **Escenario 2:** Dado que el visitante selecciona un CTA secundario, cuando realiza la acción, entonces el sistema lo dirige al destino definido para obtener más información o iniciar el uso de la solución.
+
+#### US-28 — Información de contacto y redes sociales
+
+Como visitante, quiero encontrar información de contacto y enlaces a las redes sociales de Gethics para poder obtener más información sobre la startup.
+
+- **Escenario 1:** Dado que el visitante navega hacia el pie de página, cuando consulta la información disponible, entonces el sistema muestra los medios de contacto y enlaces a las redes sociales.
+- **Escenario 2:** Dado que el visitante selecciona un enlace social, cuando realiza la acción, entonces el sistema lo dirige al canal correspondiente.
+
+#### US-01 — Registro de usuario
+
+Como ganadero o veterinario, quiero registrarme en la aplicación para acceder a las funcionalidades según mi rol.
+
+- **Escenario 1:** Dado que el usuario está en la pantalla de registro, cuando completa nombre, correo, contraseña y selecciona su rol, entonces el sistema crea la cuenta y lo redirige al inicio de sesión.
+- **Escenario 2:** Dado que el usuario ingresa un correo ya existente, cuando intenta registrarse, entonces el sistema muestra un mensaje indicando que el correo ya está en uso.
+
+#### US-02 — Inicio de sesión
+
+Como usuario registrado, quiero iniciar sesión con mi correo y contraseña para acceder a mi cuenta.
+
+- **Escenario 1:** Dado que el usuario ingresa credenciales correctas, cuando presiona "Iniciar sesión", entonces el sistema lo redirige a su panel principal según su rol.
+- **Escenario 2:** Dado que el usuario ingresa una contraseña incorrecta, cuando intenta iniciar sesión, entonces el sistema muestra un mensaje de error sin especificar cuál dato falló.
+
+#### US-03 — Recuperación de contraseña
+
+Como usuario, quiero recuperar mi contraseña olvidada para volver a acceder a mi cuenta.
+
+- **Escenario 1:** Dado que el usuario ingresa su correo registrado, cuando solicita recuperar contraseña, entonces el sistema envía un enlace de restablecimiento a su correo.
+- **Escenario 2:** Dado que el usuario ingresa un correo no registrado, cuando solicita la recuperación, entonces el sistema muestra un mensaje indicando que no existe una cuenta asociada.
+
+#### US-04 — Editar perfil
+
+Como usuario, quiero editar los datos de mi perfil para mantener mi información actualizada.
+
+- **Escenario 1:** Dado que el usuario está en su perfil, cuando modifica su nombre, teléfono o foto y guarda, entonces el sistema actualiza los datos y muestra confirmación.
+- **Escenario 2:** Dado que el usuario ingresa un formato de teléfono inválido, cuando intenta guardar, entonces el sistema muestra un mensaje de validación.
+
+#### US-05 — Registro de animal
+
+Como ganadero, quiero registrar un nuevo animal con sus datos básicos para llevar control individual de mi ganado.
+
+- **Escenario 1:** Dado que el ganadero está en el módulo de animales, cuando ingresa los datos requeridos y guarda, entonces el sistema registra el animal.
+- **Escenario 2:** Dado que el ganadero deja un campo obligatorio vacío, cuando intenta guardar, entonces el sistema muestra un mensaje solicitando completar la información.
+
+#### US-06 — Listado y búsqueda de animales
+
+Como ganadero, quiero buscar y filtrar animales de mi ganado para encontrar información rápidamente.
+
+- **Escenario 1:** Dado que el ganadero ingresa un criterio de búsqueda (raza, nombre o ID), cuando presiona buscar, entonces el sistema muestra los animales que coinciden.
+- **Escenario 2:** Dado que el criterio de búsqueda no coincide con ningún animal, cuando se ejecuta la búsqueda, entonces el sistema muestra un mensaje de "sin resultados".
+
+#### US-07 — Edición de animal
+
+Como ganadero, quiero editar los datos de un animal registrado para mantener su información actualizada.
+
+- **Escenario 1:** Dado que el ganadero selecciona un animal, cuando modifica sus datos y guarda, entonces el sistema actualiza la información del animal.
+- **Escenario 2:** Dado que el ganadero está editando un animal, cuando presiona "Cancelar", entonces el sistema descarta los cambios y regresa a la vista anterior.
+
+#### US-08 — Eliminación de animal
+
+Como ganadero, quiero eliminar o dar de baja un animal de mi ganado cuando ya no forma parte de mi producción.
+
+- **Escenario 1:** Dado que el ganadero selecciona un animal, cuando confirma la eliminación, entonces el sistema lo remueve de la lista activa y conserva su historial.
+- **Escenario 2:** Dado que el ganadero inicia la eliminación, cuando cancela la confirmación, entonces el animal permanece sin cambios.
+
+#### US-09 — Registro de granja
+
+Como ganadero, quiero registrar una granja para organizar mi producción por ubicación.
+
+- **Escenario 1:** Dado que el ganadero está en el módulo de granja, cuando ingresa nombre, ubicación y tamaño y guarda, entonces la granja se agrega a su cuenta.
+- **Escenario 2:** Dado que el ganadero ingresa un nombre de granja ya existente en su cuenta, cuando intenta guardar, entonces el sistema muestra un mensaje de advertencia.
+
+#### US-10 — Asociar animales a una granja
+
+Como ganadero, quiero asociar animales a una granja específica para saber dónde se encuentra cada uno.
+
+- **Escenario 1:** Dado que el ganadero selecciona un animal, cuando le asigna una granja de la lista, entonces el sistema guarda la relación y la refleja en el listado de la granja.
+- **Escenario 2:** Dado que un animal ya está asociado a una granja, cuando el ganadero lo mueve a otra granja, entonces el sistema actualiza la asociación y conserva el historial del cambio.
+
+#### US-11 — Registro de evento sanitario
+
+Como ganadero, quiero registrar una vacuna, tratamiento o enfermedad aplicada a un animal para mantener actualizado su historial.
+
+- **Escenario 1:** Dado que el ganadero selecciona un animal, cuando registra tipo de evento, fecha y observaciones, entonces el evento se guarda en el historial clínico.
+- **Escenario 2:** Dado que el ganadero ingresa una fecha futura para un evento ya ocurrido, cuando intenta guardar, entonces el sistema muestra un mensaje de validación.
+
+#### US-12 — Calendario sanitario
+
+Como ganadero, quiero visualizar un calendario con los eventos sanitarios programados para planificar las actividades de mi ganado.
+
+- **Escenario 1:** Dado que el ganadero abre el calendario sanitario, cuando selecciona un mes, entonces el sistema muestra todos los eventos programados en ese periodo.
+- **Escenario 2:** Dado que no hay eventos registrados en el mes seleccionado, cuando el ganadero consulta el calendario, entonces el sistema muestra un mensaje indicando que no hay actividades pendientes.
+
+#### US-13 — Recordatorio de vacunación
+
+Como ganadero, quiero recibir una notificación push antes de la fecha de una vacuna programada para no olvidarla.
+
+- **Escenario 1:** Dado que existe una vacuna programada próxima a vencer, cuando faltan 3 días para la fecha, entonces el sistema envía una alerta push al ganadero.
+- **Escenario 2:** Dado que la vacuna ya fue registrada como aplicada, cuando llega el momento del recordatorio, entonces el sistema no envía una alerta duplicada.
+
+#### US-14 — Historial clínico por animal
+
+Como ganadero o veterinario, quiero consultar el historial clínico completo de un animal para conocer su evolución sanitaria.
+
+- **Escenario 1:** Dado que el usuario selecciona un animal, cuando accede a su historial, entonces el sistema muestra todos los eventos sanitarios en orden cronológico.
+- **Escenario 2:** Dado que un animal recién registrado no tiene eventos sanitarios, cuando se consulta su historial, entonces el sistema muestra un mensaje de "sin registros".
+
+#### US-15 — Registro de ingreso/egreso
+
+Como ganadero, quiero registrar un ingreso o egreso económico para llevar el control financiero de mi ganado.
+
+- **Escenario 1:** Dado que el ganadero accede al módulo financiero, cuando ingresa monto, tipo, categoría y fecha, entonces el sistema guarda el movimiento y actualiza el balance.
+- **Escenario 2:** Dado que el ganadero ingresa un monto negativo o en cero, cuando intenta guardar, entonces el sistema muestra un mensaje de validación.
+
+#### US-16 — Balance económico del ganado
+
+Como ganadero, quiero visualizar el balance económico de mi ganado para conocer mi rentabilidad.
+
+- **Escenario 1:** Dado que el ganadero accede al módulo financiero, cuando selecciona un periodo, entonces el sistema muestra el total de ingresos, egresos y balance neto.
+- **Escenario 2:** Dado que no existen movimientos registrados en el periodo seleccionado, cuando se consulta el balance, entonces el sistema muestra el balance en cero con un mensaje informativo.
+
+#### US-17 — Consulta de clientes asignados
+
+Como veterinario, quiero ver la lista de clientes (ganaderos) asignados para planificar mis visitas de campo.
+
+- **Escenario 1:** Dado que el veterinario inicia sesión, cuando accede a su panel, entonces el sistema muestra la lista de clientes asignados con su ubicación.
+- **Escenario 2:** Dado que el veterinario aún no tiene clientes asignados, cuando accede a su panel, entonces el sistema muestra un mensaje indicando que no hay clientes vinculados.
+
+#### US-18 — Consulta de pacientes
+
+Como veterinario, quiero consultar los animales (pacientes) de un cliente asignado para revisar su estado antes de la visita.
+
+- **Escenario 1:** Dado que el veterinario selecciona un cliente, cuando accede al listado de pacientes, entonces el sistema muestra los animales bajo su seguimiento con su historial resumido.
+- **Escenario 2:** Dado que el cliente seleccionado no tiene animales registrados, cuando el veterinario consulta la lista, entonces el sistema muestra un mensaje vacío.
+
+#### US-19 — Registro de evento sanitario por veterinario
+
+Como veterinario, quiero registrar la atención brindada a un animal durante una visita para dejar constancia del diagnóstico y tratamiento.
+
+- **Escenario 1:** Dado que el veterinario selecciona un paciente, cuando registra diagnóstico, tratamiento aplicado y próximos controles, entonces el evento se guarda en el historial clínico del animal y es visible para el ganadero.
+- **Escenario 2:** Dado que el veterinario está en una zona sin cobertura, cuando registra la atención, entonces el sistema guarda el registro localmente y lo sincroniza al recuperar conexión.
+
+#### US-20 — Reportes y estadísticas del ganado
+
+Como ganadero, quiero visualizar reportes y estadísticas de mi ganado para identificar tendencias y tomar mejores decisiones.
+
+- **Escenario 1:** Dado que el ganadero accede al módulo de reportes, cuando selecciona un rango de fechas, entonces el sistema muestra gráficos de salud, productividad y finanzas del ganado.
+- **Escenario 2:** Dado que el ganado tiene muy pocos registros históricos, cuando se genera el reporte, entonces el sistema muestra un aviso de que los datos aún son limitados para un análisis completo.
+
+#### US-21 — Alertas automáticas por tendencias
+
+Como ganadero, quiero recibir una alerta automática cuando se detecte una tendencia anómala en mi ganado para actuar a tiempo.
+
+- **Escenario 1:** Dado que el sistema detecta un patrón anómalo, cuando se supera el umbral definido, entonces se envía una notificación push al ganadero.
+- **Escenario 2:** Dado que los indicadores del ganado están dentro de rangos normales, cuando el sistema realiza el análisis periódico, entonces no se genera ninguna alerta.
+
+#### US-22 — Notificaciones push generales
+
+Como usuario, quiero recibir notificaciones push relevantes (sanitarias, financieras y del sistema) para mantenerme informado sin tener que revisar la app constantemente.
+
+- **Escenario 1:** Dado que ocurre un evento relevante, cuando se genera dicho evento, entonces el sistema envía la notificación push al dispositivo del usuario.
+- **Escenario 2:** Dado que el usuario desactivó las notificaciones en su configuración, cuando ocurre un evento relevante, entonces el sistema no envía la notificación push.
+
+#### US-23 — Integración con dispositivos IoT
+
+Como ganadero, quiero conectar sensores IoT a la aplicación para recibir datos en tiempo real sobre mi ganado.
+
+- **Escenario 1:** Dado que el ganadero cuenta con un dispositivo IoT compatible, cuando lo vincula desde la app mediante su código, entonces el sistema comienza a recibir y registrar los datos del sensor.
+- **Escenario 2:** Dado que un dispositivo IoT vinculado pierde conexión, cuando el sistema intenta sincronizar datos, entonces muestra un estado de "desconectado" y notifica al ganadero.
+
+#### US-24 — Planes de suscripción in-app
+
+Como ganadero, quiero contratar un plan de suscripción según el tamaño de mi ganado para acceder a funcionalidades avanzadas.
+
+- **Escenario 1:** Dado que el ganadero selecciona un plan de pago, cuando completa el proceso de pago, entonces el sistema activa las funcionalidades del plan contratado.
+- **Escenario 2:** Dado que el método de pago es rechazado, cuando el ganadero intenta suscribirse, entonces el sistema muestra un mensaje de error y mantiene el plan gratuito activo.
 
 ### 2.4.2. Impact Mapping
 
+| SMART Business Goal | Persona | Impact | Deliverable | User Stories |
+|---|---|---|---|---|
+| Lograr que al menos el 70% de los ganaderos participantes del piloto registre y actualice digitalmente la información de sus animales durante los primeros 3 meses de uso. | Ganaderos | Registrar y mantener organizada la información de los animales desde el celular. | Módulo de gestión de animales | US-05, US-06, US-07, US-08 |
+| Lograr que al menos el 80% de los ganaderos participantes del piloto tenga sus animales asociados a una granja durante los primeros 3 meses de uso. | Ganaderos | Organizar los animales por ubicación y mejorar la trazabilidad de la producción. | Módulo de gestión de granjas y asociación de animales | US-09, US-10 |
+| Reducir en al menos 30% los olvidos de vacunaciones y tratamientos programados entre los usuarios del piloto durante los primeros 3 meses de uso. | Ganaderos | Registrar actividades sanitarias y recibir recordatorios oportunos. | Módulo de sanidad, calendario y notificaciones | US-11, US-12, US-13, US-14, US-22 |
+| Lograr que al menos el 70% de los ganaderos participantes del piloto registre sus ingresos y egresos al menos una vez al mes durante los primeros 3 meses. | Ganaderos | Conocer ingresos, egresos y balance para apoyar decisiones económicas. | Módulo de control económico y balance | US-15, US-16 |
+| Lograr que al menos el 80% de los veterinarios participantes del piloto consulte la información de sus clientes y pacientes antes de realizar una visita durante los primeros 3 meses. | Veterinarios | Acceder rápidamente a clientes y pacientes asignados para planificar y atender visitas. | Módulo de gestión veterinaria | US-17, US-18 |
+| Lograr que al menos el 80% de los eventos sanitarios registrados por veterinarios durante el piloto quede disponible en el historial clínico del animal el mismo día de la atención. | Veterinarios | Registrar diagnósticos, tratamientos y próximos controles con trazabilidad. | Historial clínico y registro sanitario para veterinarios | US-14, US-19 |
+| Lograr que al menos el 70% de los ganaderos participantes consulte reportes o estadísticas al menos una vez al mes durante los primeros 3 meses. | Ganaderos | Analizar información histórica, productividad y tendencias para tomar decisiones. | Módulo de reportes, estadísticas y alertas por tendencias | US-20, US-21 |
+| Lograr que al menos el 70% de los usuarios activos reciba correctamente notificaciones relevantes durante el periodo inicial de validación. | Ganaderos y veterinarios | Mantener informados a los usuarios sobre eventos sanitarios, alertas y mensajes relevantes. | Servicio de notificaciones push | US-13, US-21, US-22 |
+| Conseguir que al menos el 60% de los visitantes del Landing Page identifique correctamente la propuesta de valor y el CTA principal durante la primera etapa de validación. | Visitantes | Comprender el propósito de Gethics y reconocer cómo iniciar el uso de la solución. | Product Landing Page | US-25, US-26, US-27, US-28 |
 
 ### 2.4.3. Product Backlog
 
+| ID | User Story | Epic | Priority | Story Points |
+|---|---|---|---|---|
+| US-25 | Propuesta de valor del producto | EPIC-01 | Must | 3 |
+| US-26 | Principales funcionalidades | EPIC-01 | Must | 5 |
+| US-27 | Call To Action | EPIC-01 | Must | 3 |
+| US-28 | Información de contacto y redes sociales | EPIC-01 | Should | 2 |
+| US-01 | Registro de usuario | EPIC-02 | Must | 3 |
+| US-02 | Inicio de sesión | EPIC-02 | Must | 2 |
+| US-03 | Recuperación de contraseña | EPIC-02 | Must | 3 |
+| US-04 | Editar perfil | EPIC-02 | Should | 2 |
+| US-05 | Registro de animal | EPIC-03 | Should | 5 |
+| US-06 | Listado y búsqueda de animales | EPIC-03 | Must | 5 |
+| US-07 | Edición de animal | EPIC-03 | Must | 3 |
+| US-08 | Eliminación de animal | EPIC-03 | Must | 2 |
+| US-09 | Registro de granja | EPIC-04 | Should | 3 |
+| US-10 | Asociar animales a una granja | EPIC-04 | Must | 3 |
+| US-11 | Registro de evento sanitario | EPIC-05 | Should | 5 |
+| US-12 | Calendario sanitario | EPIC-05 | Must | 5 |
+| US-13 | Recordatorio de vacunación (push) | EPIC-05 | Must | 5 |
+| US-14 | Historial clínico por animal | EPIC-05 | Must | 5 |
+| US-15 | Registro de ingreso/egreso | EPIC-06 | Must | 5 |
+| US-16 | Balance económico del ganado | EPIC-06 | Should | 3 |
+| US-17 | Consulta de clientes asignados (veterinario) | EPIC-07 | Must | 5 |
+| US-18 | Consulta de pacientes (veterinario) | EPIC-07 | Must | 5 |
+| US-19 | Registro de evento sanitario por veterinario | EPIC-07 | Must | 5 |
+| US-20 | Reportes y estadísticas del ganado | EPIC-08 | Must | 8 |
+| US-21 | Alertas automáticas por tendencias | EPIC-08 | Should | 5 |
+| US-22 | Notificaciones push generales | EPIC-09 | Must | 3 |
+| US-23 | Integración con dispositivos IoT | EPIC-09 | Could | 8 |
+| US-24 | Planes de suscripción in-app | EPIC-10 | Won't | 6 |
 
 ---
 
