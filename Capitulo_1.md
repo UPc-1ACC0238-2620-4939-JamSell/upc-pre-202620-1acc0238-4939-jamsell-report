@@ -27,7 +27,7 @@ Gracias a la integración de datos históricos y actualizados en tiempo real, Ge
 <table>
   <tr>
     <td width="30%" align="center">
-      <img src="../../assets/chapter-1/Integrante-1.jpg" width="180">
+      <img src="markdown/assets/chapter-1/Integrante-1.jpg" width="180">
     </td>
     <td width="70%">
       <h3>Mauricio Sebastian Castillo Yataco</h3>
