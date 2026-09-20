@@ -32,7 +32,7 @@
 
 ### Proyecto
 
-**JamSell**
+**Gethics**
 
 ### Integrantes
 
@@ -60,8 +60,8 @@
       <td>[Apellido, Nombre]</td>
     </tr>
     <tr>
-      <td>UXXXXXXXX</td>
-      <td>[Apellido, Nombre]</td>
+      <td>U202318001</td>
+      <td>Raymundo Villarroel, Nadhim Abigail</td>
     </tr>
     <tr>
       <td>UXXXXXXXX</td>
@@ -88,8 +88,8 @@
 
 | Versión | Fecha | Autor | Descripción de modificación |
 |---|---|---|---|
-| 1.0 | 05/09/2026 | [Meza Huanacune Juan José | Creó la estructura inicial del informe, carátula y archivos correspondientes a los capítulos del proyecto. |
-
+| 1.0 | 05/09/2026 | Meza Huanacun, Juan José | Creó la estructura inicial del informe, carátula y archivos correspondientes a los capítulos del proyecto. |
+| 1.0 | 11/09/2026 | Raymundo Villarroel, Nadhim Abigail | Desarrolló el punto 2.5 (Strategic-Level Domain-Driven Design) del informe: sesión de EventStorming, Candidate Context Discovery, Domain Message Flows Modeling (Domain Storytelling), Bounded Context Canvases de los 6 contextos candidatos, Context Mapping y los diagramas de Software Architecture (Context, Container y Deployment) bajo el C4 Model para Gethics Mobile. 
 
 <br>
 
@@ -276,8 +276,8 @@ En el siguiente cuadro se describen las acciones realizadas y los enunciados de 
 
 | Criterio específico | Acciones realizadas | Conclusiones |
 |---|---|---|
-| Actualiza conceptos y conocimientos necesarios para su desarrollo profesional y en especial para su proyecto en soluciones de software. | **[Apellido, Nombre]**  <br><br> **AV1:** [Indicar qué conocimientos nuevos investigó, aprendió y aplicó en JamSell.] <br><br> **[Apellido, Nombre]** <br><br> **AV1:** [Describir acciones realizadas.] | [Conclusión grupal relacionada con el aprendizaje y aplicación de nuevos conocimientos.] |
-| Reconoce la necesidad del aprendizaje permanente para el desempeño profesional y el desarrollo de proyectos en soluciones de software. | **[Apellido, Nombre]** <br><br> **AV1:** [Explicar qué tecnología, herramienta o conocimiento necesitó aprender de manera autónoma.] <br><br> **[Apellido, Nombre]** <br><br> **AV1:** [Describir acciones realizadas.] | [Conclusión grupal relacionada con la importancia del aprendizaje continuo.] |
+| Actualiza conceptos y conocimientos necesarios para su desarrollo profesional y en especial para su proyecto en soluciones de software. | **[Apellido, Nombre]**  <br><br> **AV1:** [Indicar qué conocimientos nuevos investigó, aprendió y aplicó en JamSell.] <br><br> **Raymundo Villarroel, Nadhim Abigail** <br><br> **AV1:** Actualizó sus conocimientos de Domain-Driven Design a nivel estratégico (EventStorming, Candidate Context Discovery, Domain Storytelling, Bounded Context Canvas y Context Mapping) y del Modelo C4 mediante Structurizr DSL, aplicándolos directamente en la documentación de la arquitectura de software de Gethics Mobile dentro de JamSell. | [Conclusión grupal relacionada con el aprendizaje y aplicación de nuevos conocimientos.] |
+| Reconoce la necesidad del aprendizaje permanente para el desempeño profesional y el desarrollo de proyectos en soluciones de software. | **[Apellido, Nombre]** <br><br> **AV1:** [Describir acciones realizadas.] <br><br> **Raymundo Villarroel, Nadhim Abigail** <br><br> **AV1:** Reconoció que el ritmo de cambio en tecnologías móviles exige aprendizaje permanente más allá de lo enseñado en clase: no contaba con experiencia previa en librerías de escaneo de códigos QR, por lo que tuvo que investigar de forma autónoma la librería `mobile_scanner` en Flutter (su configuración, permisos de cámara y manejo de eventos de lectura) para poder implementar el feature de aprendizaje autónomo del proyecto (identificación de animales mediante código QR), y planea seguir profundizando en patrones de arquitectura móvil conforme el proyecto avance a su nivel táctico. | [Conclusión grupal relacionada con la importancia del aprendizaje continuo.] |
 
 <br>
 
@@ -308,12 +308,12 @@ En esta sección cada integrante del equipo establece al menos dos objetivos SMA
 | Objetivo SMART 1 | [Qué quiere conseguir] | [Cómo lo medirá] | [Por qué es alcanzable] | [Cómo aporta a su desarrollo profesional] | [Fecha o periodo] |
 | Objetivo SMART 2 | [Qué quiere conseguir] | [Cómo lo medirá] | [Por qué es alcanzable] | [Cómo aporta a su desarrollo profesional] | [Fecha o periodo] |
 
-## [Apellido y Nombre - Integrante 4]
+## Raymundo Villarroel, Nadhim Abigail - Integrante 4
 
 | Objetivo | Específico | Medible | Alcanzable | Relevante | Tiempo |
 |---|---|---|---|---|---|
-| Objetivo SMART 1 | [Qué quiere conseguir] | [Cómo lo medirá] | [Por qué es alcanzable] | [Cómo aporta a su desarrollo profesional] | [Fecha o periodo] |
-| Objetivo SMART 2 | [Qué quiere conseguir] | [Cómo lo medirá] | [Por qué es alcanzable] | [Cómo aporta a su desarrollo profesional] | [Fecha o periodo] |
+| Objetivo SMART 1 | Especializarme en arquitectura de software y Domain-Driven Design, obteniendo una certificación relacionada (p. ej. en diseño de software o arquitectura cloud). | Certificación obtenida y al menos 2 proyectos documentados donde aplique DDD o patrones de arquitectura de software. | Ya cuento con experiencia práctica aplicando DDD (EventStorming, Bounded Context Canvas, Context Mapping) en proyectos de curso como Gethics Mobile. | Fortalece mi perfil como ingeniera de software especializada en diseño de sistemas complejos y escalables. | Antes de finalizar la carrera (2027-2028). |
+| Objetivo SMART 2 | Digitalizar por completo la gestión de mi negocio familiar (Raymundo Motos) desarrollando/mejorando un sistema propio de inventario, ventas y facturación electrónica. | Sistema en producción usado de forma regular por el negocio, medido por reducción del tiempo de registro manual y % de operaciones digitalizadas. | Ya vengo desarrollando el sistema de inventario/ventas y la integración de facturación electrónica con SUNAT para el negocio. | Aplica directamente mis conocimientos de ingeniería de software a un problema real y de valor personal/familiar. | 12 meses desde la fecha actual. |
 
 ## [Apellido y Nombre - Integrante 5]
 
