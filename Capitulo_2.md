@@ -524,7 +524,7 @@ El Context Diagram muestra a Gethics Mobile como un único sistema en el centro,
 
 El Container Diagram descompone Gethics Mobile en sus unidades desplegables de alto nivel: la aplicación móvil multiplataforma desarrollada en Flutter (con su base de datos local para el registro sin conexión), la landing page estática, la API RESTful desarrollada en ASP.NET Core y la base de datos del backend. Aquí se evidencian también las principales decisiones de tecnología y cómo se comunican los contenedores entre sí.
 
-![Software Architecture Container Level Diagram](,/images/2-5-3-2-container-diagram.png)
+![Software Architecture Container Level Diagram](./images/2-5-3-2-container-diagram.png)
 
 #### 2.5.3.3. Software Architecture Deployment Diagrams.
 
