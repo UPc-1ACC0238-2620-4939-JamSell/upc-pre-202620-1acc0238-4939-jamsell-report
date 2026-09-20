@@ -181,7 +181,7 @@ La sesión se desarrolló de manera colaborativa en Miro, siguiendo la secuencia
 
 Como parte de esta sesión, el equipo incorporó además el flujo de identificación de animales mediante código QR dentro de Gestión de Animales, evidenciando el feature de aprendizaje autónomo del proyecto: cada animal registrado genera automáticamente un código QR de identificación (mediante una política de automatización), el cual puede escanearse posteriormente en campo para acceder a su ficha sin necesidad de una búsqueda manual. Asimismo, se evidenció en el flujo de Sanidad la posibilidad de registrar un evento sanitario sin conexión a internet, sustentando el requisito de almacenamiento local de la aplicación móvil.
 
-![EventStorming - Modelling Space](images/2-5-1-event-storming-board.png)
+![EventStorming - Modelling Space](./images/2-5-1-event-storming-board.png)
 
 Link del tablero en Miro: [https://miro.com/app/board/uXjVHoAKl0Q=/?share_link_id=820485524389](https://miro.com/app/board/uXjVHoAKl0Q=/?share_link_id=820485524389)
 
@@ -200,7 +200,7 @@ El equipo identificó los siguientes candidate bounded contexts para Gethics Mob
 | 5 | **Analytics & Alerts** (Reportes y Alertas) | Analítica | *Look-for-pivotal-events*: el evento *Tendencia del ganado analizada* es pivotal porque consolida datos de Sanidad y Finanzas y dispara la política de notificación push. |
 | 6 | **Identity & Access** | (no modelado como agregado en esta sesión) | Contexto de soporte identificado por necesidad general del sistema: los cuatro actores (Ganadero, Veterinario, Técnico Agropecuario, Administrador del Sistema) requieren autenticación y control de roles; al no generar eventos de negocio propios del dominio ganadero, se trata como subdominio genérico, no derivado directamente del EventStorm. |
 
-![Candidate Context Discovery](images/2-5-1-1-candidate-context-discovery.png)
+![Candidate Context Discovery](./images/2-5-1-1-candidate-context-discovery.png)
 
 Link del tablero en Miro: [https://miro.com/app/board/uXjVHoAKl0Q=/?share_link_id=820485524389](https://miro.com/app/board/uXjVHoAKl0Q=/?share_link_id=820485524389)
 
@@ -220,7 +220,7 @@ Se aplicó la técnica de **Domain Storytelling**, construyendo las historias de
 | 6 | Veterinario | consulta | Ficha del paciente/cliente | Veterinary Care |
 | 7 | Veterinario | actualiza | Seguimiento clínico | Veterinary Care |
 
-![Domain Story 1 - Evento sanitario grave notificado al veterinario](images/2-5-1-2-domain-story-1.png)
+![Domain Story 1 - Evento sanitario grave notificado al veterinario](./images/2-5-1-2-domain-story-1.png)
 
 **Domain Story 2 - "El sistema analiza tendencias combinando Sanidad y Finanzas, y el ganadero recibe una alerta"**
 
@@ -233,7 +233,7 @@ Se aplicó la técnica de **Domain Storytelling**, construyendo las historias de
 | 5 | Analytics & Alerts | envía solicitud a | Servicio de notificaciones push | Sistema externo |
 | 6 | Servicio de notificaciones push | entrega notificación a | Ganadero | Sistema externo |
 
-![Domain Story 2 - Alerta de tendencia por análisis de Sanidad y Finanzas](images/2-5-1-2-domain-story-2.png)
+![Domain Story 2 - Alerta de tendencia por análisis de Sanidad y Finanzas](./images/2-5-1-2-domain-story-2.png)
 
 **Nota:** Identity & Access no se representa explícitamente en ninguna de las dos historias porque su participación es transversal —autenticación previa a cualquier acción— y no constituye en sí misma un paso de colaboración de negocio entre contextos.
 
@@ -506,7 +506,7 @@ A partir de los seis candidate bounded contexts y sus respectivos canvases, el e
 | Sensor/Dispositivo IoT (terceros) | Veterinary Care | Anticorruption Layer (ACL) | Se traduce la lectura cruda del sensor (formato propio del fabricante) al concepto de dominio SeguimientoClínico, evitando acoplar el contexto a un protocolo de hardware específico. |
 | Servicio de Notificaciones Push (terceros) | Sanitary Tracking, Analytics & Alerts | Conformist | Ambos contextos se ajustan directamente al formato de mensaje que exige el servicio de notificaciones (título, cuerpo, token del dispositivo), sin necesidad de una capa de traducción adicional dado lo simple del contrato. |
 
-![Context Map - Gethics Mobile](images/2-5-2-context-map.png)
+![Context Map - Gethics Mobile](./images/2-5-2-context-map.png)
 
 Link del tablero en Miro: [https://miro.com/app/board/uXjVHnjkDzI=/?share_link_id=677793613271](https://miro.com/app/board/uXjVHnjkDzI=/?share_link_id=677793613271)
 
@@ -518,21 +518,19 @@ Se presentan a continuación tres niveles del C4 Model: el Software Architecture
 
 El Context Diagram muestra a Gethics Mobile como un único sistema en el centro, rodeado de sus cuatro actores Ganadero, Veterinario, Técnico Agropecuario y Administrador del Sistema y de los tres sistemas externos con los que se integra: la Pasarela de Pagos (confirmación de pagos de suscripción), el Sensor/Dispositivo IoT (monitoreo del seguimiento clínico) y el Servicio de Notificaciones Push (entrega de alertas sanitarias y de tendencia). Este nivel permite comunicar, sin detalle técnico, quién usa el sistema y de qué depende para funcionar.
 
-![Software Architecture Context Level Diagram](images/2-5-3-1-context-diagram.png)
+![Software Architecture Context Level Diagram](./images/2-5-3-1-context-diagram.png)
 
 #### 2.5.3.2. Software Architecture Container Level Diagrams.
 
 El Container Diagram descompone Gethics Mobile en sus unidades desplegables de alto nivel: la aplicación móvil multiplataforma desarrollada en Flutter (con su base de datos local para el registro sin conexión), la landing page estática, la API RESTful desarrollada en ASP.NET Core y la base de datos del backend. Aquí se evidencian también las principales decisiones de tecnología y cómo se comunican los contenedores entre sí.
 
-![Software Architecture Container Level Diagram](images/2-5-3-2-container-diagram.png)
+![Software Architecture Container Level Diagram](,/images/2-5-3-2-container-diagram.png)
 
 #### 2.5.3.3. Software Architecture Deployment Diagrams.
 
 El Deployment Diagram muestra la distribución física de Gethics Mobile sobre la infraestructura de hardware real: el dispositivo móvil del usuario final (con su base de datos local embebida y el sensor/dispositivo IoT conectado vía Bluetooth), el proveedor cloud que hospeda la API y la base de datos gestionada, el servicio de hosting estático para la landing page, y los servicios de terceros (Pasarela de Pagos y Firebase para notificaciones push). Su objetivo es describir cómo se implementa el sistema en la infraestructura real, más allá de sus contenedores lógicos ya presentados en 2.5.3.2.
 
-![Software Architecture Deployment Diagram](images/2-5-3-3-deployment-diagram.png)
-
-
+![Software Architecture Deployment Diagram](./images/2-5-3-3-deployment-diagram.png)
 
 ---
 
