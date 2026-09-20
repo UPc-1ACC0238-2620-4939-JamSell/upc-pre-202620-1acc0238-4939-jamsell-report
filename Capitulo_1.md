@@ -1,3 +1,92 @@
+# Capítulo I: Presentación
+
+# 1.1. Startup Profile
+
+En esta sección se presenta la descripción de la startup y los perfiles de los miembros del equipo.
+
+## 1.1.1. Descripción de la startup.
+
+JamSell es una startup enfocada en brindar soluciones tecnológicas accesibles y efectivas para los pequeños y medianos ganaderos de Latinoamérica. A través de una aplicación móvil intuitiva, Gethics digitaliza la gestión del ganado mediante una estructura organizada en módulos clave que abarcan toda la operación productiva. Asimismo, la solución considera al segmento veterinario, permitiendo que los profesionales puedan revisar clientes asignados, consultar pacientes, registrar eventos sanitarios y dar seguimiento clínico a los animales atendidos desde la palma de su mano.
+
+La aplicación organiza la vida productiva del ganado en los siguientes módulos clave:
+
+- Gestión integral de animales, incluyendo el registro individual (raza, edad, sexo y estado de salud), así como su listado, búsqueda, filtrado, edición y eliminación.
+- Registro y gestión del historial de las visitas médicas por cada animal.
+- Calendario sanitario (eventos, vacunas, tratamientos).
+- Control económico (ingresos, egresos).
+- Visualización de reportes y estadísticas, con alertas automáticas push según el análisis de tendencias del ganado.
+
+Gracias a la integración de datos históricos y actualizados en tiempo real, Gethics permite a los ganaderos tomar decisiones informadas, mejorar la productividad, reducir pérdidas operativas y optimizar el control sanitario del ganado. De esta manera, se transforma la gestión tradicional en una ganadería más inteligente, eficiente y sostenible adaptada a dispositivos móviles.
+
+**Misión:** Revolucionar la gestión y trazabilidad del ganado en pequeños y medianos hatos ganaderos de Latinoamérica, mediante una aplicación móvil accesible que optimice los procesos productivos, sanitarios y económicos.
+
+**Visión:** Gethics se proyecta como una de las aplicaciones móviles más destacadas del sector ganadero en el registro y control integral de animales durante los próximos tres años. La startup busca consolidarse como un modelo de negocio sostenible, confiable y orientado a la mejora continua de la productividad rural a través de tecnología móvil simple y efectiva.
+
+## 1.1.2. Perfiles de los integrantes del equipo.
+
+<table>
+  <tr>
+    <td width="30%" align="center">
+      <img src="markdown/assets/chapter-1/Integrante-1.jpg" width="180">
+    </td>
+    <td width="70%">
+      <h3>Mauricio Sebastian Castillo Yataco</h3>
+      <h4>u202113229</h4>
+      <p>
+        Mi nombre es Mauricio Sebastian Castillo Yataco. Actualmente me encuentro cursando la carrera de Ingeniería de Software en la UPC. Me apasiona el desarrollo de software y la búsqueda de soluciones tecnológicas que puedan impactar positivamente en la sociedad. Me comprometo a aportar mis habilidades analíticas, mi dedicación y mi capacidad para trabajar en equipo para asegurar que Gethics sea un producto funcional y de alta calidad.
+      </p>
+    </td>
+  </tr>
+
+   <tr>
+    <td width="30%" align="center">
+      <img src="../../assets/chapter-1/Integrante-2.jpg" width="180">
+    </td>
+    <td width="70%">
+      <h3>Juan Jose Meza Huanacune</h3>
+      <h4>-</h4>
+      <p>
+      </p>
+    </td>
+  </tr>
+
+   <tr>
+    <td width="30%" align="center">
+      <img src="../../assets/chapter-1/Integrante-3.jpg" width="180">
+    </td>
+    <td width="70%">
+      <h3>Luis Angel Pillaca Vidal</h3>
+      <h4>-</h4>
+      <p>
+      </p>
+    </td>
+  </tr>
+
+   <tr>
+    <td width="30%" align="center">
+      <img src="../../assets/chapter-1/Integrante-4.jpg" width="180">
+    </td>
+    <td width="70%">
+      <h3>Nadhim Abigail Raymundo Villarroel</h3>
+      <h4>-</h4>
+      <p>
+      </p>
+    </td>
+  </tr>
+
+   <tr>
+    <td width="30%" align="center">
+      <img src="../../assets/chapter-1/Integrante-5.jpg" width="180">
+    </td>
+    <td width="70%">
+      <h3>Mateo Paolo Salazar Miranda</h3>
+      <h4>-</h4>
+      <p>
+      </p>
+    </td>
+  </tr>
+</table>
+---
 # 1.2. Solution Profile
 
 ## 1.2.1. Antecedentes y Problemática.
@@ -207,4 +296,21 @@ Sabremos que hemos tenido éxito cuando observemos una reducción en el uso de r
 
 El Lean UX Canvas es una herramienta utilizada en el marco del diseño centrado en el usuario (UX) y la metodología Lean, cuyo objetivo es apoyar la creación y mejora de productos de manera ágil y eficiente. Su propósito principal es proporcionar una estructura organizada que fomente la colaboración entre equipos multidisciplinarios. A continuación, se presenta el Lean UX Canvas elaborado por el equipo utilizando la plataforma digital Mural.
 
-![Lean UX Canvas](../../assets/chapter-1/LeanUxCanvas.jpg)
+![Lean UX Canvas](markdown/assets/chapter-1//LeanUxCanvas.jpg)
+
+---
+
+# 1.3. Segmentos objetivo.
+
+De acuerdo con el Ministerio de Desarrollo Agrario y Riego (MIDAGRI, 2023), el Perú cuenta con más de 5 millones de cabezas de ganado vacuno, siendo la ganadería una actividad clave en regiones como Cajamarca, Puno, Cusco y La Libertad. El valor bruto de la producción ganadera supera los 3 mil millones de soles anuales, y más del 65 % de estas unidades son manejadas por pequeños y medianos productores, quienes en muchos casos no disponen de herramientas tecnológicas para una gestión eficiente de sus hatos.
+
+A pesar de los avances en otros sectores agropecuarios y la alta adopción de teléfonos inteligentes, la ganadería peruana todavía depende mayoritariamente de registros manuales para controlar vacunaciones, nacimientos, peso, alimentación y reproducción. Esta falta de sistematización limita la trazabilidad y dificulta la toma de decisiones estratégicas en los negocios ganaderos.
+
+Con la proyección de un aumento del 70 % en la demanda mundial de alimentos para 2050 (FAO, 2021), se hace cada vez más urgente incorporar soluciones móviles en el sector ganadero. Gethics busca centralizar y automatizar la gestión del ganado mediante una aplicación móvil accesible, capaz de registrar datos en tiempo real desde el campo y generar indicadores clave de desempeño. Esto permitiría mejorar la rentabilidad y eficiencia de los hatos, así como incrementar la competitividad del país en mercados de exportación de carne y leche.
+
+Entre los posibles usuarios de la aplicación se encuentran:
+
+- **Pequeños y medianos ganaderos:** Productores ubicados principalmente en zonas rurales o semiurbanas, responsables del manejo diario de hatos pequeños o medianos. Suelen registrar información en cuadernos, hojas de cálculo o mensajes de texto, por lo que necesitan digitalizar el control sanitario, reproductivo y económico de sus animales desde sus dispositivos móviles para mejorar su productividad y trazabilidad en el día a día.
+
+- **Veterinarios y técnicos agropecuarios:** Profesionales que atienden a ganaderos, realizan controles sanitarios, registran tratamientos y dan seguimiento a animales bajo observación. Requieren acceso portátil a historiales clínicos, clientes asignados, pacientes y herramientas de monitoreo in situ para optimizar la atención del ganado y mejorar la comunicación con los productores sin depender de registros físicos en papel.
+
