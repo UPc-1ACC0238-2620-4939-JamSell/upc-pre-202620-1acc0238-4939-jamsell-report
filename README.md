@@ -56,8 +56,8 @@
       <td>Meza Huanacune, Juan José</td>
     </tr>
     <tr>
-      <td>UXXXXXXXX</td>
-      <td>[Apellido, Nombre]</td>
+      <td>U202315654</td>
+      <td>Pillaca Vidal, Luis Angel</td>
     </tr>
     <tr>
       <td>U202318001</td>
