@@ -42,14 +42,14 @@
 <table align="center">
   <thead>
     <tr>
-      <th>Código</th>
-      <th>Apellidos y Nombres</th>
+      <th>u202113229</th>
+      <th>Castillo Yataco, Mauricio Sebastian</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td>UXXXXXXXX</td>
-      <td>[Apellido, Nombre]</td>
+      <td>u202315171</td>
+      <td>Salazar Miranda, Mateo Paolo</td>
     </tr>
     <tr>
       <td>U202320574</td>
