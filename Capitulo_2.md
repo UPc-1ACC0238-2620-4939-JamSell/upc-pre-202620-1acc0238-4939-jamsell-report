@@ -1885,3 +1885,55 @@ Asimismo, la separación por capas permite mantener un bajo acoplamiento entre l
 
 ---
 
+### 2.6.4.6. Bounded Context Software Architecture Code Level Diagrams
+
+En esta sección se presentan los diagramas de nivel de código correspondientes al bounded context **Financial Management**. Estos diagramas permiten representar con mayor detalle los elementos que conforman el modelo de dominio y las estructuras necesarias para persistir la información financiera administrada por Gethics.
+
+Financial Management mantiene la responsabilidad de registrar ingresos y egresos, calcular balances, generar reportes financieros y gestionar los pagos asociados a las suscripciones de la plataforma.
+
+La comunicación con el proveedor externo de pagos permanece fuera del Domain Layer y se realiza mediante la Anti-Corruption Layer definida en Infrastructure, evitando que los conceptos específicos del Payment Gateway formen parte directamente del modelo de dominio.
+
+Para este bounded context se consideran los siguientes diagramas:
+
+- **Domain Layer Class Diagram**, que representa los Aggregate Roots, entidades, Value Objects, enumeraciones, servicios de dominio e interfaces de repositorio.
+- **Database Design Diagram**, que representa las estructuras necesarias para persistir los movimientos financieros y los pagos de suscripción.
+
+---
+
+#### 2.6.4.6.1. Bounded Context Domain Layer Class Diagrams
+
+En esta sección se presenta el UML Class Diagram correspondiente al Domain Layer del bounded context **Financial Management**.
+
+El modelo tiene como Aggregate Root principal a `FinancialManagement`, encargado de administrar la información financiera perteneciente a un usuario o negocio ganadero. Este agregado permite registrar ingresos y egresos y mantener el balance financiero correspondiente.
+
+`FinancialTransaction` representa cada movimiento financiero registrado dentro de la actividad ganadera. Una transacción puede ser clasificada como ingreso o egreso mediante `FinancialTransactionType`.
+
+El Value Object `Money` representa los valores monetarios utilizados dentro del dominio, encapsulando tanto el importe como la moneda correspondiente.
+
+`SubscriptionPayment` representa un pago asociado a una suscripción de Gethics. El estado del pago es administrado mediante `SubscriptionPaymentStatus`, permitiendo distinguir pagos pendientes, confirmados o rechazados.
+
+`FinancialReportService` contiene las reglas de dominio necesarias para calcular los ingresos totales, egresos y balance a partir de las transacciones registradas.
+
+Finalmente, `FinancialManagementRepository` y `SubscriptionPaymentRepository` definen las operaciones necesarias para persistir y recuperar los elementos del dominio sin generar dependencia directa con mecanismos concretos de almacenamiento.
+
+**Financial Management Domain Layer Class Diagram**
+
+![Financial Management Domain Layer Class Diagram](images/FinancialManagementDomainLayerClassDiagram.png)
+
+Las principales relaciones representadas en el diagrama son las siguientes:
+
+- Un `FinancialManagement` puede contener cero o múltiples `FinancialTransaction`.
+- Cada `FinancialTransaction` pertenece a un único `FinancialManagement`.
+- Cada `FinancialTransaction` utiliza un `Money` para representar su importe.
+- Cada `FinancialTransaction` posee un `FinancialTransactionType`.
+- `FinancialManagement` utiliza `Money` para representar su balance.
+- `SubscriptionPayment` utiliza `Money` para representar el importe del pago.
+- `SubscriptionPayment` utiliza `SubscriptionPaymentStatus` para representar su estado.
+- `FinancialReportService` utiliza `FinancialManagement` y sus transacciones para calcular ingresos, egresos y balance.
+- `FinancialManagementRepository` define las operaciones de persistencia asociadas al Aggregate Root.
+- `SubscriptionPaymentRepository` define las operaciones de persistencia relacionadas con los pagos de suscripción.
+
+Esta estructura mantiene el dominio financiero independiente de los mecanismos técnicos utilizados para procesar pagos, persistir información o comunicar resultados hacia otros bounded contexts.
+
+---
+
