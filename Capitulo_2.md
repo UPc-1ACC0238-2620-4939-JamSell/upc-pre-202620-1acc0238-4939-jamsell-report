@@ -1543,3 +1543,118 @@ Cuando se recibe una lectura desde un dispositivo IoT, esta pasa primero por `Io
 Esta organización mantiene aisladas las responsabilidades de Veterinary Care y evita que el bounded context dependa directamente de las estructuras internas de Livestock Management, Sanitary Tracking o de los protocolos utilizados por dispositivos IoT. De esta manera, el diseño mantiene los límites establecidos por Domain-Driven Design y facilita la evolución independiente de cada componente.
 
 ---
+
+### 2.6.3.6. Bounded Context Software Architecture Code Level Diagrams
+
+En esta sección se presentan los diagramas de nivel de código correspondientes al bounded context **Veterinary Care**. Estos diagramas permiten representar con mayor detalle los elementos que conforman el modelo de dominio y las estructuras necesarias para persistir la información propia de este contexto.
+
+Los diagramas mantienen consistencia con las decisiones establecidas previamente durante el Strategic-Level y Tactical-Level Domain-Driven Design. Veterinary Care se centra en la relación entre veterinarios, clientes y pacientes, así como en el seguimiento clínico profesional de los animales atendidos.
+
+La información maestra de los animales continúa siendo responsabilidad de **Livestock Management**, mientras que el historial clínico completo pertenece a **Sanitary Tracking**. Veterinary Care conserva únicamente la información necesaria para administrar sus asignaciones y el seguimiento profesional de los pacientes.
+
+Para este bounded context se consideran los siguientes diagramas:
+
+- **Domain Layer Class Diagram**, que representa las clases, interfaces, enumeraciones, Value Objects, servicios de dominio y relaciones principales.
+- **Database Design Diagram**, que representa las estructuras de persistencia necesarias para almacenar las asignaciones veterinarias y los seguimientos clínicos.
+
+---
+
+#### 2.6.3.6.1. Bounded Context Domain Layer Class Diagrams
+
+En esta sección se presenta el UML Class Diagram correspondiente al Domain Layer del bounded context **Veterinary Care**.
+
+El modelo tiene como Aggregate Root principal a `VeterinaryAssignment`, que representa la relación existente entre un veterinario y un cliente ganadero. Esta asignación permite determinar qué clientes pueden ser atendidos por cada profesional y proporciona el contexto necesario para consultar posteriormente a sus pacientes.
+
+`ClinicalFollowUp` representa el seguimiento profesional asociado a un paciente. Esta entidad permite registrar observaciones, actualizar el estado del seguimiento y registrar anomalías identificadas durante una atención veterinaria o mediante información proveniente de dispositivos IoT.
+
+El paciente no se representa mediante una entidad `Animal` propia de Veterinary Care. En su lugar, se utiliza `patientId` como referencia al animal administrado por **Livestock Management**, evitando duplicar el modelo perteneciente a otro bounded context.
+
+De manera similar, Veterinary Care no mantiene el historial clínico completo del animal. Cuando una observación debe incorporarse al historial sanitario, dicha actualización se realiza posteriormente mediante las operaciones expuestas por **Sanitary Tracking**.
+
+El Value Object `VeterinaryAssignmentId` permite representar y validar la identidad de cada asignación. Asimismo, `IoTReading` representa una lectura ya normalizada proveniente de un dispositivo IoT, después de haber sido procesada por la Anti-Corruption Layer definida en Infrastructure.
+
+Las enumeraciones `VeterinaryAssignmentStatus` y `FollowUpStatus` restringen los estados permitidos para las asignaciones y seguimientos clínicos.
+
+Finalmente, `ClinicalMonitoringService` contiene las reglas de dominio necesarias para evaluar las lecturas recibidas y determinar si existe alguna anomalía que requiera modificar el seguimiento clínico del paciente.
+
+**Figura X. Veterinary Care Domain Layer Class Diagram**
+
+![Veterinary Care Domain Layer Class Diagram](images/VeterinaryCareDomainLayerClassDiagram.png)
+
+Las principales relaciones representadas en el diagrama son las siguientes:
+
+- Un `VeterinaryAssignment` representa la relación entre un único veterinario y un único cliente.
+- Un veterinario puede mantener diferentes asignaciones con distintos clientes.
+- Un `VeterinaryAssignment` puede estar relacionado con cero o múltiples `ClinicalFollowUp`.
+- Cada `ClinicalFollowUp` pertenece a una única `VeterinaryAssignment`.
+- Cada `ClinicalFollowUp` referencia a un paciente mediante `patientId`.
+- `VeterinaryAssignment` utiliza `VeterinaryAssignmentId` como identificador y `VeterinaryAssignmentStatus` para controlar su estado.
+- `ClinicalFollowUp` utiliza `FollowUpStatus` para representar el estado actual del seguimiento.
+- `ClinicalMonitoringService` evalúa objetos `IoTReading` y puede determinar la existencia de anomalías que requieran actualizar un `ClinicalFollowUp`.
+- `VeterinaryAssignmentRepository` define las operaciones necesarias para persistir y consultar las asignaciones veterinarias.
+- `ClinicalFollowUpRepository` define las operaciones necesarias para persistir y consultar el seguimiento clínico.
+
+Esta estructura mantiene el dominio de Veterinary Care enfocado exclusivamente en las responsabilidades relacionadas con la atención veterinaria, evitando replicar modelos pertenecientes a Livestock Management o Sanitary Tracking y preservando los límites establecidos entre bounded contexts.
+
+---
+
+#### 2.6.3.6.2. Bounded Context Database Design Diagram
+
+En esta sección se presenta el Database Design Diagram correspondiente al bounded context **Veterinary Care**. El modelo representa las estructuras de persistencia necesarias para administrar las asignaciones entre veterinarios y clientes, así como el seguimiento clínico profesional realizado sobre los pacientes.
+
+De acuerdo con los límites definidos mediante Domain-Driven Design, Veterinary Care almacena únicamente la información propia de este bounded context. Los datos completos de usuarios, animales e historiales clínicos continúan siendo responsabilidad de **Identity & Access**, **Livestock Management** y **Sanitary Tracking**, respectivamente.
+
+Por esta razón, los atributos `veterinarian_id`, `client_id` y `patient_id` se mantienen como identificadores externos y no como Foreign Keys físicas hacia tablas pertenecientes a otros bounded contexts.
+
+**Figura X. Veterinary Care Database Design Diagram**
+
+![Veterinary Care Database Design Diagram](images/VeterinaryCareDatabaseDesign.png)
+
+El diseño de persistencia está conformado por las tablas `VETERINARY_ASSIGNMENTS` y `CLINICAL_FOLLOW_UPS`.
+
+### Veterinary Assignments
+
+La tabla `VETERINARY_ASSIGNMENTS` almacena las asignaciones existentes entre un veterinario y un cliente ganadero. Estas asignaciones permiten determinar qué clientes pueden ser atendidos por cada profesional dentro de Gethics.
+
+| Campo | Tipo | Restricción | Descripción |
+|---|---|---|---|
+| `id` | UUID | Primary Key, NOT NULL | Identificador único de la asignación veterinaria. |
+| `veterinarian_id` | UUID | NOT NULL | Identificador externo del veterinario administrado por Identity & Access. |
+| `client_id` | UUID | NOT NULL | Identificador externo del cliente administrado por Identity & Access. |
+| `assigned_at` | DATETIME | NOT NULL | Fecha y hora en la que se creó la asignación. |
+| `status` | VARCHAR | NOT NULL | Estado actual de la asignación veterinaria. |
+
+Los atributos `veterinarian_id` y `client_id` representan referencias hacia usuarios administrados por **Identity & Access**. Debido a que dicho bounded context mantiene la propiedad de los usuarios y sus roles, Veterinary Care no replica estas estructuras dentro de su propio modelo de datos.
+
+### Clinical Follow-Ups
+
+La tabla `CLINICAL_FOLLOW_UPS` almacena la información correspondiente al seguimiento profesional realizado sobre los pacientes asociados a las asignaciones veterinarias.
+
+| Campo | Tipo | Restricción | Descripción |
+|---|---|---|---|
+| `id` | UUID | Primary Key, NOT NULL | Identificador único del seguimiento clínico. |
+| `assignment_id` | UUID | Foreign Key, NOT NULL | Identificador de la asignación veterinaria relacionada. |
+| `patient_id` | UUID | NOT NULL | Identificador externo del paciente administrado por Livestock Management. |
+| `notes` | TEXT | NULL | Observaciones registradas durante el seguimiento del paciente. |
+| `status` | VARCHAR | NOT NULL | Estado actual del seguimiento clínico. |
+| `updated_at` | DATETIME | NOT NULL | Fecha y hora de la última actualización del seguimiento. |
+
+El atributo `assignment_id` funciona como Foreign Key hacia `VETERINARY_ASSIGNMENTS.id`, debido a que ambas tablas pertenecen al bounded context Veterinary Care.
+
+El atributo `patient_id`, en cambio, representa al animal administrado por **Livestock Management**. Por esta razón, no se define como una Foreign Key física hacia una tabla `ANIMAL`, preservando la independencia entre bounded contexts.
+
+### Relaciones del modelo
+
+El modelo establece la siguiente relación principal:
+
+- Una `VETERINARY_ASSIGNMENT` puede tener cero o múltiples `CLINICAL_FOLLOW_UPS`.
+- Cada `CLINICAL_FOLLOW_UP` pertenece obligatoriamente a una única `VETERINARY_ASSIGNMENT`.
+- Cada seguimiento clínico referencia a un único paciente mediante `patient_id`.
+- Cada asignación identifica al veterinario y al cliente mediante `veterinarian_id` y `client_id`.
+
+La cardinalidad principal del modelo se representa de la siguiente manera:
+
+```text
+VETERINARY_ASSIGNMENTS  1 ───────── 0..* CLINICAL_FOLLOW_UPS
+```
+---
