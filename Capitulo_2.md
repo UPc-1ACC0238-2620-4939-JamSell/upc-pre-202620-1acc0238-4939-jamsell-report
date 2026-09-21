@@ -1606,7 +1606,7 @@ De acuerdo con los límites definidos mediante Domain-Driven Design, Veterinary 
 
 Por esta razón, los atributos `veterinarian_id`, `client_id` y `patient_id` se mantienen como identificadores externos y no como Foreign Keys físicas hacia tablas pertenecientes a otros bounded contexts.
 
-**Figura X. Veterinary Care Database Design Diagram**
+**Veterinary Care Database Design Diagram**
 
 ![Veterinary Care Database Design Diagram](images/VeterinaryCareDatabaseDesign.png)
 
@@ -1658,3 +1658,230 @@ La cardinalidad principal del modelo se representa de la siguiente manera:
 VETERINARY_ASSIGNMENTS  1 ───────── 0..* CLINICAL_FOLLOW_UPS
 ```
 ---
+## 2.6.4. Bounded Context: Financial Management
+
+El bounded context **Financial Management** se encarga de administrar la información financiera relacionada con la actividad ganadera dentro de Gethics. Su objetivo principal es permitir que los usuarios registren ingresos y egresos, consulten su situación económica y generen reportes financieros que apoyen la toma de decisiones.
+
+Este bounded context también participa en la gestión del pago de las suscripciones asociadas al uso de la plataforma. La validación del pago no es realizada directamente por Gethics, sino mediante un **Payment Gateway externo**, encargado de procesar y confirmar la transacción.
+
+Debido a que el proveedor de pagos utiliza sus propios formatos, estados y mecanismos de comunicación, Financial Management utiliza una **Anti-Corruption Layer** para evitar que dichos conceptos externos formen parte directamente del modelo del dominio.
+
+La información consolidada por Financial Management puede ser utilizada posteriormente por **Analytics & Alerts**, que consume los reportes financieros para complementar el análisis general del negocio ganadero.
+
+### Class Dictionary
+
+Las principales clases identificadas para el bounded context **Financial Management** son las siguientes:
+
+| Clase | Tipo | Propósito | Atributos principales | Métodos principales | Relaciones |
+|---|---|---|---|---|---|
+| `FinancialManagement` | Aggregate Root | Centraliza la información financiera correspondiente a un usuario o negocio ganadero. | `id`, `ownerId`, `balance`, `createdAt` | `registerIncome()`, `registerExpense()`, `calculateBalance()` | Contiene movimientos financieros. |
+| `FinancialTransaction` | Entity | Representa un movimiento financiero registrado dentro del negocio ganadero. | `id`, `type`, `amount`, `description`, `occurredAt` | `validate()`, `isIncome()`, `isExpense()` | Pertenece a `FinancialManagement`. |
+| `SubscriptionPayment` | Entity | Representa un intento o confirmación de pago relacionado con una suscripción. | `id`, `ownerId`, `amount`, `status`, `createdAt`, `confirmedAt` | `confirm()`, `reject()`, `isConfirmed()` | Es procesado mediante un Payment Gateway externo. |
+| `Money` | Value Object | Representa un importe monetario válido dentro del dominio. | `amount`, `currency` | `add()`, `subtract()`, `isPositive()` | Utilizado por transacciones y pagos. |
+| `FinancialTransactionType` | Enumeration | Define el tipo de movimiento financiero. | `INCOME`, `EXPENSE` | No aplica | Utilizado por `FinancialTransaction`. |
+| `SubscriptionPaymentStatus` | Enumeration | Define el estado de un pago de suscripción. | `PENDING`, `CONFIRMED`, `REJECTED` | No aplica | Utilizado por `SubscriptionPayment`. |
+| `FinancialManagementRepository` | Repository Interface | Define las operaciones necesarias para persistir la información financiera. | No aplica | `save()`, `findByOwnerId()` | Trabaja con `FinancialManagement`. |
+| `SubscriptionPaymentRepository` | Repository Interface | Define las operaciones de persistencia de los pagos de suscripción. | No aplica | `save()`, `findById()`, `findByOwnerId()` | Trabaja con `SubscriptionPayment`. |
+| `FinancialReportService` | Domain Service | Genera información financiera consolidada a partir de los movimientos registrados. | No aplica | `calculateIncome()`, `calculateExpenses()`, `calculateBalance()` | Utiliza información de `FinancialManagement`. |
+
+---
+
+### 2.6.4.1. Domain Layer
+
+El **Domain Layer** contiene las reglas de negocio relacionadas con la administración económica de los usuarios de Gethics.
+
+El Aggregate Root principal es `FinancialManagement`, encargado de mantener la información financiera correspondiente al negocio ganadero. Este agregado permite registrar ingresos y egresos y calcular el balance resultante a partir de los movimientos almacenados.
+
+`FinancialTransaction` representa cada movimiento financiero registrado por el usuario. Una transacción puede corresponder a un ingreso, como la venta de leche o ganado, o a un egreso relacionado con actividades como alimentación, medicamentos, tratamientos, transporte u otros costos asociados al manejo de la unidad productiva.
+
+El Value Object `Money` encapsula el valor monetario utilizado por el dominio y permite mantener reglas relacionadas con importes y moneda sin depender de representaciones primitivas.
+
+La enumeración `FinancialTransactionType` restringe el tipo de movimiento a los valores definidos por el dominio, mientras que `SubscriptionPaymentStatus` permite controlar el ciclo de vida de un pago de suscripción.
+
+`SubscriptionPayment` representa el pago correspondiente a una suscripción de Gethics. Un pago inicia en estado pendiente y solo puede considerarse confirmado después de recibir una confirmación válida desde el proveedor externo de pagos.
+
+`FinancialReportService` contiene las reglas necesarias para consolidar la información financiera registrada y calcular totales de ingresos, egresos y balance.
+
+Finalmente, `FinancialManagementRepository` y `SubscriptionPaymentRepository` definen las operaciones necesarias para persistir y recuperar los elementos del dominio sin acoplarlos directamente a una tecnología específica.
+
+---
+
+### 2.6.4.2. Interface Layer
+
+El **Interface Layer** contiene los componentes encargados de recibir las solicitudes relacionadas con la gestión financiera y los pagos de suscripción.
+
+Esta capa permite registrar movimientos financieros, consultar información económica, obtener reportes y gestionar las solicitudes relacionadas con los pagos de suscripción.
+
+| Clase | Tipo | Propósito | Operaciones principales |
+|---|---|---|---|
+| `FinancialTransactionController` | Controller | Gestiona las solicitudes relacionadas con ingresos y egresos. | `registerIncome()`, `registerExpense()`, `getTransactions()` |
+| `FinancialReportController` | Controller | Gestiona las solicitudes relacionadas con reportes financieros. | `getFinancialReport()`, `getBalance()` |
+| `SubscriptionPaymentController` | Controller | Gestiona el inicio y consulta de pagos de suscripción. | `createPayment()`, `getPaymentStatus()` |
+| `PaymentWebhookController` | Controller | Recibe las confirmaciones enviadas por el Payment Gateway. | `receivePaymentConfirmation()` |
+
+Los Controllers reciben las solicitudes provenientes de la aplicación móvil y delegan su procesamiento hacia los casos de uso definidos en el Application Layer.
+
+En el caso de los pagos, `PaymentWebhookController` recibe las respuestas o notificaciones enviadas por el proveedor externo. La información recibida no es utilizada directamente por el dominio, sino que es transformada previamente mediante los componentes de integración definidos en Infrastructure.
+
+---
+
+### 2.6.4.3. Application Layer
+
+El **Application Layer** coordina los casos de uso relacionados con el registro de movimientos financieros, generación de reportes y confirmación de pagos de suscripción.
+
+Esta capa no contiene reglas de negocio propias, sino que coordina la interacción entre los Controllers, los agregados del dominio, los repositorios y las integraciones externas.
+
+| Clase | Tipo | Propósito |
+|---|---|---|
+| `RegisterIncomeCommandHandler` | Command Handler | Coordina el registro de un nuevo ingreso financiero. |
+| `RegisterExpenseCommandHandler` | Command Handler | Coordina el registro de un nuevo egreso financiero. |
+| `GetFinancialTransactionsQueryHandler` | Query Handler | Obtiene los movimientos financieros registrados por el usuario. |
+| `GenerateFinancialReportQueryHandler` | Query Handler | Coordina la generación del reporte financiero. |
+| `GetFinancialBalanceQueryHandler` | Query Handler | Obtiene el balance calculado a partir de ingresos y egresos. |
+| `CreateSubscriptionPaymentCommandHandler` | Command Handler | Coordina la creación de una solicitud de pago de suscripción. |
+| `ConfirmSubscriptionPaymentCommandHandler` | Command Handler | Procesa una confirmación válida recibida desde el proveedor externo de pagos. |
+| `RejectSubscriptionPaymentCommandHandler` | Command Handler | Actualiza el pago cuando el proveedor externo informa que la operación fue rechazada. |
+
+Cuando un usuario registra un ingreso o egreso, el Application Layer obtiene el Aggregate Root correspondiente, coordina la creación del movimiento y posteriormente solicita su persistencia mediante el Repository definido por el dominio.
+
+Para generar un reporte financiero, `GenerateFinancialReportQueryHandler` obtiene los movimientos registrados y utiliza `FinancialReportService` para calcular los ingresos, egresos y balance correspondientes.
+
+En el caso de una suscripción, `CreateSubscriptionPaymentCommandHandler` coordina la creación de la solicitud y utiliza la infraestructura correspondiente para comunicarse con el Payment Gateway.
+
+La activación de los beneficios asociados a una suscripción solo debe producirse después de que `ConfirmSubscriptionPaymentCommandHandler` procese una confirmación válida del pago.
+
+---
+
+### 2.6.4.4. Infrastructure Layer
+
+El **Infrastructure Layer** contiene las implementaciones técnicas necesarias para persistir la información financiera y comunicarse con el proveedor externo encargado de procesar los pagos.
+
+Esta capa mantiene aisladas las dependencias relacionadas con bases de datos, APIs externas y formatos específicos del Payment Gateway.
+
+| Clase | Tipo | Propósito |
+|---|---|---|
+| `FinancialManagementRepositoryImpl` | Repository Implementation | Implementa las operaciones de persistencia de la información financiera. |
+| `SubscriptionPaymentRepositoryImpl` | Repository Implementation | Implementa las operaciones de persistencia de los pagos de suscripción. |
+| `FinancialDataSource` | Data Source | Gestiona el acceso a los datos propios del bounded context Financial Management. |
+| `PaymentGatewayAdapter` | Anti-Corruption Layer Adapter | Encapsula la comunicación con el proveedor externo de pagos. |
+| `PaymentGatewayMapper` | Mapper | Convierte los datos y estados externos del Payment Gateway al modelo utilizado por Financial Management. |
+| `PaymentGatewayClient` | External Service Client | Realiza las solicitudes técnicas hacia la API proporcionada por el proveedor de pagos. |
+| `AnalyticsFinancialReportPublisher` | Integration Component | Expone o publica la información financiera necesaria para Analytics & Alerts. |
+
+La comunicación con el **Payment Gateway** se realiza mediante una **Anti-Corruption Layer**. Esta capa evita que conceptos específicos del proveedor externo, como nombres de estados, estructuras de solicitudes o formatos de respuestas, se propaguen hacia el modelo interno de Financial Management.
+
+`PaymentGatewayClient` realiza la comunicación técnica con el proveedor externo. Las respuestas obtenidas son procesadas por `PaymentGatewayMapper` y posteriormente utilizadas por `PaymentGatewayAdapter` para proporcionar información compatible con los conceptos definidos por el dominio.
+
+El flujo de integración puede representarse de la siguiente manera:
+
+```text
+Payment Gateway
+       ↓
+PaymentGatewayClient
+       ↓
+PaymentGatewayMapper
+       ↓
+PaymentGatewayAdapter
+       ↓
+Application Layer
+       ↓
+SubscriptionPayment
+```
+
+---
+
+### 2.6.4.5. Bounded Context Software Architecture Component Level Diagrams
+
+En esta sección se presenta el Component Level Diagram correspondiente al bounded context **Financial Management**, siguiendo el modelo C4 y manteniendo consistencia con las decisiones establecidas durante el Strategic-Level y Tactical-Level Domain-Driven Design de Gethics.
+
+El objetivo del diagrama es representar los principales componentes internos responsables de la gestión de ingresos y egresos, generación de reportes financieros y procesamiento de pagos asociados a las suscripciones de la plataforma.
+
+Financial Management mantiene su propio modelo relacionado con las operaciones económicas del negocio ganadero. Los movimientos financieros registrados por el usuario son administrados internamente por este bounded context, permitiendo calcular ingresos, egresos y balances.
+
+Asimismo, Financial Management se integra con un **Payment Gateway externo** para procesar los pagos asociados a las suscripciones de Gethics. Debido a que este proveedor utiliza sus propios formatos, estados y mecanismos de comunicación, la integración se realiza mediante una **Anti-Corruption Layer**, evitando que los conceptos externos formen parte directamente del modelo del dominio.
+
+Finalmente, la información financiera consolidada puede ser proporcionada a **Analytics & Alerts**, permitiendo combinar los resultados económicos con otra información del sistema para generar análisis y tendencias relacionadas con la actividad ganadera.
+
+**Financial Management Software Architecture Component Level Diagram**
+
+![Financial Management Software Architecture Component Level Diagram](images/FinancialManagementComponentLevelDiagram.png)
+
+El diagrama considera los siguientes componentes principales:
+
+| Componente | Responsabilidad |
+|---|---|
+| `Financial Transaction Controller` | Recibe las solicitudes relacionadas con el registro y consulta de ingresos y egresos. |
+| `Financial Report Controller` | Gestiona las solicitudes relacionadas con la consulta de balances y reportes financieros. |
+| `Subscription Payment Controller` | Gestiona las solicitudes relacionadas con la creación y consulta de pagos de suscripción. |
+| `Payment Webhook Controller` | Recibe las notificaciones enviadas por el Payment Gateway respecto al resultado de una transacción. |
+| `Financial Transaction Application Service` | Coordina los casos de uso relacionados con el registro y consulta de movimientos financieros. |
+| `Financial Report Application Service` | Coordina la generación de reportes y balances financieros. |
+| `Subscription Payment Application Service` | Coordina la creación, confirmación y rechazo de pagos de suscripción. |
+| `Financial Management Aggregate` | Administra la información financiera correspondiente al negocio ganadero. |
+| `Financial Transaction` | Representa un ingreso o egreso registrado por el usuario. |
+| `Subscription Payment` | Representa un pago asociado a una suscripción de Gethics. |
+| `Financial Report Service` | Aplica las reglas de dominio necesarias para calcular ingresos, egresos y balances. |
+| `Financial Management Repository Interface` | Define las operaciones necesarias para persistir y recuperar la información financiera. |
+| `Subscription Payment Repository Interface` | Define las operaciones necesarias para persistir y consultar los pagos de suscripción. |
+| `Financial Management Repository Implementation` | Implementa las operaciones de persistencia correspondientes a la información financiera. |
+| `Subscription Payment Repository Implementation` | Implementa las operaciones de persistencia correspondientes a los pagos de suscripción. |
+| `Financial Data Source` | Gestiona el acceso a los datos propios de Financial Management. |
+| `Payment Gateway Adapter` | Encapsula la interacción entre Financial Management y el proveedor externo de pagos. |
+| `Payment Gateway Mapper` | Convierte los formatos y estados utilizados por el Payment Gateway a conceptos utilizados por Financial Management. |
+| `Payment Gateway Client` | Realiza la comunicación técnica con la API externa del proveedor de pagos. |
+| `Analytics Financial Report Publisher` | Proporciona la información financiera consolidada que puede ser utilizada por Analytics & Alerts. |
+
+El flujo principal para el registro de movimientos financieros se desarrolla de la siguiente manera:
+
+1. El usuario interactúa con Gethics Mobile para registrar un ingreso o egreso.
+2. `Financial Transaction Controller` recibe la solicitud y la delega hacia `Financial Transaction Application Service`.
+3. El Application Service coordina la operación utilizando los elementos definidos en el Domain Layer.
+4. `FinancialManagement` administra el movimiento financiero y aplica las reglas correspondientes.
+5. Las interfaces de Repository definidas por el dominio permiten solicitar la persistencia de la información.
+6. Las implementaciones de los repositorios del Infrastructure Layer realizan las operaciones necesarias sobre `Financial Data Source`.
+
+El flujo para generar un reporte financiero se desarrolla de la siguiente manera:
+
+1. El usuario solicita visualizar su información financiera.
+2. `Financial Report Controller` delega la operación a `Financial Report Application Service`.
+3. El Application Service recupera los movimientos financieros registrados.
+4. `Financial Report Service` calcula los ingresos, egresos y balance correspondientes.
+5. El resultado es retornado hacia la aplicación móvil para su visualización.
+
+En el caso del procesamiento de pagos de suscripción, la comunicación con el proveedor externo se realiza mediante la Anti-Corruption Layer:
+
+```text
+Subscription Payment Application Service
+                ↓
+        Payment Gateway Adapter
+                ↓
+        Payment Gateway Mapper
+                ↓
+        Payment Gateway Client
+                ↓
+        External Payment Gateway
+```
+Una vez que el proveedor procesa la transacción, el resultado puede ser comunicado mediante el flujo inverso:
+
+External Payment Gateway
+                ↓
+      Payment Webhook Controller
+                ↓
+Subscription Payment Application Service
+                ↓
+       Subscription Payment
+
+El pago permanece en estado pendiente hasta que Financial Management recibe una confirmación válida desde el Payment Gateway. Solamente después de dicha confirmación el pago puede pasar al estado correspondiente dentro del dominio.
+
+Además de las operaciones internas, Financial Management mantiene las siguientes integraciones:
+
+Financial Management → Payment Gateway: solicita el procesamiento de pagos relacionados con las suscripciones de Gethics.
+Payment Gateway → Financial Management: comunica el resultado de las transacciones procesadas.
+Financial Management → Analytics & Alerts: proporciona información financiera consolidada para apoyar la generación de análisis y tendencias.
+
+Esta organización permite mantener separadas las reglas financieras de los detalles técnicos del proveedor externo de pagos. La utilización de una Anti-Corruption Layer evita que cambios en la API, estructuras o estados utilizados por el Payment Gateway afecten directamente el modelo interno de Financial Management.
+
+Asimismo, la separación por capas permite mantener un bajo acoplamiento entre los componentes de Interface, Application, Domain e Infrastructure, facilitando la evolución independiente del bounded context dentro de Gethics.
+
+---
+
