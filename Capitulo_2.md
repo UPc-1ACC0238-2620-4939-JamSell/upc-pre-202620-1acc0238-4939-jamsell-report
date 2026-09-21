@@ -1481,4 +1481,65 @@ Esta separación permite que Veterinary Care mantenga su propio modelo centrado 
 
 ---
 
+### 2.6.3.5. Bounded Context Software Architecture Component Level Diagrams
 
+En esta sección se presenta el Component Level Diagram correspondiente al bounded context **Veterinary Care**, siguiendo el modelo C4 y manteniendo consistencia con las decisiones establecidas durante el Strategic-Level Domain-Driven Design de Gethics.
+
+El objetivo del diagrama es representar los principales componentes internos responsables de la gestión de asignaciones veterinarias, consulta de clientes y pacientes, seguimiento clínico e integración con dispositivos IoT.
+
+Veterinary Care mantiene su modelo centrado en la relación entre el veterinario, sus clientes asignados y los pacientes asociados. La información maestra de los animales no es administrada directamente por este bounded context, sino que es consultada desde **Livestock Management**.
+
+Asimismo, cuando una observación o atención veterinaria debe incorporarse al historial clínico del animal, Veterinary Care utiliza las operaciones expuestas por **Sanitary Tracking**, ya que dicho bounded context mantiene la propiedad del historial clínico.
+
+La información proveniente de sensores o dispositivos IoT es procesada mediante una **Anti-Corruption Layer**, evitando que las estructuras, formatos o protocolos externos formen parte directamente del modelo interno de Veterinary Care.
+
+**Veterinary Care Software Architecture Component Level Diagram**
+
+![Veterinary Care Software Architecture Component Level Diagram](images/VeterinaryCareComponentLevelDiagram.png)
+
+El diagrama considera los siguientes componentes principales:
+
+| Componente | Responsabilidad |
+|---|---|
+| `Veterinary Assignment Controller` | Recibe solicitudes relacionadas con la creación, consulta y desactivación de asignaciones entre veterinarios y clientes. |
+| `Veterinary Client Controller` | Gestiona las consultas de clientes asignados a un veterinario. |
+| `Veterinary Patient Controller` | Gestiona las consultas relacionadas con los pacientes pertenecientes a los clientes asignados. |
+| `Clinical Follow-Up Controller` | Recibe las operaciones relacionadas con el seguimiento clínico de los pacientes. |
+| `Veterinary Assignment Application Service` | Coordina los casos de uso relacionados con las asignaciones veterinarias. |
+| `Patient Consultation Application Service` | Coordina la obtención de información de pacientes desde Livestock Management. |
+| `Clinical Follow-Up Application Service` | Coordina la actualización y consulta del seguimiento clínico. |
+| `IoT Processing Application Service` | Coordina el procesamiento de las lecturas recibidas desde dispositivos IoT. |
+| `Veterinary Assignment Aggregate` | Representa la relación entre un veterinario y un cliente dentro del dominio. |
+| `Clinical Follow-Up` | Representa el seguimiento profesional realizado sobre un paciente. |
+| `Clinical Monitoring Service` | Evalúa observaciones clínicas y lecturas de sensores para identificar posibles anomalías. |
+| `Veterinary Assignment Repository Interface` | Define las operaciones necesarias para persistir y recuperar asignaciones veterinarias. |
+| `Clinical Follow-Up Repository Interface` | Define las operaciones necesarias para persistir y consultar seguimientos clínicos. |
+| `Veterinary Assignment Repository Implementation` | Implementa la persistencia de las asignaciones veterinarias. |
+| `Clinical Follow-Up Repository Implementation` | Implementa la persistencia del seguimiento clínico. |
+| `Livestock Management Client` | Permite consultar la información de los animales administrados por Livestock Management. |
+| `Sanitary Tracking Client` | Permite solicitar actualizaciones del historial clínico administrado por Sanitary Tracking. |
+| `IoT Device Adapter` | Implementa la Anti-Corruption Layer utilizada para recibir información proveniente de dispositivos IoT. |
+| `IoT Reading Mapper` | Convierte las lecturas externas en estructuras comprensibles para el dominio de Veterinary Care. |
+
+El flujo principal de comunicación dentro del bounded context se desarrolla de la siguiente manera:
+
+1. El veterinario interactúa con Gethics Mobile para consultar sus clientes asignados, revisar pacientes o registrar información relacionada con el seguimiento clínico.
+2. Los Controllers del Interface Layer reciben las solicitudes y delegan su ejecución hacia los componentes correspondientes del Application Layer.
+3. Los Application Services coordinan los casos de uso y utilizan los elementos del Domain Layer para aplicar las reglas de negocio.
+4. `VeterinaryAssignment` controla la relación existente entre el veterinario y el cliente.
+5. `ClinicalFollowUp` mantiene la información relacionada con el seguimiento profesional de cada paciente.
+6. Las interfaces de Repository permiten solicitar operaciones de persistencia sin que el dominio dependa directamente de la base de datos.
+7. Los Repository Implementations del Infrastructure Layer ejecutan las operaciones de almacenamiento y recuperación de los datos propios de Veterinary Care.
+
+Además del flujo interno, Veterinary Care mantiene las siguientes integraciones:
+
+- **Veterinary Care → Livestock Management:** consulta la información del animal utilizado como paciente.
+- **Veterinary Care → Sanitary Tracking:** solicita actualizaciones controladas del historial clínico cuando una atención veterinaria debe incorporarse al historial sanitario del animal.
+- **IoT Device → Veterinary Care:** proporciona lecturas provenientes de sensores o dispositivos asociados al seguimiento del paciente.
+- **IoT Device Adapter → IoT Reading Mapper:** transforma las estructuras externas antes de que sean procesadas por el dominio.
+
+Cuando se recibe una lectura desde un dispositivo IoT, esta pasa primero por `IoTDeviceAdapter` y `IoTReadingMapper`. Posteriormente, `ClinicalMonitoringService` puede evaluar los datos obtenidos y determinar si existe una anomalía que requiera actualizar el seguimiento clínico.
+
+Esta organización mantiene aisladas las responsabilidades de Veterinary Care y evita que el bounded context dependa directamente de las estructuras internas de Livestock Management, Sanitary Tracking o de los protocolos utilizados por dispositivos IoT. De esta manera, el diseño mantiene los límites establecidos por Domain-Driven Design y facilita la evolución independiente de cada componente.
+
+---
