@@ -93,11 +93,73 @@ A continuación se detalla la guía de entrevista estructurada por segmentos y c
 * **Pregunta Principal:** ¿Qué frustraciones o contratiempos experimenta cuando atiende a un cliente que no cuenta con un historial ganadero organizado?
 * **Pregunta Complementaria:** ¿Qué fallas en el seguimiento de recetas o en el registro de datos sanitarios entorpecen su trabajo clínico diario?
 
-### 2.2.2. Registro de entrevistas
+### 2.2.2. Registro de entrevistas.
 
+**Entrevistados del segmento 1 (Pequeños y Medianos Ganaderos)**
 
-### 2.2.3. Análisis de entrevistas
+| N° de Entrevista | Datos del Entrevistado | Evidencia de Video |
+|---|---|---|
+| E1<br>![Yarkin Quispe](./images/entrevistas/2-2-2-seg1-e1-yarkin-quispe.png) | Yarkin Quispe es un administrador ganadero de 28 años que dirige el negocio familiar desde hace unos cinco años, manejando un establo con aproximadamente 90 cabezas de ganado vacuno lechero y de doble propósito. Junto a un equipo de tres operarios, Yarkin gestiona la operatividad del establo, enfrentándose al reto de mantener la rentabilidad en una industria competitiva donde reconoce que las decisiones ya no pueden basarse en la intuición o la memoria, sino en datos precisos.<br><br>Actualmente, el control del establo combina el uso de cuadernos de campo o pizarras por parte de los operarios con hojas de cálculo de Google Sheets gestionadas por Yarkin, lo que genera un trabajo de doble digitación que le consume hasta una hora diaria. Esta dependencia de registros manuales retrasa el acceso a la información y provoca pérdidas económicas por errores de transcripción, falta de detección oportuna de celos, tratamientos médicos repetidos o el mantenimiento prolongado de "vacas parásito" al ser muy complicado cruzar los datos de producción y días en leche de forma manual.<br><br>Frente a esta situación, Yarkin considera indispensable la digitalización total y está dispuesto a implementar una aplicación móvil tanto para él como para sus operarios. Para que la herramienta se adapte a su realidad, el requisito más crítico es que cuente con un modo offline que permita el ingreso de datos en el corral sin internet y se sincronice en la nube automáticamente al captar señal. Además, exige que la aplicación tenga una interfaz muy intuitiva con botones grandes, envíe notificaciones push para acciones clave (chequeos de preñez, secado, celos) y genere reportes automáticos en el celular para tomar decisiones inmediatas de descarte o compra. | Duración de video: 9:48<br>[https://sl1nk.com/lradkby](https://sl1nk.com/lradkby) |
+| E2<br>![Jesús Manrique Meza](./images/entrevistas/2-2-2-seg1-e2-jesus-manrique.png) | Jesús Manrique Meza es un joven ganadero de 24 años que participa en la administración de un pequeño negocio familiar dedicado a la actividad ganadera. Actualmente, junto con su familia, maneja un establo de aproximadamente 70 cabezas de ganado bovino de doble propósito, orientado tanto a la producción de leche como a la producción de carne.<br><br>Jesús participa activamente en las actividades diarias del establo, como el control de los animales, alimentación, registro de nacimientos, vacunaciones, tratamientos y seguimiento de la producción. Parte de esta información se registra todavía de forma manual, mediante anotaciones y herramientas digitales sencillas, lo que puede dificultar la consulta rápida del historial de cada animal.<br><br>Debido a la cantidad de animales y actividades que deben supervisarse diariamente, considera importante contar con una herramienta móvil que permita centralizar la información del ganado, registrar eventos sanitarios, recibir recordatorios y consultar datos directamente desde el celular. Asimismo, considera importante que la aplicación sea sencilla de utilizar y que pueda funcionar incluso cuando la conexión a Internet sea limitada. | Duración: 9:17<br>[Entrevista Jesus Manrique Segmento 1.mp4](https://upcedupe-my.sharepoint.com/:v:/g/personal/u202320574_upc_edu_pe/IQATNY6Fl9H9Rb7vIggBR6P6ARlW5ctgUBPjT65PmNOwnb0) |
+| E3<br>![Entrevistado E3 Segmento 1](./images/entrevistas/2-2-2-seg1-e3.png) | El entrevistado es un ganadero de 32 años que utiliza principalmente su celular para registrar información de sus animales. Actualmente lleva sus registros en cuadernos y anotaciones, lo que dificulta organizar vacunas, tratamientos y gastos. Su principal necesidad es contar con una herramienta sencilla que le permita gestionar mejor su ganado y controlar la rentabilidad de su negocio. | Duración de video: 04:52 min<br>[https://drive.google.com/file/d/1ZiU7YwF-xEyfOeQOAxEvl9yb5r8wWhfv/view?usp=sharing](https://drive.google.com/file/d/1ZiU7YwF-xEyfOeQOAxEvl9yb5r8wWhfv/view?usp=sharing) |
 
+**Entrevistados del segmento 2 (Veterinarios y Técnicos Agropecuarios)**
+
+| N° de Entrevista | Datos del Entrevistado | Evidencia de Video |
+|---|---|---|
+| E1<br>![Andrea Arango](./images/entrevistas/2-2-2-seg2-e1-andrea-arango.png) | Andrea Arango es una estudiante de Medicina Veterinaria de 26 años en Lima, con un fuerte interés en la atención de ganado y animales de producción. A través de sus prácticas preprofesionales, ha identificado que el manejo actual de historiales médicos mediante fichas físicas y apuntes dispersos en el celular dificulta enormemente el seguimiento de los pacientes. Esta falta de información centralizada representa un riesgo clínico, ya que el desconocimiento de los antecedentes médicos de un animal puede derivar en decisiones incompletas o en la aplicación de tratamientos redundantes.<br><br>Ante esta problemática, Andrea muestra una alta disposición para adoptar herramientas digitales, reconociendo que una aplicación móvil especializada mejoraría drásticamente la labor veterinaria. Ella considera que una plataforma de este tipo optimizaría la comunicación en tiempo real con los ganaderos, permitiendo enviar reportes previos en caso de emergencias y establecer un sistema de recordatorios automatizados para próximos controles, tratamientos y vacunas.<br><br>Para que esta aplicación sea realmente efectiva en el campo, Andrea destaca que debe integrar un historial clínico unificado con registro fotográfico y estadísticas visuales para analizar tendencias sanitarias. Sin embargo, recalca que los requisitos más críticos son una interfaz intuitiva que permita un registro ágil de múltiples animales y, fundamentalmente, un modo de funcionamiento sin conexión (offline) que garantice el acceso y la captura de datos en zonas rurales donde la señal de internet suele ser inestable. | Duración de video: 13:18<br>[https://sl1nk.com/isp6m9t](https://sl1nk.com/isp6m9t) |
+| E2<br>![Manuel Fajardo](./images/entrevistas/2-2-2-seg2-e2-manuel-fajardo.png) | Manuel Fajardo es un Médico Veterinario Zootecnista de 24 años, egresado de la Universidad Nacional Agraria La Molina, con 6 años de experiencia en sanidad de ganado vacuno y ovino en los distritos de Jauja y Concepción, Junín. Trabaja de forma independiente y también apoya a una asociación de ganaderos de la zona, atendiendo principalmente a pequeños y medianos productores familiares. En campo utiliza su celular Android y a veces una tablet, pero termina anotando en una libreta física porque no hay señal, y luego pasa esos datos a un Excel cuando llega a casa; no usa apps especializadas de gestión ganadera porque no conoce ninguna pensada para veterinarios de campo, y las pocas que ha probado pierden la información si se cierran sin conexión. Su principal motivación es reducir la mortalidad del ganado que atiende y ganarse la confianza de más productores con un servicio más ordenado, agrupando visitas por zona y llevando un historial de cada cliente. Sin embargo, su mayor frustración es llegar donde un ganadero que no tiene ningún registro organizado: al no saber qué vacunas o tratamientos recibió antes el animal, termina repitiendo procedimientos o tomando decisiones clínicas incompletas, y lo mismo ocurre cuando el propio ganadero no anota bien las dosis o fechas de los tratamientos recetados, lo que impide darle un seguimiento real al caso en la siguiente visita. | Duración de video: 04:22<br>[https://drive.google.com/file/d/1ijpN-iKsVVoS5JsJNc1IOEgyRqatRKI7/view?usp=sharing](https://drive.google.com/file/d/1ijpN-iKsVVoS5JsJNc1IOEgyRqatRKI7/view?usp=sharing) |
+| E3 | *(pendiente)* | Duración de video: *(pendiente)* |
+
+### 2.2.3. Análisis de entrevistas.
+
+En esta sección se consolida el análisis cualitativo y cuantitativo extraído del registro de entrevistas, organizado de forma independiente por cada segmento objetivo (N = 3 ganaderos y N = 3 veterinarios). Las distribuciones de frecuencia y porcentajes identificados sustentan las características objetivas y subjetivas requeridas para la construcción de los User Personas.
+
+**Segmento 1: Pequeños y Medianos Ganaderos (N = 3)**
+
+*1. Características Objetivas*
+
+| Criterio / Variable | Atributos Predominantes | Frecuencia (n) | Porcentaje (%) | Sustento y Evidencia en Entrevistas |
+|---|---|---|---|---|
+| Edad | | | | |
+| Ubicación / Distrito | | | | |
+| Tamaño del Hato | | | | |
+| Dispositivos | | | | |
+| Navegador (Browser) | | | | |
+| Canales Digitales | | | | |
+
+*2. Características Subjetivas*
+
+| Criterio / Variable | Hallazgos Identificados | Frecuencia (n) | Porcentaje (%) | Relación con el Arquetipo / Requisito |
+|---|---|---|---|---|
+| Personalidad | | | | |
+| Marcas e Influencias | | | | |
+| Registro Actual | | | | |
+| Objetivos (Gains) | | | | |
+| Frustraciones (Pains) | | | | |
+
+**Segmento 2: Veterinarios y Técnicos Agropecuarios (N = 3)**
+
+*1. Características Objetivas*
+
+| Criterio / Variable | Atributos Predominantes | Frecuencia (n) | Porcentaje (%) | Sustento y Evidencia en Entrevistas |
+|---|---|---|---|---|
+| Edad | | | | |
+| Ubicación / Distrito | | | | |
+| Tamaño del Hato | | | | |
+| Dispositivos | | | | |
+| Navegador (Browser) | | | | |
+| Canales Digitales | | | | |
+
+*2. Características Subjetivas*
+
+| Criterio / Variable | Hallazgos Identificados | Frecuencia (n) | Porcentaje (%) | Relación con el Arquetipo / Requisito |
+|---|---|---|---|---|
+| Personalidad | | | | |
+| Marcas e Influencias | | | | |
+| Registro Actual | | | | |
+| Objetivos (Gains) | | | | |
+| Frustraciones (Pains) | | | | |
 
 ---
 
