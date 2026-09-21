@@ -45,60 +45,53 @@ Las entrevistas son una herramienta esencial para comprender a fondo a nuestro p
 
 ### 2.2.1. Diseño de entrevistas
 A continuación se detalla la guía de entrevista estructurada por segmentos y categorías temáticas:
-#### **Segmento 1: Pequeños y Medianos Ganaderos**
+## Segmento 1: Pequeños y Medianos Ganaderos
+> **Perfil:** Productores dedicados al manejo diario de hatos ganaderos bovinos en zonas rurales o semiurbanas que requieren mejorar el control sanitario, la trazabilidad y la rentabilidad de su negocio desde dispositivos móviles.
 
-* **1. Características Demográficas, Antecedentes y Biografía**
-  * **Pregunta Principal:** ¿Podría presentarse brevemente y contarnos a qué se dedica en su finca?
-    * *Pregunta Complementaria:* ¿Qué edad tiene, cuál es su estado civil y cuántas personas integran su hogar?
-    * *Pregunta Complementaria:* ¿En qué distrito reside y cuántas cabezas de ganado maneja actualmente?
+### 1. Características Demográficas, Antecedentes y Biografía
+* **Pregunta Principal:** ¿Podría presentarse e indicarnos a qué se dedica exactamente, en qué distrito se ubica su unidad productiva y cómo inició su trayectoria en la actividad ganadera?
+* **Pregunta Complementaria:** ¿Cuál es su edad, género, estado civil y la composición de su núcleo familiar?
 
-* **2. Hábitos Tecnológicos, Dispositivos y Canales Digitales**
-  * **Pregunta Principal:** ¿Qué dispositivos (smartphone, tablet, computadora) utiliza a diario en el campo?
-    * *Pregunta Complementaria:* ¿Qué marcas de celular, navegador web y aplicaciones móviles usa más seguido?
-    * *Pregunta Complementaria:* ¿A través de qué canales digitales se comunica e informa (WhatsApp, Facebook, YouTube)?
-    * *Pregunta Complementaria:* ¿Qué marcas de insumos, instituciones o personas influyen en sus decisiones ganaderas?
+### 2. Hábitos Tecnológicos, Dispositivos y Canales Digitales
+* **Pregunta Principal:** ¿Qué dispositivos tecnológicos (smartphones, tablets, computadoras) utiliza diariamente en el campo o en su hogar?
+* **Pregunta Complementaria:** ¿Cuáles son sus marcas de dispositivos o sistemas operativos preferidos? ¿Qué navegador web y aplicaciones móviles utiliza con mayor frecuencia?
 
-* **3. Habilidades y Procesos Actuales de Gestión Ganadera**
-  * **Pregunta Principal:** ¿Cómo registra hoy la salud, vacunas, partos y gastos de sus animales?
-    * *Pregunta Complementaria:* ¿Qué tan hábil se considera manejando aplicaciones móviles?
-    * *Pregunta Complementaria:* ¿Depende de cuadernos de papel o usa alguna herramienta digital para organizar su hato?
+### 3. Habilidades y Procesos Actuales de Gestión Ganadera
+* **Pregunta Principal:** ¿Cómo lleva actualmente el registro de sus animales, el control de vacunas, eventos sanitarios, partos y la economía de su finca?
+* **Pregunta Complementaria:** ¿Qué nivel de destreza considera que tiene con el uso de aplicaciones móviles?
 
-* **4. Objetivos y Motivaciones**
-  * **Pregunta Principal:** ¿Cuál es su principal meta para su negocio ganadero a corto y mediano plazo?
-    * *Pregunta Complementaria:* ¿Qué le gustaría mejorar en la productividad, control o trazabilidad de su hato?
+### 4. Objetivos y Motivaciones
+* **Pregunta Principal:** ¿Cuáles son sus principales objetivos a corto y mediano plazo en relación con su negocio ganadero?
+* **Pregunta Complementaria:** ¿Qué metas productivas, financieras o de trazabilidad le motivan a buscar una solución digital?
 
-* **5. Frustraciones, Dolores y Desafíos**
-  * **Pregunta Principal:** ¿Cuál es la mayor dificultad que enfrenta en la gestión diaria de su ganado?
-    * *Pregunta Complementaria:* ¿Ha olvidado vacunaciones, perdido información o tenido pérdidas económicas por no llevar un registro ordenado?
-    * *Pregunta Complementaria:* ¿Qué inconvenientes percibe al usar tecnología en el campo (poca señal, apps complejas)?
+### 5. Frustraciones, Dolores y Desafíos
+* **Pregunta Principal:** ¿Cuáles son los mayores problemas o dificultades que enfrenta en la gestión diaria de su ganado?
+* **Pregunta Complementaria:** ¿Ha tenido pérdidas de información o problemas económicos por no llevar un registro ordenado?
 
 ---
 
-#### **Segmento 2: Veterinarios y Técnicos Agropecuarios**
+## Segmento 2: Veterinarios y Técnicos Agropecuarios
+> **Perfil:** Profesionales y técnicos dedicados a brindar asistencia de salud animal, seguimiento clínico *in situ* y asesoría técnica a ganaderos en campo.
 
-* **1. Características Demográficas, Antecedentes y Biografía**
-  * **Pregunta Principal:** ¿Podría resumir su formación profesional y los distritos donde presta sus servicios?
-    * *Pregunta Complementaria:* ¿Qué edad tiene y cuántos años lleva trabajando en la atención veterinaria de campo?
-    * *Pregunta Complementaria:* ¿A qué tipo de ganaderos u organizaciones asesora o atiende habitualmente?
+### 1. Características Demográficas, Antecedentes y Biografía
+* **Pregunta Principal:** ¿Podría detallar su formación académica, los distritos donde presta servicios veterinarios y su experiencia profesional en el sector pecuario?
+* **Pregunta Complementaria:** ¿Cuál es su edad, género, ocupación actual y con qué tipo de ganaderos u organizaciones trabaja con mayor frecuencia?
 
-* **2. Hábitos Tecnológicos, Dispositivos y Canales Digitales**
-  * **Pregunta Principal:** ¿Qué equipo tecnológico lleva consigo durante sus visitas a los establos o predios?
-    * *Pregunta Complementaria:* ¿Qué marcas de tecnología, navegador web y apps profesionales prefiere usar?
-    * *Pregunta Complementaria:* ¿A través de qué canales digitales o redes interactúa con otros colegas del sector?
-    * *Pregunta Complementaria:* ¿Qué laboratorios o marcas de fármacos veterinarios prefiere o ejercen mayor influencia en su criterio técnico?
+### 2. Hábitos Tecnológicos, Dispositivos y Canales Digitales
+* **Pregunta Principal:** ¿Qué dispositivos móviles y herramientas digitales lleva consigo durante sus visitas a establos o predios rurales?
+* **Pregunta Complementaria:** ¿Qué marcas de tecnología prefiere y cuáles son sus canales digitales de interacción profesional habituales (navegadores, redes, apps de consulta)?
 
-* **3. Habilidades y Atención Clínica en Campo**
-  * **Pregunta Principal:** ¿Cómo registra las fichas clínicas, tratamientos y eventos sanitarios de sus pacientes en el campo?
-    * *Pregunta Complementaria:* ¿Qué facilidades o problemas tiene al usar aplicaciones móviles en zonas con baja conectividad?
-    * *Pregunta Complementaria:* ¿De qué manera le comunica al ganadero el plan sanitario o tratamiento asignado?
+### 3. Habilidades y Procesos de Atención Clínica en Campo
+* **Pregunta Principal:** ¿Cómo realiza la consulta y el registro de las fichas clínicas, tratamientos y eventos sanitarios de sus pacientes en el campo?
+* **Pregunta Complementaria:** ¿Qué facilidades o dificultades tiene al interactuar con aplicaciones móviles en entornos de trabajo sin buena conectividad?
 
-* **4. Objetivos y Motivaciones**
-  * **Pregunta Principal:** ¿Qué busca lograr para hacer más eficientes sus servicios veterinarios en el campo?
-    * *Pregunta Complementaria:* ¿Cómo le gustaría agilizar el seguimiento clínico de sus pacientes y clientes asignados?
+### 4. Objetivos y Motivaciones
+* **Pregunta Principal:** ¿Cuáles son sus principales metas profesionales al brindar servicios veterinarios a hatos ganaderos?
+* **Pregunta Complementaria:** ¿De qué manera busca hacer más eficiente el tiempo de atención y el seguimiento médico de sus clientes asignados?
 
-* **5. Frustraciones, Dolores y Desafíos**
-  * **Pregunta Principal:** ¿Qué es lo más frustrante al atender a un cliente que no cuenta con registros de su ganado?
-    * *Pregunta Complementaria:* ¿Qué fallas en el seguimiento de recetas o historial sanitario entorpecen su trabajo médico diario?
+### 5. Frustraciones, Dolores y Desafíos
+* **Pregunta Principal:** ¿Qué frustraciones o contratiempos experimenta cuando atiende a un cliente que no cuenta con un historial ganadero organizado?
+* **Pregunta Complementaria:** ¿Qué fallas en el seguimiento de recetas o en el registro de datos sanitarios entorpecen su trabajo clínico diario?
 
 ### 2.2.2. Registro de entrevistas
 
