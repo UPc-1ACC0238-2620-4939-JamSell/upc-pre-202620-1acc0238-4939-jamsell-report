@@ -2001,3 +2001,634 @@ Esta estructura mantiene el dominio financiero independiente de los mecanismos t
 
 ---
 
+#### 2.6.4.6.2. Bounded Context Database Design Diagram
+
+En esta sección se presenta el Database Design Diagram correspondiente al bounded context **Financial Management**.
+
+El modelo de persistencia representa las estructuras necesarias para almacenar la información financiera del negocio ganadero, incluyendo los movimientos de ingresos y egresos, así como los pagos asociados a las suscripciones de Gethics.
+
+De acuerdo con los límites establecidos mediante Domain-Driven Design, Financial Management mantiene únicamente la información propia de este bounded context. El identificador `owner_id` representa una referencia hacia el usuario administrado por **Identity & Access**, por lo que no se implementa como una Foreign Key física hacia una tabla de usuarios.
+
+Asimismo, los detalles técnicos del proveedor externo de pagos no forman parte de este modelo de persistencia. La integración con el Payment Gateway se mantiene aislada mediante la Anti-Corruption Layer definida en Infrastructure.
+
+**Financial Management Database Design Diagram**
+
+![Financial Management Database Design Diagram](images/FinancialManagementDatabaseDesign.png)
+
+El diseño de base de datos está conformado por las siguientes entidades:
+
+### Financial Managements
+
+La tabla `FINANCIAL_MANAGEMENTS` representa la información financiera principal asociada a un usuario o negocio ganadero.
+
+| Campo | Tipo | Restricción | Descripción |
+|---|---|---|---|
+| `id` | UUID | Primary Key, NOT NULL | Identificador único de la gestión financiera. |
+| `owner_id` | UUID | UNIQUE, NOT NULL | Identificador externo del usuario propietario administrado por Identity & Access. |
+| `balance` | DECIMAL | NOT NULL | Balance financiero actual. |
+| `currency` | VARCHAR | NOT NULL | Moneda utilizada para representar los valores financieros. |
+| `created_at` | DATETIME | NOT NULL | Fecha y hora de creación del registro. |
+
+El atributo `owner_id` se mantiene como una referencia externa y no como una Foreign Key física, debido a que el usuario pertenece al bounded context **Identity & Access**.
+
+### Financial Transactions
+
+La tabla `FINANCIAL_TRANSACTIONS` almacena cada movimiento financiero registrado dentro de Financial Management.
+
+| Campo | Tipo | Restricción | Descripción |
+|---|---|---|---|
+| `id` | UUID | Primary Key, NOT NULL | Identificador único de la transacción financiera. |
+| `financial_management_id` | UUID | Foreign Key, NOT NULL | Identificador de la gestión financiera asociada. |
+| `type` | VARCHAR | NOT NULL | Tipo de transacción financiera: ingreso o egreso. |
+| `amount` | DECIMAL | NOT NULL | Importe correspondiente a la transacción. |
+| `currency` | VARCHAR | NOT NULL | Moneda utilizada en la transacción. |
+| `description` | TEXT | NULL | Descripción adicional del movimiento financiero. |
+| `occurred_at` | DATETIME | NOT NULL | Fecha y hora en que ocurrió la transacción. |
+
+El atributo `financial_management_id` funciona como Foreign Key hacia `FINANCIAL_MANAGEMENTS.id`, estableciendo la relación entre la gestión financiera y sus movimientos.
+
+### Subscription Payments
+
+La tabla `SUBSCRIPTION_PAYMENTS` almacena los pagos asociados a las suscripciones de Gethics.
+
+| Campo | Tipo | Restricción | Descripción |
+|---|---|---|---|
+| `id` | UUID | Primary Key, NOT NULL | Identificador único del pago. |
+| `owner_id` | UUID | NOT NULL | Identificador externo del usuario que realiza el pago. |
+| `amount` | DECIMAL | NOT NULL | Importe correspondiente al pago. |
+| `currency` | VARCHAR | NOT NULL | Moneda utilizada para realizar el pago. |
+| `status` | VARCHAR | NOT NULL | Estado actual del pago. |
+| `created_at` | DATETIME | NOT NULL | Fecha y hora de creación del pago. |
+| `confirmed_at` | DATETIME | NULL | Fecha y hora en la que el pago fue confirmado. |
+
+El atributo `owner_id` representa una referencia externa al usuario administrado por **Identity & Access** y no se implementa como una Foreign Key física.
+
+El estado del pago puede representar los valores definidos en el dominio, como `PENDING`, `CONFIRMED` o `REJECTED`.
+
+### Relaciones del modelo
+
+El modelo establece la siguiente relación principal:
+
+- Un `FINANCIAL_MANAGEMENT` puede contener cero o múltiples `FINANCIAL_TRANSACTIONS`.
+- Cada `FINANCIAL_TRANSACTION` pertenece obligatoriamente a un único `FINANCIAL_MANAGEMENT`.
+- Cada `FINANCIAL_MANAGEMENT` pertenece a un único usuario identificado mediante `owner_id`.
+- Cada `SUBSCRIPTION_PAYMENT` pertenece a un usuario identificado mediante `owner_id`, sin generar una relación física hacia tablas externas.
+
+La cardinalidad principal se representa de la siguiente manera:
+
+```text
+FINANCIAL_MANAGEMENTS  1 ───────── 0..* FINANCIAL_TRANSACTIONS
+```
+
+---
+
+## 2.6.5. Bounded Context: Analytics & Alerts
+
+El bounded context **Analytics & Alerts** se encarga de analizar información relevante proveniente de otros bounded contexts de Gethics con el objetivo de identificar tendencias relacionadas con el estado del ganado y generar alertas cuando se detecten situaciones que requieran atención.
+
+Este bounded context funciona como un **Supporting Domain**, ya que utiliza información generada por los dominios principales para proporcionar capacidades adicionales de análisis y apoyo a la toma de decisiones.
+
+Analytics & Alerts recibe información sanitaria proveniente de **Sanitary Tracking**, principalmente datos relacionados con el historial clínico actualizado de los animales. Asimismo, utiliza información económica consolidada proporcionada por **Financial Management** mediante los reportes financieros generados por dicho contexto.
+
+A partir de estas fuentes, Analytics & Alerts puede analizar tendencias del ganado, evaluar posibles situaciones de riesgo y generar alertas dirigidas al ganadero.
+
+Cuando se identifica una situación que requiere notificación, el bounded context solicita el envío correspondiente mediante el **Push Notification Service** externo utilizado por Gethics.
+
+Además, el análisis puede ejecutarse de manera periódica mediante tareas programadas definidas en el Infrastructure Layer, permitiendo que el sistema evalúe automáticamente la información disponible sin depender exclusivamente de una acción iniciada por el usuario.
+
+### Class Dictionary
+
+Las principales clases identificadas para el bounded context **Analytics & Alerts** son las siguientes:
+
+| Clase | Tipo | Propósito | Atributos principales | Métodos principales | Relaciones |
+|---|---|---|---|---|---|
+| `Analytics` | Aggregate Root | Centraliza el análisis realizado sobre la información sanitaria y financiera disponible para un usuario. | `id`, `ownerId`, `lastAnalysisAt`, `riskLevel`, `createdAt` | `evaluateTrend()`, `updateRiskLevel()`, `registerAnalysis()` | Contiene los resultados de tendencias analizadas. |
+| `LivestockTrend` | Entity | Representa una tendencia identificada mediante el análisis de información sanitaria y financiera. | `id`, `analyticsId`, `type`, `description`, `detectedAt`, `riskLevel` | `evaluateRisk()`, `isCritical()` | Pertenece a `Analytics`. |
+| `Alert` | Entity | Representa una alerta generada a partir de una tendencia o situación de riesgo detectada. | `id`, `ownerId`, `trendId`, `message`, `status`, `createdAt` | `markAsSent()`, `markAsRead()`, `isPending()` | Puede originarse desde un `LivestockTrend`. |
+| `RiskLevel` | Enumeration | Define el nivel de riesgo identificado durante el análisis. | `LOW`, `MEDIUM`, `HIGH`, `CRITICAL` | No aplica | Utilizado por `Analytics` y `LivestockTrend`. |
+| `AlertStatus` | Enumeration | Define el estado actual de una alerta. | `PENDING`, `SENT`, `READ` | No aplica | Utilizado por `Alert`. |
+| `TrendType` | Enumeration | Clasifica el tipo de tendencia detectada. | `SANITARY`, `FINANCIAL`, `COMBINED` | No aplica | Utilizado por `LivestockTrend`. |
+| `AnalyticsRepository` | Repository Interface | Define las operaciones necesarias para persistir y consultar los análisis realizados. | No aplica | `save()`, `findByOwnerId()` | Trabaja con `Analytics`. |
+| `AlertRepository` | Repository Interface | Define las operaciones necesarias para persistir y consultar alertas. | No aplica | `save()`, `findByOwnerId()`, `findPending()` | Trabaja con `Alert`. |
+| `TrendAnalysisService` | Domain Service | Aplica las reglas necesarias para analizar la información recibida y determinar tendencias y niveles de riesgo. | No aplica | `analyzeTrend()`, `evaluateRisk()`, `shouldGenerateAlert()` | Trabaja con `Analytics`, `LivestockTrend` y `Alert`. |
+
+---
+
+### 2.6.5.1. Domain Layer
+
+El **Domain Layer** contiene las reglas de negocio relacionadas con el análisis de tendencias y la evaluación de riesgos a partir de información sanitaria y financiera.
+
+El Aggregate Root principal es `Analytics`, encargado de mantener el estado general de los análisis realizados para un usuario y registrar el nivel de riesgo obtenido durante la evaluación de la información disponible.
+
+`LivestockTrend` representa una tendencia identificada durante el procesamiento de los datos. Una tendencia puede estar relacionada exclusivamente con información sanitaria, con información financiera o con una combinación de ambas fuentes.
+
+Por ejemplo, una variación frecuente en eventos sanitarios puede representar una tendencia sanitaria, mientras que un incremento significativo de egresos relacionados con tratamientos puede contribuir a generar una tendencia combinada.
+
+`RiskLevel` permite clasificar el resultado de los análisis utilizando niveles controlados por el dominio, mientras que `TrendType` permite identificar la naturaleza de cada tendencia detectada.
+
+La entidad `Alert` representa una alerta generada cuando una tendencia alcanza un nivel de riesgo que requiere informar al usuario. Su estado es administrado mediante `AlertStatus`, permitiendo diferenciar alertas pendientes, enviadas o leídas.
+
+`TrendAnalysisService` contiene las reglas de dominio necesarias para analizar las tendencias, evaluar sus niveles de riesgo y determinar si corresponde generar una alerta.
+
+Las interfaces `AnalyticsRepository` y `AlertRepository` definen las operaciones de persistencia requeridas por el dominio sin depender directamente de una base de datos o tecnología específica.
+
+La información sanitaria y financiera recibida desde otros bounded contexts se utiliza como entrada para el análisis, pero Analytics & Alerts no modifica directamente los datos administrados por Sanitary Tracking o Financial Management.
+
+---
+
+### 2.6.5.2. Interface Layer
+
+El **Interface Layer** contiene los componentes responsables de recibir las solicitudes relacionadas con la consulta de análisis, tendencias y alertas.
+
+Esta capa permite que los usuarios consulten la información analizada por Gethics, visualicen tendencias detectadas y revisen las alertas asociadas a su actividad ganadera.
+
+| Clase | Tipo | Propósito | Operaciones principales |
+|---|---|---|---|
+| `AnalyticsController` | Controller | Gestiona las solicitudes relacionadas con los resultados de análisis y tendencias. | `getAnalytics()`, `getTrends()`, `runAnalysis()` |
+| `AlertsController` | Controller | Gestiona las solicitudes relacionadas con las alertas generadas para el usuario. | `getAlerts()`, `getPendingAlerts()`, `markAlertAsRead()` |
+
+`AnalyticsController` permite consultar la información consolidada generada por el bounded context y, cuando corresponde, iniciar manualmente un nuevo proceso de análisis.
+
+`AlertsController` permite recuperar las alertas asociadas al usuario y actualizar su estado cuando son revisadas desde la aplicación móvil.
+
+Los Controllers reciben las solicitudes y delegan su procesamiento hacia los casos de uso definidos en el Application Layer.
+
+---
+
+### 2.6.5.3. Application Layer
+
+El **Application Layer** coordina los casos de uso necesarios para obtener información desde otros bounded contexts, ejecutar los análisis correspondientes y gestionar las alertas resultantes.
+
+Esta capa organiza la interacción entre los Controllers, los elementos del dominio, los repositorios y los componentes de integración definidos en Infrastructure.
+
+| Clase | Tipo | Propósito |
+|---|---|---|
+| `AnalyzeLivestockTrendCommandHandler` | Command Handler | Coordina la ejecución de un nuevo análisis utilizando información sanitaria y financiera. |
+| `GetAnalyticsQueryHandler` | Query Handler | Obtiene la información consolidada de análisis correspondiente al usuario. |
+| `GetLivestockTrendsQueryHandler` | Query Handler | Obtiene las tendencias identificadas durante los análisis realizados. |
+| `GetAlertsQueryHandler` | Query Handler | Obtiene las alertas correspondientes al usuario. |
+| `MarkAlertAsReadCommandHandler` | Command Handler | Actualiza una alerta después de ser revisada por el usuario. |
+| `ProcessClinicalHistoryUpdatedEventHandler` | Event Handler | Procesa la información recibida cuando existe una actualización relevante del historial clínico. |
+| `ProcessFinancialReportGeneratedEventHandler` | Event Handler | Procesa la información recibida cuando Financial Management genera un reporte financiero actualizado. |
+| `GenerateRiskAlertCommandHandler` | Command Handler | Coordina la creación y posterior envío de una alerta cuando el dominio identifica un nivel de riesgo significativo. |
+
+Cuando se ejecuta un análisis, `AnalyzeLivestockTrendCommandHandler` coordina la obtención de la información necesaria desde **Sanitary Tracking** y **Financial Management**.
+
+Una vez obtenidos los datos, `TrendAnalysisService` aplica las reglas del dominio para identificar tendencias y determinar el nivel de riesgo asociado.
+
+Si el resultado alcanza un nivel que requiere informar al usuario, `GenerateRiskAlertCommandHandler` coordina la creación de una nueva alerta y solicita posteriormente su envío mediante la infraestructura correspondiente.
+
+Los Event Handlers permiten que Analytics & Alerts responda a cambios producidos en otros bounded contexts sin acceder directamente a sus modelos internos.
+
+---
+
+### 2.6.5.4. Infrastructure Layer
+
+El **Infrastructure Layer** contiene las implementaciones técnicas necesarias para persistir los resultados de análisis, obtener información desde otros bounded contexts, ejecutar análisis programados y comunicarse con el servicio externo de notificaciones.
+
+Esta capa mantiene aislados los detalles relacionados con almacenamiento, comunicación entre contextos, planificación de tareas y servicios externos.
+
+| Clase | Tipo | Propósito |
+|---|---|---|
+| `AnalyticsRepositoryImpl` | Repository Implementation | Implementa las operaciones necesarias para persistir y recuperar los análisis realizados. |
+| `AlertRepositoryImpl` | Repository Implementation | Implementa las operaciones de persistencia correspondientes a las alertas. |
+| `AnalyticsDataSource` | Data Source | Gestiona el acceso a la información persistida por Analytics & Alerts. |
+| `SanitaryTrackingClient` | External Context Client | Obtiene la información sanitaria necesaria desde Sanitary Tracking. |
+| `FinancialManagementClient` | External Context Client | Obtiene los reportes financieros generados por Financial Management. |
+| `PushNotificationAdapter` | External Service Adapter | Permite solicitar el envío de alertas mediante el servicio externo de notificaciones push. |
+| `ScheduledAnalyticsJob` | Scheduled Task | Ejecuta periódicamente el análisis de información sanitaria y financiera. |
+| `AnalyticsEventSubscriber` | Integration Component | Recibe eventos relevantes publicados por Sanitary Tracking y Financial Management. |
+
+`SanitaryTrackingClient` permite obtener la información sanitaria necesaria sin acceder directamente a las estructuras internas del bounded context Sanitary Tracking.
+
+De manera similar, `FinancialManagementClient` permite obtener los reportes financieros necesarios para complementar el análisis sin replicar el modelo perteneciente a Financial Management.
+
+La comunicación con el servicio externo de notificaciones se realiza mediante `PushNotificationAdapter`. Este componente transforma las solicitudes internas de envío en el formato requerido por el proveedor utilizado por Gethics.
+
+Cuando se genera una alerta, el flujo puede representarse de la siguiente manera:
+
+```text
+TrendAnalysisService
+        ↓
+GenerateRiskAlertCommandHandler
+        ↓
+Alert
+        ↓
+PushNotificationAdapter
+        ↓
+Push Notification Service
+```
+Además de sus componentes internos, Analytics & Alerts mantiene las siguientes integraciones:
+
+Sanitary Tracking → Analytics & Alerts: proporciona información relacionada con el historial clínico actualizado.
+Financial Management → Analytics & Alerts: proporciona reportes financieros consolidados.
+Analytics & Alerts → Push Notification Service: solicita el envío de alertas hacia los usuarios.
+
+La separación entre estos componentes permite que Analytics & Alerts procese información proveniente de distintos bounded contexts sin asumir la propiedad de sus datos. Asimismo, el uso de componentes de integración evita el acceso directo a las estructuras internas de Sanitary Tracking y Financial Management.
+
+Finalmente, la incorporación de ScheduledAnalyticsJob permite automatizar la evaluación periódica de la información disponible, mientras que PushNotificationAdapter mantiene desacopladas las reglas del dominio respecto del proveedor externo utilizado para enviar notificaciones.
+
+---
+
+### 2.6.5.6. Bounded Context Software Architecture Code Level Diagrams
+
+En esta sección se presentan los diagramas de nivel de código correspondientes al bounded context **Analytics & Alerts**. Estos diagramas permiten representar con mayor detalle los elementos que conforman el modelo de dominio y las estructuras necesarias para persistir los resultados de análisis, tendencias y alertas generadas por Gethics.
+
+Analytics & Alerts utiliza información proveniente de **Sanitary Tracking** y **Financial Management** como entrada para sus procesos de análisis. Sin embargo, este bounded context no mantiene la propiedad ni modifica directamente la información original proporcionada por dichos contextos.
+
+El modelo interno se centra en representar los resultados de los análisis realizados, las tendencias detectadas y las alertas generadas como consecuencia de situaciones de riesgo.
+
+La comunicación con el servicio externo de notificaciones push permanece fuera del Domain Layer y es gestionada mediante los componentes correspondientes del Infrastructure Layer.
+
+Para este bounded context se consideran los siguientes diagramas:
+
+- **Domain Layer Class Diagram**, que representa los Aggregate Roots, entidades, enumeraciones, servicios de dominio e interfaces de repositorio.
+- **Database Design Diagram**, que representa las estructuras necesarias para persistir los análisis, tendencias y alertas generadas.
+
+---
+
+#### 2.6.5.6.1. Bounded Context Domain Layer Class Diagrams
+
+En esta sección se presenta el UML Class Diagram correspondiente al Domain Layer del bounded context **Analytics & Alerts**.
+
+El modelo tiene como Aggregate Root principal a `Analytics`, encargado de mantener los resultados generales de los análisis realizados para un usuario. Este agregado registra la fecha del último análisis y el nivel de riesgo general identificado a partir de la información procesada.
+
+`LivestockTrend` representa una tendencia identificada mediante el análisis de información sanitaria y financiera. Cada tendencia contiene información sobre el tipo de análisis realizado, una descripción del resultado, la fecha de detección y el nivel de riesgo correspondiente.
+
+La enumeración `TrendType` permite clasificar las tendencias como sanitarias, financieras o combinadas, mientras que `RiskLevel` establece los diferentes niveles de riesgo que pueden ser identificados durante el análisis.
+
+`Alert` representa una alerta generada cuando una tendencia o situación analizada requiere informar al usuario. La entidad mantiene el mensaje correspondiente y su estado actual mediante la enumeración `AlertStatus`.
+
+`TrendAnalysisService` contiene las principales reglas de dominio relacionadas con la evaluación de tendencias. Este servicio permite determinar el nivel de riesgo asociado a una tendencia y decidir si dicho resultado requiere la generación de una alerta.
+
+Las interfaces `AnalyticsRepository` y `AlertRepository` definen las operaciones necesarias para persistir y recuperar los elementos del dominio sin depender directamente de una tecnología específica de almacenamiento.
+
+La información sanitaria y financiera utilizada como entrada para el análisis no se representa mediante entidades pertenecientes a este dominio. Estos datos son obtenidos mediante los mecanismos de integración definidos en Infrastructure, preservando los límites entre bounded contexts.
+
+**Analytics & Alerts Domain Layer Class Diagram**
+
+![Analytics & Alerts Domain Layer Class Diagram](images/AnalyticsAlertsDomainLayerClassDiagram.png)
+
+Las principales relaciones representadas en el diagrama son las siguientes:
+
+- Un `Analytics` puede contener cero o múltiples `LivestockTrend`.
+- Cada `LivestockTrend` pertenece a un único proceso de análisis.
+- `Analytics` utiliza `RiskLevel` para representar el nivel de riesgo general identificado.
+- Cada `LivestockTrend` utiliza `RiskLevel` para representar la severidad de la tendencia detectada.
+- Cada `LivestockTrend` utiliza `TrendType` para identificar si la tendencia es sanitaria, financiera o combinada.
+- Una tendencia puede originar cero o múltiples `Alert`.
+- Cada `Alert` utiliza `AlertStatus` para representar su estado actual.
+- `TrendAnalysisService` analiza tendencias, evalúa niveles de riesgo y determina cuándo debe generarse una alerta.
+- `AnalyticsRepository` define las operaciones necesarias para persistir y consultar los resultados de análisis.
+- `AlertRepository` define las operaciones necesarias para persistir y consultar las alertas generadas.
+
+Esta estructura mantiene el Domain Layer de Analytics & Alerts enfocado exclusivamente en las reglas relacionadas con análisis, tendencias y evaluación de riesgos, evitando incorporar detalles técnicos relacionados con la obtención de información externa, ejecución de tareas programadas o envío de notificaciones push.
+
+---
+
+#### 2.6.5.6.2. Bounded Context Database Design Diagram
+
+En esta sección se presenta el Database Design Diagram correspondiente al bounded context **Analytics & Alerts**.
+
+El modelo de persistencia representa las estructuras necesarias para almacenar los resultados de los análisis realizados, las tendencias detectadas y las alertas generadas por Gethics.
+
+Analytics & Alerts utiliza información proveniente de **Sanitary Tracking** y **Financial Management** como entrada para sus procesos de análisis. Sin embargo, los datos originales pertenecientes a dichos bounded contexts no son replicados dentro de este modelo de persistencia.
+
+Asimismo, el atributo `owner_id` representa una referencia externa hacia el usuario administrado por **Identity & Access**, por lo que no se implementa como una Foreign Key física hacia una tabla de usuarios.
+
+**Analytics & Alerts Database Design Diagram**
+
+![Analytics & Alerts Database Design Diagram](images/AnalyticsAlertsDatabaseDesign.png)
+
+El diseño de base de datos está conformado por las tablas `ANALYTICS`, `LIVESTOCK_TRENDS` y `ALERTS`.
+
+### Analytics
+
+La tabla `ANALYTICS` almacena la información general correspondiente a los procesos de análisis realizados para cada usuario.
+
+| Campo | Tipo | Restricción | Descripción |
+|---|---|---|---|
+| `id` | UUID | Primary Key, NOT NULL | Identificador único del análisis. |
+| `owner_id` | UUID | UNIQUE, NOT NULL | Identificador externo del usuario propietario del análisis. |
+| `last_analysis_at` | DATETIME | NULL | Fecha y hora en la que se realizó el último análisis. |
+| `risk_level` | VARCHAR | NOT NULL | Nivel de riesgo general identificado. |
+| `created_at` | DATETIME | NOT NULL | Fecha y hora de creación del registro. |
+
+El atributo `owner_id` se mantiene como referencia externa hacia **Identity & Access** y no como una Foreign Key física.
+
+### Livestock Trends
+
+La tabla `LIVESTOCK_TRENDS` almacena las tendencias identificadas como resultado del procesamiento de información sanitaria y financiera.
+
+| Campo | Tipo | Restricción | Descripción |
+|---|---|---|---|
+| `id` | UUID | Primary Key, NOT NULL | Identificador único de la tendencia. |
+| `analytics_id` | UUID | Foreign Key, NOT NULL | Identificador del análisis al que pertenece la tendencia. |
+| `type` | VARCHAR | NOT NULL | Tipo de tendencia detectada. |
+| `description` | TEXT | NOT NULL | Descripción de la tendencia identificada. |
+| `detected_at` | DATETIME | NOT NULL | Fecha y hora en la que se detectó la tendencia. |
+| `risk_level` | VARCHAR | NOT NULL | Nivel de riesgo asociado a la tendencia. |
+
+El atributo `analytics_id` funciona como Foreign Key hacia `ANALYTICS.id`, estableciendo la relación entre los resultados generales del análisis y las tendencias detectadas.
+
+El campo `type` puede representar los valores definidos en el dominio:
+
+- `SANITARY`
+- `FINANCIAL`
+- `COMBINED`
+
+El campo `risk_level` utiliza los niveles definidos por el dominio:
+
+- `LOW`
+- `MEDIUM`
+- `HIGH`
+- `CRITICAL`
+
+### Alerts
+
+La tabla `ALERTS` almacena las alertas generadas cuando una tendencia detectada requiere informar al usuario.
+
+| Campo | Tipo | Restricción | Descripción |
+|---|---|---|---|
+| `id` | UUID | Primary Key, NOT NULL | Identificador único de la alerta. |
+| `owner_id` | UUID | NOT NULL | Identificador externo del usuario que recibirá la alerta. |
+| `trend_id` | UUID | Foreign Key, NOT NULL | Identificador de la tendencia que originó la alerta. |
+| `message` | TEXT | NOT NULL | Mensaje asociado a la alerta generada. |
+| `status` | VARCHAR | NOT NULL | Estado actual de la alerta. |
+| `created_at` | DATETIME | NOT NULL | Fecha y hora en la que se generó la alerta. |
+
+El atributo `trend_id` funciona como Foreign Key hacia `LIVESTOCK_TRENDS.id`.
+
+El atributo `owner_id` representa una referencia externa hacia el usuario administrado por **Identity & Access** y no se implementa como una Foreign Key física.
+
+El campo `status` puede contener los valores establecidos por el dominio:
+
+- `PENDING`
+- `SENT`
+- `READ`
+
+### Relaciones del modelo
+
+El modelo establece las siguientes relaciones principales:
+
+- Un `ANALYTICS` puede contener cero o múltiples `LIVESTOCK_TRENDS`.
+- Cada `LIVESTOCK_TREND` pertenece obligatoriamente a un único `ANALYTICS`.
+- Un `LIVESTOCK_TREND` puede generar cero o múltiples `ALERTS`.
+- Cada `ALERT` se encuentra asociada a una única tendencia mediante `trend_id`.
+- Cada `ANALYTICS` corresponde a un usuario identificado mediante `owner_id`.
+- Cada `ALERT` identifica a su destinatario mediante `owner_id`.
+
+Las cardinalidades principales se representan de la siguiente manera:
+
+```text
+ANALYTICS          1 ───────── 0..* LIVESTOCK_TRENDS
+
+LIVESTOCK_TRENDS   1 ───────── 0..* ALERTS
+```
+
+La información proveniente de Sanitary Tracking y Financial Management no se almacena como tablas adicionales dentro de este bounded context. Analytics & Alerts conserva únicamente los resultados derivados de su propio proceso de análisis.
+
+De igual manera, el proveedor externo de notificaciones push no forma parte del modelo de persistencia. El envío de las alertas es gestionado mediante los componentes definidos en Infrastructure.
+
+Esta estructura permite que Analytics & Alerts mantenga la propiedad de sus resultados de análisis, tendencias y alertas, respetando los límites establecidos entre bounded contexts y evitando la duplicación de información perteneciente a otros dominios.
+
+---
+
+## 2.6.6. Bounded Context: Identity & Access
+
+El bounded context **Identity & Access** se encarga de administrar la identidad, autenticación y autorización de los usuarios que interactúan con Gethics.
+
+Este contexto funciona como un **Generic Subdomain**, ya que proporciona capacidades de seguridad y control de acceso necesarias para el funcionamiento de los demás bounded contexts, pero no constituye una diferenciación principal del negocio ganadero.
+
+Identity & Access administra los usuarios y sus roles dentro de la plataforma. Gethics contempla los roles de **Farmer**, **Veterinarian**, **Agricultural Technician** y **Administrator**.
+
+Cada usuario mantiene un único rol activo dentro del sistema. Asimismo, la asignación de determinados roles profesionales, como Veterinarian y Agricultural Technician, debe ser realizada por un usuario con permisos administrativos.
+
+El bounded context también administra las sesiones de los usuarios. Las sesiones cuentan con un periodo de validez y pueden expirar después de un tiempo de inactividad, obligando al usuario a autenticarse nuevamente.
+
+La información básica de identidad y rol puede ser utilizada por otros bounded contexts para determinar qué operaciones puede realizar un usuario, sin necesidad de replicar el modelo interno completo de Identity & Access.
+
+### Class Dictionary
+
+Las principales clases identificadas para el bounded context **Identity & Access** son las siguientes:
+
+| Clase | Tipo | Propósito | Atributos principales | Métodos principales | Relaciones |
+|---|---|---|---|---|---|
+| `User` | Aggregate Root | Representa a un usuario registrado dentro de Gethics. | `id`, `email`, `passwordHash`, `role`, `status`, `createdAt` | `changeRole()`, `activate()`, `deactivate()`, `verifyRole()` | Mantiene un rol activo y puede poseer sesiones. |
+| `UserSession` | Entity | Representa una sesión autenticada de un usuario. | `id`, `userId`, `createdAt`, `lastActivityAt`, `expiresAt`, `status` | `refreshActivity()`, `expire()`, `isExpired()` | Pertenece a un único `User`. |
+| `Email` | Value Object | Representa y valida la dirección de correo utilizada para identificar al usuario. | `value` | `validate()`, `equals()` | Utilizado por `User`. |
+| `Role` | Enumeration | Define los roles disponibles dentro de Gethics. | `FARMER`, `VETERINARIAN`, `AGRICULTURAL_TECHNICIAN`, `ADMINISTRATOR` | No aplica | Utilizado por `User`. |
+| `UserStatus` | Enumeration | Define el estado actual de un usuario. | `ACTIVE`, `INACTIVE` | No aplica | Utilizado por `User`. |
+| `SessionStatus` | Enumeration | Define el estado actual de una sesión. | `ACTIVE`, `EXPIRED`, `REVOKED` | No aplica | Utilizado por `UserSession`. |
+| `UserRepository` | Repository Interface | Define las operaciones necesarias para persistir y consultar usuarios. | No aplica | `save()`, `findById()`, `findByEmail()` | Trabaja con `User`. |
+| `UserSessionRepository` | Repository Interface | Define las operaciones necesarias para persistir y consultar sesiones. | No aplica | `save()`, `findById()`, `findActiveByUserId()` | Trabaja con `UserSession`. |
+| `RoleAssignmentService` | Domain Service | Aplica las reglas necesarias para validar cambios y asignaciones de roles. | No aplica | `canAssignRole()`, `assignRole()` | Trabaja con `User` y `Role`. |
+| `SessionExpirationService` | Domain Service | Evalúa si una sesión debe expirar debido a inactividad o vencimiento. | No aplica | `isExpired()`, `expireSession()` | Trabaja con `UserSession`. |
+
+---
+
+### 2.6.6.1. Domain Layer
+
+El **Domain Layer** contiene las reglas de negocio relacionadas con la identidad, roles y sesiones de los usuarios de Gethics.
+
+El Aggregate Root principal es `User`, encargado de representar la identidad registrada dentro de la plataforma. Cada usuario mantiene información básica como correo electrónico, credenciales de autenticación, estado y rol activo.
+
+El Value Object `Email` encapsula la dirección de correo electrónico y permite validar su formato antes de utilizarla dentro del dominio.
+
+La enumeración `Role` establece los roles permitidos por Gethics:
+
+- `FARMER`
+- `VETERINARIAN`
+- `AGRICULTURAL_TECHNICIAN`
+- `ADMINISTRATOR`
+
+Cada usuario mantiene únicamente un rol activo. La asignación o modificación del rol debe cumplir con las reglas definidas por el dominio.
+
+`RoleAssignmentService` concentra las reglas relacionadas con la asignación de roles. En particular, la asignación de los roles Veterinarian y Agricultural Technician debe ser realizada por un usuario con rol Administrator.
+
+La entidad `UserSession` representa una sesión iniciada correctamente por un usuario. La sesión registra el momento de creación, la última actividad realizada y su fecha de expiración.
+
+`SessionExpirationService` contiene las reglas necesarias para determinar si una sesión debe ser considerada expirada debido a inactividad o al vencimiento de su periodo de validez.
+
+Las interfaces `UserRepository` y `UserSessionRepository` permiten definir las necesidades de persistencia del dominio sin depender directamente de una base de datos o framework concreto.
+
+---
+
+### 2.6.6.2. Interface Layer
+
+El **Interface Layer** contiene los componentes responsables de recibir las solicitudes relacionadas con autenticación, usuarios, roles y sesiones.
+
+Esta capa funciona como punto de entrada para las operaciones realizadas desde la aplicación móvil y para aquellas funciones administrativas relacionadas con la gestión de usuarios.
+
+| Clase | Tipo | Propósito | Operaciones principales |
+|---|---|---|---|
+| `AuthenticationController` | Controller | Gestiona las operaciones relacionadas con registro, inicio y cierre de sesión. | `register()`, `login()`, `logout()`, `refreshSession()` |
+| `UserController` | Controller | Gestiona las consultas relacionadas con la información del usuario autenticado. | `getCurrentUser()`, `getUserById()` |
+| `RoleManagementController` | Controller | Gestiona las operaciones administrativas relacionadas con la asignación de roles. | `assignRole()`, `getUserRole()` |
+| `SessionController` | Controller | Gestiona las operaciones relacionadas con las sesiones activas. | `getActiveSessions()`, `revokeSession()` |
+
+`AuthenticationController` recibe las credenciales proporcionadas por el usuario y delega el proceso hacia los casos de uso correspondientes del Application Layer.
+
+`RoleManagementController` permite que las operaciones relacionadas con asignación de roles sean procesadas mediante los mecanismos de autorización definidos por Gethics.
+
+Los Controllers no contienen reglas de negocio propias, sino que delegan la ejecución de las operaciones hacia el Application Layer.
+
+---
+
+### 2.6.6.3. Application Layer
+
+El **Application Layer** coordina los casos de uso relacionados con registro, autenticación, gestión de roles y administración de sesiones.
+
+Esta capa organiza la interacción entre los Controllers, los Aggregate Roots, servicios de dominio, repositorios y servicios técnicos definidos en Infrastructure.
+
+| Clase | Tipo | Propósito |
+|---|---|---|
+| `RegisterUserCommandHandler` | Command Handler | Coordina el registro de un nuevo usuario dentro de Gethics. |
+| `AuthenticateUserCommandHandler` | Command Handler | Valida las credenciales proporcionadas y coordina la creación de una sesión autenticada. |
+| `LogoutUserCommandHandler` | Command Handler | Coordina la revocación de una sesión activa. |
+| `RefreshUserSessionCommandHandler` | Command Handler | Actualiza o renueva una sesión válida. |
+| `AssignUserRoleCommandHandler` | Command Handler | Coordina la asignación de un rol a un usuario aplicando las reglas correspondientes. |
+| `GetCurrentUserQueryHandler` | Query Handler | Obtiene la información del usuario autenticado. |
+| `GetUserByIdQueryHandler` | Query Handler | Obtiene información básica de identidad de un usuario. |
+| `GetActiveSessionsQueryHandler` | Query Handler | Obtiene las sesiones activas correspondientes a un usuario. |
+| `ExpireInactiveSessionsCommandHandler` | Command Handler | Coordina la expiración de sesiones que superaron el periodo permitido de inactividad. |
+
+Durante el registro, `RegisterUserCommandHandler` valida la información proporcionada y crea una nueva instancia de `User`.
+
+Durante la autenticación, `AuthenticateUserCommandHandler` verifica las credenciales mediante los servicios técnicos correspondientes. Si las credenciales son válidas, se crea una nueva `UserSession` y posteriormente se generan los mecanismos de autenticación necesarios para acceder a los recursos protegidos.
+
+Cuando se solicita un cambio de rol, `AssignUserRoleCommandHandler` utiliza `RoleAssignmentService` para determinar si el usuario que realiza la operación posee los permisos necesarios.
+
+Las sesiones inactivas pueden ser procesadas por `ExpireInactiveSessionsCommandHandler`, que utiliza las reglas definidas por `SessionExpirationService` para determinar cuáles deben ser marcadas como expiradas.
+
+---
+
+### 2.6.6.4. Infrastructure Layer
+
+El **Infrastructure Layer** contiene las implementaciones técnicas necesarias para persistir usuarios y sesiones, proteger las credenciales y generar los mecanismos utilizados para autenticar solicitudes.
+
+Esta capa mantiene los detalles técnicos separados del Domain Layer, evitando que las reglas relacionadas con usuarios, roles y sesiones dependan directamente de frameworks de seguridad, algoritmos criptográficos o tecnologías de persistencia.
+
+| Clase | Tipo | Propósito |
+|---|---|---|
+| `UserRepositoryImpl` | Repository Implementation | Implementa las operaciones de persistencia correspondientes a los usuarios. |
+| `UserSessionRepositoryImpl` | Repository Implementation | Implementa las operaciones de persistencia correspondientes a las sesiones. |
+| `IdentityDataSource` | Data Source | Gestiona el acceso a los datos propios de Identity & Access. |
+| `PasswordHasher` | Security Service | Permite generar y verificar hashes seguros de las contraseñas. |
+| `TokenService` | Security Service | Genera y valida los tokens utilizados para autenticar solicitudes. |
+| `AuthenticationMiddleware` | Middleware | Valida la identidad asociada a las solicitudes dirigidas a recursos protegidos. |
+| `AuthorizationMiddleware` | Middleware | Verifica que el rol del usuario permita realizar la operación solicitada. |
+| `SessionExpirationJob` | Scheduled Task | Ejecuta periódicamente la verificación y expiración de sesiones inactivas. |
+
+`PasswordHasher` permite almacenar las contraseñas de forma segura mediante representaciones hash y verificar posteriormente las credenciales proporcionadas durante el proceso de autenticación.
+
+`TokenService` permite generar los tokens necesarios para identificar una sesión autenticada y validar las solicitudes posteriores realizadas por el usuario.
+
+El flujo general de autenticación puede representarse de la siguiente manera:
+
+```text
+Authentication Controller
+        ↓
+Authenticate User Command Handler
+        ↓
+User Repository
+        ↓
+Password Hasher
+        ↓
+User Session
+        ↓
+Token Service
+        ↓
+Authenticated User
+
+Cuando una solicitud intenta acceder a una operación protegida, la infraestructura valida primero la identidad y posteriormente los permisos correspondientes:
+
+Incoming Request
+        ↓
+Authentication Middleware
+        ↓
+Token Service
+        ↓
+Authorization Middleware
+        ↓
+Role Validation
+        ↓
+Protected Resource
+```
+
+SessionExpirationJob ejecuta periódicamente la revisión de las sesiones almacenadas. Cuando una sesión supera el tiempo de inactividad permitido o alcanza su fecha de expiración, el Application Layer coordina su cambio hacia el estado EXPIRED.
+
+La información básica relacionada con User y Role puede ser utilizada por otros bounded contexts para aplicar reglas de autorización, manteniendo Identity & Access como responsable de la identidad y los permisos de los usuarios.
+
+Esta separación permite centralizar las responsabilidades de autenticación y autorización, evitando que cada bounded context implemente de manera independiente mecanismos de seguridad y gestión de identidad.
+
+---
+
+### 2.6.6.5. Bounded Context Software Architecture Component Level Diagrams
+
+En esta sección se presenta el Component Level Diagram correspondiente al bounded context **Identity & Access**, siguiendo el modelo C4 y manteniendo consistencia con las decisiones establecidas durante el Strategic-Level y Tactical-Level Domain-Driven Design de Gethics.
+
+El objetivo del diagrama es representar los principales componentes internos responsables de la autenticación, autorización, administración de usuarios, asignación de roles y gestión de sesiones dentro de la plataforma.
+
+Identity & Access centraliza las responsabilidades relacionadas con la identidad de los usuarios y proporciona los mecanismos necesarios para validar las solicitudes realizadas hacia los diferentes bounded contexts de Gethics.
+
+El flujo de autenticación inicia cuando el usuario interactúa con la aplicación móvil e ingresa sus credenciales. Estas solicitudes son recibidas por los componentes del Interface Layer y posteriormente procesadas por el Application Layer, que coordina la validación de las credenciales, la creación de sesiones y la generación de tokens de autenticación.
+
+El Domain Layer contiene las principales reglas relacionadas con usuarios, roles y sesiones, mientras que el Infrastructure Layer implementa los mecanismos técnicos necesarios para persistir la información, proteger las contraseñas, generar tokens y validar las solicitudes hacia recursos protegidos.
+
+**Figura X. Identity & Access Software Architecture Component Level Diagram**
+
+![Identity & Access Software Architecture Component Level Diagram](images/IdentityAccessComponentLevelDiagram.png)
+
+El diagrama considera los siguientes componentes principales:
+
+| Componente | Responsabilidad |
+|---|---|
+| `Authentication Controller` | Recibe las solicitudes relacionadas con registro, inicio y cierre de sesión. |
+| `User Controller` | Gestiona las solicitudes relacionadas con la consulta de información de usuarios. |
+| `Role Management Controller` | Gestiona las operaciones administrativas relacionadas con la asignación y consulta de roles. |
+| `Session Controller` | Gestiona las operaciones relacionadas con las sesiones activas de los usuarios. |
+| `Authentication Application Service` | Coordina los procesos de registro, autenticación y generación de sesiones. |
+| `User Management Application Service` | Coordina los casos de uso relacionados con la consulta y administración de usuarios. |
+| `Role Management Application Service` | Coordina las operaciones relacionadas con la asignación de roles. |
+| `Session Management Application Service` | Coordina la creación, renovación, revocación y expiración de sesiones. |
+| `User Aggregate` | Representa la identidad principal de un usuario registrado dentro de Gethics. |
+| `User Session` | Representa una sesión autenticada asociada a un usuario. |
+| `Role Assignment Service` | Aplica las reglas relacionadas con la asignación de roles dentro de la plataforma. |
+| `Session Expiration Service` | Evalúa las reglas relacionadas con la expiración de sesiones. |
+| `User Repository Interface` | Define las operaciones necesarias para persistir y consultar usuarios. |
+| `User Session Repository Interface` | Define las operaciones necesarias para persistir y consultar sesiones. |
+| `User Repository Implementation` | Implementa las operaciones de persistencia correspondientes a los usuarios. |
+| `User Session Repository Implementation` | Implementa las operaciones de persistencia correspondientes a las sesiones. |
+| `Identity Data Source` | Gestiona el acceso a los datos propios de Identity & Access. |
+| `Password Hasher` | Permite generar y verificar representaciones seguras de las contraseñas. |
+| `Token Service` | Genera y valida los tokens utilizados para autenticar las solicitudes. |
+| `Authentication Middleware` | Verifica la identidad asociada a las solicitudes entrantes. |
+| `Authorization Middleware` | Verifica que el rol del usuario permita realizar la operación solicitada. |
+| `Session Expiration Job` | Ejecuta periódicamente la verificación de sesiones que deben expirar por inactividad o vencimiento. |
+
+El flujo principal de autenticación se desarrolla de la siguiente manera:
+
+1. El usuario envía sus credenciales desde la aplicación móvil.
+2. `Authentication Controller` recibe la solicitud y la delega hacia `Authentication Application Service`.
+3. El Application Service obtiene la información del usuario mediante `User Repository Interface`.
+4. `Password Hasher` verifica las credenciales proporcionadas por el usuario.
+5. Cuando la autenticación es válida, se crea o actualiza una `UserSession`.
+6. `Token Service` genera el mecanismo de autenticación utilizado para las solicitudes posteriores.
+7. La información de la sesión se persiste mediante `User Session Repository Interface`.
+
+El flujo de autorización permite que los demás bounded contexts de Gethics validen la identidad y los permisos asociados a una solicitud:
+
+```text
+Other Gethics Bounded Contexts
+        ↓
+Authentication Middleware
+        ↓
+Token Service
+        ↓
+Authorization Middleware
+        ↓
+User / Role Validation
+```
+
+---
