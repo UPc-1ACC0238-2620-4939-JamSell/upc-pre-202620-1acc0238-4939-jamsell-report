@@ -64,8 +64,8 @@
       <td>Raymundo Villarroel, Nadhim Abigail</td>
     </tr>
     <tr>
-      <td>UXXXXXXXX</td>
-      <td>[Apellido, Nombre]</td>
+      <td>U202113229</td>
+      <td>Castillo Yataco, Mauricio Sebastian</td>
     </tr>
   </tbody>
 </table>
