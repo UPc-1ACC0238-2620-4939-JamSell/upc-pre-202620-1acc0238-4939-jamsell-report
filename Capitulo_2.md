@@ -101,7 +101,7 @@ A continuación se detalla la guía de entrevista estructurada por segmentos y c
 |---|---|---|
 | E1<br>![Yarkin Quispe](./images/2-2-2-seg1-e1-yarkin-quispe.png) | Yarkin Quispe es un administrador ganadero de 28 años que dirige el negocio familiar desde hace unos cinco años, manejando un establo con aproximadamente 90 cabezas de ganado vacuno lechero y de doble propósito. Junto a un equipo de tres operarios, Yarkin gestiona la operatividad del establo, enfrentándose al reto de mantener la rentabilidad en una industria competitiva donde reconoce que las decisiones ya no pueden basarse en la intuición o la memoria, sino en datos precisos.<br><br>Actualmente, el control del establo combina el uso de cuadernos de campo o pizarras por parte de los operarios con hojas de cálculo de Google Sheets gestionadas por Yarkin, lo que genera un trabajo de doble digitación que le consume hasta una hora diaria. Esta dependencia de registros manuales retrasa el acceso a la información y provoca pérdidas económicas por errores de transcripción, falta de detección oportuna de celos, tratamientos médicos repetidos o el mantenimiento prolongado de "vacas parásito" al ser muy complicado cruzar los datos de producción y días en leche de forma manual.<br><br>Frente a esta situación, Yarkin considera indispensable la digitalización total y está dispuesto a implementar una aplicación móvil tanto para él como para sus operarios. Para que la herramienta se adapte a su realidad, el requisito más crítico es que cuente con un modo offline que permita el ingreso de datos en el corral sin internet y se sincronice en la nube automáticamente al captar señal. Además, exige que la aplicación tenga una interfaz muy intuitiva con botones grandes, envíe notificaciones push para acciones clave (chequeos de preñez, secado, celos) y genere reportes automáticos en el celular para tomar decisiones inmediatas de descarte o compra. | Duración de video: 9:48<br>[https://sl1nk.com/lradkby](https://sl1nk.com/lradkby) |
 | E2<br>![Jesús Manrique Meza](./images/2-2-2-seg1-e2-jesus-manrique.png) | Jesús Manrique Meza es un joven ganadero de 24 años que participa en la administración de un pequeño negocio familiar dedicado a la actividad ganadera. Actualmente, junto con su familia, maneja un establo de aproximadamente 70 cabezas de ganado bovino de doble propósito, orientado tanto a la producción de leche como a la producción de carne.<br><br>Jesús participa activamente en las actividades diarias del establo, como el control de los animales, alimentación, registro de nacimientos, vacunaciones, tratamientos y seguimiento de la producción. Parte de esta información se registra todavía de forma manual, mediante anotaciones y herramientas digitales sencillas, lo que puede dificultar la consulta rápida del historial de cada animal.<br><br>Debido a la cantidad de animales y actividades que deben supervisarse diariamente, considera importante contar con una herramienta móvil que permita centralizar la información del ganado, registrar eventos sanitarios, recibir recordatorios y consultar datos directamente desde el celular. Asimismo, considera importante que la aplicación sea sencilla de utilizar y que pueda funcionar incluso cuando la conexión a Internet sea limitada. | Duración: 9:17<br>[Entrevista Jesus Manrique Segmento 1.mp4](https://upcedupe-my.sharepoint.com/:v:/g/personal/u202320574_upc_edu_pe/IQATNY6Fl9H9Rb7vIggBR6P6ARlW5ctgUBPjT65PmNOwnb0) |
-| E3<br>![Entrevistado E3 Segmento 1](./images/2-2-2-seg1-e3.png) | El entrevistado es un ganadero de 32 años que utiliza principalmente su celular para registrar información de sus animales. Actualmente lleva sus registros en cuadernos y anotaciones, lo que dificulta organizar vacunas, tratamientos y gastos. Su principal necesidad es contar con una herramienta sencilla que le permita gestionar mejor su ganado y controlar la rentabilidad de su negocio. | Duración de video: 04:52 min<br>[https://drive.google.com/file/d/1ZiU7YwF-xEyfOeQOAxEvl9yb5r8wWhfv/view?usp=sharing](https://drive.google.com/file/d/1ZiU7YwF-xEyfOeQOAxEvl9yb5r8wWhfv/view?usp=sharing) |
+| E3<br>![Entrevistado E3 Segmento 1](./images/2-2-2-seg1-DanielRuiz.png) | Daniel Ruiz es un ganadero de 32 años que utiliza principalmente su celular para registrar información de sus animales. Actualmente lleva sus registros en cuadernos y anotaciones, lo que dificulta organizar vacunas, tratamientos y gastos. Su principal necesidad es contar con una herramienta sencilla que le permita gestionar mejor su ganado y controlar la rentabilidad de su negocio. | Duración de video: 04:52 min<br>[https://drive.google.com/file/d/1ZiU7YwF-xEyfOeQOAxEvl9yb5r8wWhfv/view?usp=sharing](https://drive.google.com/file/d/1ZiU7YwF-xEyfOeQOAxEvl9yb5r8wWhfv/view?usp=sharing) |
 
 
 
@@ -123,22 +123,22 @@ En esta sección se consolida el análisis cualitativo y cuantitativo extraído 
 
 | Criterio / Variable | Atributos Predominantes | Frecuencia (n) | Porcentaje (%) | Sustento y Evidencia en Entrevistas |
 |---|---|---|---|---|
-| Edad | | | | |
-| Ubicación / Distrito | | | | |
-| Tamaño del Hato | | | | |
-| Dispositivos | | | | |
-| Navegador (Browser) | | | | |
-| Canales Digitales | | | | |
+| Edad | Adultos jóvenes / Jóvenes (24 - 32 años) | 3 | 100% | Yarkin Quispe tiene 28 años, Jesús Manrique 24 años y Daniel Ruiz 32 años. |
+| Ubicación / Distrito | Zonas rurales o semiurbanas productoras de ganado | 3 | 100% | Todos los entrevistados operan o administran unidades productivas ganaderas familiares o independientes en zonas rurales/semiurbanas. |
+| Tamaño del Hato | Pequeños y medianos hatos (70 a 90 cabezas de ganado) | 3 | 100% | Yarkin maneja ~90 cabezas vacunas, Jesús ~70 cabezas (doble propósito) y Daniel maneja un hato familiar de tamaño equivalente. |
+| Dispositivos | Smartphones Android | 3 | 100% | Todos emplean sus teléfonos móviles como dispositivo principal diario en las actividades de campo y del establo. |
+| Navegador (Browser) | Navegadores móviles estándar (Google Chrome / Android) | 3 | 100% | Utilizado habitualmente en sus teléfonos para consultas rápidas y uso de herramientas web de oficina. |
+| Canales Digitales | Hoja de cálculo en la nube (Google Sheets), cuadernos/pizarras y mensajería móvil | 3 | 100% | Combinación de anotaciones físicas en corral con transcripción manual a Google Sheets o registros en notas del celular. |
 
 *2. Características Subjetivas*
 
 | Criterio / Variable | Hallazgos Identificados | Frecuencia (n) | Porcentaje (%) | Relación con el Arquetipo / Requisito |
 |---|---|---|---|---|
-| Personalidad | | | | |
-| Marcas e Influencias | | | | |
-| Registro Actual | | | | |
-| Objetivos (Gains) | | | | |
-| Frustraciones (Pains) | | | | |
+| Personalidad | Pragmáticos, orientados a la productividad, dispuestos a la innovación digital pero cautelosos con la usabilidad | 3 | 100% | Buscan profesionalizar la toma de decisiones basada en datos reales sin complicar la operativa diaria de los operarios. |
+| Marcas e Influencias | Google Sheets, herramientas móviles sencillas y dispositivos móviles Android | 3 | 100% | Uso de soluciones de software generales por falta de acceso o conocimiento de herramientas pecuarias móviles especializadas. |
+| Registro Actual | Registro híbrido/manual: cuadernos de campo, pizarras, libreta física y transcripción posterior a hojas de cálculo (Google Sheets) | 3 | 100% | Trabajo de doble digitación que consume tiempo diario, propicio a errores de transcripción, olvidos de vacunación y pérdida de datos sanitarios/económicos. |
+| Objetivos (Gains) | Digitalización total del establo, centralización de registros, alertas automáticas de eventos (celos, preñez, vacunas, secado) y reportes de rentabilidad en tiempo real | 3 | 100% | Sustenta los requerimientos de módulo de gestión de animales, alertas push automáticas, reportes financieros/productivos y perfil fácil para operarios. |
+| Frustraciones (Pains) | Pérdida de tiempo por doble digitación, errores de transcripción, pérdida de dinero por mantener "vacas parásito", retraso en detección de celos y mala conectividad en el corral | 3 | 100% | Sustenta la exigencia crítica de un modo **offline-first** con sincronización automática en la nube e interfaz simplificada con botones grandes. |
 
 **Segmento 2: Veterinarios y Técnicos Agropecuarios (N = 3)**
 
@@ -146,23 +146,22 @@ En esta sección se consolida el análisis cualitativo y cuantitativo extraído 
 
 | Criterio / Variable | Atributos Predominantes | Frecuencia (n) | Porcentaje (%) | Sustento y Evidencia en Entrevistas |
 |---|---|---|---|---|
-| Edad | | | | |
-| Ubicación / Distrito | | | | |
-| Tamaño del Hato | | | | |
-| Dispositivos | | | | |
-| Navegador (Browser) | | | | |
-| Canales Digitales | | | | |
+| Edad | Jóvenes profesionales (24 - 26 años) | 2 | 100% | Andrea Arango tiene 26 años y Manuel Fajardo tiene 24 años (calculado sobre N = 2 entrevistas registradas). |
+| Ubicación / Distrito | Lima (urbano/académico) y Junín (Jauja y Concepción, zonas rurales de campo) | 2 | 100% | Andrea realiza prácticas desde Lima; Manuel atiende ganado vacuno y ovino en Jauja y Concepción, Junín. |
+| Tamaño del Hato | Atención a múltiples animales de pequeños y medianos productores familiares | 2 | 100% | Andrea requiere registro ágil de múltiples animales; Manuel apoya a asociaciones y pequeños/medianos ganaderos familiares. |
+| Dispositivos | Smartphone Android y Tablet | 2 | 100% | Ambos utilizan dispositivos móviles (celular Android y tablet) en sus actividades diarias y trabajo de campo. |
+| Navegador (Browser) | Navegadores móviles estándar (Google Chrome / Android Browser) | 2 | 100% | Derivado del uso continuo de smartphones Android en campo y consulta de datos. |
+| Canales Digitales | Mensajería móvil, Excel, libretas de notas y aplicaciones móviles | 2 | 100% | Andrea usa apuntes dispersos en el celular; Manuel usa Excel en casa e intenta usar apps móviles de gestión ganadera. |
 
 *2. Características Subjetivas*
 
 | Criterio / Variable | Hallazgos Identificados | Frecuencia (n) | Porcentaje (%) | Relación con el Arquetipo / Requisito |
 |---|---|---|---|---|
-| Personalidad | | | | |
-| Marcas e Influencias | | | | |
-| Registro Actual | | | | |
-| Objetivos (Gains) | | | | |
-| Frustraciones (Pains) | | | | |
-
+| Personalidad | Innovadores, orientados a la adopción digital, proactivos y comprometidos con el servicio ganadero | 2 | 100% | Alta disposición para adoptar herramientas digitales, buscar la confianza de los productores y mejorar la eficiencia del servicio en campo. |
+| Marcas e Influencias | Hojas de cálculo (Excel), herramientas de mensajería instantánea y dispositivos Android | 2 | 100% | Dependencia de herramientas generales al no contar o no conocer aplicaciones especializadas efectivas para campo. |
+| Registro Actual | Fichas físicas, libreta de papel en campo, apuntes sueltos en el celular y migración manual a Excel en casa | 2 | 100% | Proceso manual y fragmentado ocasionado por la inestabilidad de la señal de internet en zonas rurales. |
+| Objetivos (Gains) | Centralizar el historial clínico unificado (con fotos y estadísticas), automatizar recordatorios de vacunas/controles, optimizar comunicación con ganaderos y reducir la mortalidad del ganado | 2 | 100% | Sustenta los requerimientos de historial clínico unificado, interfaz intuitiva de registro múltiple, reportes previos de emergencia y recordatorios automáticos. |
+| Frustraciones (Pains) | Falta de registros previos de los ganaderos (tratamientos redundantes/incompletos), pérdida de datos en apps sin conexión y falta de internet en zonas rurales | 2 | 100% | Sustenta el requisito crítico de modo offline (funcionamiento sin conexión) y la persistencia local de datos para evitar pérdida de información. |
 ---
 
 ## 2.3. Needfinding
@@ -173,13 +172,13 @@ En esta sección se exponen los User Personas construidos para caracterizar a lo
 
 #### **User Persona 1: Pequeños y Medianos Ganaderos**
 
-![User Persona Ganadero](./images/user_persona_ganadero.png)
+![User Persona Ganadero](./images/UserPersonaDanielRuiz.png)
 
 ---
 
 #### **User Persona 2: Veterinarios y Técnicos Agropecuarios**
 
-![User Persona Veterinario](./images/user_persona_veterinario.png)
+![User Persona Veterinario](./images/UserPersonaAndreaArango.png)
 
 ### 2.3.2. User Task Matrix
 La **User Task Matrix** permite sistematizar y jerarquizar la operatividad cotidiana de los actores del ecosistema pecuario. Al evaluar la recurrencia (*frecuencia*) y la relevancia (*importancia*) de cada tarea en la gestión actual, este artefacto visibiliza los cuellos de botella y puntos de fricción del proceso, sentando las bases para priorizar las funcionalidades clave de la solución móvil **Gethics**.
