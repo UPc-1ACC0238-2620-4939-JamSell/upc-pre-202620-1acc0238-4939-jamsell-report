@@ -299,12 +299,12 @@ En esta sección cada integrante del equipo establece al menos dos objetivos SMA
 | Objetivo SMART 1 | [Qué quiere conseguir] | [Cómo lo medirá] | [Por qué es alcanzable] | [Cómo aporta a su desarrollo profesional] | [Fecha o periodo] |
 | Objetivo SMART 2 | [Qué quiere conseguir] | [Cómo lo medirá] | [Por qué es alcanzable] | [Cómo aporta a su desarrollo profesional] | [Fecha o periodo] |
 
-## [Apellido y Nombre - Integrante 3]
+## [Castillo Yataco, Mauricio Sebastian - Integrante 3]
 
 | Objetivo | Específico | Medible | Alcanzable | Relevante | Tiempo |
 |---|---|---|---|---|---|
-| Objetivo SMART 1 | [Qué quiere conseguir] | [Cómo lo medirá] | [Por qué es alcanzable] | [Cómo aporta a su desarrollo profesional] | [Fecha o periodo] |
-| Objetivo SMART 2 | [Qué quiere conseguir] | [Cómo lo medirá] | [Por qué es alcanzable] | [Cómo aporta a su desarrollo profesional] | [Fecha o periodo] |
+| **Objetivo SMART 1** | Consolidar mi perfil técnico especializándome en Arquitectura de Software y Domain-Driven Design (DDD), logrando diseñar sistemas robustos basados en microservicios o arquitecturas limpias y obteniendo una certificación oficial afín (p. ej., AWS Certified Solutions Architect o certificación en diseño/arquitectura de software). | Obtención de 1 certificación oficial en arquitectura/cloud y la publicación/documentación completa de al menos 2 proyectos de software complejos donde aplique DDD estratégico y táctico. | Cuento con base sólida en desarrollo full-stack y experiencia práctica aplicando DDD (EventStorming, Bounded Contexts, Domain Storytelling) en proyectos académicos y personales. | Fortalece mi posicionamiento y empleabilidad como futuro ingeniero de software con visión arquitectónica, capaz de liderar el diseño de software escalable y mantenible. | Antes de culminar los estudios de pregrado (hacia 2027-2028). |
+| **Objetivo SMART 2** | Desarrollar, desplegar y mantener en producción una plataforma web full-stack (SaaS de gestión/trazabilidad operativa) que implemente arquitectura limpia, backend modular y frontend reactivo, integrando prácticas de CI/CD. | Sistema desplegado con 99% de disponibilidad, suite de pruebas automatizadas con cobertura mínima del 75% en lógica de negocio, y al menos 1 cliente/organización piloto validando la plataforma. | Poseo experiencia previa en desarrollo tanto de backend como de frontend en proyectos de software, dominando frameworks modernos y el consumo/diseño de APIs RESTful. | Me permite demostrar en un entorno real y de producción la convergencia entre habilidades de desarrollo full-stack, buenas prácticas de ingeniería de software y valor directo al usuario. | 12 meses a partir de la fecha actual. |
 
 ## Raymundo Villarroel, Nadhim Abigail - Integrante 4
 
