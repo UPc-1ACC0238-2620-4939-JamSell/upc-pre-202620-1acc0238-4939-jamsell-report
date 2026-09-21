@@ -38,6 +38,20 @@ Gracias a la integración de datos históricos y actualizados en tiempo real, Ge
     </td>
   </tr>
 
+  <tr>
+    <td width="30%" align="center">
+        <img src="markdown/assets/chapter-1/JuanjoMeza.png" width="180">
+    </td>
+    <td width="70%">
+        <h3>Juan Jose Meza Huanacune</h3>
+        <h4>U202320574</h4>
+        <p>
+            Mi nombre es Juan Jose Meza Huanacune, tengo 22 años y actualmente me encuentro cursando la carrera de Ingeniería de Software en la UPC. Me interesa el desarrollo de software y la creación de soluciones tecnológicas orientadas a resolver problemas reales de manera práctica y eficiente. En el desarrollo de Gethics, me comprometo a aportar mis conocimientos, capacidad de análisis y trabajo en equipo para contribuir a la creación de una aplicación móvil intuitiva y funcional que facilite a los pequeños y medianos ganaderos la gestión de sus animales, el seguimiento sanitario y la toma de decisiones mediante información organizada y accesible.
+        </p>
+    </td>
+</tr>
+
+
    <tr>
     <td width="30%" align="center">
       <img src="../../assets/chapter-1/Integrante-2.jpg" width="180">
