@@ -38,38 +38,45 @@ Gracias a la integración de datos históricos y actualizados en tiempo real, Ge
     </td>
   </tr>
 
-   <tr>
+  <tr>
     <td width="30%" align="center">
-      <img src="../../assets/chapter-1/Integrante-2.jpg" width="180">
+        <img src="markdown/assets/chapter-1/JuanjoMeza.png" width="180">
     </td>
     <td width="70%">
-      <h3>Juan Jose Meza Huanacune</h3>
-      <h4>-</h4>
-      <p>
-      </p>
+        <h3>Juan Jose Meza Huanacune</h3>
+        <h4>U202320574</h4>
+        <p>
+            Mi nombre es Juan Jose Meza Huanacune, tengo 22 años y actualmente me encuentro cursando la carrera de Ingeniería de Software en la UPC. Me interesa el desarrollo de software y la creación de soluciones tecnológicas orientadas a resolver problemas reales de manera práctica y eficiente. En el desarrollo de Gethics, me comprometo a aportar mis conocimientos, capacidad de análisis y trabajo en equipo para contribuir a la creación de una aplicación móvil intuitiva y funcional que facilite a los pequeños y medianos ganaderos la gestión de sus animales, el seguimiento sanitario y la toma de decisiones mediante información organizada y accesible.
+        </p>
     </td>
-  </tr>
+</tr>
 
-   <tr>
+
+   Aquí tienes el fragmento HTML completado con las rutas de imagen correspondientes y la descripción requerida para Luis Angel Pillaca Vidal, manteniendo el formato exacto listo para pegar en GitHub:
+
+HTML
+  <tr>
     <td width="30%" align="center">
-      <img src="../../assets/chapter-1/Integrante-3.jpg" width="180">
+      <img src="markdown/assets/chapter-1/LuisPillaca.png" width="180">
     </td>
     <td width="70%">
       <h3>Luis Angel Pillaca Vidal</h3>
-      <h4>-</h4>
+      <h4>u202315654</h4>
       <p>
+        Mi nombre es Luis Angel Pillaca Vidal y me encuentro cursando el 7mo ciclo de la carrera de Ingeniería de Software en la UPC. Me apasiona el desarrollo de aplicaciones web y móviles orientadas a resolver necesidades reales en diversos sectores. En el desarrollo de Gethics, me comprometo a aportar mis conocimientos técnicos, capacidad de análisis y trabajo en equipo para construir una solución eficiente, intuitiva y funcional para la gestión del ganado.
       </p>
     </td>
   </tr>
 
-   <tr>
+  <tr>
     <td width="30%" align="center">
-      <img src="../../assets/chapter-1/Integrante-4.jpg" width="180">
+      <img src="markdown/assets/chapter-1/AbigailRaymundo.jpeg" width="180">
     </td>
     <td width="70%">
       <h3>Nadhim Abigail Raymundo Villarroel</h3>
-      <h4>-</h4>
+      <h4>u202318001</h4>
       <p>
+        Mi nombre es Abigail Nadhim Raymundo Villarroel, tengo 20 años y vivo en Lima. Actualmente estoy cursando el 6° ciclo de Ingeniería de Software, avanzando algunos cursos del ciclo superior. Desde siempre me ha apasionado crear, diseñar y programar para ofrecer soluciones, me gusta aprender constantemente para ampliar mis conocimientos y perfil profesional. Además, me encuentro en el nivel intermedio de inglés y me interesan mucho los idiomas, por lo que también estoy aprendiendo francés y portugués. En mi tiempo libre, disfruto dibujar, bailar y cantar, actividades que me ayudan a mantener mi creatividad y energía. Me comprometo a aportar con responsabilidad y dedicación al equipo, trabajar de manera colaborativa y contribuir a que juntos podamos desarrollar un proyecto sobresaliente. Mis principales habilidades incluyen creatividad, disciplina y trabajo en equipo, cualidades que aplico para lograr resultados efectivos y de calidad.
       </p>
     </td>
   </tr>
@@ -87,6 +94,7 @@ Gracias a la integración de datos históricos y actualizados en tiempo real, Ge
   </tr>
 </table>
 ---
+
 # 1.2. Solution Profile
 
 ## 1.2.1. Antecedentes y Problemática.

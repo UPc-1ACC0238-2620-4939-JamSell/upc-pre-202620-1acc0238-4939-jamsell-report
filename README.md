@@ -42,30 +42,30 @@
 <table align="center">
   <thead>
     <tr>
-      <th>Código</th>
-      <th>Apellidos y Nombres</th>
+      <th>u202113229</th>
+      <th>Castillo Yataco, Mauricio Sebastian</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td>UXXXXXXXX</td>
-      <td>[Apellido, Nombre]</td>
+      <td>u202315171</td>
+      <td>Salazar Miranda, Mateo Paolo</td>
     </tr>
     <tr>
       <td>U202320574</td>
       <td>Meza Huanacune, Juan José</td>
     </tr>
     <tr>
-      <td>UXXXXXXXX</td>
-      <td>[Apellido, Nombre]</td>
+      <td>U202315654</td>
+      <td>Pillaca Vidal, Luis Angel</td>
     </tr>
     <tr>
       <td>U202318001</td>
       <td>Raymundo Villarroel, Nadhim Abigail</td>
     </tr>
     <tr>
-      <td>UXXXXXXXX</td>
-      <td>[Apellido, Nombre]</td>
+      <td>U202113229</td>
+      <td>Castillo Yataco, Mauricio Sebastian</td>
     </tr>
   </tbody>
 </table>
@@ -88,8 +88,12 @@
 
 | Versión | Fecha | Autor | Descripción de modificación |
 |---|---|---|---|
-| 1.0 | 05/09/2026 | Meza Huanacun, Juan José | Creó la estructura inicial del informe, carátula y archivos correspondientes a los capítulos del proyecto. |
-| 1.0 | 11/09/2026 | Raymundo Villarroel, Nadhim Abigail | Desarrolló el punto 2.5 (Strategic-Level Domain-Driven Design) del informe: sesión de EventStorming, Candidate Context Discovery, Domain Message Flows Modeling (Domain Storytelling), Bounded Context Canvases de los 6 contextos candidatos, Context Mapping y los diagramas de Software Architecture (Context, Container y Deployment) bajo el C4 Model para Gethics Mobile. 
+| 1.0 | 05/09/2026 | Meza Huanacune, Juan José | Estructuración inicial del repositorio de documentación, maquetación de la carátula oficial, configuración del índice general y creación de los archivos Markdown (`.md`) correspondientes a las secciones del informe. |
+| 1.0 | 07/09/2026 | Castillo Yataco, Mauricio Sebastian | Elaboración integral del Capítulo I: definición del Perfil de la Startup (misión, visión, organigrama y perfiles profesionales del equipo), Solution Profile (antecedentes, problemática y propuesta de valor), implementación del marco Lean UX (Problem Statements, Assumptions, Hypothesis Statements y Lean UX Canvas) y caracterización de los segmentos objetivos. |
+| 1.0 | 09/09/2026 | Pillaca Vidal, Luis Angel | Desarrollo de las secciones 2.1 a 2.3.2 del Capítulo II: análisis comparativo de competidores (matriz competitiva y estrategias frente al mercado), diseño y registro de guías de entrevistas, consolidación del análisis cualitativo-cuantitativo de hallazgos y formulación de Needfinding (User Personas y User Task Matrix). |
+| 1.0 | 10/09/2026 | Salazar Miranda, Mateo Paolo | Elaboración de las secciones 2.3.3 a 2.4.3 del Capítulo II: mapeo de experiencia de usuario (User Journey Mapping, Empathy Mapping), facilitación de la sesión de Big Picture EventStorming, definición del Ubiquitous Language y especificación formal de requerimientos (User Stories, Impact Mapping y gestión del Product Backlog). |
+| 1.0 | 11/09/2026 | Raymundo Villarroel, Nadhim Abigail | Diseño del Strategic-Level Domain-Driven Design (Sección 2.5): modelado de EventStorming, Candidate Context Discovery, Domain Message Flows Modeling mediante Domain Storytelling, elaboración de Bounded Context Canvases, Context Mapping y especificación de la Arquitectura de Software bajo la plantilla C4 Model (Diagramas de Contexto, Contenedores y Despliegue). |
+| 1.0 | 12/09/2026 | Meza Huanacune, Juan José | Desarrollo integral del Tactical-Level Domain-Driven Design (Sección 2.6) por cada Bounded Context: especificación detallada de las capas del sistema (Domain, Interface, Application e Infrastructure), diagramas de componentes (Component Level Diagrams), diagramas de clases del dominio (Domain Layer Class Diagrams) y diseño lógico-físico del esquema de base de datos (Database Design Diagram). |
 
 <br>
 
@@ -107,17 +111,17 @@ Durante la elaboración del AV1, el equipo organizó y distribuyó las actividad
 
 ### Evidencia de colaboración
 
-![GitHub Collaboration Insights AV1](images/collaboration/av1-insights.png)
+![GitHub Collaboration Insights AV1](images/commiters.png)
 
 ### Participación del equipo
 
-| Integrante | Insight |
-|---|---|
-| [Integrante 1] |  |
-| [Integrante 2] |  |
-| [Integrante 3] |  |
-| [Integrante 4] |  |
-| [Integrante 5] |  |
+| Integrante | Código | Insight / Aporte |
+|---|---|---|
+| Castillo Yataco, Mauricio Sebastian | U202113229 | Lideró la formulación estratégica de la Startup y la propuesta de solución, articulando el diagnóstico del problema y coordinando la estructuración del marco Lean UX y la caracterización de los segmentos objetivos. |
+| Pillaca Vidal, Luis Angel | U202114758 | Encabezó la investigación de mercado mediante el análisis competitivo de la solución, la estructuración y ejecución del proceso de entrevistas, el procesamiento estadístico de los hallazgos y la construcción de los User Personas y la User Task Matrix. |
+| Salazar Miranda, Mateo Paolo | U202320574 | Gestionó el modelado de la experiencia de usuario y la especificación de requerimientos del sistema, liderando los artefactos de UX (Journey Maps, Empathy Maps), la dinámica de Big Picture EventStorming y la articulación del Product Backlog mediante User Stories e Impact Mapping. |
+| Raymundo Villarroel, Nadhim Abigail | U202318001 | Dirigió el diseño arquitectónico de software a nivel estratégico, estableciendo los límites de dominio (Bounded Contexts), el flujo de mensajes de dominio (Domain Storytelling), el mapa de contextos y los esquemas de arquitectura bajo el modelo C4 (Contexto, Contenedor y Despliegue). |
+| Meza Huanacune, Juan José | U202315654 | Estructuró la arquitectura de software a nivel táctico y de persistencia, especificando el diseño por capas de los Bounded Contexts, los diagramas de componentes, los diagramas de clases del dominio y el modelo relacional de la base de datos. |
 
 <br>
 
@@ -250,20 +254,6 @@ Durante la elaboración del AV1, el equipo organizó y distribuyó las actividad
 
 ---
 
-## Conclusiones
-
-- Conclusiones y recomendaciones
-- Video App Validation
-- Video About the Product
-- Video About the Team
-- Glosario
-- Bibliografía
-- Anexos
-
-<br>
-
----
-
 # Student Outcome
 
 El curso contribuye al cumplimiento del Student Outcome ABET:
@@ -276,8 +266,9 @@ En el siguiente cuadro se describen las acciones realizadas y los enunciados de 
 
 | Criterio específico | Acciones realizadas | Conclusiones |
 |---|---|---|
-| Actualiza conceptos y conocimientos necesarios para su desarrollo profesional y en especial para su proyecto en soluciones de software. | **Castillo Yataco, Mauricio Sebastian** <br><br> **AV1:** Actualizó y aplicó sus conocimientos en metodologías ágiles de diseño de productos para el proyecto, estructurando el Lean UX Process mediante la definición de Problem Statements, Assumptions, Hypothesis Statements y el Canvas. Asimismo, investigó y consolidó las bases estratégicas del negocio redactando la descripción de la startup, los perfiles del equipo, los antecedentes y problemática, y los segmentos objetivos. <br><br> **Raymundo Villarroel, Nadhim Abigail** <br><br> **AV1:** Actualizó sus conocimientos de Domain-Driven Design a nivel estratégico (EventStorming, Candidate Context Discovery, Domain Storytelling, Bounded Context Canvas y Context Mapping) y del Modelo C4 mediante Structurizr DSL, aplicándolos directamente en la documentación de la arquitectura de software de Gethics Mobile dentro de JamSell. | [Conclusión grupal relacionada con el aprendizaje y aplicación de nuevos conocimientos.] |
-| Reconoce la necesidad del aprendizaje permanente para el desempeño profesional y el desarrollo de proyectos en soluciones de software. | **Castillo Yataco, Mauricio Sebastian** <br><br> **AV1:** Reconoció que la aplicación de metodologías ágiles a escenarios reales exige un refinamiento y adaptación constante: si bien ya contaba con bases teóricas en Lean UX, tuvo que investigar y profundizar en su aplicación práctica para adaptar herramientas como los Problem Statements, Assumptions, Hypothesis Statements y el Canvas al contexto específico del proyecto. Comprendió que definir el Solution Profile es un proceso continuo y planea seguir integrando estos descubrimientos del usuario con prácticas de arquitectura de software conforme el proyecto avance hacia su nivel táctico. <br><br> **Raymundo Villarroel, Nadhim Abigail** <br><br> **AV1:** Reconoció que el ritmo de cambio en tecnologías móviles exige aprendizaje permanente más allá de lo enseñado en clase: no contaba con experiencia previa en librerías de escaneo de códigos QR, por lo que tuvo que investigar de forma autónoma la librería `mobile_scanner` en Flutter (su configuración, permisos de cámara y manejo de eventos de lectura) para poder implementar el feature de aprendizaje autónomo del proyecto (identificación de animales mediante código QR), y planea seguir profundizando en patrones de arquitectura móvil conforme el proyecto avance a su nivel táctico. | [Conclusión grupal relacionada con la importancia del aprendizaje continuo.] |
+| Actualiza conceptos y conocimientos necesarios para su desarrollo profesional y en especial para su proyecto en soluciones de software. | **Meza Huanacune, Juan Jose** <br><br> **AV1:** Actualizó y aplicó sus conocimientos de Domain-Driven Design a nivel táctico mediante el desarrollo de los bounded contexts de Gethics Mobile. Profundizó en la definición de Domain, Interface, Application e Infrastructure Layers, así como en la elaboración de Component Level Diagrams, Domain Layer Class Diagrams y Database Design Diagrams. Asimismo, aplicó estos conocimientos en los bounded contexts Livestock Management, Sanitary Tracking, Veterinary Care, Financial Management, Analytics & Alerts e Identity & Access, manteniendo consistencia con el diseño estratégico previamente definido. <br><br> **Raymundo Villarroel, Nadhim Abigail** <br><br> **AV1:** Actualizó sus conocimientos de Domain-Driven Design a nivel estratégico (EventStorming, Candidate Context Discovery, Domain Storytelling, Bounded Context Canvas y Context Mapping) y del Modelo C4 mediante Structurizr DSL, aplicándolos directamente en la documentación de la arquitectura de software de Gethics Mobile dentro de JamSell. <br><br> **Castillo Yataco, Mauricio Sebastian** <br><br> **AV1:** Investigó e integró los principios de la metodología Lean UX en el desarrollo de productos de software agrícola/pecuario, actualizando sus conocimientos sobre la articulación de Problem Statements, Suposiciones y Declaraciones de Hipótesis para la estructuración estratégica del Lean UX Canvas en el proyecto Gethics. <br><br> **Pillaca Vidal, Luis Angel** <br><br> **AV1:** Profundizó en técnicas de investigación cualitativa y cuantitativa de usuarios, aplicándolas en la formulación de guías de entrevista especializadas para el sector ganadero, así como en el desarrollo y consolidación del análisis estadístico de necesidades para la definición precisa de User Personas y User Task Matrix. <br><br> **Salazar Miranda, Mateo Paolo** <br><br> **AV1:** Investigó y aplicó marcos metodológicos para el mapeo de experiencia del usuario (User Journey Mapping y Empathy Mapping), articulando las herramientas de Big Picture EventStorming e Impact Mapping con la construcción formal del Product Backlog mediante User Stories y Ubiquitous Language. | El equipo adquirió y aplicó de manera autónoma marcos metodológicos avanzados como DDD, Lean UX, Modelado C4 y User Research, lo que permitió estructurar una solución de software alineada con los estándares de la industria e interactuar eficientemente con las dinámicas reales del sector ganadero. |
+| Reconoce la necesidad del aprendizaje permanente para el desempeño profesional y el desarrollo de proyectos en soluciones de software. | **Castillo Yataco, Mauricio Sebastian** <br><br> **AV1:** Reconoció la importancia de la actualización continua en metodologías de descubrimiento de producto y validación ágil (Lean UX), identificando la necesidad de adquirir conocimientos sobre dinámicas de mercado pecuario e iteración rápida para responder de forma adaptativa a los requerimientos cambiantes de los productores ganaderos. <br><br> **Pillaca Vidal, Luis Angel** <br><br> **AV1:** Identificó que el análisis de competidores e investigación de usuarios exige un aprendizaje continuo de las herramientas de software emergentes en el sector AgTech/Pecuario, comprometiéndose a explorar constantemente nuevas técnicas de síntesis de hallazgos para mejorar la precisión de los requerimientos. <br><br> **Salazar Miranda, Mateo Paolo** <br><br> **AV1:** Comprendió que la especificación de requerimientos en entornos complejos requiere un aprendizaje constante de lenguajes de dominio técnico (Ubiquitous Language) e Impact Mapping, reconociendo la necesidad de seguir formándose en priorización estratégica de historias de usuario. <br><br> **Raymundo Villarroel, Nadhim Abigail** <br><br> **AV1:** Reconoció que el ritmo de cambio en tecnologías móviles exige aprendizaje permanente más allá de lo enseñado en clase: no contaba con experiencia previa en librerías de escaneo de códigos QR, por lo que tuvo que investigar de forma autónoma la librería `mobile_scanner` en Flutter (su configuración, permisos de cámara y manejo de eventos de lectura) para poder implementar el feature de aprendizaje autónomo del proyecto (identificación de animales mediante código QR), y planea seguir profundizando en patrones de arquitectura móvil conforme el proyecto avance a su nivel táctico. <br><br> **Meza Huanacune, Juan Jose** <br><br> **AV1:** Reconoció la importancia de estar actualizado en patrones de diseño arquitectónico y modelado relacional/no-relacional de datos, comprendiendo que para evolucionar un sistema bajo arquitectura limpia y DDD táctico se requiere un estudio continuo de mejores prácticas de desacoplamiento y mantenibilidad de software. | La ejecución del proyecto evidenció que el desarrollo de soluciones tecnológicas en sectores dinámicos exige un compromiso con el aprendizaje autónomo e ininterrumpido, adaptándose a nuevas librerías, arquitecturas y metodologías de investigación que garanticen la calidad y competitividad del software. |
+<br>
 
 ---
 
@@ -285,26 +276,26 @@ En el siguiente cuadro se describen las acciones realizadas y los enunciados de 
 
 En esta sección cada integrante del equipo establece al menos dos objetivos SMART relacionados con su desarrollo profesional después de finalizar la carrera.
 
-## [Apellido y Nombre - Integrante 1]
+## Meza Huanacune, Juan Jose - Integrante 1
 
 | Objetivo | Específico | Medible | Alcanzable | Relevante | Tiempo |
 |---|---|---|---|---|---|
-| Objetivo SMART 1 | [Qué quiere conseguir] | [Cómo lo medirá] | [Por qué es alcanzable] | [Cómo aporta a su desarrollo profesional] | [Fecha o periodo] |
-| Objetivo SMART 2 | [Qué quiere conseguir] | [Cómo lo medirá] | [Por qué es alcanzable] | [Cómo aporta a su desarrollo profesional] | [Fecha o periodo] |
+| Objetivo SMART 1 | Fortalecer mi especialización en arquitectura de software y desarrollo de aplicaciones móviles, profundizando en Domain-Driven Design, patrones de arquitectura y buenas prácticas de desarrollo. | Completar al menos una certificación o programa especializado y desarrollar 2 proyectos documentados en los que aplique DDD y patrones de arquitectura de software. | Ya cuento con experiencia académica aplicando DDD, diagramas C4, UML y diseño por capas en proyectos como Gethics, por lo que puedo continuar profundizando estos conocimientos mediante cursos y proyectos propios. | Me permitirá desarrollar soluciones de software más escalables, mantenibles y correctamente estructuradas, fortaleciendo mi perfil como Ingeniero de Software. | Dentro de los primeros 12 meses después de finalizar la carrera. |
+| Objetivo SMART 2 | Desarrollar y publicar aplicaciones de software completas que integren frontend, backend, base de datos y buenas prácticas de arquitectura, con énfasis en soluciones móviles y problemas reales. | Desarrollar y publicar al menos 2 proyectos funcionales en GitHub, incluyendo documentación técnica, arquitectura, pruebas y una versión desplegada o demostrable. | Durante la carrera he trabajado en proyectos de software y actualmente cuento con conocimientos de desarrollo, modelado de sistemas y arquitectura que puedo continuar fortaleciendo mediante proyectos personales. | Me permitirá construir un portafolio técnico sólido, demostrar experiencia práctica y mejorar mis oportunidades profesionales en el área de Ingeniería de Software. | Dentro de los primeros 18 meses después de finalizar la carrera. |
 
-## [Apellido y Nombre - Integrante 2]
-
-| Objetivo | Específico | Medible | Alcanzable | Relevante | Tiempo |
-|---|---|---|---|---|---|
-| Objetivo SMART 1 | [Qué quiere conseguir] | [Cómo lo medirá] | [Por qué es alcanzable] | [Cómo aporta a su desarrollo profesional] | [Fecha o periodo] |
-| Objetivo SMART 2 | [Qué quiere conseguir] | [Cómo lo medirá] | [Por qué es alcanzable] | [Cómo aporta a su desarrollo profesional] | [Fecha o periodo] |
-
-## [Castillo Yataco, Mauricio Sebastian - Integrante 3]
+## Pillaca Vidal, Luis Angel - Integrante 2
 
 | Objetivo | Específico | Medible | Alcanzable | Relevante | Tiempo |
 |---|---|---|---|---|---|
-| **Objetivo SMART 1** | Consolidar mi perfil técnico especializándome en Arquitectura de Software y Domain-Driven Design (DDD), logrando diseñar sistemas robustos basados en microservicios o arquitecturas limpias y obteniendo una certificación oficial afín (p. ej., AWS Certified Solutions Architect o certificación en diseño/arquitectura de software). | Obtención de 1 certificación oficial en arquitectura/cloud y la publicación/documentación completa de al menos 2 proyectos de software complejos donde aplique DDD estratégico y táctico. | Cuento con base sólida en desarrollo full-stack y experiencia práctica aplicando DDD (EventStorming, Bounded Contexts, Domain Storytelling) en proyectos académicos y personales. | Fortalece mi posicionamiento y empleabilidad como futuro ingeniero de software con visión arquitectónica, capaz de liderar el diseño de software escalable y mantenible. | Antes de culminar los estudios de pregrado (hacia 2027-2028). |
-| **Objetivo SMART 2** | Desarrollar, desplegar y mantener en producción una plataforma web full-stack (SaaS de gestión/trazabilidad operativa) que implemente arquitectura limpia, backend modular y frontend reactivo, integrando prácticas de CI/CD. | Sistema desplegado con 99% de disponibilidad, suite de pruebas automatizadas con cobertura mínima del 75% en lógica de negocio, y al menos 1 cliente/organización piloto validando la plataforma. | Poseo experiencia previa en desarrollo tanto de backend como de frontend en proyectos de software, dominando frameworks modernos y el consumo/diseño de APIs RESTful. | Me permite demostrar en un entorno real y de producción la convergencia entre habilidades de desarrollo full-stack, buenas prácticas de ingeniería de software y valor directo al usuario. | 12 meses a partir de la fecha actual. |
+| Objetivo SMART 1 | Especializarme en el análisis de requerimientos, diseño de soluciones centradas en el usuario e investigación de mercado para aplicaciones mHealth y AgTech. | Completar 1 programa de especialización en UX/UI Research y publicar 2 artículos o casos de estudio técnicos sobre análisis de competidores e investigación de usuarios en plataformas profesionales. | La experiencia adquirida en el diseño de entrevistas, matrices comparativas de competidores y User Task Matrix en Gethics constituye una base sólida para profundizar en investigación de usuarios. | Me posicionará como un profesional capaz de conectar las necesidades del usuario con la especificación técnica de sistemas de software complejos. | Durante los primeros 12 meses posteriores a la graduación. |
+| Objetivo SMART 2 | Desarrollar e implementar soluciones de software frontend/móvil con arquitectura orientada a la experiencia de usuario y alta usabilidad en entornos rurales o con baja conectividad. | Diseñar y desplegar 2 aplicaciones web/móviles que incorporen capacidades offline-first y logren una puntuación de usabilidad (SUS) superior a 80 puntos en pruebas con usuarios. | He trabajado en la caracterización de entornos rurales con conectividad limitada durante la elaboración de los requerimientos de Gethics. | Responderá a una necesidad técnica crítica en el mercado de software pecuario e industrial, fortaleciendo mi perfil profesional como desarrollador frontend/mobile. | En un plazo de 18 meses tras concluir la carrera profesional. |
+
+## Castillo Yataco, Mauricio Sebastian - Integrante 3
+
+| Objetivo | Específico | Medible | Alcanzable | Relevante | Tiempo |
+|---|---|---|---|---|---|
+| Objetivo SMART 1 | Consolidar mis competencias en Product Discovery, UX Research y frameworks ágiles orientados a soluciones tecnológicas para el sector agropecuario y de gestión. | Obtener 1 certificación en Agile Product Management / Scrum Product Owner y participar en el diseño y validación de al menos 2 productos digitales con métricas de adopción verificables. | Cuento con experiencia en la formulación de Problem Statements, Lean UX Canvas y caracterización de segmentos en proyectos universitarios como Gethics. | Fortalecerá mi perfil como Product Owner / Product Manager, permitiéndome liderar el desarrollo de productos digitales centrados en el valor del usuario. | Durante los primeros 12 meses posteriores a la culminación de la carrera. |
+| Objetivo SMART 2 | Liderar la estrategia y gestión del ciclo de vida de un producto de software comercial o emprendimiento tecnológico en el sector AgTech. | Lanzar al mercado un Minimum Viable Product (MVP) funcional con un tablero de control de métricas clave (KPIs) y alcanzar un mínimo de 50 usuarios activos mensuales. | Aplicaré metodologías de prototipado rápido y validación iterativa adquiridas a lo largo de la formación académica en la carrera de Ingeniería de Software. | Me permitirá validar modelos de negocio tecnológicos en entornos reales y potenciar mis habilidades de liderazgo y gestión de productos de software. | Dentro de los primeros 18 meses tras finalizar los estudios universitarios. |
 
 ## Raymundo Villarroel, Nadhim Abigail - Integrante 4
 
@@ -313,13 +304,12 @@ En esta sección cada integrante del equipo establece al menos dos objetivos SMA
 | Objetivo SMART 1 | Especializarme en arquitectura de software y Domain-Driven Design, obteniendo una certificación relacionada (p. ej. en diseño de software o arquitectura cloud). | Certificación obtenida y al menos 2 proyectos documentados donde aplique DDD o patrones de arquitectura de software. | Ya cuento con experiencia práctica aplicando DDD (EventStorming, Bounded Context Canvas, Context Mapping) en proyectos de curso como Gethics Mobile. | Fortalece mi perfil como ingeniera de software especializada en diseño de sistemas complejos y escalables. | Antes de finalizar la carrera (2027-2028). |
 | Objetivo SMART 2 | Digitalizar por completo la gestión de mi negocio familiar (Raymundo Motos) desarrollando/mejorando un sistema propio de inventario, ventas y facturación electrónica. | Sistema en producción usado de forma regular por el negocio, medido por reducción del tiempo de registro manual y % de operaciones digitalizadas. | Ya vengo desarrollando el sistema de inventario/ventas y la integración de facturación electrónica con SUNAT para el negocio. | Aplica directamente mis conocimientos de ingeniería de software a un problema real y de valor personal/familiar. | 12 meses desde la fecha actual. |
 
-## [Apellido y Nombre - Integrante 5]
+## Salazar Miranda, Mateo Paolo - Integrante 5
 
 | Objetivo | Específico | Medible | Alcanzable | Relevante | Tiempo |
 |---|---|---|---|---|---|
-| Objetivo SMART 1 | [Qué quiere conseguir] | [Cómo lo medirá] | [Por qué es alcanzable] | [Cómo aporta a su desarrollo profesional] | [Fecha o periodo] |
-| Objetivo SMART 2 | [Qué quiere conseguir] | [Cómo lo medirá] | [Por qué es alcanzable] | [Cómo aporta a su desarrollo profesional] | [Fecha o periodo] |
-
+| Objetivo SMART 1 | Especializarme en la gestión ágil de proyectos de software y en la especificación formal de requerimientos utilizando marcos como Impact Mapping y BDD (Behavior-Driven Development). | Obtener la certificación Professional Scrum Master (PSM I) o Certified ScrumMaster (CSM) y liderar el backlog de requerimientos en al menos 2 proyectos de desarrollo de software. | Cuento con experiencia directa en el mapeo de experiencias (Journey Maps), articulación de Big Picture EventStorming, creación de User Stories y gestión del Product Backlog. | Garantizará que pueda desempeñarme eficientemente como Scrum Master o Agile Coach, alineando los objetivos de negocio con la ejecución de los equipos de desarrollo. | En los primeros 12 meses posteriores a la culminación de la carrera. |
+| Objetivo SMART 2 | Implementar marcos de medición de valor de producto y análisis de datos de usuario para la optimización de backlogs de requerimientos en tiempo real. | Construir e integrar un tablero de analítica de producto en un sistema de producción, logrando priorizar los sprints basándome en datos reales de uso e impacto de requerimientos. | Mi formación en especificación de requerimientos, Impact Mapping y lenguaje ubicuo me proporciona las bases analíticas para medir el valor entregado por el software. | Optimizará la eficiencia de los procesos de desarrollo, asegurando que las funcionalidades construidas generen el máximo retorno de inversión para la organización. | Dentro de los primeros 18 meses tras finalizar los estudios profesionales. |
 
 <br>
 
@@ -328,3 +318,14 @@ En esta sección cada integrante del equipo establece al menos dos objetivos SMA
 # Capítulo I: Presentación
 
 El contenido del Capítulo I se encuentra en [Capitulo_1.md](Capitulo_1.md).
+
+
+## Conclusiones
+
+- Conclusiones y recomendaciones
+- Video App Validation
+- Video About the Product
+- Video About the Team
+- Glosario
+- Bibliografía
+- Anexos

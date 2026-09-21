@@ -36,7 +36,7 @@
         <td align="center" >Mauricio Sebastian Castillo Yataco</td>
       </tr>
       <tr>
-        <td align="center" > - </td>
+        <td align="center" > u202320574 </td>
         <td align="center" >Juan Jose Meza Huanacune</td>
       </tr>
       <tr>
