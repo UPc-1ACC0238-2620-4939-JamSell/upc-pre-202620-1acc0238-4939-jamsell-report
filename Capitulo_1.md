@@ -83,12 +83,13 @@ HTML
 
    <tr>
     <td width="30%" align="center">
-      <img src="../../assets/chapter-1/Integrante-5.jpg" width="180">
+      <img src="markdown/assets/chapter-1/MateoSalazar.jpeg" width="180"
     </td>
     <td width="70%">
       <h3>Mateo Paolo Salazar Miranda</h3>
-      <h4>-</h4>
+      <h4>u202315171</h4>
       <p>
+        Mi nombre es Mateo Paolo Salazar Miranda y me encuentro cursando la carrera de Ingeniería de Software. Soy un estudiante responsable y comprometido, con interés en el desarrollo de soluciones tecnológicas innovadoras. Tengo habilidades en trabajo en equipo, pensamiento analítico y resolución de problemas. 
       </p>
     </td>
   </tr>
