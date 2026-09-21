@@ -111,7 +111,7 @@ Durante la elaboración del AV1, el equipo organizó y distribuyó las actividad
 
 ### Evidencia de colaboración
 
-![GitHub Collaboration Insights AV1](images/collaboration/av1-insights.png)
+![GitHub Collaboration Insights AV1](images/commiters.png)
 
 ### Participación del equipo
 
@@ -254,20 +254,6 @@ Durante la elaboración del AV1, el equipo organizó y distribuyó las actividad
 
 ---
 
-## Conclusiones
-
-- Conclusiones y recomendaciones
-- Video App Validation
-- Video About the Product
-- Video About the Team
-- Glosario
-- Bibliografía
-- Anexos
-
-<br>
-
----
-
 # Student Outcome
 
 El curso contribuye al cumplimiento del Student Outcome ABET:
@@ -332,3 +318,14 @@ En esta sección cada integrante del equipo establece al menos dos objetivos SMA
 # Capítulo I: Presentación
 
 El contenido del Capítulo I se encuentra en [Capitulo_1.md](Capitulo_1.md).
+
+
+## Conclusiones
+
+- Conclusiones y recomendaciones
+- Video App Validation
+- Video About the Product
+- Video About the Team
+- Glosario
+- Bibliografía
+- Anexos
