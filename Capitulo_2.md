@@ -2632,3 +2632,147 @@ User / Role Validation
 ```
 
 ---
+
+### 2.6.6.6. Bounded Context Software Architecture Code Level Diagrams
+
+En esta sección se presentan los diagramas de nivel de código correspondientes al bounded context **Identity & Access**. Estos diagramas permiten representar con mayor detalle los elementos que conforman el modelo de identidad, autorización y administración de sesiones utilizado por Gethics.
+
+Identity & Access centraliza la información relacionada con los usuarios y sus roles, manteniendo además las reglas necesarias para controlar el ciclo de vida de las sesiones autenticadas.
+
+Los mecanismos técnicos relacionados con hashing de contraseñas, generación de tokens, middleware de autenticación y persistencia concreta permanecen fuera del Domain Layer y son implementados en Infrastructure.
+
+Para este bounded context se consideran los siguientes diagramas:
+
+- **Domain Layer Class Diagram**, que representa los Aggregate Roots, Value Objects, enumeraciones, servicios de dominio e interfaces de repositorio.
+- **Database Design Diagram**, que representa las estructuras necesarias para persistir usuarios y sesiones.
+
+---
+
+#### 2.6.6.6.1. Bounded Context Domain Layer Class Diagrams
+
+En esta sección se presenta el UML Class Diagram correspondiente al Domain Layer del bounded context **Identity & Access**.
+
+El modelo tiene como Aggregate Root principal a `User`, encargado de representar la identidad de una persona registrada dentro de Gethics. Cada usuario mantiene un correo electrónico único, un rol activo y un estado que determina si puede utilizar normalmente la plataforma.
+
+`Email` se representa como un Value Object encargado de encapsular y validar la dirección de correo utilizada por el usuario.
+
+La enumeración `Role` establece los roles disponibles dentro de Gethics: Farmer, Veterinarian, Agricultural Technician y Administrator. Cada usuario mantiene un único rol activo.
+
+`RoleAssignmentService` contiene las reglas de dominio necesarias para validar los cambios de rol. En particular, permite verificar si el usuario que realiza una asignación posee los permisos requeridos para modificar el rol de otro usuario.
+
+`UserSession` se representa como un Aggregate Root independiente debido a que posee su propio ciclo de vida. Una sesión puede ser creada, actualizada, expirada o revocada independientemente de la modificación de los datos principales del usuario.
+
+La enumeración `SessionStatus` permite controlar el estado de cada sesión, mientras que `SessionExpirationService` aplica las reglas necesarias para determinar si una sesión debe expirar debido a inactividad o vencimiento.
+
+Las interfaces `UserRepository` y `UserSessionRepository` definen las operaciones requeridas para persistir y consultar los Aggregate Roots del contexto sin introducir dependencias directas hacia tecnologías específicas de almacenamiento.
+
+**Identity & Access Domain Layer Class Diagram**
+
+![Identity & Access Domain Layer Class Diagram](images/IdentityAccessDomainLayerClassDiagram.png)
+
+Las principales relaciones representadas en el diagrama son las siguientes:
+
+- Cada `User` utiliza un `Email` como dirección de correo validada.
+- Cada `User` mantiene exactamente un `Role` activo.
+- Cada `User` mantiene un `UserStatus`.
+- Un `User` puede estar asociado con cero o múltiples `UserSession`.
+- Cada `UserSession` corresponde a un único usuario mediante `userId`.
+- Cada `UserSession` mantiene un `SessionStatus`.
+- `RoleAssignmentService` utiliza `User` y `Role` para validar y realizar cambios de rol.
+- `SessionExpirationService` evalúa las sesiones y determina cuándo deben pasar a un estado expirado.
+- `UserRepository` define las operaciones de persistencia asociadas a `User`.
+- `UserSessionRepository` define las operaciones de persistencia asociadas a `UserSession`.
+
+Esta estructura permite mantener separadas las reglas relacionadas con identidad, roles y sesiones de los mecanismos técnicos utilizados para autenticar solicitudes, proteger contraseñas o generar tokens.
+
+De esta manera, el Domain Layer permanece independiente del framework o tecnología de seguridad utilizada por Gethics, mientras Identity & Access continúa funcionando como el bounded context responsable de administrar la identidad y autorización de los usuarios.
+
+---
+
+#### 2.6.6.6.2. Bounded Context Database Design Diagram
+
+En esta sección se presenta el Database Design Diagram correspondiente al bounded context **Identity & Access**.
+
+El modelo de persistencia representa las estructuras necesarias para almacenar la información de los usuarios registrados en Gethics y las sesiones generadas durante los procesos de autenticación.
+
+Identity & Access mantiene la propiedad de los datos relacionados con identidad, credenciales, roles y sesiones. Los demás bounded contexts pueden utilizar la identidad y el rol validados para aplicar sus reglas de autorización, pero no modifican directamente las estructuras internas de este contexto.
+
+Las contraseñas no se almacenan en texto plano. El modelo conserva únicamente el valor generado mediante el mecanismo de hashing implementado en Infrastructure.
+
+**Figura X. Identity & Access Database Design Diagram**
+
+![Identity & Access Database Design Diagram](images/IdentityAccessDatabaseDesign.png)
+
+El diseño de base de datos está conformado por las tablas `USERS` y `USER_SESSIONS`.
+
+### Users
+
+La tabla `USERS` almacena la información principal de cada usuario registrado dentro de Gethics.
+
+| Campo | Tipo | Restricción | Descripción |
+|---|---|---|---|
+| `id` | UUID | Primary Key, NOT NULL | Identificador único del usuario. |
+| `email` | VARCHAR | UNIQUE, NOT NULL | Correo electrónico utilizado para identificar al usuario. |
+| `password_hash` | VARCHAR | NOT NULL | Representación segura de la contraseña mediante hashing. |
+| `role` | VARCHAR | NOT NULL | Rol activo asociado al usuario. |
+| `status` | VARCHAR | NOT NULL | Estado actual del usuario. |
+| `created_at` | DATETIME | NOT NULL | Fecha y hora de creación del usuario. |
+
+El atributo `email` posee una restricción UNIQUE para impedir que existan dos usuarios registrados con la misma dirección de correo electrónico.
+
+El campo `role` puede representar los valores definidos por el dominio:
+
+- `FARMER`
+- `VETERINARIAN`
+- `AGRICULTURAL_TECHNICIAN`
+- `ADMINISTRATOR`
+
+El campo `status` puede representar:
+
+- `ACTIVE`
+- `INACTIVE`
+
+### User Sessions
+
+La tabla `USER_SESSIONS` almacena las sesiones autenticadas correspondientes a los usuarios registrados.
+
+| Campo | Tipo | Restricción | Descripción |
+|---|---|---|---|
+| `id` | UUID | Primary Key, NOT NULL | Identificador único de la sesión. |
+| `user_id` | UUID | Foreign Key, NOT NULL | Identificador del usuario propietario de la sesión. |
+| `created_at` | DATETIME | NOT NULL | Fecha y hora en la que se creó la sesión. |
+| `last_activity_at` | DATETIME | NOT NULL | Fecha y hora de la última actividad registrada. |
+| `expires_at` | DATETIME | NOT NULL | Fecha y hora establecida para la expiración de la sesión. |
+| `status` | VARCHAR | NOT NULL | Estado actual de la sesión. |
+
+El atributo `user_id` funciona como Foreign Key hacia `USERS.id`, debido a que ambas estructuras pertenecen al bounded context Identity & Access.
+
+El campo `status` puede contener los valores definidos por el dominio:
+
+- `ACTIVE`
+- `EXPIRED`
+- `REVOKED`
+
+### Relaciones del modelo
+
+El modelo establece la siguiente relación principal:
+
+- Un `USER` puede tener cero o múltiples `USER_SESSIONS`.
+- Cada `USER_SESSION` pertenece obligatoriamente a un único `USER`.
+- El correo electrónico de cada usuario debe ser único.
+- Cada usuario mantiene únicamente un rol activo.
+- Cada sesión conserva su propio estado y ciclo de vida.
+
+La cardinalidad principal se representa de la siguiente manera:
+
+```text
+USERS  1 ───────── 0..* USER_SESSIONS
+
+Las credenciales almacenadas no contienen la contraseña original del usuario. password_hash conserva únicamente la representación segura generada mediante el servicio técnico de hashing definido en Infrastructure.
+
+Asimismo, los tokens utilizados para autenticar solicitudes no forman parte obligatoria del modelo de dominio ni se representan como una tabla adicional en este diseño. Su generación y validación corresponde a TokenService, definido dentro del Infrastructure Layer.
+
+La información de Identity & Access puede ser utilizada por los demás bounded contexts para identificar al usuario y validar su rol, manteniendo este contexto como propietario de las estructuras relacionadas con usuarios y sesiones.
+
+De esta manera, el diseño de base de datos mantiene centralizadas las responsabilidades de identidad, autenticación y autorización, preservando los límites definidos mediante Domain-Driven Design.
+```
