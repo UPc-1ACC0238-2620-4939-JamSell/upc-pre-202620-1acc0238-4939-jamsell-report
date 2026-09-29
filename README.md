@@ -314,18 +314,3 @@ En esta sección cada integrante del equipo establece al menos dos objetivos SMA
 <br>
 
 ---
-
-# Capítulo I: Presentación
-
-El contenido del Capítulo I se encuentra en [Capitulo_1.md](Capitulo_1.md).
-
-
-## Conclusiones
-
-- Conclusiones y recomendaciones
-- Video App Validation
-- Video About the Product
-- Video About the Team
-- Glosario
-- Bibliografía
-- Anexos
