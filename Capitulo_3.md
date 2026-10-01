@@ -229,6 +229,32 @@ Ficha individual del animal
 
 #### 3.1.2.5. Navigation Systems
 
+El sistema de navegación de **Gethics** está diseñado para permitir que el usuario acceda de manera rápida y clara a las principales funcionalidades de la aplicación móvil.
+
+La navegación principal se realiza mediante una barra inferior que agrupa los módulos principales visibles en la interfaz:
+
+- `Inicio`
+- `Inventario`
+- `Tareas`
+- `Perfil`
+
+Esta barra permite al usuario cambiar entre las secciones principales de la aplicación sin necesidad de regresar constantemente a una pantalla inicial.
+
+La opción seleccionada se diferencia visualmente del resto, permitiendo que el usuario identifique en qué módulo se encuentra actualmente.
+
+#### Navegación principal
+
+La estructura principal de navegación puede representarse de la siguiente manera:
+
+```text
+Inicio
+  │
+  ├── Inventario
+  │
+  ├── Tareas
+  │
+  └── Perfil
+```
 
 ---
 
