@@ -88,12 +88,144 @@ Como se observa en el diagrama, **Autenticación** es la puerta de entrada a la 
 
 #### 3.1.2.2. Labelling Systems
 
+El sistema de etiquetado de **Gethics** busca facilitar la comprensión de las funcionalidades mediante términos breves, descriptivos y relacionados con las actividades habituales de los usuarios del sector ganadero.
+
+Las etiquetas utilizadas en la aplicación evitan términos técnicos innecesarios y priorizan palabras que permitan al usuario reconocer rápidamente qué información encontrará o qué acción realizará al seleccionar cada elemento.
+
+La navegación principal utiliza cuatro etiquetas consistentes en las diferentes pantallas:
+
+- **Inicio:** permite acceder al resumen general del estado del hato, indicadores y alertas recientes.
+- **Inventario:** permite consultar, buscar y registrar animales.
+- **Tareas:** permite consultar actividades y eventos programados dentro del calendario de salud.
+- **Perfil:** permite gestionar la información personal, configuración y otras opciones relacionadas con la cuenta.
+
+Además de las etiquetas de navegación principal, cada módulo utiliza términos específicos según su contexto.
+
+| Etiqueta | Propósito |
+|---|---|
+| `Inicia sesión` | Identifica el proceso de acceso para usuarios registrados. |
+| `Crear Cuenta` | Inicia el proceso de registro de un nuevo usuario. |
+| `Ingresar` | Confirma las credenciales ingresadas y permite acceder a la aplicación. |
+| `Registrarse` | Confirma la creación de una nueva cuenta. |
+| `Inventario de Ganado` | Identifica el módulo donde se encuentran los animales registrados. |
+| `Registrar Nueva Res` | Permite registrar un nuevo animal en el inventario. |
+| `Número de Arete (Tag)` | Identifica al animal mediante su código o número de arete. |
+| `Información` | Muestra los datos generales del animal seleccionado. |
+| `Salud` | Agrupa signos vitales, controles, tratamientos y eventos sanitarios. |
+| `Vacunas` | Presenta el historial de vacunación y desparasitación del animal. |
+| `Registrar Tratamiento` | Permite añadir un nuevo tratamiento al historial sanitario. |
+| `Calendario de Salud` | Organiza las actividades sanitarias y tareas programadas por fecha. |
+| `Próximas Tareas` | Presenta las actividades pendientes próximas a realizarse. |
+| `Alertas Recientes` | Muestra situaciones recientes que requieren la atención del usuario. |
+| `Guardar Registro` | Confirma el almacenamiento de la información registrada. |
+| `Editar Perfil` | Permite modificar los datos personales y de contacto. |
+| `Gestionar Personal` | Permite administrar trabajadores, veterinarios y permisos asociados. |
+| `Exportar Reportes de Salud` | Permite generar reportes relacionados con el estado del ganado. |
+| `Soporte` | Permite acceder a opciones de ayuda y contacto con Gethics. |
+| `Cerrar Sesión` | Finaliza la sesión activa del usuario. |
+
+Gethics también utiliza etiquetas de estado para facilitar la interpretación rápida de la información. Estas etiquetas aparecen acompañadas de recursos visuales como colores e iconos para reforzar su significado.
+
+Entre los principales estados utilizados se encuentran:
+
+- **Sano:** indica que el animal no presenta incidencias sanitarias relevantes.
+- **Enfermo:** indica la existencia de una condición que requiere atención.
+- **Gestación:** identifica a los animales que se encuentran en periodo de gestación.
+- **Saludable:** comunica un estado general favorable en la ficha individual del animal.
+- **Urgente:** identifica actividades que requieren atención prioritaria.
+- **En observación:** señala situaciones que necesitan seguimiento.
+- **Aplicado:** indica que un tratamiento, vacuna o procedimiento ya fue realizado.
+
+Para los animales se utiliza principalmente el **Número de Arete (Tag)** como identificador visible, debido a que permite relacionar la información digital con el identificador utilizado en el manejo del ganado.
+
+Por ejemplo:
+
+`Tag ID #8493`
+
+Este formato permite que el usuario pueda reconocer rápidamente al animal tanto en el inventario como en su ficha individual.
+
+En las acciones se utilizan principalmente verbos que indican claramente lo que ocurrirá al seleccionar una opción, como:
+
+- `Registrar`
+- `Guardar`
+- `Editar`
+- `Gestionar`
+- `Exportar`
+- `Ver todas`
+- `Cerrar sesión`
+
+El sistema de etiquetado mantiene consistencia entre las distintas pantallas para evitar que una misma funcionalidad sea representada con nombres diferentes. De esta manera, Gethics busca reducir la carga cognitiva del usuario y facilitar el aprendizaje progresivo de la aplicación.
+
+---
 
 #### 3.1.2.3. SEO Tags and Meta Tags
 
+Las estrategias de **SEO Tags and Meta Tags** de Gethics se aplican principalmente a la **Landing Page**, debido a que las pantallas internas de la aplicación móvil no son indexadas directamente por los motores de búsqueda.
+
+El objetivo de estas etiquetas es mejorar la identificación del producto en buscadores, describir correctamente el contenido de la página y optimizar la forma en que Gethics se presenta cuando el enlace es compartido en redes sociales o aplicaciones de mensajería.
+
+Para la Landing Page se consideran las siguientes etiquetas principales:
+
+```html
+<title>Gethics | Gestión inteligente de ganado</title>
+
+<meta
+  name="description"
+  content="Gethics es una aplicación móvil para pequeños y medianos ganaderos que permite gestionar animales, controlar eventos sanitarios, vacunas, tareas y reportes desde un solo lugar."
+/>
+
+<meta
+  name="keywords"
+  content="Gethics, gestión ganadera, ganado, aplicación ganadera, control de ganado, salud animal, gestión veterinaria, vacunas ganado, inventario ganadero"
+/>
+
+<meta name="author" content="JamSell" />
+
+<meta name="robots" content="index, follow" />
+```
+
+---
 
 #### 3.1.2.4. Searching Systems
 
+El sistema de búsqueda de **Gethics** está diseñado para facilitar la localización rápida de animales registrados dentro del inventario.
+
+La principal funcionalidad de búsqueda se encuentra en el módulo **Inventario de Ganado**, donde el usuario dispone de una barra de búsqueda con el texto:
+
+`Buscar por arete o raza`
+
+A partir de esta barra, el usuario puede localizar animales utilizando información directamente relacionada con su identificación dentro del sistema.
+
+Los criterios de búsqueda visibles en el diseño son:
+
+- Número de arete o Tag.
+- Raza del animal.
+
+Cada resultado del inventario se presenta mediante una tarjeta que resume la información principal del animal, permitiendo reconocerlo antes de ingresar a su ficha detallada.
+
+La información mostrada en cada resultado incluye:
+
+- Número de arete.
+- Raza.
+- Peso.
+- Estado sanitario.
+- Representación visual del animal.
+
+El flujo principal de búsqueda puede representarse de la siguiente manera:
+
+```text
+Inventario
+    ↓
+Barra de búsqueda
+    ↓
+Ingresar número de arete o raza
+    ↓
+Mostrar registros coincidentes
+    ↓
+Seleccionar animal
+    ↓
+Ficha individual del animal
+```
 
 #### 3.1.2.5. Navigation Systems
 
