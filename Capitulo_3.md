@@ -41,7 +41,7 @@ Gethics no utiliza un color de "éxito" o "error" saturados independientes: el g
 
 **Typography:**
 
-La tipografía utilizada es **Roboto**, confirmada directamente en los nodos de texto de los mock-ups de Mateo en Figma (peso Medium para títulos y botones, Regular para texto de cuerpo). Es una sans-serif neutra y de alta legibilidad en pantallas pequeñas, apropiada para una app que se consulta rápido y muchas veces al aire libre, con el ganado por delante. Se usa una sola familia en distintos pesos para toda la interfaz —no se introduce una segunda tipografía para títulos—, lo que simplifica la lectura y refuerza la coherencia visual entre el Landing Page y la aplicación móvil.
+La tipografía utilizada es **Roboto**, confirmada directamente en los nodos de texto de los mock-ups de Mateo en Figma (peso Medium para títulos y botones, Regular para texto de cuerpo). Es una sans-serif neutra y de alta legibilidad en pantallas pequeñas, apropiada para una app que se consulta rápido y muchas veces al aire libre, con el ganado por delante. Se usa una sola familia en distintos pesos para toda la interfaz (no se introduce una segunda tipografía para títulos), lo que simplifica la lectura y refuerza la coherencia visual entre el Landing Page y la aplicación móvil.
 
 <div align="center">
   <p>
@@ -69,7 +69,7 @@ Gethics utiliza un set de íconos de línea simple, de trazo uniforme y esquinas
 
 **Tono de comunicación:**
 
-El tono de Gethics es serio, respetuoso y directo, con un nivel de formalidad intermedio. El producto maneja información sanitaria del ganado, por lo que el lenguaje evita el humor o la informalidad excesiva que podría restarle seriedad al contenido, pero tampoco recurre a tecnicismos innecesarios: busca que tanto el ganadero como el veterinario entiendan de inmediato qué está pasando con el animal y qué acción deben tomar. La redacción prioriza etiquetas breves y accionables ("Registrar Tratamiento", "Ver todo", "Guardar Registro") por sobre textos largos, y reserva un tono más sereno para el uso diario, con momentos puntuales de mayor claridad visual —colores y badges— cuando una situación requiere atención prioritaria.
+El tono de Gethics es serio, respetuoso y directo, con un nivel de formalidad intermedio. El producto maneja información sanitaria del ganado, por lo que el lenguaje evita el humor o la informalidad excesiva que podría restarle seriedad al contenido, pero tampoco recurre a tecnicismos innecesarios: busca que tanto el ganadero como el veterinario entiendan de inmediato qué está pasando con el animal y qué acción deben tomar. La redacción prioriza etiquetas breves y accionables ("Registrar Tratamiento", "Ver todo", "Guardar Registro") por sobre textos largos, y reserva un tono más sereno para el uso diario, con momentos puntuales de mayor claridad visual (colores y badges) cuando una situación requiere atención prioritaria.
 
 **Spacing:**
 
