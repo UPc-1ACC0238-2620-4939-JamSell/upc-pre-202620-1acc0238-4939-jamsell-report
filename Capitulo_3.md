@@ -12,7 +12,9 @@ Las directrices de estilo general establecen los principios visuales que guían 
 
 El concepto visual parte del isotipo ya validado por el equipo: un toro en silueta sobre fondo granate, que asocia directamente la marca con el sector pecuario y con el nombre "Gethics" (genética + ética en el manejo del ganado). A partir de ahí, la paleta, la tipografía y los componentes de Gethics se mantienen deliberadamente acotados (pocos colores, una sola familia tipográfica, íconos de trazo simple) para que la aplicación se lea clara y profesional incluso en pantallas pequeñas y bajo el sol, condición habitual de uso en campo.
 
-![Logo Gethics](images/GethicsIcon.png)
+<div align="center">
+  <img src="images/GethicsIcon.png" alt="Logo Gethics" width="200">
+</div>
 
 **Colores principales:**
 
