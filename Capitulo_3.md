@@ -4,7 +4,76 @@
 
 ### 3.1.1. Style Guidelines
 
+Esta sección establece las bases visuales de uso común para todo el equipo (branding, tipografía, colores, spacing e íconos), de modo que la aplicación móvil y el Landing Page mantengan una presentación consistente.
+
 #### 3.1.1.1. General Style Guidelines
+
+Las directrices de estilo general establecen los principios visuales que guían el desarrollo de Gethics Mobile, tanto en la aplicación móvil como en el Landing Page. El objetivo es transmitir una identidad confiable, técnica y cercana al trabajo de campo, que responda a las necesidades de ganaderos y veterinarios que gestionan información sanitaria de su ganado desde el celular, muchas veces en condiciones de baja conectividad.
+
+El concepto visual parte del isotipo ya validado por el equipo: un toro en silueta sobre fondo granate, que asocia directamente la marca con el sector pecuario y con el nombre "Gethics" (genética + ética en el manejo del ganado). A partir de ahí, la paleta, la tipografía y los componentes de Gethics se mantienen deliberadamente acotados (pocos colores, una sola familia tipográfica, íconos de trazo simple) para que la aplicación se lea clara y profesional incluso en pantallas pequeñas y bajo el sol, condición habitual de uso en campo.
+
+![Logo Gethics](images/GethicsIcon.png)
+
+**Colores principales:**
+
+| Código HEX | Color | Uso |
+|---|---|---|
+| #722A2E | <img src="images/3-1-1-1-color-722A2E.png" alt="722A2E" width="50px"> | Color primario — botones principales, elementos de énfasis (fecha seleccionada, barra de progreso, textos destacados) |
+| #1E1E1E | <img src="images/3-1-1-1-color-1E1E1E.png" alt="1E1E1E" width="50px"> | Texto principal — títulos y contenido de mayor jerarquía |
+| #FFFFFF | <img src="images/3-1-1-1-color-FFFFFF.png" alt="FFFFFF" width="50px"> | Fondo principal de pantallas y tarjetas |
+
+**Colores secundarios:**
+
+| Código HEX | Color | Uso |
+|---|---|---|
+| #444444 | <img src="images/3-1-1-1-color-444444.png" alt="444444" width="50px"> | Texto secundario — subtítulos, labels y metadatos |
+| #E8F3E8 | <img src="images/3-1-1-1-color-E8F3E8.png" alt="E8F3E8" width="50px"> | Superficie neutra — fondos de chips e íconos circulares |
+| #E4CBB4 | <img src="images/3-1-1-1-color-E4CBB4.png" alt="E4CBB4" width="50px"> | Acento cálido — badges de estado positivo (p. ej. "Saludable") |
+
+**Colores de estado:**
+
+| Código HEX | Color | Uso |
+|---|---|---|
+| #FFF4E0 | <img src="images/3-1-1-1-color-FFF4E0.png" alt="FFF4E0" width="50px"> | Fondo de alertas y urgencias (badge "Urgente", notificaciones del sensor) |
+| #BB7B1C | <img src="images/3-1-1-1-color-BB7B1C.png" alt="BB7B1C" width="50px"> | Texto/ícono sobre alertas y urgencias |
+
+Gethics no utiliza un color de "éxito" o "error" saturados independientes: el granate se reutiliza como color de énfasis en toda la interfaz y el ámbar cubre exclusivamente alertas y urgencias. Esto mantiene la paleta reducida y consistente con los mock-ups ya construidos por el equipo para la aplicación móvil, en vez de introducir tonos adicionales.
+
+**Typography:**
+
+La tipografía utilizada es **Roboto**, confirmada directamente en los nodos de texto de los mock-ups de Mateo en Figma (peso Medium para títulos y botones, Regular para texto de cuerpo). Es una sans-serif neutra y de alta legibilidad en pantallas pequeñas, apropiada para una app que se consulta rápido y muchas veces al aire libre, con el ganado por delante. Se usa una sola familia en distintos pesos para toda la interfaz —no se introduce una segunda tipografía para títulos—, lo que simplifica la lectura y refuerza la coherencia visual entre el Landing Page y la aplicación móvil.
+
+<div align="center">
+  <p>
+    <b>Gráfico</b>: Pesos de Roboto utilizados en Gethics
+  </p>
+  <img src="images/3-1-1-1-typography-roboto.png" alt="Roboto" width="500">
+  <p>
+    <i><b>Fuente</b>: Elaboración propia, a partir de los text styles verificados en el Figma del equipo.</i>
+  </p>
+</div>
+
+**Icons:**
+
+Gethics utiliza un set de íconos de línea simple, de trazo uniforme y esquinas redondeadas (en la línea de **Lucide Icons**), consistente con los íconos ya presentes en los mock-ups del equipo: la navegación inferior (Inicio, Inventario, Tareas, Perfil), las notificaciones y los íconos de evento dentro de la ficha de salud del animal. Este estilo minimalista refuerza la lectura rápida de la interfaz y evita la sobrecarga visual en pantallas pequeñas.
+
+<div align="center">
+  <p>
+    <b>Gráfico</b>: Íconos utilizados en los mock-ups de Gethics
+  </p>
+  <img src="images/3-1-1-1-icons-reference.png" alt="Iconos Gethics" width="600">
+  <p>
+    <i><b>Fuente</b>: Capturas de los mock-ups del equipo (Figma).</i>
+  </p>
+</div>
+
+**Tono de comunicación:**
+
+El tono de Gethics es serio, respetuoso y directo, con un nivel de formalidad intermedio. El producto maneja información sanitaria del ganado, por lo que el lenguaje evita el humor o la informalidad excesiva que podría restarle seriedad al contenido, pero tampoco recurre a tecnicismos innecesarios: busca que tanto el ganadero como el veterinario entiendan de inmediato qué está pasando con el animal y qué acción deben tomar. La redacción prioriza etiquetas breves y accionables ("Registrar Tratamiento", "Ver todo", "Guardar Registro") por sobre textos largos, y reserva un tono más sereno para el uso diario, con momentos puntuales de mayor claridad visual —colores y badges— cuando una situación requiere atención prioritaria.
+
+**Spacing:**
+
+El espaciado sigue una base de 8px (8 · 16 · 24 · 32 · 48px), visible en los mock-ups en la separación entre tarjetas, el padding interno de los chips de estado y los márgenes entre secciones de la ficha del animal. En pantallas pequeñas esto permite agrupar la información en bloques claramente separados (datos generales, signos vitales, chequeos recientes) sin saturar la vista, priorizando que el usuario pueda escanear la pantalla rápido mientras trabaja en campo.
 
 ---
 
