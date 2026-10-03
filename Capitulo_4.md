@@ -117,6 +117,64 @@ feature/<user-story>-<short-description>
 
 ### 4.3.1. Diseño de Entrevistas
 
+Las entrevistas de validación se plantean con el objetivo de evaluar la percepción de los usuarios después de interactuar con el Landing Page y la aplicación móvil de Gethics. A diferencia de las entrevistas exploratorias realizadas en capítulos anteriores, esta etapa se enfoca en validar la claridad de la propuesta de valor, la facilidad de navegación, la comprensión de las funcionalidades principales y la utilidad percibida por los segmentos objetivo.
+
+Para esta validación se consideran los dos segmentos principales definidos para Gethics:
+
+- Pequeños y medianos ganaderos.
+- Veterinarios y técnicos agropecuarios.
+
+La dinámica de la entrevista consiste en presentar primero el Landing Page de Gethics, para observar si el usuario comprende el problema que busca resolver la solución, la confianza que transmite y la claridad de sus secciones. Posteriormente, se muestra la aplicación móvil, revisando el Inicio, el menú de navegación inferior y los módulos principales (Inventario, Tareas, Perfil) según corresponda al rol del entrevistado.
+
+En el caso del segmento ganadero, la evaluación se orienta al registro de animales, el calendario sanitario (vacunas y tratamientos), las alertas automáticas y el control económico del hato. En el caso del segmento veterinario/técnico, se evalúa la revisión de clientes asignados, la consulta de pacientes (animales), el historial clínico, el registro de eventos sanitarios en campo y el comportamiento de la aplicación sin conexión. Al finalizar la demostración, el entrevistado responde un conjunto de preguntas diseñadas para recoger sus opiniones, dificultades y recomendaciones de mejora.
+
+### Guía de preguntas para el segmento Ganadero
+
+1. ¿A qué se dedica actualmente dentro de la actividad ganadera y qué tipo de animales maneja?
+2. ¿Cómo registra hoy la información de sus animales, vacunas, tratamientos o gastos?
+3. Al ver el Landing Page de Gethics, ¿entiende rápidamente qué problema busca resolver la aplicación?
+4. ¿La información del Landing Page le genera confianza para probar la aplicación? ¿Por qué?
+5. ¿Qué sección del Landing Page le pareció más útil o clara?
+6. ¿Hubo alguna parte del Landing Page que le pareció confusa, innecesaria o poco creíble?
+7. Al abrir la aplicación, ¿le resultó claro hacia dónde debía ir primero?
+8. ¿La pantalla de Inicio le muestra información útil para tomar decisiones rápidas sobre su ganado?
+9. ¿Los nombres de las opciones del menú (Inicio, Inventario, Tareas, Perfil) le resultan comprensibles?
+10. ¿Le resultó fácil encontrar y buscar un animal dentro del Inventario?
+11. ¿El formulario para registrar o editar un animal le parece claro y completo (raza, edad, sexo, estado de salud)?
+12. ¿Qué dato importante sobre un animal cree que falta registrar?
+13. ¿Le resulta útil registrar una vacuna o un tratamiento desde la ficha del animal?
+14. ¿La sección de Tareas le ayudaría a no olvidar vacunas, desparasitaciones u otros eventos sanitarios?
+15. ¿Las alertas que muestra la aplicación le parecen oportunas y fáciles de entender?
+16. ¿La sección de reportes le parece útil para controlar ingresos, egresos o la rentabilidad de su hato?
+17. ¿Qué tan importante es para usted que la aplicación funcione sin conexión a internet, dado el lugar donde trabaja?
+18. ¿El lenguaje usado en la aplicación le parece cercano y fácil de entender?
+19. ¿Qué parte de la aplicación le resultó más difícil de usar o encontrar?
+20. Después de probar Gethics, ¿la usaría en su trabajo diario? ¿Qué tendría que mejorar para que sí la use?
+
+### Guía de preguntas para el segmento Veterinario / Técnico agropecuario
+
+1. ¿Cuál es su experiencia trabajando con ganaderos o productores pecuarios?
+2. ¿Cómo organiza actualmente la información de sus clientes, pacientes y visitas en campo?
+3. Al ver el Landing Page de Gethics, ¿queda claro que también está pensada para veterinarios y técnicos?
+4. ¿Qué información del Landing Page le ayudó más a entender el valor de la aplicación para su trabajo?
+5. ¿Qué información agregaría al Landing Page para que un veterinario confíe más en Gethics?
+6. Al abrir la aplicación, ¿la pantalla de Inicio le permite entender rápidamente qué requiere su atención?
+7. ¿Le resultó fácil encontrar y revisar a sus clientes (ganaderos) asignados?
+8. ¿La vista de pacientes (animales) por cliente le ayuda a encontrar rápidamente a quién debe revisar?
+9. ¿Le parece adecuado el flujo de buscar primero un animal o cliente antes de ver su información clínica?
+10. ¿El historial clínico de cada animal es suficiente para hacer una revisión veterinaria básica?
+11. ¿El formulario para registrar un evento sanitario (chequeo, vacuna, tratamiento) le permite registrar lo que necesita?
+12. ¿Qué campos clínicos considera que faltan en el registro sanitario?
+13. ¿La sección de Tareas le serviría para organizar sus visitas, controles o seguimientos pendientes?
+14. ¿Qué tan clara le resultó la forma de priorizar entre varios animales o productores pendientes de atención?
+15. Al probar el registro sin conexión, ¿la aplicación le dio la confianza de que no perdería la información ingresada?
+16. ¿Qué tan importante es para usted no depender de señal para registrar un chequeo en campo?
+17. ¿El lenguaje y los términos usados en la aplicación coinciden con cómo usted trabaja en el día a día?
+18. ¿Hubo alguna pantalla, botón o texto que no entendió durante la prueba?
+19. ¿Qué le pareció más valioso de la aplicación frente a sus fichas físicas o anotaciones en el celular?
+20. Después de probar Gethics, ¿la recomendaría como herramienta de apoyo veterinario/técnico? ¿Qué cambios serían prioritarios?
+
+
 
 ### 4.3.2. Registro de Entrevistas
 
