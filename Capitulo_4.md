@@ -117,7 +117,67 @@ A continuación, se presenta el resumen del Sprint Planning Meeting.
 #### 4.2.1.2. Aspect Leaders and Collaborators
 
 
-#### 4.2.1.3. Sprint Backlog n
+#### 4.2.1.3. Sprint Backlog 1
+
+El Sprint Backlog correspondiente al Sprint 1 reúne las User Stories y Technical Stories seleccionadas por el equipo JamSell para el desarrollo de la primera iteración de Gethics. La planificación considera funcionalidades relacionadas con autenticación y seguridad, gestión de animales y granjas, sanidad, gestión veterinaria y financiera, analítica, notificaciones, IoT e infraestructura técnica.
+
+Para organizar y dar seguimiento al trabajo se utilizó Trello como herramienta de gestión. El tablero permite identificar las historias y tareas técnicas planificadas, los responsables asignados, sus estimaciones mediante Story Points y su estado dentro del flujo de trabajo definido por el equipo.
+
+El tablero se organiza mediante las columnas **Product Backlog**, **En proceso** y **Hecho**, permitiendo visualizar el avance de las actividades durante el Sprint.
+
+![Sprint Backlog del Sprint 1](images/sprint-1-backlog-board.png)
+
+**Trello Board:** [JamSell - Backlog & Sprints - 4939](https://trello.com/invite/b/6abbfed00c437e902d9811f6/ATTI228a577e76ea799efc4fc42ab8619a372B80494F/jamsell-backlog-sprints-4939)
+
+La distribución del Sprint Backlog se realizó considerando una carga planificada de aproximadamente 25 Story Points por integrante, alcanzando un total de 125 Story Points para el Sprint 1.
+
+| Integrante | User Stories / Technical Stories | Story Points |
+|---|---|---:|
+| Mauricio Sebastian Castillo Yataco | TS01, US01, US02, US03, US04, TS06, TS05, US24 | 25 |
+| Mateo Paolo Salazar Miranda | TS02, US05, US06, US08, US09, US10, TS04 | 25 |
+| Juan Jose Meza Huanacune | US11, US12, US13, US14, US21 | 25 |
+| Luis Angel Pillaca Vidal | US15, US17, US18, US19, TS03 | 25 |
+| Nadhim Abigail Raymundo Villarroel | US22, US20, US23, US16, US07 | 25 |
+| **Total** | **30 User Stories / Technical Stories** | **125** |
+
+A continuación, se presenta el detalle de los elementos considerados en el Sprint Backlog. Debido a que las estimaciones registradas por el equipo en Trello se realizaron mediante Story Points, no se realiza una conversión arbitraria a horas. La columna **Estimation (Hours)** se mantiene como no definida hasta que el equipo establezca una equivalencia o estimación específica para los work-items.
+
+| Sprint # | Story Id | Story Title | Task Id | Task Title | Task Description | Estimation (Hours) | Assigned To | Status |
+|---|---|---|---|---|---|---|---|---|
+| Sprint 1 | — | — | TS01 | Configurar repositorio, arquitectura y entornos | Configurar la estructura inicial del repositorio, arquitectura y entornos necesarios para el desarrollo del proyecto. | N/D - 3 SP | Equipo JamSell | To-do |
+| Sprint 1 | US01 | Registro de usuario (API) | US01-T01 | Implementación de registro de usuario | Desarrollar y validar la funcionalidad definida para el registro de usuarios mediante la API. | N/D - 3 SP | Mauricio Sebastian Castillo Yataco | To-do |
+| Sprint 1 | US02 | Inicio de sesión con JWT | US02-T01 | Implementación de inicio de sesión | Desarrollar y validar el proceso de autenticación mediante JWT. | N/D - 2 SP | Mauricio Sebastian Castillo Yataco | To-do |
+| Sprint 1 | US03 | Recuperación de contraseña | US03-T01 | Implementación de recuperación de contraseña | Desarrollar y validar el flujo correspondiente a la recuperación de contraseña. | N/D - 3 SP | Mauricio Sebastian Castillo Yataco | To-do |
+| Sprint 1 | US04 | Editar perfil | US04-T01 | Implementación de edición de perfil | Desarrollar la funcionalidad que permita modificar la información del perfil del usuario. | N/D - 2 SP | Mauricio Sebastian Castillo Yataco | To-do |
+| Sprint 1 | — | — | TS06 | Roles y autorización (ganadero / veterinario) | Implementar la gestión de roles y autorización requerida para diferenciar las operaciones disponibles para ganaderos y veterinarios. | N/D - 3 SP | Mauricio Sebastian Castillo Yataco | To-do |
+| Sprint 1 | — | — | TS05 | Manejo global de errores, logging y validaciones | Implementar mecanismos comunes para manejo de errores, registro de eventos y validaciones dentro de los servicios. | N/D - 3 SP | Mauricio Sebastian Castillo Yataco | To-do |
+| Sprint 1 | US24 | Planes de suscripción in-app | US24-T01 | Implementación de planes de suscripción | Desarrollar la funcionalidad correspondiente a la visualización y gestión de planes de suscripción dentro de la aplicación. | N/D - 6 SP | Mauricio Sebastian Castillo Yataco | To-do |
+| Sprint 1 | — | — | TS02 | Modelo de datos y migraciones de base de datos | Definir y preparar el modelo de datos y la estructura necesaria para la persistencia de la solución. | N/D - 5 SP | Mateo Paolo Salazar Miranda | To-do |
+| Sprint 1 | US05 | Registro de animal | US05-T01 | Implementación de registro de animal | Desarrollar y validar la funcionalidad para registrar un animal dentro del sistema. | N/D - 5 SP | Mateo Paolo Salazar Miranda | To-do |
+| Sprint 1 | US06 | Listado y búsqueda de animales | US06-T01 | Implementación de listado y búsqueda | Desarrollar la consulta y búsqueda de animales registrados en el sistema. | N/D - 5 SP | Mateo Paolo Salazar Miranda | To-do |
+| Sprint 1 | US08 | Baja de animal (eliminación lógica) | US08-T01 | Implementación de baja de animal | Implementar la eliminación lógica de un animal registrado. | N/D - 2 SP | Mateo Paolo Salazar Miranda | To-do |
+| Sprint 1 | US09 | Registro de granja | US09-T01 | Implementación de registro de granja | Desarrollar la funcionalidad para registrar una granja en el sistema. | N/D - 3 SP | Mateo Paolo Salazar Miranda | To-do |
+| Sprint 1 | US10 | Asociar animales a una granja | US10-T01 | Implementación de asociación animal-granja | Permitir la asociación de animales registrados con una granja. | N/D - 3 SP | Mateo Paolo Salazar Miranda | To-do |
+| Sprint 1 | — | — | TS04 | Documentación de la API (OpenAPI/Swagger) | Documentar los servicios desarrollados utilizando OpenAPI/Swagger. | N/D - 2 SP | Mateo Paolo Salazar Miranda | To-do |
+| Sprint 1 | US11 | Registro de evento sanitario | US11-T01 | Implementación de registro sanitario | Desarrollar el registro de vacunas, tratamientos o enfermedades dentro del historial sanitario de un animal. | N/D - 5 SP | Juan Jose Meza Huanacune | To-do |
+| Sprint 1 | US12 | Calendario sanitario | US12-T01 | Implementación de calendario sanitario | Desarrollar la consulta de eventos sanitarios programados mediante un calendario organizado por periodo. | N/D - 5 SP | Juan Jose Meza Huanacune | To-do |
+| Sprint 1 | US13 | Recordatorio de vacunación (push) | US13-T01 | Implementación de recordatorio de vacunación | Implementar el mecanismo backend encargado de identificar vacunaciones próximas y generar su correspondiente recordatorio. | N/D - 5 SP | Juan Jose Meza Huanacune | To-do |
+| Sprint 1 | US14 | Historial clínico por animal | US14-T01 | Implementación de historial clínico | Desarrollar la consulta cronológica de los eventos sanitarios asociados a un animal. | N/D - 5 SP | Juan Jose Meza Huanacune | To-do |
+| Sprint 1 | US21 | Alertas automáticas por tendencias | US21-T01 | Implementación del mecanismo de alertas | Implementar la base de Analytics & Alerts para registrar tendencias clasificadas y generar alertas de acuerdo con una política configurable. | N/D - 5 SP | Juan Jose Meza Huanacune | To-do |
+| Sprint 1 | US15 | Registro de ingreso/egreso | US15-T01 | Implementación de ingresos y egresos | Desarrollar el registro de operaciones económicas asociadas a la gestión del ganado. | N/D - 5 SP | Luis Angel Pillaca Vidal | To-do |
+| Sprint 1 | US17 | Clientes asignados al veterinario | US17-T01 | Implementación de clientes asignados | Desarrollar la consulta de los clientes asociados a un veterinario. | N/D - 5 SP | Luis Angel Pillaca Vidal | To-do |
+| Sprint 1 | US18 | Consulta de pacientes de un cliente | US18-T01 | Implementación de consulta de pacientes | Desarrollar la consulta de animales asociados a un cliente del veterinario. | N/D - 5 SP | Luis Angel Pillaca Vidal | To-do |
+| Sprint 1 | US19 | Registro de atención veterinaria | US19-T01 | Implementación de atención veterinaria | Desarrollar el registro de una atención realizada por el veterinario a un paciente. | N/D - 5 SP | Luis Angel Pillaca Vidal | To-do |
+| Sprint 1 | — | — | TS03 | CI/CD y despliegue en la nube | Configurar el proceso de integración continua, validación automática y despliegue de los servicios. | N/D - 5 SP | Luis Angel Pillaca Vidal | To-do |
+| Sprint 1 | US22 | Notificaciones push generales | US22-T01 | Implementación de notificaciones push | Implementar el mecanismo requerido para gestionar notificaciones generales de la aplicación. | N/D - 3 SP | Nadhim Abigail Raymundo Villarroel | To-do |
+| Sprint 1 | US20 | Reportes y estadísticas del ganado | US20-T01 | Implementación de reportes y estadísticas | Desarrollar la funcionalidad para consultar reportes y estadísticas relacionados con la gestión del ganado. | N/D - 8 SP | Nadhim Abigail Raymundo Villarroel | To-do |
+| Sprint 1 | US23 | Integración con dispositivos IoT | US23-T01 | Implementación de integración IoT | Preparar la integración de Gethics con dispositivos IoT según las funcionalidades establecidas para el producto. | N/D - 8 SP | Nadhim Abigail Raymundo Villarroel | To-do |
+| Sprint 1 | US16 | Balance económico del ganado | US16-T01 | Implementación de balance económico | Desarrollar la consulta del balance económico a partir de los ingresos y egresos registrados. | N/D - 3 SP | Nadhim Abigail Raymundo Villarroel | To-do |
+| Sprint 1 | US07 | Edición de animal | US07-T01 | Implementación de edición de animal | Desarrollar la funcionalidad que permita modificar la información de un animal registrado. | N/D - 3 SP | Nadhim Abigail Raymundo Villarroel | To-do |
+
+El Sprint Backlog permite establecer una referencia común para el trabajo del equipo y facilita el seguimiento de las responsabilidades asumidas durante la iteración. Cada integrante desarrolla las funcionalidades asignadas mediante ramas independientes en Git, integrando posteriormente los cambios mediante Pull Requests hacia la rama `develop`.
+
+Los estados mostrados en esta tabla corresponden al estado inicial de planificación del Sprint, en el cual las tarjetas se encuentran dentro del Product Backlog. Durante el desarrollo, estas actividades deben desplazarse progresivamente entre los estados **To-do**, **In-Process**, **To-Review** y **Done**, de acuerdo con su avance y validación.
 
 
 #### 4.2.1.4. Development Evidence for Sprint Review
