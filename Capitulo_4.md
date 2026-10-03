@@ -82,9 +82,36 @@ feature/<user-story>-<short-description>
 
 ## 4.2. Landing Page & Mobile Application Implementation
 
-### 4.2.1. Sprint n
+En esta sección se presenta el avance realizado durante la implementación de los principales componentes de Gethics, considerando el desarrollo del Landing Page, los Web Services y la aplicación móvil. Asimismo, se documenta el trabajo realizado durante cada Sprint, incluyendo la planificación, distribución de actividades, evidencias de desarrollo, pruebas, ejecución, documentación de servicios y colaboración del equipo.
 
-#### 4.2.1.1. Sprint Planning n
+### 4.2.1. Sprint 1
+
+El Sprint 1 representa la primera iteración de implementación de Gethics. Durante este periodo, el equipo JamSell organizó el desarrollo de las User Stories y Technical Stories definidas en el Product Backlog, distribuyendo las responsabilidades entre los integrantes según los módulos asignados.
+
+El trabajo del Sprint estuvo orientado a establecer una primera base funcional de la solución, incluyendo componentes relacionados con autenticación, gestión de animales y granjas, sanidad y calendario, gestión veterinaria y financiera, analítica, notificaciones e infraestructura técnica. Para el seguimiento de las actividades se utilizó Trello, mientras que la gestión del código fuente y la integración de los cambios se realizó mediante Git y GitHub.
+
+#### 4.2.1.1. Sprint Planning 1
+
+El Sprint Planning correspondiente al Sprint 1 se realizó con la participación de todos los integrantes de JamSell. Durante la reunión se revisó el Product Backlog, se organizaron las User Stories y Technical Stories a desarrollar y se distribuyeron las responsabilidades de acuerdo con los módulos asignados a cada integrante.
+
+La planificación permitió establecer el objetivo general del Sprint y definir la capacidad de trabajo del equipo en términos de Story Points. Debido a que este corresponde al primer Sprint del proyecto, no se cuenta con información previa de velocidad ni con resultados de un Sprint anterior que puedan ser utilizados como referencia.
+
+A continuación, se presenta el resumen del Sprint Planning Meeting.
+
+| Sprint Planning Background | Detalle |
+|---|---|
+| **Sprint #** | Sprint 1 |
+| **Date** | 01/10/2026 |
+| **Time** | 8:00 p. m. |
+| **Location** | Reunión virtual mediante Google Meet |
+| **Prepared By** | Meza Huanacune, Juan josé |
+| **Attendees (to planning meeting)** | Mauricio Sebastian Castillo Yataco / Mateo Paolo Salazar Miranda / Juan Jose Meza Huanacune / Luis Angel Pillaca Vidal / Nadhim Abigail Raymundo Villarroel |
+| **Sprint 0 Review Summary** | No aplica. Este corresponde al primer Sprint del proyecto. |
+| **Sprint 0 Retrospective Summary** | No aplica. Este corresponde al primer Sprint del proyecto. |
+| **Sprint Goal & User Stories** | Durante el Sprint 1 se planificó el desarrollo de las User Stories y Technical Stories distribuidas entre los cinco integrantes del equipo, abarcando funcionalidades de autenticación, gestión ganadera, sanidad, gestión veterinaria y financiera, analítica, notificaciones, IoT e infraestructura técnica. |
+| **Sprint 1 Goal** | Desarrollar una primera versión funcional de los principales módulos de Gethics, estableciendo una base técnica que permita validar la arquitectura, la persistencia de datos y los principales servicios definidos para la solución. |
+| **Sprint 1 Velocity** | Al tratarse del primer Sprint, no existe una velocidad histórica del equipo. Como capacidad planificada se consideran 125 Story Points. |
+| **Sum of Story Points** | 125 Story Points |
 
 
 #### 4.2.1.2. Aspect Leaders and Collaborators
