@@ -115,7 +115,29 @@ A continuación, se presenta el resumen del Sprint Planning Meeting.
 
 
 #### 4.2.1.2. Aspect Leaders and Collaborators
+Para garantizar un flujo de trabajo ágil, transparente y con líneas claras de responsabilidad durante el Sprint 1, el equipo JamSell definió la matriz de liderazgo y colaboración **Leadership-and-Collaboration Matrix (LACX)**. Este artefacto asigna de manera explícita a un integrante del equipo como Líder (L) de un aspecto técnico o funcional específico, acompañado por uno o varios Colaboradores (C), optimizando así la toma de decisiones y la comunicación interna.
 
+Para el Sprint 1, los aspectos considerados corresponden a las áreas clave dentro del alcance de la solución Gethics:
+
+1. **Identity & Access Management (IAM) / Auth & Subscriptions:** Comprende las funcionalidades de registro, inicio de sesión (JWT), gestión de perfiles, recuperación de contraseñas, roles/autorización y planes de suscripción.
+2. **Domain Architecture & Core Animal Management:** Involucra el modelado de datos, las migraciones iniciales de la base de datos y las operaciones principales para el registro, búsqueda y gestión del inventario ganadero.
+3. **Veterinary & Sanitary Management:** Abarca el seguimiento sanitario de los animales, registro de diagnósticos, vacunas, tratamientos y el control del historial clínico veterinario.
+4. **Analytics, Financials & Notifications:** Incluye el análisis de métricas operativas/financieras, reportes de rentabilidad y el sistema de alertas/notificaciones.
+5. **IoT Monitoring & Technical Infrastructure:** Comprende la configuración inicial de la arquitectura base, repositorios, pipelines de despliegue, manejo global de errores/logging e integración con dispositivos IoT para monitoreo.
+
+A continuación, se presenta la matriz **Leadership-and-Collaboration Matrix (LACX)** correspondiente al Sprint 1:
+
+| Team Member (Last Name, First Name) | GitHub Username | Identity & Access Management (IAM) / Auth & Subscriptions | Domain Architecture & Core Animal Management | Veterinary & Sanitary Management | Analytics, Financials & Notifications | IoT Monitoring & Technical Infrastructure |
+|---|---|:---:|:---:|:---:|:---:|:---:|
+| Castillo Yataco, Mauricio Sebastian | mcastilloy | **L** | C | C | C | C |
+| Salazar Miranda, Mateo Paolo | msalazarm | C | **L** | C | C | C |
+| Meza Huanacune, Juan Jose | jmezah | C | C | **L** | C | C |
+| Pillaca Vidal, Luis Angel | luispillacavidal | C | C | C | **L** | C |
+| Raymundo Villarroel, Nadhim Abigail | nraymundov | C | C | C | C | **L** |
+
+*Leyenda: **L** = Leader (Líder del aspecto) | **C** = Collaborator (Colaborador)*
+
+La distribución definida en la matriz guarda directa concordancia con la asignación de User Stories y Technical Stories registradas en el Sprint Backlog 1, asegurando que cada integrante lidere las tareas centrales de su respectivo aspecto.
 
 #### 4.2.1.3. Sprint Backlog 1
 
