@@ -331,11 +331,11 @@ Inicio
 
 ### 3.1.3. Landing Page UI Design
 
-El Landing Page de Gethics traduce directamente las decisiones tomadas en Information Architecture y en los Style Guidelines: su navegación principal refleja los mismos cuatro conceptos de valor que organizan la aplicación (salud, registro, alertas y reportes), su etiquetado evita tecnicismos siguiendo el mismo sistema de labeling, y su jerarquía visual se apoya en los mismos principios de diseño (pocos colores, tipografía única, componentes simples) definidos para toda la marca. A diferencia de la aplicación móvil, el Landing Page no requiere autenticación ni muestra datos reales del hato: su objetivo es comunicar la propuesta de valor del producto y convertir visitantes en usuarios, por lo que su arquitectura prioriza la narrativa (qué hace Gethics, para quién, por qué confiar en él) sobre la operación diaria.
+El Landing Page de Gethics traduce directamente las decisiones tomadas en Information Architecture y en los Style Guidelines: su navegación principal refleja los mismos cuatro conceptos de valor que organizan la aplicación (salud, registro, alertas y reportes), su etiquetado evita tecnicismos siguiendo el mismo sistema de labeling, y su jerarquía visual se apoya en los mismos principios de diseño: pocos colores, tipografía única, componentes simples definidos para toda la marca. A diferencia de la aplicación móvil, el Landing Page no requiere autenticación ni muestra datos reales del hato: su objetivo es comunicar la propuesta de valor del producto y convertir visitantes en usuarios, por lo que su arquitectura prioriza la narrativa (qué hace Gethics, para quién, por qué confiar en él) sobre la operación diaria.
 
 #### 3.1.3.1. Landing Page Wireframe
 
-El wireframe del Landing Page se construyó en baja fidelidad para validar primero la estructura y jerarquía del contenido, antes de pasar al Mock-up con el Design System ya aplicado. Se presenta en dos versiones: Desktop Web Browser y Mobile Web Browser, ya que el Landing Page debe adaptarse correctamente a ambos tamaños de pantalla.
+El wireframe del Landing Page se construyó en baja fidelidad (escala de grises, sin tipografía ni color final) para validar primero la estructura y jerarquía del contenido, antes de pasar al Mock-up con el Design System ya aplicado. Se presenta en dos versiones: Desktop Web Browser y Mobile Web Browser, ya que el Landing Page debe adaptarse correctamente a ambos tamaños de pantalla.
 
 La estructura sigue un orden narrativo de arriba hacia abajo, alineado a la arquitectura de información ya definida:
 
@@ -361,16 +361,14 @@ En cuanto a diseño inclusivo, el wireframe privilegia bloques de alto contraste
   <p><i><b>Fuente</b>: Elaboración propia.</i></p>
 </div>
 
-
-
 #### 3.1.3.2. Landing Page Mock-up
 
 El Mock-up del Landing Page aplica el Design System definido en los Style Guidelines sobre la estructura ya validada en el wireframe: no se modifica ningún bloque, orden ni jerarquía de contenido, únicamente se reemplaza la escala de grises por la paleta de color, la tipografía y los componentes finales de Gethics. Esto confirma que la estructura de baja fidelidad era suficiente antes de invertir tiempo en el acabado visual.
 
-- **Color:** el granate (#722A2E) se usa como color de énfasis en CTAs, números de paso, cifras de respaldo y el plan destacado, replicando su uso como color primario en la aplicación móvil. El verde neutro (#E8F3E8) distingue las secciones de Hero y Testimonios del resto de bloques en blanco, y el acento cálido (#E4CBB4) marca la tarjeta del plan "Pro" como opción recomendada, igual que en los badges de estado positivo de la app. La tarjeta flotante "3 animales requieren atención" reutiliza el color de alerta (#FFF4E0 / #BB7B1C) definido para notificaciones, reforzando que el mismo lenguaje visual de la app ya anticipa, desde el Landing Page, el tipo de valor que el producto entrega.
-- **Tipografía:** Roboto en los mismos dos pesos documentados en (Medium para títulos, botones y cifras; Regular para texto de cuerpo), sin introducir una tipografía distinta a la de la aplicación.
+- **Color:** el granate (#722A2E) se usa como color de énfasis en CTAs, números de paso, cifras de respaldo y la tarjeta del plan "Pro" (destacada en granate sólido), replicando su uso como color primario en la aplicación móvil. El verde neutro (#E8F3E8) se reserva para la sección de Testimonios, y el acento cálido (#E4CBB4) aparece en la forma decorativa detrás del mockup del Hero y en el banner del CTA final, igual que en los badges de estado positivo de la app. Para el fondo general de la página se introduce un tono casi blanco derivado del acento, #FBF4EC ("crema"), sobre el cual flota una tarjeta blanca que contiene el Hero; este tono no estaba documentado en los Style Guidelines originales (3.1.1.1) y se añade aquí como una variación tonal, no un color nuevo de marca, para dar una sensación más cálida y acogedora que el blanco puro, validada junto con el usuario tras revisar alternativas de diseño. La tarjeta flotante "3 animales requieren atención" reutiliza el color de alerta (#FFF4E0 / #BB7B1C) definido para notificaciones, reforzando que el mismo lenguaje visual de la app ya anticipa, desde el Landing Page, el tipo de valor que el producto entrega.
+- **Tipografía:** Roboto en los mismos dos pesos documentados (Medium para títulos, botones y cifras; Regular para texto de cuerpo), sin introducir una tipografía distinta a la de la aplicación.
 - **Iconografía:** íconos de trazo simple, en línea con el estilo Lucide definido para la app, aplicados a cada tarjeta de Funcionalidades y a la alerta del Hero.
-- **Componentes:** botones, tarjetas y badges reutilizan el mismo radio de esquina, sombra sutil y espaciado de 8px descritos en los Style Guidelines, de modo que un usuario que pase del Landing Page a la aplicación reconozca visualmente que está en el mismo producto.
+- **Componentes:** botones, tarjetas y badges aumentan su radio de esquina (18–32px) respecto al resto de la interfaz y suman una sombra suave de tono granate, dándole al Hero y a las tarjetas un acabado más redondeado y cálido, coherente con el fondo crema; el espaciado y la estructura de 8px de los Style Guidelines se mantienen como base.
 
 El bloque "Mockup de la app (pantalla real)" dentro del Hero queda como marcador de posición: en la versión final del sitio se reemplaza por una captura real de la aplicación, una vez que los mock-ups de pantallas móviles estén terminados.
 
