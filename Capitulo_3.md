@@ -394,8 +394,49 @@ El bloque "Mockup de la app (pantalla real)" dentro del Hero queda como marcador
 #### 3.1.4.2. Mobile Applications Wireflow Diagrams
 
 
-#### 3.1.4.3. Mobile Applications Mock-ups
+### 3.1.4.3. Mobile Applications Mock-ups
 
+A continuación se presentan los mock-ups de la aplicación móvil de Gethics, diseñados para el uso en campo por ganaderos y veterinarios. Las pantallas mantienen la identidad visual de la marca (vino, verde menta y beige) y una barra de navegación inferior con las secciones Inicio, Inventario, Tareas y Perfil.
+
+**Figura 1.** Pantalla de inicio de sesión: el usuario ingresa su correo y contraseña, y tiene accesos a "¿Olvidaste tu contraseña?" y al registro.
+
+<img src="images/mock1.png" alt="Mock-up de inicio de sesión" width="200">
+
+**Figura 2.** Pantalla de creación de cuenta: formulario con nombre completo, nombre del fundo o granja, correo electrónico y contraseña (mínimo 8 caracteres).
+
+<img src="images/mock2.png" alt="Mock-up de crear cuenta" width="200">
+
+**Figura 3.** Pantalla de inicio (dashboard): resumen de la salud general de la finca, indicadores del hato (total de ganado, sanos, enfermos y en gestación) y lista de alertas recientes.
+
+<img src="images/mock3.png" alt="Mock-up de pantalla de inicio" width="200">
+
+**Figura 4.** Inventario de ganado: lista de animales con su arete, raza, peso y estado de salud (sano o enfermo), con búsqueda por arete o raza, filtros y botón para registrar un nuevo animal.
+
+<img src="images/mock4.png" alt="Mock-up de inventario de ganado" width="200">
+
+**Figura 5.** Registro de nueva res: formulario con número de arete, raza, fecha de nacimiento, peso inicial y foto del animal.
+
+<img src="images/mock6.png" alt="Mock-up de registrar nueva res" width="200">
+
+**Figura 6.** Detalle del animal, pestaña "Información": datos generales del animal (raza, edad, género, nacimiento, peso, ubicación y dieta).
+
+<img src="images/mock10.png" alt="Mock-up de detalle del animal - Información" width="200">
+
+**Figura 7.** Detalle del animal, pestaña "Salud": signos vitales en tiempo real (frecuencia cardíaca, temperatura y respiración) con gráfico de 24 horas, historial de chequeos recientes y botón para registrar un tratamiento.
+
+<img src="images/mock5.png" alt="Mock-up de detalle del animal - Salud" width="200">
+
+**Figura 8.** Detalle del animal, pestaña "Vacunas": historial de vacunación y desparasitación, con la próxima aplicación programada y el estado de cada registro.
+
+<img src="images/mock9.png" alt="Mock-up de detalle del animal - Vacunas" width="200">
+
+**Figura 9.** Calendario de salud: selector de fecha, progreso diario y lista de tareas sanitarias programadas (chequeos, vacunas y tratamientos), con marca de tarea completada y etiqueta de urgencia.
+
+<img src="images/mock7.png" alt="Mock-up de calendario de salud" width="200">
+
+**Figura 10.** Perfil de usuario: datos del usuario y su rol, opciones de configuración (editar perfil, gestionar personal, exportar reportes de salud y soporte) y botón para cerrar sesión.
+
+<img src="images/mock8.png" alt="Mock-up de perfil" width="200">
 
 #### 3.1.4.4. Mobile Applications User Flow Diagrams
 #### UF-01: Registro e Inicio de Sesión de Usuario
@@ -450,3 +491,7 @@ El bloque "Mockup de la app (pantalla real)" dentro del Hero queda como marcador
   * **Fin / Destino:** El nuevo tratamiento queda registrado cronológicamente dentro de la pestaña de **Salud** de la res.
 
 #### 3.1.4.5. Mobile Applications Prototyping
+
+<img src="images/prototype.png" alt="Mock-up de perfil" width="200">
+
+ Link del prototipo: https://www.figma.com/design/6s1sDsX9Z6apr5q1APEUk8/Untitled?node-id=59-2&t=KGly1JJ6W7T4e1ik-1
