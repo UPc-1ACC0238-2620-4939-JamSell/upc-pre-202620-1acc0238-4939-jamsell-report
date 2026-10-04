@@ -400,6 +400,55 @@ El bloque "Mockup de la app (pantalla real)" dentro del Hero queda como marcador
 
 
 #### 3.1.4.4. Mobile Applications User Flow Diagrams
+#### UF-01: Registro e Inicio de Sesión de Usuario
 
+* **Imagen referencial:**
+
+  ![UF-01: Registro e Inicio de Sesión de Usuario](images/UF-01.png)
+
+* **Descripción y Flujo:**
+  * **Inicio / Bienvenida:** El usuario abre la aplicación móvil y visualiza la pantalla de bienvenida con las opciones para iniciar sesión o registrarse.
+  * **Acción (Login/Registro):** 
+    * Si elige **Iniciar Sesión**, ingresa su correo electrónico y contraseña.
+    * Si elige **Registrarse**, completa el formulario con sus datos personales, correo, contraseña y rol (ganadero o veterinario).
+  * **Validación de Credenciales / Datos:** El sistema verifica la autenticidad de la cuenta o valida que los campos del registro cumplan con el formato requerido.
+  * **Decisión (Éxito / Error):**
+    * *Si los datos son incorrectos o incompletos:* El sistema muestra un mensaje de error notificando la falla para reintentar.
+    * *Si los datos son correctos:* Se concede el acceso al sistema.
+  * **Fin / Destino:** Redirección exitosa a la pantalla principal (**Inicio / Dashboard**).
+
+---
+
+#### UF-02: Registro de un Nuevo Animal en el Inventario
+
+* **Imagen referencial:**
+
+  ![UF-02: Registro de un Nuevo Animal en el Inventario](images/UF-02.png)
+
+* **Descripción y Flujo:**
+  * **Punto de Inicio:** El usuario navega al módulo de **Inventario** desde la barra de navegación principal.
+  * **Acción de Entrada:** Selecciona la opción **"Registrar Nueva Res"**.
+  * **Ingreso de Datos:** Se despliega el formulario en el que ingresa el número de arete (*Tag ID*), raza, fecha de nacimiento/edad, peso y estado sanitario inicial.
+  * **Validación:** El sistema comprueba que el código de arete no esté duplicado y que los campos obligatorios hayan sido completados.
+  * **Decisión (Confirmación):**
+    * *Si falta información o el Tag está repetido:* Muestra una alerta indicando el campo específico a corregir.
+    * *Si la información es válida:* Presiona **"Guardar Registro"**.
+  * **Fin / Destino:** El nuevo animal queda almacenado y se muestra de forma inmediata en la lista del **Inventario de Ganado**.
+
+---
+
+#### UF-03: Consulta y Registro de Tratamiento Sanitario
+
+* **Imagen referencial:**
+
+  ![UF-03: Consulta y Registro de Tratamiento Sanitario](images/UF-03.png)
+
+* **Descripción y Flujo:**
+  * **Búsqueda / Selección:** Desde el módulo de **Inventario**, el usuario busca al animal mediante su código de arete o filtro por raza y selecciona su ficha.
+  * **Visualización de Ficha:** Ingresa a la **Ficha Individual del Animal** y selecciona la pestaña de **Salud** o **Tratamientos**.
+  * **Acción Principal:** Presiona el botón **"Registrar Tratamiento"**.
+  * **Completar Formulario:** Ingresa el tipo de evento sanitario o diagnóstico, medicamento aplicado, dosis, fecha de aplicación y observaciones adicionales.
+  * **Procesamiento:** El sistema guarda el registro en el historial clínico y actualiza el estado sanitario del animal.
+  * **Fin / Destino:** El nuevo tratamiento queda registrado cronológicamente dentro de la pestaña de **Salud** de la res.
 
 #### 3.1.4.5. Mobile Applications Prototyping
