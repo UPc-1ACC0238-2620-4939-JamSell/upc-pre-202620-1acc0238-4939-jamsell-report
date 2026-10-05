@@ -757,11 +757,188 @@ En el caso del segmento ganadero, la evaluación se orienta al registro de anima
 
 
 ### 4.3.2. Registro de Entrevistas
+A continuación se presentan los registros detallados de las entrevistas semiestructuradas realizadas a los representantes de los segmentos objetivo identificados para el proyecto **Gethics**: el **Segmento 1 (Ganaderos / Productores Pecuarios)** y el **Segmento 2 (Veterinarios / Técnicos Agropecuarios)**.
+
+---
+
+#### Segmento 1: Ganaderos y Productores Pecuarios
+
+##### Entrevista #1: Daniel Ruiz
+* **Edad:** 42 años
+* **Ocupación / Rol:** Propietario y gestor de establo ganadero
+* **Ubicación:** Cajamarca, Perú
+* **Fecha de entrevista:** 15 de septiembre de 2026
+* **Duración:** 22 minutos
+* **Evolución y Resumen:**  
+  Daniel cuenta con un hato de aproximadamente 35 cabezas de ganado vacuno enfocado en la producción lechera. Expresa que su principal problema es el registro en cuadernos de papel, lo cual provoca extravío de datos sobre fechas de vacunación y partos. Le interesa una herramienta móvil sencilla que le permita recibir alertas directas antes de que se venzan los plazos sanitarios y llevar un control rápido de sus ingresos y egresos diarios.
+
+
+---
+
+##### Entrevista #2: Yarkin Quispe
+* **Edad:** 38 años
+* **Ocupación / Rol:** Ganadero de producción mixta (carne y leche)
+* **Ubicación:** Arequipa, Perú
+* **Fecha de entrevista:** 16 de septiembre de 2026
+* **Duración:** 18 minutos
+* **Evolución y Resumen:**  
+  Yarkin gestiona un establo familiar de 20 bovinos. Destaca la dificultad de mantener un historial individual por cada animal, lo que dificulta identificar cuáles son los más productivos o cuáles han recibido tratamientos antibióticos recientes. Valora positivamente contar con una aplicación móvil intuitiva que funcione de forma ágil y le permita registrar eventos sanitarios directamente desde el corral.
+
+
+---
+
+##### Entrevista #3: Jesús Manrique
+* **Edad:** 50 años
+* **Ocupación / Rol:** Productor pecuario y administrador de fundo
+* **Ubicación:** Lima Provincias (Canta), Perú
+* **Fecha de entrevista:** 17 de septiembre de 2026
+* **Duración:** 25 minutos
+* **Evolución y Resumen:**  
+  Jesús administra más de 50 vacunos. Su mayor preocupación reside en las pérdidas financieras asociadas a enfermedades no detectadas a tiempo y el descontrol en la compra de insumos veterinarios. Resalta que necesita una plataforma que integre reportes visuales de rentabilidad y alertas claras sobre eventos del hato, ya que actualmente consolida sus datos de forma manual a fin de mes.
+
+---
+
+#### Segmento 2: Veterinarios y Técnicos Agropecuarios
+
+##### Entrevista #4: Andrea Arango
+* **Edad:** 31 años
+* **Ocupación / Rol:** Médico Veterinaria Zootecnista
+* **Ubicación:** Trujillo, Perú
+* **Fecha de entrevista:** 18 de septiembre de 2026
+* **Duración:** 20 minutos
+* **Evolución y Resumen:**  
+  Andrea presta servicios de asistencia técnica ambulatoria a múltiples establos en la región. Menciona que la falta de un historial clínico digitalizado por parte de los ganaderos dificulta dar un diagnóstico certero cuando atiende una emergencia. Sugiere que la aplicación incluya una sección limpia para el historial sanitario individual del animal que pueda ser consultada rápidamente durante sus visitas de campo.
+
+
+---
+
+##### Entrevista #5: Manuel Fajardo
+* **Edad:** 36 años
+* **Ocupación / Rol:** Técnico Agropecuario y consultor pecuario
+* **Ubicación:** Junín, Perú
+* **Fecha de entrevista:** 19 de septiembre de 2026
+* **Duración:** 24 minutos
+* **Evolución y Resumen:**  
+  Manuel supervisa el cumplimiento de calendarios de vacunación y control de parásitos en varios fundos medianos. Indica que la falta de seguimiento por parte del personal del fundo arruina con frecuencia los tratamientos preventivos. Considera indispensable que el sistema permita programar recordatorios automáticos de dosis y tratamientos posteriores para asegurar la trazabilidad del hato.
 
 
 ### 4.3.3. Evaluaciones según heurísticas
 
+**UX Heuristics & Principles Evaluation**  
+*Usability - Inclusive Design - Information Architecture*
 
+* **CARRERA:** Ingeniería de Software  
+* **CURSO:** 1acc0238 Aplicaciones para dispositivos móviles  
+* **NRC:** 1ACC0238  
+* **PROFESORES:** David Gerardo Quevedo Velasco  
+* **AUDITOR:** JamSell  
+* **CLIENTE(S):** Ganaderos, Veterinarios y Técnicos Agropecuarios  
+
+---
+
+### SITE o APP A EVALUAR:
+**Gethics Mobile** (Aplicación Móvil para la Gestión Pecuaria y Seguimiento Sanitario)
+
+---
+
+### TAREAS A EVALUAR:
+
+El alcance de esta evaluación incluye la revisión de la usabilidad de las siguientes tareas:
+1. Registro de usuario e inicio de sesión en la plataforma móvil.
+2. Registro e ingreso de datos de un nuevo bovino en el hato.
+3. Consulta y filtrado del historial de eventos sanitarios de un animal.
+4. Registro de un nuevo tratamiento sanitario/vacunación.
+5. Visualización del resumen financiero y alertas preventivas del hato.
+
+No están incluidas en esta versión de la evaluación las siguientes tareas:
+1. Exportación masiva de reportes en formato PDF/Excel.
+2. Sincronización offline en zonas sin cobertura de red.
+3. Configuración avanzada de permisos por roles de operario secundario.
+
+---
+
+### ESCALA DE SEVERIDAD:
+
+Los errores serán puntuados tomando en cuenta la siguiente escala de severidad:
+
+| Nivel | Descripción |
+| :---: | :--- |
+| **1** | **Problema superficial:** Puede ser fácilmente superado por el usuario y ocurre con muy poca frecuencia. No necesita ser arreglado a no ser que exista disponibilidad de tiempo. |
+| **2** | **Problema menor:** Puede ocurrir un poco más frecuentemente o es un poco más difícil de superar para el usuario. Se le debería asignar una prioridad baja para resolverlo de cara al siguiente release. |
+| **3** | **Problema mayor:** Ocurre frecuentemente o los usuarios no son capaces de resolverlos. Es importante que sean corregidos y se les debe asignar una prioridad alta. |
+| **4** | **Problema muy grave:** Un error de gran impacto que impide al usuario continuar con el uso de la herramienta. Es imperativo que sea corregido antes del lanzamiento. |
+
+---
+
+### TABLA RESUMEN:
+
+| # | Problema | Escala de severidad | Heurística/Principio violada(o) |
+| :---: | :--- | :---: | :--- |
+| **1** | Ausencia de mensaje de confirmación previo a la eliminación de un registro vacuno | **3** | Usability: Prevención de errores |
+| **2** | Iconografía inconsistente entre la navegación inferior de la App y el Landing Page | **1** | Usability: Consistencia y estándares |
+| **3** | Indicadores de gráficos financieros distinguibles únicamente por contraste de color | **2** | Inclusive Design: Proporciona experiencias comparables |
+| **4** | Sección de eventos sanitarios vacía sin mensaje explícito de estado ("Empty State") | **2** | Information Architecture: Is it usable? |
+| **5** | Imposibilidad de regresar al menú principal desde la pantalla de registro de tratamiento | **3** | Usability: Libertad y control del usuario |
+
+---
+
+### DESCRIPCIÓN DE PROBLEMAS:
+
+#### PROBLEMA #1: Ausencia de mensaje de confirmación previo a la eliminación de un registro vacuno
+* **Severidad:** 3
+* **Heurística violada:** Usabilidad - Prevención de errores
+* **Problema:**  
+  Al presionar el botón de eliminación en la ficha de un vacuno, el sistema borra inmediatamente el registro sin solicitar una confirmación previa al usuario. Esto puede ocasionar la pérdida accidental de información crítica del hato si el usuario presiona el botón por error mientras trabaja en campo.
+
+* **Recomendación:**  
+  Implementar un modal/diálogo de confirmación explícito ("*¿Está seguro de eliminar este registro? Esta acción no se puede deshacer*") con botones de acción clara (*Cancelar* y *Eliminar*).
+
+---
+
+#### PROBLEMA #2: Iconografía inconsistente entre la navegación inferior de la App y el Landing Page
+* **Severidad:** 1
+* **Heurística violada:** Usabilidad - Consistencia y estándares
+* **Problema:**  
+  El ícono utilizado para representar el módulo de "Alertas y Notificaciones" en la navegación inferior de la aplicación móvil difiere del ícono e ilustración empleados en la Landing Page informativa para el mismo concepto, generando una leve confusión conceptual en la curva de aprendizaje inicial.
+
+
+* **Recomendación:**  
+  Estandarizar la librería de íconos del Design System en Figma y asegurar que tanto el frontend de la Landing Page como la aplicación móvil consuman el mismo paquete de assets vectoriales.
+
+---
+
+#### PROBLEMA #3: Indicadores de gráficos financieros distinguibles únicamente por contraste de color
+* **Severidad:** 2
+* **Heurística violada:** Inclusive Design - Proporciona experiencias comparables
+* **Problema:**  
+  En el resumen del módulo financiero, los estados de rentabilidad (ingresos vs. egresos) se diferencian únicamente mediante códigos de color (verde y rojo) sin el apoyo de etiquetas de texto alternativas o patrones visuales. Esto dificulta la interpretación adecuada para usuarios con deficiencias visuales como daltonismo.
+
+* **Recomendación:**  
+  Añadir íconos descriptivos adicionales (p. ej., flecha ascendente/descendente) o etiquetas de texto visibles junto a los montos para garantizar el cumplimiento de los principios de diseño inclusivo.
+
+---
+
+#### PROBLEMA #4: Sección de eventos sanitarios vacía sin mensaje explícito de estado ("Empty State")
+* **Severidad:** 2
+* **Heurística violada:** Information Architecture - Is it usable?
+* **Problema:**  
+  Cuando un animal no cuenta con registros sanitarios previos, la pantalla de historial muestra una lista en blanco sin indicar explícitamente si la información se está cargando, si hubo un fallo de red o si efectivamente no existen datos registrados.
+
+  
+* **Recomendación:**  
+  Diseñar e incorporar un componente visual de "Empty State" con un texto ilustrativo (*"No hay eventos sanitarios registrados para este bovino"*) y un botón de llamada a la acción rápida (*"Registrar tratamiento"*).
+
+---
+
+#### PROBLEMA #5: Imposibilidad de regresar al menú principal desde la pantalla de registro de tratamiento
+* **Severidad:** 3
+* **Heurística violada:** Usabilidad - Libertad y control del usuario
+* **Problema:**  
+  Al ingresar al formulario de registro de un tratamiento sanitario, la barra superior de la pantalla no incluye el botón estándar de retorno ("<-"), ni existe un botón para cancelar el proceso. La única forma que tiene el usuario para salir del formulario sin guardar es forzar el cierre de la aplicación o presionar el botón físico de retroceso del sistema operativo.
+
+
+* **Recomendación:**  
+  Incluir un botón de retorno evidente en el `TopAppBar` de la pantalla y un botón secundario de "*Cancelar*" en la parte inferior del formulario que devuelva al usuario al módulo anterior manteniendo la integridad del estado.
 ---
 
 # Conclusiones
