@@ -74,6 +74,144 @@ feature/<user-story>-<short-description>
 
 ### 4.1.3. Source Code Style Guide & Conventions
 
+Esta sección define las convenciones que el equipo JamSell sigue al escribir y versionar el código de Gethics. Su objetivo es que los tres productos (Web Services, aplicación móvil y Landing Page) sean legibles y consistentes sin importar qué integrante los modifique. Las reglas se describen tal como se aplican hoy en los repositorios e indican cuáles se verifican de forma automática y cuáles dependen de la revisión en los Pull Requests.
+
+#### Convenciones generales
+
+| Aspecto | Convención |
+|---|---|
+| Idioma del código | Identificadores (clases, métodos, variables, paquetes) en inglés. |
+| Idioma de mensajes al usuario | Español, con tono serio y directo, como se define en los Style Guidelines. |
+| Codificación y fin de archivo | UTF-8; todo archivo termina con un salto de línea. |
+| Organización | Un contexto de negocio por paquete (`iam`, `livestock`, `sanitary`, `veterinary`, `finance`, `analytics`, `subscription`, `shared`), el mismo en backend y móvil. |
+| Integración | Los cambios se integran a `develop` mediante Pull Request, y `main` se reserva para versiones estables. |
+
+#### Web Services / Backend (Java 21, Spring Boot)
+
+**Arquitectura.** El backend sigue Domain-Driven Design. Cada bounded context se organiza en cuatro capas:
+
+```text
+<contexto>/
+├── domain/          # aggregates, entities, value objects, commands, queries, services, exceptions
+├── application/     # command services, query services, event handlers, outbound services
+├── infrastructure/  # repositorios JPA e integraciones técnicas
+└── interfaces/      # REST (controllers, resources, transform), ACL y scheduling
+```
+
+**Nombres.**
+
+| Elemento | Regla | Ejemplo |
+|---|---|---|
+| Paquetes | minúsculas, sin guiones bajos | `com.jamsell.gethics.sanitary` |
+| Clases | `PascalCase`; el sufijo indica el rol | `ClinicalHistory`, `SanitaryEventController`, `ClinicalHistoryQueryServiceImpl` |
+| Comandos y consultas | verbo + sustantivo, en `domain/model/commands` y `queries` | `RegisterSanitaryEventCommand`, `GetClinicalHistoryQuery` |
+| Métodos y variables | `camelCase` | `registerEvent`, `scheduledDate` |
+| Constantes | `UPPER_SNAKE_CASE` | `MAX_ATTEMPTS` |
+| Endpoints REST | prefijo `/api/v1`, recursos en plural y en minúsculas con guiones | `/api/v1/animals/{animalId}/sanitary-events`, `/api/v1/sanitary-calendar` |
+| Pruebas | clase `<ClaseProbada>Test`, en el mismo paquete que la clase probada | `ReminderTest`, `SanitaryCalendarControllerTest` |
+
+**Buenas prácticas aplicadas.** Los aggregates exponen constructores protegidos (`@NoArgsConstructor(access = AccessLevel.PROTECTED)`) y encapsulan sus reglas de negocio; se usa Lombok para evitar código repetitivo; las referencias entre bounded contexts se hacen por identificador (sin llaves foráneas físicas entre contextos); y los errores de negocio se representan con excepciones de dominio, traducidas a respuestas HTTP por un `ExceptionHandler` por contexto.
+
+**Verificación automática (Checkstyle).** El archivo `checkstyle.xml` del repositorio se ejecuta en la fase `validate` de Maven y en el pipeline de CI; si hay una violación, el build falla. Las reglas activas son:
+
+| Regla | Qué verifica |
+|---|---|
+| `NewlineAtEndOfFile` | Todo archivo termina con un salto de línea. |
+| `UnusedImports` / `RedundantImport` | No hay imports sin usar ni repetidos. |
+| `EmptyStatement` | No hay sentencias vacías. |
+| `EqualsHashCode` | Quien sobrescribe `equals` también sobrescribe `hashCode`. |
+| `MissingSwitchDefault` | Todo `switch` tiene `default`. |
+| `TypeName`, `MethodName`, `MemberName`, `ConstantName`, `LocalVariableName`, `PackageName` | Los identificadores respetan las convenciones de nombres. |
+
+#### Aplicación móvil (Kotlin, Jetpack Compose)
+
+**Arquitectura.** La aplicación usa el patrón MVVM con Repository. Igual que en el backend, el código se agrupa por contexto de negocio y, dentro de cada uno, por capa:
+
+```text
+com.jamsell.gethics/
+├── <contexto>/
+│   ├── presentation/<pantalla>/   # <Pantalla>Screen.kt y <Pantalla>ViewModel.kt
+│   ├── data/                      # <Contexto>Service (Retrofit), repository/, local/ (Room)
+│   └── domain/model/              # modelos de dominio
+└── shared/
+    ├── ui/components/             # componentes reutilizables (GethicsButton, GethicsCard, ...)
+    ├── ui/theme/                  # Color.kt, Type.kt, Theme.kt (Design System)
+    ├── navigation/                # Routes, BottomNavItem, GethicsNavHost
+    ├── data/ (remote, local)      # ApiClient, SessionStorage, AppDatabase
+    ├── common/                    # Resource, UIState, Constants
+    └── di/                        # AppContainer, ViewModelFactory
+```
+
+**Nombres.**
+
+| Elemento | Regla | Ejemplo |
+|---|---|---|
+| Paquetes de pantalla | minúsculas con guion bajo | `register_event`, `animal_list` |
+| Pantallas y componentes | funciones `@Composable` en `PascalCase`; las pantallas terminan en `Screen` | `RegisterEventScreen` |
+| Componentes propios | prefijo `Gethics` | `GethicsButton`, `GethicsTextField`, `GethicsCard` |
+| ViewModels | `<Pantalla>ViewModel` | `RegisterEventViewModel` |
+| Acceso a datos | `<Contexto>Service` (interfaz Retrofit) y `<Contexto>Repository` | `SanitaryService`, `SanitaryRepository` |
+| Resultados de red | el repositorio devuelve `Resource` (éxito o error con mensaje) y la UI lo traduce a `UIState` | `Resource.Success` |
+| Pruebas unitarias | clase `<ClaseProbada>Test`; métodos con nombre descriptivo entre acentos graves | `` `201 devuelve Success` `` |
+
+**Criterios de diseño.** Los colores, la tipografía (Roboto) y el espaciado salen exclusivamente de `shared/ui/theme`, de modo que la aplicación respeta los Style Guidelines de la sección 3.1.1. Las dependencias se centralizan en `gradle/libs.versions.toml` (Version Catalog). Las dependencias se crean en `AppContainer` y los ViewModels se construyen con `ViewModelFactory`, lo que permite inyectar dobles de prueba (por ejemplo, un `Clock` fijo para probar validaciones de fecha).
+
+#### Landing Page (HTML, CSS y JavaScript)
+
+El Landing Page es un sitio estático sin frameworks ni paso de compilación, organizado en `index.html` (estructura y contenido), `styles.css` (estilos, animaciones y breakpoints, con el punto de corte móvil en `max-width: 768px`) y `script.js` (menú, header y animaciones de aparición). Los recursos se guardan en `assets/`, con nombres en minúsculas y separados por guiones (`gethics-icon.png`). Los colores y la tipografía replican los definidos en los Style Guidelines, y se respeta la preferencia `prefers-reduced-motion` del usuario.
+
+#### Control de versiones
+
+**Ramas.** Se aplica GitFlow con `main` (versiones estables) y `develop` (integración). Cada tarea se desarrolla en una rama creada desde `develop`:
+
+| Tipo | Patrón | Ejemplos reales |
+|---|---|---|
+| Funcionalidad | `feature/<historia>-<descripción-corta>` | `feature/US01-US02-auth`, `feature/sanitary-us11-register-event` |
+| Tarea técnica | `feature/<TSxx>-<descripción-corta>` | `feature/TS03-cicd-cloud-deployment`, `feature/TS06-role-access` |
+| Corrección | `fix/<TSxx>-<descripción-corta>` | `fix/TS03-mvnw-permissions` |
+
+Se usan minúsculas, guiones para separar palabras y el identificador de la historia (`US..`) o tarea técnica (`TS..`) del Product Backlog, de modo que cada rama se pueda rastrear hasta el Sprint Backlog.
+
+**Commits.** Se siguen los Conventional Commits, con el formato `tipo(contexto): descripción en infinitivo`:
+
+| Tipo | Uso | Ejemplo real |
+|---|---|---|
+| `feat` | nueva funcionalidad | `feat(sanitary): implement US-12 sanitary calendar` |
+| `fix` | corrección de un error | `fix(sanitary): complete US-13 vaccination reminder flow` |
+| `test` | pruebas | `test(finance): add financial management aggregate tests` |
+| `style` | formato sin cambio de comportamiento | `style(veterinary): fix Checkstyle NewlineAtEndOfFile violations` |
+| `chore` | configuración, CI, estructura | `chore(ci): add lint check` |
+
+**Pull Requests.** El trabajo de cada rama se integra a `develop` mediante Pull Request. El pipeline de CI (Checkstyle, compilación y pruebas) se ejecuta automáticamente sobre cada Pull Request, y el equipo se compromete a no integrar cambios cuyo pipeline falle.
+#### Landing Page (HTML, CSS y JavaScript)
+
+El Landing Page es un sitio estático sin frameworks ni paso de compilación, organizado en `index.html` (estructura y contenido), `styles.css` (estilos, animaciones y breakpoints, con el punto de corte móvil en `max-width: 768px`) y `script.js` (menú, header y animaciones de aparición). Los recursos se guardan en `assets/`, con nombres en minúsculas y separados por guiones (`gethics-icon.png`). Los colores y la tipografía replican los definidos en los Style Guidelines, y se respeta la preferencia `prefers-reduced-motion` del usuario.
+
+#### Control de versiones
+
+**Ramas.** Se aplica GitFlow con `main` (versiones estables) y `develop` (integración). Cada tarea se desarrolla en una rama creada desde `develop`:
+
+| Tipo | Patrón | Ejemplos reales |
+|---|---|---|
+| Funcionalidad | `feature/<historia>-<descripción-corta>` | `feature/US01-US02-auth`, `feature/sanitary-us11-register-event` |
+| Tarea técnica | `feature/<TSxx>-<descripción-corta>` | `feature/TS03-cicd-cloud-deployment`, `feature/TS06-role-access` |
+| Corrección | `fix/<TSxx>-<descripción-corta>` | `fix/TS03-mvnw-permissions` |
+
+Se usan minúsculas, guiones para separar palabras y el identificador de la historia (`US..`) o tarea técnica (`TS..`) del Product Backlog, de modo que cada rama se pueda rastrear hasta el Sprint Backlog.
+
+**Commits.** Se siguen los Conventional Commits, con el formato `tipo(contexto): descripción en infinitivo`:
+
+| Tipo | Uso | Ejemplo real |
+|---|---|---|
+| `feat` | nueva funcionalidad | `feat(sanitary): implement US-12 sanitary calendar` |
+| `fix` | corrección de un error | `fix(sanitary): complete US-13 vaccination reminder flow` |
+| `test` | pruebas | `test(finance): add financial management aggregate tests` |
+| `style` | formato sin cambio de comportamiento | `style(veterinary): fix Checkstyle NewlineAtEndOfFile violations` |
+| `chore` | configuración, CI, estructura | `chore(ci): add lint check` |
+
+**Pull Requests.** El trabajo de cada rama se integra a `develop` mediante Pull Request. El pipeline de CI (Checkstyle, compilación y pruebas) se ejecuta automáticamente sobre cada Pull Request, y el equipo se compromete a no integrar cambios cuyo pipeline falle.
+
+---
 
 ### 4.1.4. Software Deployment Configuration
 
@@ -204,8 +342,152 @@ Los estados mostrados en esta tabla corresponden al estado inicial de planificac
 
 #### 4.2.1.4. Development Evidence for Sprint Review
 
+##### Web Services / Backend
+
+El repositorio `gethics-backend` concentra el mayor avance del Sprint. Se establecieron la estructura DDD por bounded contexts, el pipeline de CI/CD y los contextos de sanidad, analítica, finanzas y veterinaria.
+
+| Historia / Tarea | Descripción | Autor | Fecha | Commit | Pull Request |
+|---|---|---|---|---|---|
+| TS01 | Estructura inicial DDD con bounded contexts | Luis Angel Pillaca Vidal | 01/10/2026 | `adca824` | — |
+| TS03 | Pipeline de build y test, corrección de permisos de `mvnw` y dockerización | Luis Angel Pillaca Vidal | 01/10/2026 | `f940003`, `f2f6f41`, `f288e67` | #1 |
+| US11 | Registro de evento sanitario | Juan José Meza Huanacune | 02/10/2026 | `32d2c26` | #3 |
+| US12 | Calendario sanitario | Juan José Meza Huanacune | 02/10/2026 | `7e880f2` | #4 |
+| US13 | Recordatorios de vacunación | Juan José Meza Huanacune | 03/10/2026 | `c343c3b`, `825fc7f` | #5, #14 |
+| US14 | Historial clínico por animal | Juan José Meza Huanacune | 03/10/2026 | `5cdd75d` | #6 |
+| US21 | Alertas automáticas por tendencias | Juan José Meza Huanacune | 03/10/2026 – 04/10/2026 | `825dcc7`, `4d932f4` | #7, #15 |
+| TS03 | Lint con Checkstyle, health endpoint, perfil de producción y ajustes de seguridad | Luis Angel Pillaca Vidal | 03/10/2026 | `9266e60`, `f71b289`, `e8800ce` | #8 |
+| US15 | Registro de ingresos y egresos (`/api/v1/finances`) | Luis Angel Pillaca Vidal | 03/10/2026 | `82c90bd`, `b620fba`, `26656d6` | integrado a `develop` |
+| US17 | Clientes asignados al veterinario (`/api/v1/vet/clients`) | Luis Angel Pillaca Vidal | 03/10/2026 | `8fc3177`, `ef18c33`, `6e32e3c` | integrado a `develop` |
+| US18 | Consulta de pacientes de un cliente | Luis Angel Pillaca Vidal | 03/10/2026 | `5746c2f`, `671ec02`, `45d640b` | integrado a `develop` |
+
+Los commits se identifican con su hash abreviado de GitHub.
+
+<div align="center">
+  <p><b>Gráfico</b>: Historial de commits de la rama develop — gethics-backend</p>
+  <img src="images/backend-commits.png" alt="Commits del backend" width="800">
+  <p><i><b>Fuente</b>: GitHub, repositorio gethics-backend.</i></p>
+</div>
+
+<div align="center">
+  <p><b>Gráfico</b>: Pull Requests integrados a develop — gethics-backend</p>
+  <img src="images/backend-pull-requests.png" alt="Pull Requests del backend" width="800">
+  <p><i><b>Fuente</b>: GitHub, repositorio gethics-backend.</i></p>
+</div>
+
+<div align="center">
+  <p><b>Gráfico</b>: Ramas de funcionalidad del backend</p>
+  <img src="images/backend-branches.png" alt="Ramas del backend" width="800">
+  <p><i><b>Fuente</b>: GitHub, repositorio gethics-backend.</i></p>
+</div>
+
+##### Funcionalidades en ramas pendientes de integración
+
+Al cierre del registro de evidencias, las siguientes funcionalidades del módulo de Identity & Access Management y Subscription cuentan con una rama de trabajo propia, con su código implementado, que aún se encuentra pendiente de integración a `develop` mediante Pull Request:
+
+| Historia / Tarea | Descripción | Rama | Autor |
+|---|---|---|---|
+| US01, US02 | Registro de usuario, inicio de sesión y seguridad con JWT | `feature/US01-US02-auth` | Mauricio Castillo Yataco |
+| US03 | Recuperación de contraseña | `feature/US03-forgot-password` | Mauricio Castillo Yataco |
+| US04 | Gestión de perfil y foto | `feature/US04-user-profile` | Mauricio Castillo Yataco |
+| TS05 | Manejo global de errores y configuración base | `feature/TS05-error-handling` | Mauricio Castillo Yataco |
+| TS06 | Anotaciones de acceso por rol | `feature/TS06-role-access` | Mauricio Castillo Yataco |
+| US24 | Planes de suscripción | `feature/US24-subscription-plans` | Mauricio Castillo Yataco |
+
+##### Aplicación móvil
+
+El repositorio `gethics-mobile-app` establece la base de la aplicación en Kotlin con Jetpack Compose: estructura por contextos, Design System (colores, tipografía y componentes reutilizables), navegación con barra inferior, capa de red con Retrofit y persistencia local con Room para el modo offline. Como primera funcionalidad completa se implementó el registro de evento sanitario (US11), conectada al servicio del backend.
+
+| Elemento | Descripción | Autor | Fecha | Commit | Pull Request |
+|---|---|---|---|---|---|
+| Base del proyecto | Estructura Android, navegación, tema, componentes compartidos y esqueleto de todos los contextos | Juan José Meza Huanacune | 04/10/2026 | `aa2af6d` | — |
+| US11 | Pantalla y lógica de registro de evento sanitario, con validación de fecha y pruebas unitarias | Juan José Meza Huanacune | 04/10/2026 | `896d9eb` | #1 |
+
+Las demás pantallas (autenticación, inventario, calendario sanitario, historial clínico, módulo veterinario, finanzas, reportes y planes) se encuentran creadas en la estructura del proyecto con un componente provisional, a la espera de su implementación en los siguientes Sprints.
+
+<div align="center">
+  <p><b>Gráfico</b>: Historial de commits de la rama develop — gethics-mobile-app</p>
+  <img src="images/mobile-commits.png" alt="Commits de la app móvil" width="800">
+  <p><i><b>Fuente</b>: GitHub, repositorio gethics-mobile-app.</i></p>
+</div>
+
+<div align="center">
+  <p><b>Gráfico</b>: Pantalla de registro de evento sanitario (US11) en ejecución</p>
+  <img src="images/mobile-us11.png" alt="Pantalla US11 en la app móvil" width="260">
+  <p><i><b>Fuente</b>: Elaboración propia, emulador de Android Studio.</i></p>
+</div>
+
+##### Landing Page
+
+El repositorio `gethics-landing-page` contiene el sitio estático de Gethics, que implementa el diseño definido en la sección 3.1.3 con contenido tomado de los Capítulos I y II: propuesta de valor, segmentos objetivo, funcionalidades, modelo de negocio y equipo. Fue desarrollado por Nadhim Abigail Raymundo Villarroel en tres versiones sucesivas el 04/10/2026.
+
+<div align="center">
+  <p><b>Gráfico</b>: Historial de commits — gethics-landing-page</p>
+  <img src="images/landing-commits.png" alt="Commits del Landing Page" width="800">
+  <p><i><b>Fuente</b>: GitHub, repositorio gethics-landing-page.</i></p>
+</div>
+
+---
 
 #### 4.2.1.5. Testing Suite Evidence for Sprint Review
+
+##### Estrategia de pruebas
+
+| Producto | Herramientas | Tipos de prueba | Ejecución |
+|---|---|---|---|
+| Web Services | JUnit, Mockito, Spring Boot Test (`@DataJpaTest`, `@WebMvcTest`, `@SpringBootTest`) y base PostgreSQL 16 | Unitarias de dominio, de servicios de aplicación, de controladores (capa web), de persistencia y de flujo completo | `./mvnw verify` y GitHub Actions |
+| Aplicación móvil | JUnit 4 | Unitarias de ViewModel y de Repository, con dobles de prueba para el servicio de red | `./gradlew test` |
+
+##### Pipeline de integración continua
+
+El workflow `CI` del repositorio `gethics-backend` se ejecuta en cada Pull Request y en cada push a `develop` o `main`. Levanta un contenedor de PostgreSQL 16 y realiza tres pasos en orden: configuración de Java 21, verificación de estilo con Checkstyle (`./mvnw -B checkstyle:check`) y compilación con ejecución de todas las pruebas (`./mvnw -B verify`). Si alguno de estos pasos falla, el Pull Request no debe integrarse.
+
+<div align="center">
+  <p><b>Gráfico</b>: Ejecución del pipeline de CI en GitHub Actions — gethics-backend</p>
+  <img src="images/github-actions.png" alt="GitHub Actions del backend" width="800">
+  <p><i><b>Fuente</b>: GitHub Actions, repositorio gethics-backend.</i></p>
+</div>
+
+##### Suite de pruebas del backend
+
+En la rama `develop` el backend cuenta con **37 clases de prueba y 223 casos de prueba**, distribuidos por bounded context de la siguiente manera:
+
+| Bounded context | Clases de prueba | Casos de prueba | Qué cubre |
+|---|---:|---:|---|
+| Sanitary Tracking | 19 | 132 | Historial clínico, eventos sanitarios, calendario, recordatorios de vacunación (agregado, servicios, controladores, persistencia y flujo completo) |
+| Analytics & Alerts | 13 | 75 | Análisis de tendencias, generación y envío de alertas, configuración y trabajo periódico |
+| Veterinary Care | 3 | 10 | Asignación veterinario-cliente y consulta de clientes y pacientes |
+| Financial Management | 1 | 5 | Agregado de gestión financiera y registro de transacciones |
+| Aplicación (arranque) | 1 | 1 | Carga del contexto de Spring |
+| **Total** | **37** | **223** | |
+
+Las pruebas se organizan en cuatro niveles: pruebas de dominio, que verifican las reglas de negocio de los aggregates y entidades (por ejemplo, `ClinicalHistoryTest` y `ReminderTest`); pruebas de servicios de aplicación (`ClinicalHistoryCommandServiceImplTest`, `SanitaryCalendarQueryServiceImplTest`); pruebas de controladores (`SanitaryEventControllerTest`, `SanitaryCalendarControllerTest`); y pruebas de persistencia y de flujo completo (`VaccinationReminderEndToEndTest`, `AlertFlowTest`).
+
+<div align="center">
+  <p><b>Gráfico</b>: Resultado de la ejecución de las pruebas del backend (./mvnw verify)</p>
+  <img src="images/backend-test.png" alt="Resultado de pruebas del backend" width="800">
+  <p><i><b>Fuente</b>: Elaboración propia, terminal.</i></p>
+</div>
+
+##### Suite de pruebas de la aplicación móvil
+
+La aplicación móvil cuenta con **2 clases de prueba y 9 casos de prueba** correspondientes a la funcionalidad US11:
+
+| Clase de prueba | Casos | Qué verifica |
+|---|---:|---|
+| `RegisterEventViewModelTest` | 5 | La fecha de ayer y de hoy son válidas; la fecha de mañana es rechazada; la fecha se envía al backend en formato ISO con segundos; si la fecha es futura, se muestra el mensaje de error y no se llama al backend. |
+| `SanitaryRepositoryTest` | 4 | Una respuesta 201 devuelve éxito; una respuesta 400 muestra el mensaje del backend; un cuerpo no interpretable devuelve un mensaje genérico con el código HTTP; la falta de conexión devuelve un mensaje de error. |
+
+Estas pruebas cubren las validaciones de la pantalla de registro y el manejo de errores de red, que son los puntos más sensibles del uso en campo con conectividad limitada. Aún no se cuenta con pruebas de interfaz (instrumentadas) ni con pruebas para los demás módulos, que se incorporarán conforme se implementen sus pantallas.
+
+<div align="center">
+  <p><b>Gráfico</b>: Resultado de las pruebas unitarias de la aplicación móvil</p>
+  <img src="images/mobile-test.png" alt="Resultado de pruebas de la app móvil" width="800">
+  <p><i><b>Fuente</b>: Elaboración propia, Android Studio.</i></p>
+</div>
+
+##### Verificación de estilo
+
+El análisis estático con Checkstyle se ejecuta como paso independiente del pipeline antes de las pruebas, por lo que un Pull Request con violaciones de estilo (por ejemplo, un archivo sin salto de línea final) falla sin llegar a compilar. Durante el Sprint esto permitió detectar y corregir violaciones, como en el commit `5154f8b`: `style(veterinary): fix Checkstyle NewlineAtEndOfFile violations`.
 
 
 #### 4.2.1.6. Execution Evidence for Sprint Review
