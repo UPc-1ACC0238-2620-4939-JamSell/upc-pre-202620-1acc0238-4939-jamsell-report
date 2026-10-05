@@ -215,7 +215,119 @@ Se usan minúsculas, guiones para separar palabras y el identificador de la hist
 
 ### 4.1.4. Software Deployment Configuration
 
+#### Resumen de componentes desplegados
 
+| Componente | Repositorio | Tecnología | Plataforma de despliegue | Estado |
+| --- | --- | --- | --- | --- |
+| Landing Page | `gethics-landing-page` | HTML, CSS y JavaScript (sin framework ni build step) | Vercel | Desplegado: https://gethics-landing-page.vercel.app |
+| Backend | `gethics-backend` | Java 21, Spring Boot 4.1.1, Spring Data JPA, Maven | [COMPLETAR: Render / Railway / Azure / otro] | [COMPLETAR] |
+| Base de datos | `gethics-backend` | PostgreSQL 16 | Docker Compose (local) y [COMPLETAR: Neon / Supabase] en la nube | Local operativo |
+| Aplicación Móvil | `gethics-mobile-app` | Android nativo (Kotlin, Jetpack Compose, Gradle Kotlin DSL) | [COMPLETAR: GitHub Releases (APK) / Firebase App Distribution] | [COMPLETAR] |
+
+#### 4.1.4.1. Landing Page
+
+La Landing Page es un sitio estático compuesto por `index.html`, `styles.css`, `script.js` y la carpeta `assets/`. Al no requerir compilación, su despliegue consiste en publicar el contenido del repositorio tal como está.
+
+**Configuración en Vercel**
+
+| Parámetro | Valor |
+| --- | --- |
+| Repositorio conectado | `UPc-1ACC0238-2620-4939-JamSell/gethics-landing-page` |
+| Rama de producción | `main` |
+| Framework Preset | Other |
+| Build Command | Ninguno |
+| Output Directory | Raíz del repositorio (`/`) |
+| URL de producción | https://gethics-landing-page.vercel.app |
+
+**Proceso de despliegue**
+
+1. Se importa el repositorio desde el panel de Vercel mediante la integración con GitHub.
+2. Se deja vacío el comando de build y se mantiene la raíz del repositorio como directorio de salida.
+3. Cada `push` a la rama `main` dispara un nuevo despliegue de producción de forma automática.
+4. El enlace de producción se referencia en el repositorio como sitio web del proyecto.
+
+#### 4.1.4.2. Backend
+
+El backend sigue una arquitectura DDD organizada en los bounded contexts `iam`, `livestock`, `sanitary`, `veterinary`, `finance`, `analytics`, `subscription` y `shared`, y expone la API REST en el puerto `8080`.
+
+**Entornos**
+
+| Entorno | Perfil Spring | Base de datos | Uso |
+| --- | --- | --- | --- |
+| Desarrollo | `dev` | PostgreSQL 16 en contenedor Docker (`localhost:5432`) | Trabajo local de cada integrante |
+| Producción | `prod` | [COMPLETAR: PostgreSQL gestionado en Neon o Supabase] | Servicio consumido por la app móvil |
+
+**Variables de entorno**
+
+La configuración sensible no se versiona. El repositorio incluye un archivo `.env.example` que cada integrante copia como `.env`; el archivo `.env` está excluido mediante `.gitignore`.
+
+| Variable | Descripción | Valor en desarrollo |
+| --- | --- | --- |
+| `SPRING_PROFILES_ACTIVE` | Perfil activo (`dev` o `prod`) | `dev` |
+| `DB_URL` | URL JDBC de PostgreSQL | `jdbc:postgresql://localhost:5432/gethics` |
+| `DB_USER` | Usuario de la base de datos | `gethics` |
+| `DB_PASSWORD` | Contraseña de la base de datos | Definida en `.env` |
+
+En producción estas variables se configuran como *secrets* o variables de entorno de la plataforma de hosting, con credenciales distintas a las de desarrollo.
+
+**Base de datos local con Docker Compose**
+
+El archivo `docker-compose.yml` levanta un contenedor `gethics-db` basado en la imagen `postgres:16`, con la base de datos `gethics`, el puerto `5432` expuesto y un volumen persistente `gethics-data` para conservar la información entre reinicios.
+
+```bash
+docker compose up -d
+```
+
+**Compilación y ejecución**
+
+```bash
+# Ejecución en desarrollo
+./mvnw spring-boot:run
+
+# Generación del artefacto para despliegue
+./mvnw clean package -DskipTests
+
+# Ejecución del artefacto
+java -jar target/*.jar
+```
+
+**Proceso de despliegue en la nube**
+
+1. [COMPLETAR: conectar el repositorio `gethics-backend` a la plataforma de hosting elegida.]
+2. [COMPLETAR: configurar `SPRING_PROFILES_ACTIVE=prod`, `DB_URL`, `DB_USER` y `DB_PASSWORD` como variables de entorno.]
+3. [COMPLETAR: definir el comando de build (`./mvnw clean package -DskipTests`) y el comando de inicio (`java -jar target/*.jar`).]
+4. [COMPLETAR: verificar que la API responde en la URL pública asignada.]
+
+#### 4.1.4.3. Aplicación Móvil
+
+La aplicación móvil es un proyecto Android nativo construido con Gradle (Kotlin DSL), Kotlin y Jetpack Compose, que utiliza KSP para el procesamiento de anotaciones. Consume la API REST del backend.
+
+**Generación del artefacto**
+
+```bash
+# APK de depuración
+./gradlew assembleDebug
+
+# APK de lanzamiento
+./gradlew assembleRelease
+```
+
+**Distribución**
+
+1. [COMPLETAR: indicar el medio de distribución (por ejemplo, GitHub Releases con el APK adjunto o Firebase App Distribution).]
+2. [COMPLETAR: indicar la URL base del backend configurada para el entorno de producción.]
+3. El botón "Descargar app" de la Landing Page [COMPLETAR: enlaza al medio de distribución elegido].
+
+#### 4.1.4.4. Flujo general de despliegue
+
+El flujo de entrega sigue la estrategia de ramas definida en la sección 4.1.2: el trabajo se realiza en ramas `feature/<contexto>-<tarea>`, se integra mediante Pull Request hacia `develop` y la rama `main` se mantiene como rama estable desde la que se despliega a producción.
+
+| Etapa | Landing Page | Backend | Aplicación Móvil |
+| --- | --- | --- | --- |
+| Integración | Pull Request hacia `main` | Pull Request hacia `develop` | [COMPLETAR] |
+| Construcción | No requiere | `./mvnw clean package` | `./gradlew assemble<Variante>` |
+| Publicación | Despliegue automático de Vercel | [COMPLETAR] | [COMPLETAR] |
+| Verificación | Revisión de la URL pública | [COMPLETAR] | [COMPLETAR] |
 ---
 
 ## 4.2. Landing Page & Mobile Application Implementation
