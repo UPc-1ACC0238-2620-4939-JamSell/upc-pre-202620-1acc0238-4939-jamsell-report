@@ -603,9 +603,56 @@ El análisis estático con Checkstyle se ejecuta como paso independiente del pip
 
 
 #### 4.2.1.6. Execution Evidence for Sprint Review
+En esta sección se presentan las evidencias de la ejecución y correcto funcionamiento de los productos digitales que integran la solución **Gethics** durante la revisión del Sprint. Se valida el cumplimiento de las Historias de Usuario priorizadas a través de capturas de pantalla de la **Aplicación Móvil**, la **Landing Page** y los **Web Services**.
 
+---
+
+#### 1. Evidencias de Ejecución de la Aplicación Móvil
+
+Se verifica la ejecución de la aplicación móvil desarrollada en **Kotlin y Jetpack Compose** en un entorno de emulación/dispositivo físico Android, mostrando el flujo de interacción de los principales módulos.
+
+* **Autenticación e Inicio de Sesión:** Pantalla de ingreso de credenciales para usuarios registrados (ganaderos y veterinarios).
+* **Gestión del Hato (Livestock):** Vista de listado de bovinos registrados con detalle de estado de salud y ficha individual.
+* **Registro de Eventos Sanitarios:** Formulario dinámico para el registro de vacunaciones, tratamientos y controles médicos.
+
+
+---
+
+#### 2. Evidencias de Ejecución de la Landing Page
+
+Se confirma la disponibilidad pública de la **Landing Page** alojada en Vercel, verificando la maquetación responsive, navegación entre secciones informativas y acceso a la descarga del APK.
+
+
+---
+
+#### 3. Evidencias de Ejecución de Pruebas en Postman (Backend)
+
+Ejecución exitosa de la colección de pruebas automatizadas sobre la API REST desplegada en Render, asegurando el correcto procesamiento de las peticiones HTTP y códigos de respuesta (`200 OK`, `201 Created`).
+
+
+---
 
 #### 4.2.1.7. Services Documentation Evidence for Sprint Review
+
+En esta sección se detalla la documentación técnica interactiva de los **Web Services (Backend)** desarrollados en **Spring Boot**, correspondiente a la API REST expuesta para el consumo de la aplicación móvil y servicios de integración.
+
+La documentación se generó automáticamente utilizando **OpenAPI 3.0 / Swagger UI**, lo cual permite explorar la estructura de las peticiones, esquemas de datos (*DTOs*), parámetros requeridos, códigos de estado HTTP y realizar pruebas de endpoints en tiempo real.
+
+---
+
+#### 1. Especificación OpenAPI y Swagger UI
+
+Se documentaron los endpoints organizados por bounded contexts de acuerdo con la arquitectura Domain-Driven Design (DDD) implementada:
+
+* **IAM (`/api/v1/authentication`, `/api/v1/users`):** Registro, autenticación mediante JWT y gestión de perfiles de usuario.
+* **Livestock (`/api/v1/animals`):** Registro, consulta, actualización y trazabilidad del ganado vacuno.
+* **Sanitary (`/api/v1/sanitary-events`, `/api/v1/vaccinations`):** Programación y seguimiento de eventos sanitarios y tratamientos.
+* **Veterinary (`/api/v1/prescriptions`, `/api/v1/consultations`):** Gestión de recetas y consultas médicas veterinarias.
+---
+
+#### 2. Detalle de Esquemas de Datos (Schemas / DTOs)
+
+Cada endpoint cuenta con la definición explícita de sus modelos de transferencia de datos (`RequestDTO` y `ResponseDTO`), especificando los tipos de datos, restricciones de validación y respuestas de error estandarizadas.
 
 
 #### 4.2.1.8. Software Deployment Evidence for Sprint Review
