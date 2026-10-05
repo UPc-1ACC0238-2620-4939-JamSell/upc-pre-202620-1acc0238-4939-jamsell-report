@@ -611,4 +611,4 @@ A continuación se presentan los mock-ups de la aplicación móvil de Gethics, d
 
 <img src="images/prototype.png" alt="Mock-up de perfil">
 
- Link del prototipo: https://www.figma.com/design/6s1sDsX9Z6apr5q1APEUk8/Untitled?node-id=59-2&t=KGly1JJ6W7T4e1ik-1
+ Link del prototipo: https://www.figma.com/proto/6s1sDsX9Z6apr5q1APEUk8/Untitled?node-id=59-3&p=f&t=69FUs3pA82ELGxLM-1&scaling=min-zoom&content-scaling=fixed&page-id=59%3A2&starting-point-node-id=59%3A3&show-proto-sidebar=1
