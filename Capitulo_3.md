@@ -388,11 +388,117 @@ El bloque "Mockup de la app (pantalla real)" dentro del Hero queda como marcador
 
 ### 3.1.4. Mobile Applications UX/UI Design
 
+Esta sección documenta el diseño de la aplicación móvil de Gethics, desde la estructura de baja fidelidad hasta el prototipo navegable. El proceso siguió una progresión deliberada, primero se definió la estructura de cada pantalla (wireframes), luego cómo se conectan entre sí (wireflows), después se aplicó el Design System de la sección 3.1.1 (mock-ups), se validaron los recorridos completos de cada tipo de usuario (user flows) y finalmente se construyó un prototipo interactivo para probar la experiencia antes de pasar al desarrollo.
+
+Todas las decisiones parten de lo definido en Information Architecture: cuatro módulos en la navegación inferior (Inicio, Inventario, Tareas y Perfil), una jerarquía poco profunda cuyo punto más hondo es la ficha del animal, y acciones principales siempre visibles. Se diseñó para pantallas pequeñas, uso con una mano y condiciones de campo, tal como lo evidenció la investigación con ganaderos y veterinarios.
+
 #### 3.1.4.1. Mobile Applications Wireframes
 
+Los wireframes se elaboraron en baja fidelidad (escala de grises, sin color ni imágenes finales) para validar la estructura y jerarquía de cada pantalla antes de invertir tiempo en el acabado visual. En esta etapa interesa responder tres preguntas: qué información aparece, en qué orden y dónde está la acción principal.
+
+<div align="center">
+<img src="images/mobile-wireframe-01.png" alt="Mobile Wireframe 1" width="700">
+</div>
+
+<div align="center">
+<img src="images/mobile-wireframe-02.png" alt="Mobile Wireframe 2" width="700">
+</div>
+
+<div align="center">
+<img src="images/mobile-wireframe-03.png" alt="Mobile Wireframe 3" width="700">
+</div>
+
+<div align="center">
+<img src="images/mobile-wireframe-04.png" alt="Mobile Wireframe 4" width="700">
+</div>
+
+<div align="center">
+<img src="images/mobile-wireframe-05.png" alt="Mobile Wireframe 5" width="700">
+</div>
+
+<div align="center">
+<img src="images/mobile-wireframe-06.png" alt="Mobile Wireframe 6" width="700">
+</div>
+
+<div align="center">
+<img src="images/mobile-wireframe-07.png" alt="Mobile Wireframe 7" width="700">
+</div>
+
+<div align="center">
+<img src="images/mobile-wireframe-08.png" alt="Mobile Wireframe 8" width="700">
+  <p><i><b>Fuente</b>: Elaboración propia.</i></p>
+</div>
 
 #### 3.1.4.2. Mobile Applications Wireflow Diagrams
 
+Se elaboraron wireflows para las tareas más frecuentes identificadas en la User Task Matrix:
+
+1. Registro de un animal: Inventario → botón "Registrar nueva res" → formulario → confirmación → regreso al listado con el animal ya agregado.
+
+2. Consulta del historial de un animal: Inventario → búsqueda o selección en la lista → ficha del animal → pestaña Salud o Vacunas.
+
+3. Revisión de tareas sanitarias: Tareas → selección de fecha en el calendario → lista de actividades del día → detalle o registro de tratamiento.
+
+<div align="center">
+<img src="images/wireflow01.png" alt="Wireflow 01" width="700">
+</div>
+
+<div align="center">
+<img src="images/wireflow02.png" alt="Wireflow 02" width="700">
+</div>
+
+<div align="center">
+<img src="images/wireflow03.png" alt="Wireflow 03" width="700">
+</div>
+
+<div align="center">
+<img src="images/wireflow04.png" alt="Wireflow 04" width="700">
+</div>
+
+<div align="center">
+<img src="images/wireflow05.png" alt="Wireflow 05" width="700">
+</div>
+
+<div align="center">
+<img src="images/wireflow06.png" alt="Wireflow 06" width="700">
+</div>
+
+<div align="center">
+<img src="images/wireflow07.png" alt="Wireflow 07" width="700">
+</div>
+
+<div align="center">
+<img src="images/wireflow08.png" alt="Wireflow 08" width="700">
+</div>
+
+<div align="center">
+<img src="images/wireflow09.png" alt="Wireflow 09" width="700">
+</div>
+
+<div align="center">
+<img src="images/wireflow10.png" alt="Wireflow 10" width="700">
+</div>
+
+<div align="center">
+<img src="images/wireflow11.png" alt="Wireflow 11" width="700">
+</div>
+
+<div align="center">
+<img src="images/wireflow12.png" alt="Wireflow 12" width="700">
+</div>
+
+<div align="center">
+<img src="images/wireflow13.png" alt="Wireflow 13" width="700">
+</div>
+
+<div align="center">
+<img src="images/wireflow14.png" alt="Wireflow 14" width="700">
+</div>
+
+<div align="center">
+<img src="images/wireflow15.png" alt="Wireflow 15" width="700">
+  <p><i><b>Fuente</b>: Elaboración propia.</i></p>
+</div>
 
 ### 3.1.4.3. Mobile Applications Mock-ups
 
