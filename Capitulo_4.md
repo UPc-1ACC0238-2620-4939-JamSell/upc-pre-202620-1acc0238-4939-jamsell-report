@@ -655,10 +655,44 @@ La aplicación móvil desarrollada en **Kotlin y Jetpack Compose** fue compilada
   ```bash
   ./gradlew assembleRelease
 #### 4.2.1.9. Team Collaboration Insights during Sprint
+Durante el desarrollo del presente Sprint, el equipo **JamSell** mantuvo una dinámica de trabajo altamente colaborativa y distribuida de manera equitativa entre los tres productos digitales principales de la solución **Gethics**: la **Landing Page**, los **Web Services (Backend)** y la **Aplicación Móvil**.
 
+Para garantizar la transparencia, trazabilidad y sincronización en la ejecución de las tareas, la gestión del código fuente y el flujo de integración se respaldaron mediante analíticos de colaboración, métricas de commits y Pull Requests dentro de los repositorios de GitHub.
 
 ---
 
+#### 1. Analíticos de Colaboración y Commits en GitHub
+
+Las métricas e historial de commits reflejan la participación activa y constante de los integrantes del equipo en los repositorios de cada producto digital durante las fases de desarrollo, integración y despliegue del Sprint.
+
+![Historial de Commits - Landing Page](images/CommitsLanding.png)
+*Figura 4.X. Historial de commits y contribuciones en el repositorio de la Landing Page.*
+
+![Historial de Commits - Web Services (Backend)](images/CommitsBackend.png)
+*Figura 4.X. Historial de commits y flujo de integración en el repositorio del Backend (Spring Boot).*
+
+![Historial de Commits - Aplicación Móvil](images/CommitsAppMobile.png)
+*Figura 4.X. Historial de commits y desarrollo de funcionalidades en el repositorio de la Aplicación Móvil (Android).*
+
+---
+
+#### 2. Interpretación de los Analíticos por Integrante
+
+A partir de los analíticos y registros registrados en las plataformas de control de versiones, se detalla el aporte específico de cada miembro del equipo en los distintos frentes de trabajo:
+
+| Integrante | Código Student | Responsabilidades y Aportes en la Implementación |
+| :--- | :--- | :--- |
+| **Castillo Yataco, Mauricio Sebastian** | U202113229 | Lideró la maquetación responsive, estructuración HTML/CSS y despliegue continuo de la **Landing Page** en Vercel, asegurando la alineación con la propuesta de valor y las secciones informativas. |
+| **Pillaca Vidal, Luis Angel** | U202315654 | Estructuró los pipelines de **Deployment**, aprovisionamiento de servicios cloud (Render), configuración de variables de entorno de producción y apoyo en la arquitectura del **Backend Spring Boot**. |
+| **Salazar Miranda, Mateo Paolo** | U202315171 | Implementó las capas del **Backend (Web Services)** en Spring Boot, incluyendo controladores REST, servicios y persistencia de datos con PostgreSQL para los módulos de ganado y eventos sanitarios. |
+| **Raymundo Villarroel, Nadhim Abigail** | U202318001 | Desarrolló vistas y componentes UI en la **Aplicación Móvil (Kotlin & Jetpack Compose)**, integrando la navegación principal, consumo de API REST y manejo de estados del cliente. |
+| **Meza Huanacune, Juan José** | U202320574 | Diseñó la lógica de negocio y validaciones en la **Aplicación Móvil**, la generación del paquete ejecutable (`.apk`) y la configuración del flujo de releases en GitHub. |
+
+---
+
+#### 3. Conclusión del Desempeño del Equipo
+
+El análisis cuantitativo de los repositorios evidencia un trabajo sinérgico y equilibrado. Se logró cumplir con los criterios de aceptación establecidos en el Sprint Backlog mediante la integración fluida entre el frontend, backend y la aplicación móvil, garantizando la estabilidad de las entregas y la correcta implementación de las funcionalidades planificadas.
 ## 4.3. Validation Interviews
 
 ### 4.3.1. Diseño de Entrevistas
