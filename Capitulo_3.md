@@ -437,6 +437,7 @@ Los wireframes se elaboraron en baja fidelidad (escala de grises, sin color ni i
   <p><i><b>Fuente</b>: Elaboración propia.</i></p>
 </div>
 
+Link de los Mobile Applications Wireframes: https://www.figma.com/design/ge1sEWNd24ywwpYcSb3bRX/GETHICS-%E2%80%94-Mobile-UX-UI?node-id=1-3&t=ef2OCrXj7Nzp0ImN-1
 #### 3.1.4.2. Mobile Applications Wireflow Diagrams
 
 Se elaboraron wireflows para las tareas más frecuentes identificadas en la User Task Matrix:
@@ -507,6 +508,8 @@ Se elaboraron wireflows para las tareas más frecuentes identificadas en la User
 <img src="images/wireflow15.png" alt="Wireflow 15" width="700">
   <p><i><b>Fuente</b>: Elaboración propia.</i></p>
 </div>
+
+Link de los Mobile Applications Wireflow Diagrams: https://www.figma.com/design/ge1sEWNd24ywwpYcSb3bRX/GETHICS-%E2%80%94-Mobile-UX-UI?node-id=1-3&t=ef2OCrXj7Nzp0ImN-1
 
 ### 3.1.4.3. Mobile Applications Mock-ups
 
