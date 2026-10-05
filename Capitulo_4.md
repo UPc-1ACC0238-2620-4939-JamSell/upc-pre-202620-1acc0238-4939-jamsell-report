@@ -609,8 +609,51 @@ El análisis estático con Checkstyle se ejecuta como paso independiente del pip
 
 
 #### 4.2.1.8. Software Deployment Evidence for Sprint Review
+Durante el presente Sprint, el equipo llevó a cabo el aprovisionamiento, configuración e integración del entorno de despliegue continuo para los tres productos digitales principales que conforman la solución **Gethics**: la **Landing Page**, los **Web Services (Backend)** y la **Aplicación Móvil**.
 
+Las actividades realizadas abarcaron desde la gestión de cuentas y creación de proyectos en las plataformas cloud correspondientes, hasta la configuración de variables de entorno, pipelines de compilación automática y distribución de los artefactos ejecutables.
 
+---
+
+#### 1. Despliegue de la Landing Page
+
+Para la Landing Page se utilizó **Vercel** como proveedor de hosting cloud, debido a su integración nativa con repositorios de GitHub y su capacidad de despliegue continuo (CD) ante eventos de push en la rama principal.
+
+* **Paso 1:** Vinculación del repositorio del proyecto en Vercel y selección de la rama principal (`main`).
+* **Paso 2:** Configuración de los parámetros de build (Framework Preset: HTML/CSS/JS) y directorio raíz.
+* **Paso 3:** Ejecución del pipeline automático y verificación de disponibilidad mediante el dominio público generado por la plataforma.
+
+![Despliegue de Landing Page en Vercel](images/landingdeploy.png)
+*Figura 4.X. Estado del despliegue exitoso de la Landing Page en Vercel y confirmación de la URL pública de producción.*
+
+---
+
+#### 2. Despliegue de los Web Services (Backend)
+
+El backend, desarrollado en **Spring Boot** con Java 21, se desplegó en **Render** integrando una base de datos PostgreSQL gestionada. Se configuró un entorno de producción optimizado mediante el perfil `prod` y variables de entorno para resguardar las credenciales de conexión.
+
+* **Paso 1:** Creación del Web Service en Render y vinculación directa con el repositorio `gethics-backend` en la rama `main` / `develop`.
+* **Paso 2:** Configuración de las variables de entorno dentro del panel del Cloud Provider:
+  * `SPRING_PROFILES_ACTIVE`: `prod`
+  * `DB_URL`: `jdbc:postgresql://<host-render>:<port>/<database>`
+  * `DB_USER`: `<usuario-bd>`
+  * `DB_PASSWORD`: `<password-bd>`
+* **Paso 3:** Definición del comando de compilación (`./mvnw clean package -DskipTests`) y comando de inicio (`java -jar target/*.jar`).
+* **Paso 4:** Verificación de la compilación exitosa, despliegue de contenedores y prueba de disponibilidad de los endpoints mediante la especificación OpenAPI / Swagger.
+
+![Configuración y Estado del Backend en Render](images/backenddeploy.png)
+*Figura 4.X. Panel de control en Render mostrando los logs de compilación exitosa y la ejecución activa de los Web Services.*
+
+---
+
+#### 3. Distribución de la Aplicación Móvil (Android)
+
+La aplicación móvil desarrollada en **Kotlin y Jetpack Compose** fue compilada en su variante de lanzamiento (`release`) para la generación del paquete instalable (`.apk`).
+
+* **Paso 1:** Configuración de la URL base del backend de producción dentro de la capa de datos de la aplicación (`BASE_URL`).
+* **Paso 2:** Ejecución del comando de construcción del paquete ejecutable:
+  ```bash
+  ./gradlew assembleRelease
 #### 4.2.1.9. Team Collaboration Insights during Sprint
 
 
