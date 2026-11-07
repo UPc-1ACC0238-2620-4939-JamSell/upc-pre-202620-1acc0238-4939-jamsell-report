@@ -714,11 +714,38 @@ Esta sección presenta el desarrollo correspondiente al segundo Sprint del proye
 
 ### 4.2.2.1. Sprint Planning 2
 
-**Responsable:** Juan José Meza Huanacune
+### 4.2.2.1. Sprint Planning 2
 
-En esta sección se documentará la planificación correspondiente al Sprint 2, incluyendo el objetivo del Sprint, la duración de la iteración, las User Stories y Technical Stories seleccionadas y los principales acuerdos establecidos por el equipo para el desarrollo de la entrega.
+| Sprint Planning Background | Detalle |
+|---|---|
+| **Sprint #** | Sprint 2 |
+| **Date** | 05/11/2026 |
+| **Meeting Duration** | Aproximadamente 4 minutos y 30 segundos |
+| **Location** | Reunión virtual mediante Discord |
+| **Prepared By** | Meza Huanacune, Juan José |
+| **Attendees (to planning meeting)** | Mauricio Sebastian Castillo Yataco / Mateo Paolo Salazar Miranda / Juan Jose Meza Huanacune / Luis Angel Pillaca Vidal / Nadhim Abigail Raymundo Villarroel |
+| **Sprint 1 Review Summary** | Durante el Sprint 1 se estableció la base técnica y funcional de Gethics, avanzando en los principales bounded contexts del backend y en las primeras funcionalidades de la aplicación móvil. También se configuraron los repositorios, el flujo de integración continua, la documentación inicial de servicios y el Landing Page. Algunas funcionalidades quedaron implementadas en ramas independientes o parcialmente integradas, por lo que debían continuar durante el Sprint 2. |
+| **Sprint 1 Retrospective Summary** | El equipo identificó la necesidad de mejorar la coordinación de las dependencias entre User Stories, mantener actualizada la rama `develop` antes de iniciar nuevas funcionalidades y evitar duplicar componentes compartidos entre distintas ramas. También se acordó continuar utilizando feature branches y Pull Requests para integrar los avances de forma controlada. |
+| **Sprint Goal & User Stories** | Durante el Sprint 2 se planificó continuar con las User Stories asignadas a cada integrante, priorizando la implementación de las funcionalidades móviles, la integración con los Web Services ya desarrollados, la finalización de funcionalidades pendientes y la preparación de evidencias de desarrollo, pruebas, ejecución y despliegue para el Sprint Review. |
+| **Sprint 2 Goal** | Completar e integrar las principales funcionalidades core de Gethics en la aplicación móvil y los Web Services, validar su funcionamiento mediante pruebas automatizadas y ejecución real, y preparar una versión suficientemente integrada de la solución para su revisión y validación durante la AV2. |
+| **Sprint 2 Velocity** | El Sprint 2 toma como referencia el trabajo realizado durante el Sprint 1. La velocidad definitiva del Sprint se determinará a partir de las User Stories completadas e integradas al cierre de la iteración. |
+| **Sum of Story Points** | Se mantienen como referencia las estimaciones registradas en el Product Backlog para las User Stories trabajadas durante la iteración. El detalle de Story Points se presenta en el Sprint Backlog 2. |
 
-> Pendiente de completar por Juan José Meza Huanacune.
+#### Distribución general del trabajo para el Sprint 2
+
+La distribución del trabajo mantuvo como referencia los módulos y responsabilidades establecidos desde el Sprint anterior. Las User Stories desarrolladas durante esta iteración se distribuyeron entre los integrantes de acuerdo con las funcionalidades que cada uno venía trabajando y con las dependencias existentes entre los diferentes módulos del producto.
+
+| Integrante | Área principal de trabajo durante Sprint 2 |
+|---|---|
+| Mauricio Sebastian Castillo Yataco | Identity & Access Management: registro, autenticación, recuperación de contraseña, perfil, roles y funcionalidades relacionadas con IAM. |
+| Mateo Paolo Salazar Miranda | Gestión de ganado y granjas: registro, listado, búsqueda, edición, eliminación y asociación de animales con granjas. |
+| Juan Jose Meza Huanacune | Gestión sanitaria y analítica: eventos sanitarios, calendario, recordatorios, historial clínico y alertas automáticas por tendencias. |
+| Luis Angel Pillaca Vidal | Gestión financiera y módulo veterinario: transacciones, balance económico, clientes, pacientes y atención veterinaria. |
+| Nadhim Abigail Raymundo Villarroel | Reportes, estadísticas, notificaciones, integración IoT y funcionalidades transversales de la aplicación móvil. |
+
+Durante la ejecución del Sprint, algunas responsabilidades fueron ajustándose de acuerdo con el avance real de las ramas y las dependencias entre funcionalidades. Por esta razón, el detalle definitivo de las User Stories desarrolladas, su responsable, estado, Story Points y evidencias de implementación se presenta en las secciones **4.2.2.3. Sprint Backlog 2** y **4.2.2.4. Development Evidence for Sprint Review**.
+
+---
 
 ### 4.2.2.2. Aspect Leaders and Collaborators
 
@@ -738,21 +765,7 @@ En esta sección se documentará el Sprint Backlog correspondiente al Sprint 2, 
 
 ### 4.2.2.4. Development Evidence for Sprint Review
 
-**Responsable:** Juan José Meza Huanacune
 
-En esta sección se presentarán las principales evidencias de desarrollo correspondientes al Sprint 2.
-
-Las evidencias deberán permitir identificar la relación entre las User Stories desarrolladas, los repositorios utilizados, las feature branches, los commits realizados y los Pull Requests empleados para integrar los cambios hacia la rama `develop`.
-
-Se incluirán evidencias correspondientes a los diferentes productos desarrollados durante el Sprint, según corresponda:
-
-- Web Services / Backend.
-- Aplicación móvil.
-- Landing Page.
-
-También se deberán registrar los principales artefactos implementados durante el Sprint, tales como endpoints REST, componentes de la aplicación móvil, ViewModels, repositories, servicios y demás elementos relevantes de la solución.
-
-> Pendiente de completar por Juan José Meza Huanacune.
 
 ### 4.2.2.5. Testing Suite Evidence for Sprint Review
 
