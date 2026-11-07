@@ -708,6 +708,144 @@ Para garantizar la transparencia, trazabilidad y sincronización en la ejecució
 
 ---
 
+## 4.2.2. Sprint 2
+
+Esta sección presenta el desarrollo correspondiente al segundo Sprint del proyecto **Gethics**. Se documentan la planificación de la iteración, la distribución de responsabilidades entre los integrantes del equipo, el Sprint Backlog, las evidencias de desarrollo y pruebas, la ejecución de las funcionalidades implementadas, la documentación de los servicios, el despliegue del software y las evidencias de colaboración del equipo durante el Sprint.
+
+### 4.2.2.1. Sprint Planning 2
+
+**Responsable:** Juan José Meza Huanacune
+
+En esta sección se documentará la planificación correspondiente al Sprint 2, incluyendo el objetivo del Sprint, la duración de la iteración, las User Stories y Technical Stories seleccionadas y los principales acuerdos establecidos por el equipo para el desarrollo de la entrega.
+
+> Pendiente de completar por Juan José Meza Huanacune.
+
+### 4.2.2.2. Aspect Leaders and Collaborators
+
+**Responsable:** Mauricio Sebastian Castillo Yataco
+
+En esta sección se presentarán los responsables y colaboradores de los diferentes aspectos del proyecto durante el Sprint 2, detallando la participación de cada integrante en las actividades planificadas.
+
+> Pendiente de completar por Mauricio Sebastian Castillo Yataco.
+
+### 4.2.2.3. Sprint Backlog 2
+
+**Responsable:** Mateo Paolo Salazar Miranda
+
+En esta sección se documentará el Sprint Backlog correspondiente al Sprint 2, incluyendo las User Stories, Technical Stories, tareas, responsables, prioridades, Story Points y estado de avance de cada elemento seleccionado para la iteración.
+
+> Pendiente de completar por Mateo Paolo Salazar Miranda.
+
+### 4.2.2.4. Development Evidence for Sprint Review
+
+**Responsable:** Juan José Meza Huanacune
+
+En esta sección se presentarán las principales evidencias de desarrollo correspondientes al Sprint 2.
+
+Las evidencias deberán permitir identificar la relación entre las User Stories desarrolladas, los repositorios utilizados, las feature branches, los commits realizados y los Pull Requests empleados para integrar los cambios hacia la rama `develop`.
+
+Se incluirán evidencias correspondientes a los diferentes productos desarrollados durante el Sprint, según corresponda:
+
+- Web Services / Backend.
+- Aplicación móvil.
+- Landing Page.
+
+También se deberán registrar los principales artefactos implementados durante el Sprint, tales como endpoints REST, componentes de la aplicación móvil, ViewModels, repositories, servicios y demás elementos relevantes de la solución.
+
+> Pendiente de completar por Juan José Meza Huanacune.
+
+### 4.2.2.5. Testing Suite Evidence for Sprint Review
+
+**Responsable:** Juan José Meza Huanacune
+
+En esta sección se documentarán las evidencias de las pruebas realizadas durante el Sprint 2.
+
+Se deberán incluir, según corresponda:
+
+- Pruebas unitarias.
+- Pruebas de integración.
+- Pruebas de controllers.
+- Pruebas de repositories.
+- Pruebas de ViewModels.
+- Validaciones de compilación.
+- Resultados obtenidos mediante los pipelines de integración continua.
+- Validaciones realizadas contra los servicios desplegados.
+
+Las evidencias deberán mostrar los resultados de las suites de pruebas y permitir comprobar que las funcionalidades desarrolladas durante el Sprint cumplen con el comportamiento esperado.
+
+> Pendiente de completar por Juan José Meza Huanacune.
+
+### 4.2.2.6. Execution Evidence for Sprint Review
+
+**Responsable:** Nadhim Abigail Raymundo Villarroel
+
+En esta sección se presentarán evidencias de ejecución de los productos desarrollados durante el Sprint 2.
+
+Se podrán incluir evidencias de:
+
+- Ejecución de la aplicación móvil.
+- Principales pantallas funcionales.
+- Interacción entre las diferentes funcionalidades.
+- Consumo de servicios backend.
+- Ejecución de los servicios desplegados.
+- Comportamiento observable de las User Stories desarrolladas.
+
+Las evidencias deberán corresponder al estado real del producto al finalizar el Sprint.
+
+> Pendiente de completar por Nadhim Abigail Raymundo Villarroel.
+
+### 4.2.2.7. Services Documentation Evidence for Sprint Review
+
+**Responsable:** Mateo Paolo Salazar Miranda
+
+En esta sección se documentarán los servicios implementados durante el Sprint 2 y las evidencias de su documentación.
+
+Se deberá incluir la documentación de los endpoints disponibles mediante OpenAPI/Swagger, mostrando los principales grupos de servicios, operaciones HTTP, parámetros, cuerpos de solicitud y respuestas relevantes.
+
+También se deberá indicar la URL pública utilizada para acceder a la documentación de los servicios desplegados.
+
+> Pendiente de completar por Mateo Paolo Salazar Miranda.
+
+### 4.2.2.8. Software Deployment Evidence for Sprint Review
+
+**Responsable:** Luis Angel Pillaca Vidal
+
+En esta sección se presentarán las evidencias correspondientes al despliegue de los productos desarrollados durante el Sprint 2.
+
+Se deberán documentar los ambientes utilizados y, según corresponda:
+
+- Despliegue público del backend.
+- Base de datos utilizada en staging.
+- Configuración del ambiente de producción o staging.
+- Despliegue del Landing Page.
+- URLs públicas.
+- Estado de disponibilidad de los servicios.
+- Evidencias de ejecución posteriores al despliegue.
+
+> Pendiente de completar por Luis Angel Pillaca Vidal.
+
+### 4.2.2.9. Team Collaboration Insights during Sprint
+
+**Responsable:** Nadhim Abigail Raymundo Villarroel
+
+En esta sección se presentarán las evidencias y conclusiones relacionadas con la colaboración del equipo durante el Sprint 2.
+
+Se podrán considerar:
+
+- Coordinación entre los integrantes.
+- Distribución de tareas.
+- Participación en los repositorios.
+- Commits realizados.
+- Pull Requests.
+- Revisión e integración de cambios.
+- Comunicación durante el Sprint.
+- Principales dificultades de coordinación.
+- Acciones realizadas para resolver dependencias entre integrantes.
+
+> Pendiente de completar por Nadhim Abigail Raymundo Villarroel.
+
+---
+
 #### 1. Analíticos de Colaboración y Commits en GitHub
 
 Las métricas e historial de commits reflejan la participación activa y constante de los integrantes del equipo en los repositorios de cada producto digital durante las fases de desarrollo, integración y despliegue del Sprint.
