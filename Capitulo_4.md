@@ -947,48 +947,262 @@ Las filas pendientes deberán actualizarse con los commits, Pull Requests y esta
 
 De esta manera, las evidencias de desarrollo del Sprint 2 mantienen la trazabilidad entre las User Stories del Product Backlog, las feature branches utilizadas, los commits realizados y los cambios efectivamente integrados en los repositorios de Gethics.
 
-Commit:
-```
-docs(report): add Sprint 2 development evidence
-```
-
-Dependencias:
-```
-Dependencias de código:
-Ninguna
-
-Evidencias gráficas pendientes:
-- images/sprint2-us21-backend-pr.png
-- images/sprint2-us21-swagger.png
-- images/sprint2-us21-mobile-code.png
-- images/sprint2-us21-mobile-commit.png
-
-Pendiente de consolidación:
-- Commits y Pull Requests finales de los demás integrantes.
-- Integración final de US21 Mobile.
-```
 ---
 
 ### 4.2.2.5. Testing Suite Evidence for Sprint Review
 
-**Responsable:** Juan José Meza Huanacune
+Durante el Sprint 2, el equipo JamSell continuó utilizando pruebas automatizadas como mecanismo principal para validar la estabilidad de los **Web Services** y de la **aplicación móvil** antes de integrar nuevas funcionalidades a las ramas principales de los repositorios.
 
-En esta sección se documentarán las evidencias de las pruebas realizadas durante el Sprint 2.
+La estrategia de pruebas mantuvo el enfoque utilizado durante el Sprint anterior, incorporando nuevos casos conforme se desarrollaron y ampliaron las funcionalidades correspondientes a esta iteración. Además de las pruebas automatizadas, se realizaron validaciones de compilación y verificaciones contra el backend desplegado públicamente.
 
-Se deberán incluir, según corresponda:
+#### Estrategia de pruebas
 
-- Pruebas unitarias.
-- Pruebas de integración.
-- Pruebas de controllers.
-- Pruebas de repositories.
-- Pruebas de ViewModels.
-- Validaciones de compilación.
-- Resultados obtenidos mediante los pipelines de integración continua.
-- Validaciones realizadas contra los servicios desplegados.
+| Producto | Herramientas | Tipos de prueba | Ejecución |
+|---|---|---|---|
+| Web Services / Backend | JUnit, Mockito y Spring Boot Test | Pruebas unitarias, servicios de aplicación, controllers, repositories, persistencia y flujos completos | `./mvnw test`, `./mvnw verify` y GitHub Actions |
+| Aplicación móvil | JUnit | Pruebas unitarias de ViewModels, repositories y funciones auxiliares | `./gradlew testDebugUnitTest` |
+| Compilación móvil | Gradle | Validación de compilación e integración de recursos | `./gradlew assembleDebug` |
+| Web Services desplegados | Swagger UI, Spring Boot Actuator y solicitudes HTTP | Validación manual de disponibilidad, códigos HTTP y estructura de respuestas | Entorno público de staging en Render |
 
-Las evidencias deberán mostrar los resultados de las suites de pruebas y permitir comprobar que las funcionalidades desarrolladas durante el Sprint cumplen con el comportamiento esperado.
+#### Pipeline de integración continua
 
-> Pendiente de completar por Juan José Meza Huanacune.
+El backend mantiene un workflow de integración continua mediante **GitHub Actions**, ejecutado sobre los Pull Requests y cambios integrados en las ramas principales del repositorio.
+
+El pipeline permite comprobar automáticamente la calidad del código y la estabilidad del proyecto antes de integrar nuevas funcionalidades.
+
+Entre las principales validaciones realizadas se encuentran:
+
+- Configuración del entorno con Java 21.
+- Verificación de estilo mediante Checkstyle.
+- Compilación del proyecto.
+- Ejecución de las pruebas automatizadas.
+- Validación del resultado completo del build.
+
+Una falla en cualquiera de estos pasos indica que los cambios deben ser corregidos antes de considerarse listos para integración.
+
+#### Suite de pruebas del backend
+
+Al momento de registrar las evidencias correspondientes al Sprint 2, el backend alcanzó un total de **441 casos de prueba automatizados**.
+
+La ejecución completa finalizó sin fallos ni errores:
+
+```text
+Tests run: 441
+Failures: 0
+Errors: 0
+Skipped: 0
+```
+
+Asimismo, el proceso de compilación y empaquetado del backend concluyó correctamente con el resultado:
+
+```text
+BUILD SUCCESS
+```
+
+Las pruebas cubren los diferentes bounded contexts implementados dentro de Gethics y permiten verificar reglas de dominio, servicios de aplicación, endpoints REST, persistencia y flujos completos.
+
+<div align="center">
+  <p><b>Figura 4.X.</b> Resultado de la ejecución completa de la suite de pruebas del backend durante el Sprint 2.</p>
+  <img src="images/sprint2-backend-tests.png" alt="Pruebas Backend Sprint 2" width="800">
+  <p><i><b>Fuente:</b> Elaboración propia, ejecución local del repositorio gethics-backend.</i></p>
+</div>
+
+#### Pruebas correspondientes a US21 en el backend
+
+Como parte de la ampliación de **US21 - Alertas automáticas por tendencias**, se incorporaron y actualizaron pruebas destinadas a validar el flujo de consulta de alertas.
+
+Las principales clases utilizadas fueron:
+
+| Clase de prueba | Casos relevantes | Cobertura |
+|---|---:|---|
+| `AlertQueryServiceImplTest` | 2 | Consulta de alertas asociadas a un propietario y comportamiento cuando no existen resultados. |
+| `AlertControllerTest` | 4 | Respuestas del endpoint REST y validación de parámetros enviados por el cliente. |
+| `AlertFlowTest` | 12 | Flujo de alertas dentro del bounded context Analytics. |
+
+Estas pruebas permiten comprobar distintos comportamientos de la funcionalidad, entre ellos:
+
+- Recuperación de alertas asociadas a un `ownerId`.
+- Consulta correcta cuando existen resultados.
+- Respuesta válida cuando el propietario no cuenta con alertas.
+- Ordenamiento de las alertas de acuerdo con su fecha de creación.
+- Respuesta HTTP `200 OK` para solicitudes válidas.
+- Respuesta HTTP `400 Bad Request` cuando falta el parámetro obligatorio `ownerId`.
+- Respuesta HTTP `400 Bad Request` cuando el identificador enviado no contiene un UUID válido.
+- Transformación correcta de las entidades del dominio hacia los recursos expuestos mediante REST.
+
+De esta manera, el flujo incorporado durante el Sprint 2 quedó cubierto tanto a nivel de servicio de consulta como en la capa web y dentro del flujo general de Analytics.
+
+#### Suite de pruebas de la aplicación móvil
+
+Durante el Sprint 2, la aplicación móvil alcanzó un total de **159 pruebas unitarias**, ejecutadas correctamente sin fallos.
+
+```text
+Tests: 159
+Failures: 0
+Errors: 0
+```
+
+Dentro de este conjunto se encuentran las nuevas pruebas correspondientes a la implementación móvil de US21.
+
+| Clase de prueba | Casos | Cobertura |
+|---|---:|---|
+| `AlertRepositoryTest` | 6 | Manejo de respuestas exitosas, errores HTTP y problemas durante la comunicación con el backend. |
+| `AlertsViewModelTest` | 5 | Estados de carga, éxito, ausencia de alertas, error y reintento. |
+| `AlertFormatTest` | 2 | Formato y transformación de la información utilizada por la interfaz. |
+| **Total US21 Mobile** | **13** | |
+
+Las pruebas del repository verifican la comunicación entre la aplicación y el servicio REST antes de que la información sea procesada por la capa de presentación.
+
+Las pruebas del ViewModel permiten comprobar que la interfaz pueda representar correctamente los diferentes estados contemplados por la funcionalidad:
+
+- Loading.
+- Success.
+- Empty.
+- Error.
+- Retry.
+
+Por su parte, las pruebas de formato verifican el tratamiento de la información recibida desde el backend antes de ser presentada al usuario.
+
+<div align="center">
+  <p><b>Figura 4.X.</b> Resultado de la ejecución de las pruebas unitarias de la aplicación móvil durante el Sprint 2.</p>
+  <img src="images/sprint2-mobile-tests.png" alt="Pruebas Mobile Sprint 2" width="800">
+  <p><i><b>Fuente:</b> Elaboración propia, Android Studio.</i></p>
+</div>
+
+#### Validación de compilación de la aplicación móvil
+
+Además de las pruebas unitarias, se realizó una compilación completa de la variante de depuración de la aplicación mediante Gradle:
+
+```bash
+./gradlew assembleDebug
+```
+
+La ejecución concluyó correctamente:
+
+```text
+BUILD SUCCESSFUL
+```
+
+Esta validación permitió comprobar que los componentes incorporados para US21, incluyendo los recursos gráficos, clases de datos, repository, ViewModel y pantalla, podían compilarse junto con el resto del proyecto sin introducir errores.
+
+#### Validación del backend desplegado
+
+Además de las pruebas automatizadas ejecutadas durante el desarrollo, se realizaron verificaciones sobre la instancia pública del backend desplegada mediante **Render**.
+
+El servicio se encuentra disponible en:
+
+```text
+https://gethics-backend-staging-7qth.onrender.com
+```
+
+Para comprobar su disponibilidad se utilizó el endpoint de Spring Boot Actuator:
+
+```http
+GET /actuator/health
+```
+
+El servicio respondió correctamente:
+
+```json
+{
+  "groups": [
+    "liveness",
+    "readiness"
+  ],
+  "status": "UP"
+}
+```
+
+El resultado `UP` permite comprobar que la aplicación desplegada se encuentra ejecutándose y disponible para recibir solicitudes.
+
+<div align="center">
+  <p><b>Figura 4.X.</b> Verificación del estado del backend mediante Spring Boot Actuator.</p>
+  <img src="images/sprint2-render-health.png" alt="Estado del Backend en Render" width="800">
+  <p><i><b>Fuente:</b> Backend público de Gethics desplegado en Render.</i></p>
+</div>
+
+#### Validación del endpoint de alertas en staging
+
+También se realizaron pruebas manuales sobre el endpoint implementado para US21:
+
+```http
+GET /api/v1/alerts?ownerId={uuid}
+```
+
+Los principales escenarios validados fueron:
+
+| Escenario | Resultado esperado | Resultado obtenido |
+|---|---|---|
+| `ownerId` válido sin alertas registradas | `200 OK` con colección vacía | Correcto |
+| `ownerId` válido | Respuesta con estructura definida por la API | Correcto |
+| Parámetro `ownerId` ausente | `400 Bad Request` | Correcto |
+| `ownerId` con formato UUID inválido | `400 Bad Request` | Correcto |
+
+Debido a que la base de datos de staging todavía no cuenta con alertas registradas para el propietario utilizado durante las pruebas, la respuesta obtenida actualmente corresponde al estado vacío:
+
+```json
+{
+  "alerts": [],
+  "message": "No hay alertas registradas."
+}
+```
+
+Este resultado permite comprobar que el contrato del endpoint desplegado coincide con el comportamiento implementado y validado mediante las pruebas automatizadas.
+
+#### Validación mediante Swagger UI
+
+Los Web Services desplegados también cuentan con documentación interactiva mediante **OpenAPI / Swagger UI**.
+
+La documentación pública se encuentra disponible en:
+
+```text
+https://gethics-backend-staging-7qth.onrender.com/swagger-ui/index.html
+```
+
+Durante las pruebas se verificó que:
+
+- El endpoint `GET /api/v1/alerts` se encuentra publicado.
+- El parámetro `ownerId` aparece definido como obligatorio.
+- Swagger permite ejecutar solicitudes contra la instancia desplegada.
+- Las respuestas mantienen el formato definido por la API.
+- Los códigos HTTP obtenidos coinciden con los escenarios contemplados durante el desarrollo.
+
+<div align="center">
+  <p><b>Figura 4.X.</b> Ejecución y documentación del endpoint de alertas mediante Swagger UI.</p>
+  <img src="images/sprint2-us21-swagger-test.png" alt="Prueba US21 mediante Swagger" width="800">
+  <p><i><b>Fuente:</b> Swagger UI del backend de Gethics.</i></p>
+</div>
+
+#### Resumen de pruebas del Sprint 2
+
+A continuación, se consolidan los principales resultados registrados hasta el momento durante el Sprint 2:
+
+| Evidencia | Resultado |
+|---|---|
+| Suite completa Backend | 441 tests |
+| Backend Failures | 0 |
+| Backend Errors | 0 |
+| Backend Build | `BUILD SUCCESS` |
+| `AlertQueryServiceImplTest` | 2 casos |
+| `AlertControllerTest` | 4 casos |
+| `AlertFlowTest` | 12 casos |
+| Suite completa Mobile | 159 tests |
+| Mobile Failures | 0 |
+| `AlertRepositoryTest` | 6 casos |
+| `AlertsViewModelTest` | 5 casos |
+| `AlertFormatTest` | 2 casos |
+| Total específico US21 Mobile | 13 casos |
+| Mobile `assembleDebug` | `BUILD SUCCESSFUL` |
+| Backend staging | `UP` |
+| Consulta válida US21 | `200 OK` |
+| `ownerId` ausente | `400 Bad Request` |
+| UUID inválido | `400 Bad Request` |
+
+Los resultados presentados corresponden al estado de los repositorios al momento de registrar estas evidencias.
+
+Debido a que durante el Sprint 2 todavía existen feature branches de otros integrantes pendientes de integración, la cantidad total de pruebas puede incrementarse antes del cierre definitivo de la iteración.
+
+Por este motivo, antes de la entrega final se realizará una nueva ejecución de las suites completas del backend y de la aplicación móvil para confirmar y, de ser necesario, actualizar los totales registrados en esta sección..
 
 ### 4.2.2.6. Execution Evidence for Sprint Review
 
