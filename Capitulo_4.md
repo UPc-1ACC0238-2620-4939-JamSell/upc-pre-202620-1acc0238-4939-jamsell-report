@@ -714,8 +714,6 @@ Esta sección presenta el desarrollo correspondiente al segundo Sprint del proye
 
 ### 4.2.2.1. Sprint Planning 2
 
-### 4.2.2.1. Sprint Planning 2
-
 | Sprint Planning Background | Detalle |
 |---|---|
 | **Sprint #** | Sprint 2 |
@@ -765,7 +763,211 @@ En esta sección se documentará el Sprint Backlog correspondiente al Sprint 2, 
 
 ### 4.2.2.4. Development Evidence for Sprint Review
 
+Durante el Sprint 2, el equipo JamSell continuó con la implementación e integración de las funcionalidades de **Gethics**, tomando como punto de partida la arquitectura y los módulos desarrollados durante el Sprint anterior.
 
+El desarrollo se realizó utilizando ramas de funcionalidad creadas a partir de `develop`, manteniendo la estrategia GitFlow definida por el equipo. Los cambios completados se integraron mediante Pull Requests, mientras que aquellas funcionalidades que todavía dependían de otros módulos permanecieron en sus respectivas feature branches hasta completar su integración.
+
+Las principales evidencias de desarrollo correspondientes a esta iteración se encuentran distribuidas entre los repositorios de **Web Services / Backend** y **Mobile Application**.
+
+#### Web Services / Backend
+
+Durante el Sprint 2 se continuó ampliando el backend desarrollado con **Java 21 y Spring Boot**, manteniendo la organización mediante bounded contexts y la arquitectura Domain-Driven Design definida para el proyecto.
+
+Uno de los principales avances realizados durante esta iteración fue la extensión de la funcionalidad correspondiente a **US21 - Alertas automáticas por tendencias**, perteneciente al bounded context `analytics`.
+
+La implementación previa de US21 permitía representar tendencias y alertas dentro del dominio. Durante el Sprint 2 se agregó el flujo necesario para consultar las alertas almacenadas asociadas a un propietario mediante un endpoint REST.
+
+| Historia | Descripción | Autor | Branch | Commit | Pull Request | Estado |
+|---|---|---|---|---|---|---|
+| US21 | Consulta de alertas automáticas generadas a partir de tendencias registradas | Juan José Meza Huanacune | `feature/US21-trend-alerts` | `923d60d` | #27 | Integrado a `develop` |
+
+La funcionalidad incorporó el siguiente endpoint:
+
+```http
+GET /api/v1/alerts?ownerId={uuid}
+```
+El servicio permite recuperar las alertas asociadas a un propietario determinado. Cada alerta contiene información sobre la tendencia que la originó, su nivel de riesgo, estado, mensaje y fecha de creación.
+
+Entre los principales elementos incorporados se encuentran:
+
+- `GetAlertsByOwnerQuery`, utilizado para representar la consulta de alertas por propietario.
+- `AlertQueryService`, encargado de definir las operaciones de consulta del bounded context.
+- `AlertQueryServiceImpl`, responsable de recuperar y ordenar las alertas.
+- `AlertController`, encargado de exponer el servicio mediante REST.
+- `AlertResource`, representación individual de una alerta.
+- `AlertListResource`, representación de la respuesta completa del endpoint.
+- `AlertResourceAssembler`, encargado de transformar las entidades del dominio en recursos REST.
+- Ajustes en los repositories para permitir la consulta de alertas mediante `ownerId`.
+- Uso de `@EntityGraph` para recuperar la tendencia asociada a cada alerta y evitar inconvenientes relacionados con carga diferida.
+
+La respuesta del endpoint mantiene la siguiente estructura:
+
+```json
+{
+  "alerts": [
+    {
+      "id": "uuid",
+      "trendId": "uuid",
+      "trendType": "FINANCIAL",
+      "riskLevel": "CRITICAL",
+      "message": "Mensaje asociado a la alerta",
+      "status": "PENDING",
+      "createdAt": "2026-11-02T10:00:00Z"
+    }
+  ],
+  "message": null
+}
+```
+
+Cuando un propietario no posee alertas registradas, el servicio mantiene una respuesta HTTP `200 OK` y devuelve una colección vacía:
+
+```json
+{
+  "alerts": [],
+  "message": "No hay alertas registradas."
+}
+```
+
+Asimismo, se incorporaron validaciones para los parámetros enviados al endpoint. La ausencia de `ownerId` o el uso de un identificador con formato inválido produce una respuesta HTTP `400 Bad Request`.
+
+El desarrollo quedó registrado mediante el commit:
+
+```text
+923d60d feat(analytics): expose trend alerts endpoint
+```
+
+Posteriormente, la funcionalidad fue integrada a la rama `develop` mediante el **Pull Request #27**.
+
+<div align="center">
+  <p><b>Figura 4.X.</b> Pull Request #27 correspondiente a US21 integrado a develop.</p>
+  <img src="images/sprint2-us21-backend-pr.png" alt="Pull Request US21 Backend Sprint 2" width="800">
+  <p><i><b>Fuente:</b> GitHub, repositorio gethics-backend.</i></p>
+</div>
+
+Como parte de la documentación de los servicios, el endpoint también quedó disponible dentro de la documentación interactiva generada mediante **OpenAPI / Swagger UI**, permitiendo visualizar sus parámetros y ejecutar solicitudes directamente contra el backend.
+
+<div align="center">
+  <p><b>Figura 4.X.</b> Endpoint GET /api/v1/alerts documentado mediante Swagger UI.</p>
+  <img src="images/sprint2-us21-swagger.png" alt="Swagger endpoint US21 alerts" width="800">
+  <p><i><b>Fuente:</b> Swagger UI del backend de Gethics.</i></p>
+</div>
+
+#### Aplicación móvil
+
+Durante el Sprint 2 también se avanzó con la implementación del flujo móvil correspondiente a **US21 - Alertas automáticas por tendencias** dentro de la aplicación desarrollada en **Kotlin y Jetpack Compose**.
+
+La funcionalidad fue desarrollada en la rama:
+
+```text
+feature/US21-trend-alerts
+```
+
+El principal avance quedó registrado mediante el commit:
+
+```text
+0a2a785 feat(analytics): implement trend alerts mobile flow
+```
+
+| Historia | Descripción | Autor | Branch | Commit | Estado |
+|---|---|---|---|---|---|
+| US21 | Flujo móvil para consultar y visualizar alertas por tendencias | Juan José Meza Huanacune | `feature/US21-trend-alerts` | `0a2a785` | Implementado en feature branch; integración final pendiente |
+
+La implementación respeta la arquitectura **MVVM con Repository** utilizada en la aplicación móvil, separando las responsabilidades correspondientes a acceso a datos, comunicación con la API, manejo de estado y presentación.
+
+Los principales artefactos desarrollados fueron:
+
+| Artefacto | Responsabilidad |
+|---|---|
+| `AlertListResponse.kt` | Define la estructura de respuesta recibida desde el backend y la información correspondiente a cada alerta. |
+| `AlertService.kt` | Define mediante Retrofit la operación `GET /api/v1/alerts`. |
+| `AlertRepository.kt` | Gestiona la comunicación con el servicio y transforma la respuesta en resultados utilizables por la aplicación. |
+| `AlertsViewModel.kt` | Gestiona los estados de carga, éxito, error y ausencia de alertas. |
+| `AlertsScreen.kt` | Implementa la interfaz gráfica destinada a visualizar las alertas. |
+| `AlertFormat.kt` | Centraliza las funciones utilizadas para formatear información antes de mostrarla en la interfaz. |
+| `ic_bell.xml` | Recurso gráfico utilizado para representar el acceso a las alertas. |
+| `ic_alert_octagon.xml` | Recurso gráfico utilizado para alertas con niveles de riesgo altos. |
+| `ic_alert_triangle.xml` | Recurso gráfico utilizado para alertas preventivas. |
+
+La pantalla desarrollada contempla los principales estados que pueden producirse durante el consumo del servicio:
+
+- Carga de información.
+- Listado exitoso de alertas.
+- Ausencia de alertas.
+- Error durante la consulta.
+- Reintento de la operación.
+
+Cada alerta permite visualizar información relacionada con:
+
+- Tipo de tendencia.
+- Mensaje de la alerta.
+- Nivel de riesgo.
+- Estado de la alerta.
+- Fecha de creación.
+
+La representación visual diferencia los niveles de riesgo mediante iconografía. Los niveles `HIGH` y `CRITICAL` utilizan un indicador de mayor severidad, mientras que los niveles `LOW`, `MEDIUM` o desconocidos utilizan un indicador preventivo.
+
+El diseño fue adaptado tomando como referencia los componentes visuales existentes en Figma para la sección de alertas recientes de Gethics, manteniendo coherencia con las tarjetas, bordes, tipografía, espaciado e iconografía empleados en las demás pantallas de la aplicación.
+
+También se preparó el punto de acceso a la funcionalidad desde la pantalla de inventario mediante el callback opcional `onOpenAlerts`.
+
+Esta decisión permitió mantener la funcionalidad desacoplada de los componentes compartidos de navegación mientras otros integrantes continuaban desarrollando modificaciones sobre dichos componentes.
+
+#### Estado de integración de US21
+
+Al momento de registrar esta evidencia, la implementación backend de US21 se encuentra integrada en la rama `develop` y disponible dentro de los Web Services del proyecto.
+
+La implementación móvil se encuentra desarrollada y publicada en su feature branch. Su integración final depende de componentes compartidos de navegación, sesión y configuración que están siendo modificados paralelamente dentro del repositorio móvil.
+
+Por esta razón, durante la implementación inicial se evitó modificar anticipadamente los siguientes componentes compartidos:
+
+- `AppContainer`.
+- `Routes`.
+- `GethicsNavHost`.
+- `SessionStorage`.
+- `Constants`.
+
+Una vez integradas las ramas que contienen dichas modificaciones, la funcionalidad podrá incorporarse a la navegación principal de la aplicación, obtener el `ownerId` correspondiente a la sesión activa y consumir directamente el endpoint desplegado del backend.
+
+#### Consolidación de evidencias del Sprint 2
+
+Además de US21, durante el Sprint 2 los demás integrantes continuaron trabajando sobre las User Stories correspondientes a sus respectivos módulos.
+
+La siguiente tabla resume el estado actual conocido de las principales áreas de trabajo:
+
+| Producto | Funcionalidad | Responsable | Evidencia / Estado |
+|---|---|---|---|
+| Web Services | US21 - Alertas automáticas por tendencias | Juan José Meza Huanacune | Commit `923d60d`, PR #27 e integración en `develop` |
+| Mobile Application | US21 - Visualización de alertas por tendencias | Juan José Meza Huanacune | Commit `0a2a785` en `feature/US21-trend-alerts` |
+| Web Services / Mobile | Identity & Access Management | Mauricio Sebastian Castillo Yataco | Pendiente de consolidación al cierre del Sprint |
+| Web Services / Mobile | Gestión de animales y granjas | Mateo Paolo Salazar Miranda | Pendiente de consolidación al cierre del Sprint |
+| Web Services / Mobile | Gestión financiera y veterinaria | Luis Angel Pillaca Vidal | Pendiente de consolidación al cierre del Sprint |
+| Mobile Application | Reportes, navegación, idiomas, notificaciones y funcionalidades relacionadas | Nadhim Abigail Raymundo Villarroel | Pendiente de consolidación al cierre del Sprint |
+
+Las filas pendientes deberán actualizarse con los commits, Pull Requests y estados definitivos de integración una vez que los integrantes completen sus respectivos procesos de desarrollo.
+
+De esta manera, las evidencias de desarrollo del Sprint 2 mantienen la trazabilidad entre las User Stories del Product Backlog, las feature branches utilizadas, los commits realizados y los cambios efectivamente integrados en los repositorios de Gethics.
+
+Commit:
+```
+docs(report): add Sprint 2 development evidence
+```
+
+Dependencias:
+```
+Dependencias de código:
+Ninguna
+
+Evidencias gráficas pendientes:
+- images/sprint2-us21-backend-pr.png
+- images/sprint2-us21-swagger.png
+- images/sprint2-us21-mobile-code.png
+- images/sprint2-us21-mobile-commit.png
+
+Pendiente de consolidación:
+- Commits y Pull Requests finales de los demás integrantes.
+- Integración final de US21 Mobile.
+```
+---
 
 ### 4.2.2.5. Testing Suite Evidence for Sprint Review
 
