@@ -451,18 +451,6 @@ El Sprint Backlog permite establecer una referencia común para el trabajo del e
 
 Los estados mostrados en esta tabla corresponden al estado inicial de planificación del Sprint, en el cual las tarjetas se encuentran dentro del Product Backlog. Durante el desarrollo, estas actividades deben desplazarse progresivamente entre los estados **To-do**, **In-Process**, **To-Review** y **Done**, de acuerdo con su avance y validación.
 
-
-##### Tareas de Mateo Salazar (Animales, Swagger y backlog)
-
-| Historia | Alcance entregado en el backend | Alcance entregado en la app |
-|---|---|---|
-| US-08 Dar de baja un animal | `DELETE /api/v1/animals/{id}`: baja lógica, conserva el historial, cancela los eventos sanitarios programados y bloquea editar o mover un animal que ya no está activo | Botón "Dar de baja" en la ficha con diálogo de confirmación y opción de cancelar; el animal sale de la lista activa |
-| TS04 Documentar la API (OpenAPI/Swagger) | Todos los controladores anotados con `@Operation` y `@ApiResponses`; documentación en `/docs` y prueba automática que falla si un endpoint queda sin documentar | — |
-| TS07 Integrar veterinario con animales y sanidad | Fachadas `LivestockContextFacade` y `SanitaryContextFacade`; pacientes reales con resumen clínico y atención reflejada en el historial del ganadero | — |
-| US-29 Identificar un animal con código QR | `GET /api/v1/animals/qr/{code}` | Pendiente de pantalla (escáner) |
-| US-30 Registrar la venta de un animal | `POST /api/v1/animals/{id}/sale` con ingreso en Finanzas | Pendiente de pantalla |
-| US-32 Editar una granja | `PUT /api/v1/farms/{id}` con control de nombres duplicados | Pendiente de pantalla |
-
 #### 4.2.1.4. Development Evidence for Sprint Review
 
 ##### Web Services / Backend
