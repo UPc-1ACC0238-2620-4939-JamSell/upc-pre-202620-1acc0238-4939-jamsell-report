@@ -417,40 +417,51 @@ A continuación, se presenta el detalle de los elementos considerados en el Spri
 | Sprint # | Story Id | Story Title | Task Id | Task Title | Task Description | Estimation (Hours) | Assigned To | Status |
 |---|---|---|---|---|---|---|---|---|
 | Sprint 1 | — | — | TS01 | Configurar repositorio, arquitectura y entornos | Configurar la estructura inicial del repositorio, arquitectura y entornos necesarios para el desarrollo del proyecto. | N/D - 3 SP | Equipo JamSell | To-do |
-| Sprint 1 | US01 | Registro de usuario (API) | US01-T01 | Implementación de registro de usuario | Desarrollar y validar la funcionalidad definida para el registro de usuarios mediante la API. | N/D - 3 SP | Mauricio Sebastian Castillo Yataco | To-do |
-| Sprint 1 | US02 | Inicio de sesión con JWT | US02-T01 | Implementación de inicio de sesión | Desarrollar y validar el proceso de autenticación mediante JWT. | N/D - 2 SP | Mauricio Sebastian Castillo Yataco | To-do |
-| Sprint 1 | US03 | Recuperación de contraseña | US03-T01 | Implementación de recuperación de contraseña | Desarrollar y validar el flujo correspondiente a la recuperación de contraseña. | N/D - 3 SP | Mauricio Sebastian Castillo Yataco | To-do |
-| Sprint 1 | US04 | Editar perfil | US04-T01 | Implementación de edición de perfil | Desarrollar la funcionalidad que permita modificar la información del perfil del usuario. | N/D - 2 SP | Mauricio Sebastian Castillo Yataco | To-do |
-| Sprint 1 | — | — | TS06 | Roles y autorización (ganadero / veterinario) | Implementar la gestión de roles y autorización requerida para diferenciar las operaciones disponibles para ganaderos y veterinarios. | N/D - 3 SP | Mauricio Sebastian Castillo Yataco | To-do |
-| Sprint 1 | — | — | TS05 | Manejo global de errores, logging y validaciones | Implementar mecanismos comunes para manejo de errores, registro de eventos y validaciones dentro de los servicios. | N/D - 3 SP | Mauricio Sebastian Castillo Yataco | To-do |
-| Sprint 1 | US24 | Planes de suscripción in-app | US24-T01 | Implementación de planes de suscripción | Desarrollar la funcionalidad correspondiente a la visualización y gestión de planes de suscripción dentro de la aplicación. | N/D - 6 SP | Mauricio Sebastian Castillo Yataco | To-do |
-| Sprint 1 | — | — | TS02 | Modelo de datos y migraciones de base de datos | Definir y preparar el modelo de datos y la estructura necesaria para la persistencia de la solución. | N/D - 5 SP | Mateo Paolo Salazar Miranda | To-do |
-| Sprint 1 | US05 | Registro de animal | US05-T01 | Implementación de registro de animal | Desarrollar y validar la funcionalidad para registrar un animal dentro del sistema. | N/D - 5 SP | Mateo Paolo Salazar Miranda | To-do |
-| Sprint 1 | US06 | Listado y búsqueda de animales | US06-T01 | Implementación de listado y búsqueda | Desarrollar la consulta y búsqueda de animales registrados en el sistema. | N/D - 5 SP | Mateo Paolo Salazar Miranda | To-do |
-| Sprint 1 | US08 | Baja de animal (eliminación lógica) | US08-T01 | Implementación de baja de animal | Implementar la eliminación lógica de un animal registrado. | N/D - 2 SP | Mateo Paolo Salazar Miranda | To-do |
-| Sprint 1 | US09 | Registro de granja | US09-T01 | Implementación de registro de granja | Desarrollar la funcionalidad para registrar una granja en el sistema. | N/D - 3 SP | Mateo Paolo Salazar Miranda | To-do |
+| Sprint 1 | US01 | Registrar un usuario | US01-T01 | Implementación de registro de usuario | Desarrollar y validar la funcionalidad definida para el registro de usuarios mediante la API. | N/D - 3 SP | Mauricio Sebastian Castillo Yataco | To-do |
+| Sprint 1 | US02 | Iniciar sesión | US02-T01 | Implementación de inicio de sesión | Desarrollar y validar el proceso de autenticación mediante JWT. | N/D - 2 SP | Mauricio Sebastian Castillo Yataco | To-do |
+| Sprint 1 | US03 | Recuperar la contraseña | US03-T01 | Implementación de recuperación de contraseña | Desarrollar y validar el flujo correspondiente a la recuperación de contraseña. | N/D - 3 SP | Mauricio Sebastian Castillo Yataco | To-do |
+| Sprint 1 | US04 | Editar el perfil | US04-T01 | Implementación de edición de perfil | Desarrollar la funcionalidad que permita modificar la información del perfil del usuario. | N/D - 2 SP | Mauricio Sebastian Castillo Yataco | To-do |
+| Sprint 1 | — | — | TS06 | Autorizar el acceso por rol (ganadero / veterinario) | Implementar la gestión de roles y autorización requerida para diferenciar las operaciones disponibles para ganaderos y veterinarios. | N/D - 3 SP | Mauricio Sebastian Castillo Yataco | To-do |
+| Sprint 1 | — | — | TS05 | Manejar errores, logs y validaciones de forma global | Implementar mecanismos comunes para manejo de errores, registro de eventos y validaciones dentro de los servicios. | N/D - 3 SP | Mauricio Sebastian Castillo Yataco | To-do |
+| Sprint 1 | US24 | Contratar planes de suscripción in-app | US24-T01 | Implementación de planes de suscripción | Desarrollar la funcionalidad correspondiente a la visualización y gestión de planes de suscripción dentro de la aplicación. | N/D - 6 SP | Mauricio Sebastian Castillo Yataco | To-do |
+| Sprint 1 | — | — | TS02 | Definir el modelo de datos y las migraciones de base de datos | Definir y preparar el modelo de datos y la estructura necesaria para la persistencia de la solución. | N/D - 5 SP | Mateo Paolo Salazar Miranda | To-do |
+| Sprint 1 | US05 | Registrar un animal | US05-T01 | Implementación de registro de animal | Desarrollar y validar la funcionalidad para registrar un animal dentro del sistema. | N/D - 5 SP | Mateo Paolo Salazar Miranda | To-do |
+| Sprint 1 | US06 | Listar y buscar animales | US06-T01 | Implementación de listado y búsqueda | Desarrollar la consulta y búsqueda de animales registrados en el sistema. | N/D - 5 SP | Mateo Paolo Salazar Miranda | To-do |
+| Sprint 1 | US08 | Dar de baja un animal | US08-T01 | Implementación de baja de animal | Implementar la eliminación lógica de un animal registrado. | N/D - 2 SP | Mateo Paolo Salazar Miranda | To-do |
+| Sprint 1 | US09 | Registrar una granja | US09-T01 | Implementación de registro de granja | Desarrollar la funcionalidad para registrar una granja en el sistema. | N/D - 3 SP | Mateo Paolo Salazar Miranda | To-do |
 | Sprint 1 | US10 | Asociar animales a una granja | US10-T01 | Implementación de asociación animal-granja | Permitir la asociación de animales registrados con una granja. | N/D - 3 SP | Mateo Paolo Salazar Miranda | To-do |
-| Sprint 1 | — | — | TS04 | Documentación de la API (OpenAPI/Swagger) | Documentar los servicios desarrollados utilizando OpenAPI/Swagger. | N/D - 2 SP | Mateo Paolo Salazar Miranda | To-do |
-| Sprint 1 | US11 | Registro de evento sanitario | US11-T01 | Implementación de registro sanitario | Desarrollar el registro de vacunas, tratamientos o enfermedades dentro del historial sanitario de un animal. | N/D - 5 SP | Juan Jose Meza Huanacune | To-do |
-| Sprint 1 | US12 | Calendario sanitario | US12-T01 | Implementación de calendario sanitario | Desarrollar la consulta de eventos sanitarios programados mediante un calendario organizado por periodo. | N/D - 5 SP | Juan Jose Meza Huanacune | To-do |
-| Sprint 1 | US13 | Recordatorio de vacunación (push) | US13-T01 | Implementación de recordatorio de vacunación | Implementar el mecanismo backend encargado de identificar vacunaciones próximas y generar su correspondiente recordatorio. | N/D - 5 SP | Juan Jose Meza Huanacune | To-do |
-| Sprint 1 | US14 | Historial clínico por animal | US14-T01 | Implementación de historial clínico | Desarrollar la consulta cronológica de los eventos sanitarios asociados a un animal. | N/D - 5 SP | Juan Jose Meza Huanacune | To-do |
-| Sprint 1 | US21 | Alertas automáticas por tendencias | US21-T01 | Implementación del mecanismo de alertas | Implementar la base de Analytics & Alerts para registrar tendencias clasificadas y generar alertas de acuerdo con una política configurable. | N/D - 5 SP | Juan Jose Meza Huanacune | To-do |
-| Sprint 1 | US15 | Registro de ingreso/egreso | US15-T01 | Implementación de ingresos y egresos | Desarrollar el registro de operaciones económicas asociadas a la gestión del ganado. | N/D - 5 SP | Luis Angel Pillaca Vidal | To-do |
-| Sprint 1 | US17 | Clientes asignados al veterinario | US17-T01 | Implementación de clientes asignados | Desarrollar la consulta de los clientes asociados a un veterinario. | N/D - 5 SP | Luis Angel Pillaca Vidal | To-do |
-| Sprint 1 | US18 | Consulta de pacientes de un cliente | US18-T01 | Implementación de consulta de pacientes | Desarrollar la consulta de animales asociados a un cliente del veterinario. | N/D - 5 SP | Luis Angel Pillaca Vidal | To-do |
-| Sprint 1 | US19 | Registro de atención veterinaria | US19-T01 | Implementación de atención veterinaria | Desarrollar el registro de una atención realizada por el veterinario a un paciente. | N/D - 5 SP | Luis Angel Pillaca Vidal | To-do |
-| Sprint 1 | — | — | TS03 | CI/CD y despliegue en la nube | Configurar el proceso de integración continua, validación automática y despliegue de los servicios. | N/D - 5 SP | Luis Angel Pillaca Vidal | To-do |
-| Sprint 1 | US22 | Notificaciones push generales | US22-T01 | Implementación de notificaciones push | Implementar el mecanismo requerido para gestionar notificaciones generales de la aplicación. | N/D - 3 SP | Nadhim Abigail Raymundo Villarroel | To-do |
-| Sprint 1 | US20 | Reportes y estadísticas del ganado | US20-T01 | Implementación de reportes y estadísticas | Desarrollar la funcionalidad para consultar reportes y estadísticas relacionados con la gestión del ganado. | N/D - 8 SP | Nadhim Abigail Raymundo Villarroel | To-do |
-| Sprint 1 | US23 | Integración con dispositivos IoT | US23-T01 | Implementación de integración IoT | Preparar la integración de Gethics con dispositivos IoT según las funcionalidades establecidas para el producto. | N/D - 8 SP | Nadhim Abigail Raymundo Villarroel | To-do |
-| Sprint 1 | US16 | Balance económico del ganado | US16-T01 | Implementación de balance económico | Desarrollar la consulta del balance económico a partir de los ingresos y egresos registrados. | N/D - 3 SP | Nadhim Abigail Raymundo Villarroel | To-do |
-| Sprint 1 | US07 | Edición de animal | US07-T01 | Implementación de edición de animal | Desarrollar la funcionalidad que permita modificar la información de un animal registrado. | N/D - 3 SP | Nadhim Abigail Raymundo Villarroel | To-do |
+| Sprint 1 | — | — | TS04 | Documentar la API (OpenAPI/Swagger) | Documentar los servicios desarrollados utilizando OpenAPI/Swagger. | N/D - 2 SP | Mateo Paolo Salazar Miranda | To-do |
+| Sprint 1 | US11 | Registrar un evento sanitario | US11-T01 | Implementación de registro sanitario | Desarrollar el registro de vacunas, tratamientos o enfermedades dentro del historial sanitario de un animal. | N/D - 5 SP | Juan Jose Meza Huanacune | To-do |
+| Sprint 1 | US12 | Consultar el calendario sanitario | US12-T01 | Implementación de calendario sanitario | Desarrollar la consulta de eventos sanitarios programados mediante un calendario organizado por periodo. | N/D - 5 SP | Juan Jose Meza Huanacune | To-do |
+| Sprint 1 | US13 | Recibir recordatorios de vacunación (push) | US13-T01 | Implementación de recordatorio de vacunación | Implementar el mecanismo backend encargado de identificar vacunaciones próximas y generar su correspondiente recordatorio. | N/D - 5 SP | Juan Jose Meza Huanacune | To-do |
+| Sprint 1 | US14 | Consultar el historial clínico por animal | US14-T01 | Implementación de historial clínico | Desarrollar la consulta cronológica de los eventos sanitarios asociados a un animal. | N/D - 5 SP | Juan Jose Meza Huanacune | To-do |
+| Sprint 1 | US21 | Recibir alertas automáticas por tendencias | US21-T01 | Implementación del mecanismo de alertas | Implementar la base de Analytics & Alerts para registrar tendencias clasificadas y generar alertas de acuerdo con una política configurable. | N/D - 5 SP | Juan Jose Meza Huanacune | To-do |
+| Sprint 1 | US15 | Registrar ingresos y egresos | US15-T01 | Implementación de ingresos y egresos | Desarrollar el registro de operaciones económicas asociadas a la gestión del ganado. | N/D - 5 SP | Luis Angel Pillaca Vidal | To-do |
+| Sprint 1 | US17 | Consultar los clientes asignados (veterinario) | US17-T01 | Implementación de clientes asignados | Desarrollar la consulta de los clientes asociados a un veterinario. | N/D - 5 SP | Luis Angel Pillaca Vidal | To-do |
+| Sprint 1 | US18 | Consultar los pacientes de un cliente (veterinario) | US18-T01 | Implementación de consulta de pacientes | Desarrollar la consulta de animales asociados a un cliente del veterinario. | N/D - 5 SP | Luis Angel Pillaca Vidal | To-do |
+| Sprint 1 | US19 | Registrar la atención veterinaria | US19-T01 | Implementación de atención veterinaria | Desarrollar el registro de una atención realizada por el veterinario a un paciente. | N/D - 5 SP | Luis Angel Pillaca Vidal | To-do |
+| Sprint 1 | — | — | TS03 | Configurar CI/CD y desplegar en la nube | Configurar el proceso de integración continua, validación automática y despliegue de los servicios. | N/D - 5 SP | Luis Angel Pillaca Vidal | To-do |
+| Sprint 1 | US22 | Recibir notificaciones push generales | US22-T01 | Implementación de notificaciones push | Implementar el mecanismo requerido para gestionar notificaciones generales de la aplicación. | N/D - 3 SP | Nadhim Abigail Raymundo Villarroel | To-do |
+| Sprint 1 | US20 | Consultar reportes y estadísticas del ganado | US20-T01 | Implementación de reportes y estadísticas | Desarrollar la funcionalidad para consultar reportes y estadísticas relacionados con la gestión del ganado. | N/D - 8 SP | Nadhim Abigail Raymundo Villarroel | To-do |
+| Sprint 1 | US23 | Integrar dispositivos IoT | US23-T01 | Implementación de integración IoT | Preparar la integración de Gethics con dispositivos IoT según las funcionalidades establecidas para el producto. | N/D - 8 SP | Nadhim Abigail Raymundo Villarroel | To-do |
+| Sprint 1 | US16 | Consultar el balance económico del ganado | US16-T01 | Implementación de balance económico | Desarrollar la consulta del balance económico a partir de los ingresos y egresos registrados. | N/D - 3 SP | Nadhim Abigail Raymundo Villarroel | To-do |
+| Sprint 1 | US07 | Editar un animal | US07-T01 | Implementación de edición de animal | Desarrollar la funcionalidad que permita modificar la información de un animal registrado. | N/D - 3 SP | Nadhim Abigail Raymundo Villarroel | To-do |
 
 El Sprint Backlog permite establecer una referencia común para el trabajo del equipo y facilita el seguimiento de las responsabilidades asumidas durante la iteración. Cada integrante desarrolla las funcionalidades asignadas mediante ramas independientes en Git, integrando posteriormente los cambios mediante Pull Requests hacia la rama `develop`.
 
 Los estados mostrados en esta tabla corresponden al estado inicial de planificación del Sprint, en el cual las tarjetas se encuentran dentro del Product Backlog. Durante el desarrollo, estas actividades deben desplazarse progresivamente entre los estados **To-do**, **In-Process**, **To-Review** y **Done**, de acuerdo con su avance y validación.
 
+
+##### Tareas de Mateo Salazar (Animales, Swagger y backlog)
+
+| Historia | Alcance entregado en el backend | Alcance entregado en la app |
+|---|---|---|
+| US-08 Dar de baja un animal | `DELETE /api/v1/animals/{id}`: baja lógica, conserva el historial, cancela los eventos sanitarios programados y bloquea editar o mover un animal que ya no está activo | Botón "Dar de baja" en la ficha con diálogo de confirmación y opción de cancelar; el animal sale de la lista activa |
+| TS04 Documentar la API (OpenAPI/Swagger) | Todos los controladores anotados con `@Operation` y `@ApiResponses`; documentación en `/docs` y prueba automática que falla si un endpoint queda sin documentar | — |
+| TS07 Integrar veterinario con animales y sanidad | Fachadas `LivestockContextFacade` y `SanitaryContextFacade`; pacientes reales con resumen clínico y atención reflejada en el historial del ganadero | — |
+| US-29 Identificar un animal con código QR | `GET /api/v1/animals/qr/{code}` | Pendiente de pantalla (escáner) |
+| US-30 Registrar la venta de un animal | `POST /api/v1/animals/{id}/sale` con ingreso en Finanzas | Pendiente de pantalla |
+| US-32 Editar una granja | `PUT /api/v1/farms/{id}` con control de nombres duplicados | Pendiente de pantalla |
 
 #### 4.2.1.4. Development Evidence for Sprint Review
 
@@ -634,25 +645,105 @@ Ejecución exitosa de la colección de pruebas automatizadas sobre la API REST d
 
 #### 4.2.1.7. Services Documentation Evidence for Sprint Review
 
-En esta sección se detalla la documentación técnica interactiva de los **Web Services (Backend)** desarrollados en **Spring Boot**, correspondiente a la API REST expuesta para el consumo de la aplicación móvil y servicios de integración.
+La API REST de Gethics está documentada con OpenAPI 3 (springdoc) y se publica con Swagger UI en `/docs` (JSON en `/v3/api-docs`). Una prueba automática (`OpenApiDocumentationTest`) falla si algún endpoint queda sin resumen, etiqueta o respuestas documentadas. A continuación se listan los **46 endpoints** vigentes, agrupados por módulo, con los códigos HTTP que puede devolver cada uno.
 
-La documentación se generó automáticamente utilizando **OpenAPI 3.0 / Swagger UI**, lo cual permite explorar la estructura de las peticiones, esquemas de datos (*DTOs*), parámetros requeridos, códigos de estado HTTP y realizar pruebas de endpoints en tiempo real.
+Nota: los endpoints `/api/v1/**` aún no exigen token JWT (historia TS08, a cargo de Mauricio); hasta entonces el dueño o el veterinario se indican como parámetro o en el cuerpo de la petición.
 
----
+##### Auth
 
-#### 1. Especificación OpenAPI y Swagger UI
+| Método | Ruta | Descripción | Códigos HTTP |
+|---|---|---|---|
+| POST | `/auth/reset-password` | **Restablecer la contrasena.** US-03: define una nueva contrasena con el token recibido por correo. | 200, 400 |
+| POST | `/auth/register` | **Registrar un usuario.** US-01: crea una cuenta con rol GANADERO o VETERINARIO. La contrasena se guarda cifrada. | 201, 400, 409 |
+| POST | `/auth/login` | **Iniciar sesion.** US-02: valida las credenciales y devuelve un token JWT para usar como Bearer en el resto de endpoints. | 200, 400, 401 |
+| POST | `/auth/forgot-password` | **Solicitar recuperacion de contrasena.** US-03: envia al correo un enlace de restablecimiento con vigencia limitada. | 200, 400, 404 |
 
-Se documentaron los endpoints organizados por bounded contexts de acuerdo con la arquitectura Domain-Driven Design (DDD) implementada:
+##### Users
 
-* **IAM (`/api/v1/authentication`, `/api/v1/users`):** Registro, autenticación mediante JWT y gestión de perfiles de usuario.
-* **Livestock (`/api/v1/animals`):** Registro, consulta, actualización y trazabilidad del ganado vacuno.
-* **Sanitary (`/api/v1/sanitary-events`, `/api/v1/vaccinations`):** Programación y seguimiento de eventos sanitarios y tratamientos.
-* **Veterinary (`/api/v1/prescriptions`, `/api/v1/consultations`):** Gestión de recetas y consultas médicas veterinarias.
----
+| Método | Ruta | Descripción | Códigos HTTP |
+|---|---|---|---|
+| GET | `/users/me` | **Consultar mi perfil.** US-04: datos del usuario autenticado. | 200, 401, 404 |
+| PUT | `/users/me` | **Editar mi perfil.** US-04: actualiza nombre y telefono del usuario autenticado. | 200, 400, 401 |
+| GET | `/users/me/photo` | **Obtener mi foto de perfil.** Devuelve los bytes de la imagen con su content-type. | 200, 401, 404 |
+| PUT | `/users/me/photo` | **Actualizar mi foto de perfil.** US-04: sube la imagen (multipart, parte file; maximo 2 MB). | 200, 400, 401 |
 
-#### 2. Detalle de Esquemas de Datos (Schemas / DTOs)
+##### Livestock
 
-Cada endpoint cuenta con la definición explícita de sus modelos de transferencia de datos (`RequestDTO` y `ResponseDTO`), especificando los tipos de datos, restricciones de validación y respuestas de error estandarizadas.
+| Método | Ruta | Descripción | Códigos HTTP |
+|---|---|---|---|
+| PUT | `/api/v1/farms/{id}` | **Editar una granja.** US-32: actualiza nombre, ubicacion y tamano (tamano ausente = sin registrar). El nombre no puede repetirse entre las granjas del mismo dueno. | 200, 400, 404, 409 |
+| GET | `/api/v1/animals/{id}` | **Obtener un animal.** Devuelve el animal sin importar su estado, para precargar el detalle o la edicion. | 200, 404 |
+| PUT | `/api/v1/animals/{id}` | **Editar un animal.** Actualiza nombre, raza, sexo, fecha de nacimiento, peso, foto y, opcionalmente, la granja. No cambia el arete ni el QR. Solo se puede editar un animal ACTIVE. | 200, 400, 404, 409 |
+| DELETE | `/api/v1/animals/{id}` | **Dar de baja un animal (baja logica).** Cambia el estado a INACTIVE sin borrar el registro ni su historial sanitario, y cancela sus eventos sanitarios programados. Responde 409 si el animal ya no esta ACTIVE. | 204, 404, 409 |
+| PUT | `/api/v1/animals/{animalId}/farm` | **Asignar o mover un animal de granja.** Idempotente: repetir la misma granja no cambia nada. Cada cambio queda en el historial. | 200, 404 |
+| GET | `/api/v1/farms` | **Listar granjas del dueno.** Devuelve las granjas del dueno ordenadas por nombre. | 200, 400 |
+| POST | `/api/v1/farms` | **Registrar una granja.** Crea una granja para el dueno indicado. | 201, 400, 409 |
+| GET | `/api/v1/animals` | **Listar y buscar animales.** Busca por arete, nombre o raza. Por defecto solo devuelve animales ACTIVE; usa status para ver otros estados. | 200, 400 |
+| POST | `/api/v1/animals` | **Registrar un animal.** Crea un animal ACTIVE con arete unico y genera su codigo QR. | 201, 400, 404, 409 |
+| POST | `/api/v1/animals/{id}/sale` | **Registrar la venta de un animal.** US-30: marca el animal como SOLD con su precio y fecha, conserva su historial, cancela sus eventos sanitarios programados y registra un ingreso (categoria 'Venta de ganado') en Finance. El dueno sale de la granja del animal; si no tiene granja, hay que enviar ownerId. | 201, 400, 404, 409 |
+| GET | `/api/v1/farms/{farmId}/animals` | **Listar animales de una granja.** Por defecto solo animales ACTIVE; usa status para ver otros estados. | 200, 400, 404 |
+| GET | `/api/v1/animals/{animalId}/farm-history` | **Historial de granjas del animal.** Cambios de granja del mas antiguo al mas reciente. | 200, 404 |
+| GET | `/api/v1/animals/qr/{code}` | **Buscar un animal por su codigo QR.** US-29: devuelve el animal cuyo QR tiene ese codigo (sin distinguir mayusculas ni espacios), sin importar su estado. | 200, 404 |
+
+##### Sanitary
+
+| Método | Ruta | Descripción | Códigos HTTP |
+|---|---|---|---|
+| POST | `/api/v1/animals/{animalId}/sanitary-events` | **Registrar un evento sanitario.** US-11: registra un evento ya ocurrido (vacuna, tratamiento, enfermedad, chequeo u otro). Con clientRequestId es idempotente (US-35): el primer envio responde 201 y un reintento identico 200. | 200, 201, 400, 409 |
+| POST | `/api/v1/animals/{animalId}/sanitary-events/{eventId}/complete` | **Completar un evento programado.** Registra como aplicado el mismo evento programado (SCHEDULED a COMPLETED) sin crear uno nuevo. | 200, 400, 404, 409 |
+| POST | `/api/v1/animals/{animalId}/sanitary-events/{eventId}/cancel` | **Cancelar un evento programado.** US-33: cambia el evento de SCHEDULED a CANCELLED sin borrarlo; queda en el historial clinico y sale del calendario y de los recordatorios. | 200, 404, 409 |
+| POST | `/api/v1/animals/{animalId}/sanitary-events/scheduled` | **Programar un evento sanitario.** US-12/US-13: programa un evento futuro; genera recordatorios de vacunacion. Con clientRequestId es idempotente (US-35). | 200, 201, 400, 409 |
+| GET | `/api/v1/sanitary-calendar` | **Calendario sanitario del mes.** US-12: eventos sanitarios programados del mes indicado. | 200, 400 |
+| GET | `/api/v1/animals/{animalId}/clinical-history` | **Consultar el historial clinico de un animal.** US-14: todos los eventos sanitarios del animal en orden cronologico (incluye programados y cancelados). Se conserva aunque el animal haya sido dado de baja (US-08). Sin eventos devuelve 200 con un mensaje de sin registros. | 200, 400 |
+
+##### Veterinary
+
+| Método | Ruta | Descripción | Códigos HTTP |
+|---|---|---|---|
+| POST | `/api/v1/vet/patients/{patientId}/care` | **Registrar una atencion veterinaria.** US-19 / TS07: valida que el paciente exista, este activo y sea de un cliente asignado al veterinario; guarda la atencion, la agrega al historial clinico del animal (visible para el ganadero) y, si trae proximo control futuro, lo programa como CHECKUP en el calendario sanitario. Es idempotente por clientRequestId: 201 la primera vez y 200 en un reintento identico. | 200, 201, 400, 403, 404, 409, 503 |
+| POST | `/api/v1/vet/care/sync` | **Sincronizar atenciones veterinarias en lote.** US-19 / US-35: procesa hasta 100 atenciones registradas sin conexion. Cada item devuelve su resultado (CREATED, DUPLICATE, CONFLICT, REJECTED por regla de negocio, o FAILED si el historial no se pudo actualizar y hay que reintentar); un item fallido no detiene al resto. | 200, 400 |
+| POST | `/api/v1/vet/assignments` | **Asignar un cliente a un veterinario.** US-17: vincula un ganadero (cliente) con un veterinario. | 201, 400, 409 |
+| GET | `/api/v1/vet/clients` | **Listar los clientes asignados a un veterinario.** US-17: clientes con asignacion activa. Sin clientes devuelve 200 con un mensaje. | 200, 400 |
+| GET | `/api/v1/vet/clients/{clientId}/animals` | **Consultar los pacientes de un cliente.** US-18 / TS07: animales activos del cliente (datos reales del modulo de ganaderia) con el resumen de su historial clinico. Los animales dados de baja no aparecen. El cliente debe estar asignado al veterinario. | 200, 403 |
+
+##### Veterinary Assignments
+
+| Método | Ruta | Descripción | Códigos HTTP |
+|---|---|---|---|
+| DELETE | `/api/v1/vet/assignments/{id}` | **Desvincular un cliente del veterinario.** US-34: desvincula al cliente (la asignacion pasa a INACTIVE); el cliente deja de aparecer en la lista de clientes activos del veterinario. No borra animales ni su historial clinico. | 204, 404 |
+
+##### Finance
+
+| Método | Ruta | Descripción | Códigos HTTP |
+|---|---|---|---|
+| GET | `/api/v1/finances` | **Balance economico del ganadero.** Devuelve ingresos, egresos, saldo y movimientos activos. Sin from/to usa todo el historial; con from y to filtra el periodo. Los movimientos anulados no cuentan. Si no hay movimientos devuelve 200 con un mensaje. | 200, 400 |
+| POST | `/api/v1/finances` | **Registrar un ingreso o egreso.** Crea un movimiento financiero del ganadero (INCOME o EXPENSE) con monto, fecha y categoria. | 201, 400 |
+| POST | `/api/v1/finances/{id}/void` | **Anular un movimiento financiero.** US-31: marca el movimiento como anulado sin borrarlo; deja de sumar en el balance. | 204, 400 |
+
+##### IoT
+
+| Método | Ruta | Descripción | Códigos HTTP |
+|---|---|---|---|
+| POST | `/api/v1/devices/{code}/readings` | **Registrar una lectura del sensor.** Ingesta HTTP de una lectura (metrica y valor) para un dispositivo ya vinculado, identificado por su codigo. | 201, 400, 404 |
+| POST | `/api/v1/devices/link` | **Vincular un dispositivo IoT.** US-23: vincula un dispositivo compatible a un ganadero mediante su codigo unico. | 201, 400, 409 |
+| GET | `/api/v1/devices` | **Listar los dispositivos de un ganadero.** Devuelve los dispositivos del ganadero con su estado actual (CONNECTED o DISCONNECTED). | 200, 400 |
+| GET | `/api/v1/devices/{id}/readings` | **Consultar las lecturas de un dispositivo.** US-37: lecturas paginadas, de la mas reciente a la mas antigua. Sin lecturas devuelve 200 con content vacio. | 200, 400, 404 |
+
+##### Analytics
+
+| Método | Ruta | Descripción | Códigos HTTP |
+|---|---|---|---|
+| GET | `/api/v1/reports` | **Reporte y estadisticas del ganado.** US-20: indicadores de salud, productividad y finanzas del ganadero en el rango from-to (formato yyyy-MM-dd). | 200, 400, 404 |
+| GET | `/api/v1/reports/export` | **Exportar el reporte del ganado en CSV.** US-39: descarga el mismo reporte del periodo como archivo CSV (text/csv, UTF-8) con Content-Disposition attachment. | 200, 400, 404 |
+| GET | `/api/v1/alerts` | **Listar las alertas de tendencia del ganadero.** US-21: alertas automaticas generadas por tendencias, de la mas reciente a la mas antigua. Un ownerId sin alertas devuelve la lista vacia. | 200, 400 |
+
+##### Notifications
+
+| Método | Ruta | Descripción | Códigos HTTP |
+|---|---|---|---|
+| GET | `/api/v1/users/{userId}/notification-preference` | **Consultar la preferencia de notificaciones push.** Indica si el usuario tiene habilitadas las notificaciones push. | 200, 400 |
+| PUT | `/api/v1/users/{userId}/notification-preference` | **Actualizar la preferencia de notificaciones push.** Activa o desactiva las notificaciones push del usuario. | 200, 400 |
+| POST | `/api/v1/notifications` | **Enviar una notificacion push.** US-22: envia una notificacion al usuario si tiene las push habilitadas; si no, responde 201 con el resultado SKIPPED_DISABLED; si el proveedor falla, DELIVERY_FAILED. | 201, 400 |
 
 
 #### 4.2.1.8. Software Deployment Evidence for Sprint Review
