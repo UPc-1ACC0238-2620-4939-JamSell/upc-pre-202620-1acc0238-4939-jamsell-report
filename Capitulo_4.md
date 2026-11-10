@@ -1063,11 +1063,6 @@ Las pruebas del ViewModel permiten comprobar que la interfaz pueda representar c
 
 Por su parte, las pruebas de formato verifican el tratamiento de la información recibida desde el backend antes de ser presentada al usuario.
 
-<div align="center">
-  <p><b>Figura 4.X.</b> Resultado de la ejecución de las pruebas unitarias de la aplicación móvil durante el Sprint 2.</p>
-  <img src="images/sprint2-mobile-tests.png" alt="Pruebas Mobile Sprint 2" width="800">
-  <p><i><b>Fuente:</b> Elaboración propia, Android Studio.</i></p>
-</div>
 
 #### Validación de compilación de la aplicación móvil
 
@@ -1115,11 +1110,6 @@ El servicio respondió correctamente:
 
 El resultado `UP` permite comprobar que la aplicación desplegada se encuentra ejecutándose y disponible para recibir solicitudes.
 
-<div align="center">
-  <p><b>Figura 4.X.</b> Verificación del estado del backend mediante Spring Boot Actuator.</p>
-  <img src="images/sprint2-render-health.png" alt="Estado del Backend en Render" width="800">
-  <p><i><b>Fuente:</b> Backend público de Gethics desplegado en Render.</i></p>
-</div>
 
 #### Validación del endpoint de alertas en staging
 
@@ -1167,11 +1157,6 @@ Durante las pruebas se verificó que:
 - Las respuestas mantienen el formato definido por la API.
 - Los códigos HTTP obtenidos coinciden con los escenarios contemplados durante el desarrollo.
 
-<div align="center">
-  <p><b>Figura 4.X.</b> Ejecución y documentación del endpoint de alertas mediante Swagger UI.</p>
-  <img src="images/sprint2-us21-swagger-test.png" alt="Prueba US21 mediante Swagger" width="800">
-  <p><i><b>Fuente:</b> Swagger UI del backend de Gethics.</i></p>
-</div>
 
 #### Resumen de pruebas del Sprint 2
 
@@ -1375,65 +1360,21 @@ A continuación se presentan los registros detallados de las entrevistas semiest
 
 ---
 
-#### Segmento 1: Ganaderos y Productores Pecuarios
+**Entrevistados del segmento 1 (Pequeños y Medianos Ganaderos)**
 
-##### Entrevista #1: Daniel Ruiz
-* **Edad:** 42 años
-* **Ocupación / Rol:** Propietario y gestor de establo ganadero
-* **Ubicación:** Cajamarca, Perú
-* **Fecha de entrevista:** 15 de septiembre de 2026
-* **Duración:** 22 minutos
-* **Evolución y Resumen:**  
-  Daniel cuenta con un hato de aproximadamente 35 cabezas de ganado vacuno enfocado en la producción lechera. Expresa que su principal problema es el registro en cuadernos de papel, lo cual provoca extravío de datos sobre fechas de vacunación y partos. Le interesa una herramienta móvil sencilla que le permita recibir alertas directas antes de que se venzan los plazos sanitarios y llevar un control rápido de sus ingresos y egresos diarios.
+| N° de Entrevista | Datos del Entrevistado | Evidencia de Video |
+|---|---|---|
+| E1<br>![Entrevistado E1 Segmento 1](./images/2-2-2-seg1-e1.png) | *(pendiente)* | Duración de video: *(pendiente)*<br>[Enlace de entrevista](ENLACE_PENDIENTE) |
+| E2<br>![Jesús Manrique Meza](./images/jesus-manrique.png) | Jesús Manrique Meza es un joven ganadero de 24 años que participa en la administración de un pequeño negocio familiar dedicado a la actividad ganadera. Actualmente, junto con su familia, maneja un establo de aproximadamente 70 cabezas de ganado bovino de doble propósito, orientado tanto a la producción de leche como a la producción de carne.<br><br>Jesús participa activamente en las actividades diarias del establo, como el control de los animales, alimentación, registro de nacimientos, vacunaciones, tratamientos y seguimiento de la producción. Parte de esta información se registra todavía de forma manual, mediante anotaciones y herramientas digitales sencillas, lo que puede dificultar la consulta rápida del historial de cada animal.<br><br>Debido a la cantidad de animales y actividades que deben supervisarse diariamente, considera importante contar con una herramienta móvil que permita centralizar la información del ganado, registrar eventos sanitarios, recibir recordatorios y consultar datos directamente desde el celular. Asimismo, considera importante que la aplicación sea sencilla de utilizar y que pueda funcionar incluso cuando la conexión a Internet sea limitada. | Duración: 15:07<br>[Entrevista Jesus Manrique Segmento 1.mp4](https://upcedupe-my.sharepoint.com/:v:/g/personal/u202320574_upc_edu_pe/IQBMcVC8DfCdR462lwULqgYVAQkiyl6YCPIh-ZBYd393RxU?nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJTdHJlYW1XZWJBcHAiLCJyZWZlcnJhbFZpZXciOiJTaGFyZURpYWxvZy1MaW5rIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXcifX0%3D&e=mwOjan) |
+| E3<br>![Entrevistado E3 Segmento 1](./images/2-2-2-seg1-e3.png) | *(pendiente)* | Duración de video: *(pendiente)*<br>[Enlace de entrevista](ENLACE_PENDIENTE) |
 
+**Entrevistados del segmento 2 (Veterinarios y Técnicos Agropecuarios)**
 
----
-
-##### Entrevista #2: Yarkin Quispe
-* **Edad:** 38 años
-* **Ocupación / Rol:** Ganadero de producción mixta (carne y leche)
-* **Ubicación:** Arequipa, Perú
-* **Fecha de entrevista:** 16 de septiembre de 2026
-* **Duración:** 18 minutos
-* **Evolución y Resumen:**  
-  Yarkin gestiona un establo familiar de 20 bovinos. Destaca la dificultad de mantener un historial individual por cada animal, lo que dificulta identificar cuáles son los más productivos o cuáles han recibido tratamientos antibióticos recientes. Valora positivamente contar con una aplicación móvil intuitiva que funcione de forma ágil y le permita registrar eventos sanitarios directamente desde el corral.
-
-
----
-
-##### Entrevista #3: Jesús Manrique
-* **Edad:** 50 años
-* **Ocupación / Rol:** Productor pecuario y administrador de fundo
-* **Ubicación:** Lima Provincias (Canta), Perú
-* **Fecha de entrevista:** 17 de septiembre de 2026
-* **Duración:** 25 minutos
-* **Evolución y Resumen:**  
-  Jesús administra más de 50 vacunos. Su mayor preocupación reside en las pérdidas financieras asociadas a enfermedades no detectadas a tiempo y el descontrol en la compra de insumos veterinarios. Resalta que necesita una plataforma que integre reportes visuales de rentabilidad y alertas claras sobre eventos del hato, ya que actualmente consolida sus datos de forma manual a fin de mes.
-
----
-
-#### Segmento 2: Veterinarios y Técnicos Agropecuarios
-
-##### Entrevista #4: Andrea Arango
-* **Edad:** 31 años
-* **Ocupación / Rol:** Médico Veterinaria Zootecnista
-* **Ubicación:** Trujillo, Perú
-* **Fecha de entrevista:** 18 de septiembre de 2026
-* **Duración:** 20 minutos
-* **Evolución y Resumen:**  
-  Andrea presta servicios de asistencia técnica ambulatoria a múltiples establos en la región. Menciona que la falta de un historial clínico digitalizado por parte de los ganaderos dificulta dar un diagnóstico certero cuando atiende una emergencia. Sugiere que la aplicación incluya una sección limpia para el historial sanitario individual del animal que pueda ser consultada rápidamente durante sus visitas de campo.
-
-
----
-
-##### Entrevista #5: Manuel Fajardo
-* **Edad:** 36 años
-* **Ocupación / Rol:** Técnico Agropecuario y consultor pecuario
-* **Ubicación:** Junín, Perú
-* **Fecha de entrevista:** 19 de septiembre de 2026
-* **Duración:** 24 minutos
-* **Evolución y Resumen:**  
-  Manuel supervisa el cumplimiento de calendarios de vacunación y control de parásitos en varios fundos medianos. Indica que la falta de seguimiento por parte del personal del fundo arruina con frecuencia los tratamientos preventivos. Considera indispensable que el sistema permita programar recordatorios automáticos de dosis y tratamientos posteriores para asegurar la trazabilidad del hato.
+| N° de Entrevista | Datos del Entrevistado | Evidencia de Video |
+|---|---|---|
+| E1<br>![Entrevistado E1 Segmento 2](./images/2-2-2-seg2-e1.png) | *(pendiente)* | Duración de video: *(pendiente)*<br>[Enlace de entrevista](ENLACE_PENDIENTE) |
+| E2<br>![Entrevistado E2 Segmento 2](./images/2-2-2-seg2-e2.png) | *(pendiente)* | Duración de video: *(pendiente)*<br>[Enlace de entrevista](ENLACE_PENDIENTE) |
+| E3<br>![Entrevistado E3 Segmento 2](./images/2-2-2-seg2-e3.png) | *(pendiente)* | Duración de video: *(pendiente)*<br>[Enlace de entrevista](ENLACE_PENDIENTE) |
 
 
 ### 4.3.3. Evaluaciones según heurísticas
