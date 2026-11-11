@@ -197,8 +197,8 @@ Se usan minúsculas, guiones para separar palabras y el identificador de la hist
 | Componente | Repositorio | Tecnología | Plataforma de despliegue | Estado |
 | --- | --- | --- | --- | --- |
 | Landing Page | `gethics-landing-page` | HTML, CSS y JavaScript (sin framework ni build step) | Vercel | Desplegado: https://gethics-landing-page.vercel.app |
-| Backend | `gethics-backend` | Java 21, Spring Boot 4.1.1, Spring Data JPA, Maven | [COMPLETAR: Render / Railway / Azure / otro] | [COMPLETAR] |
-| Base de datos | `gethics-backend` | PostgreSQL 16 | Docker Compose (local) y [COMPLETAR: Neon / Supabase] en la nube | Local operativo |
+| Backend | `gethics-backend` | Java 21, Spring Boot 4.1.1, Spring Data JPA, Maven | Render | Desplegado en staging: https://gethics-backend-staging-7qth.onrender.com (Swagger UI: https://gethics-backend-staging-7qth.onrender.com/swagger-ui/index.html) |
+| Base de datos | `gethics-backend` | PostgreSQL 16 | Docker Compose (local) y Supabase en la nube | Local operativo y desplegado en Supabase |
 | Aplicación Móvil | `gethics-mobile-app` | Android nativo (Kotlin, Jetpack Compose, Gradle Kotlin DSL) | [COMPLETAR: GitHub Releases (APK) / Firebase App Distribution] | [COMPLETAR] |
 
 #### 4.1.4.1. Landing Page
@@ -232,7 +232,7 @@ El backend sigue una arquitectura DDD organizada en los bounded contexts `iam`, 
 | Entorno | Perfil Spring | Base de datos | Uso |
 | --- | --- | --- | --- |
 | Desarrollo | `dev` | PostgreSQL 16 en contenedor Docker (`localhost:5432`) | Trabajo local de cada integrante |
-| Producción | `prod` | [COMPLETAR: PostgreSQL gestionado en Neon o Supabase] | Servicio consumido por la app móvil |
+| Producción | `prod` | PostgreSQL gestionado en Supabase | Servicio desplegado en Render y consumido por la app móvil |
 
 **Variables de entorno**
 
@@ -270,10 +270,10 @@ java -jar target/*.jar
 
 **Proceso de despliegue en la nube**
 
-1. [COMPLETAR: conectar el repositorio `gethics-backend` a la plataforma de hosting elegida.]
-2. [COMPLETAR: configurar `SPRING_PROFILES_ACTIVE=prod`, `DB_URL`, `DB_USER` y `DB_PASSWORD` como variables de entorno.]
-3. [COMPLETAR: definir el comando de build (`./mvnw clean package -DskipTests`) y el comando de inicio (`java -jar target/*.jar`).]
-4. [COMPLETAR: verificar que la API responde en la URL pública asignada.]
+1. Se conecta el repositorio `gethics-backend` a Render como Web Service.
+2. Se configuran `SPRING_PROFILES_ACTIVE=prod`, `DB_URL` (cadena JDBC de la base de datos en Supabase), `DB_USER`, `DB_PASSWORD` y `JWT_SECRET` como variables de entorno en Render.
+3. La compilación (`./mvnw -B package -DskipTests`) y el inicio (`java -jar app.jar`) se definen en el `Dockerfile` del repositorio.
+4. Se verifica que la API responde en https://gethics-backend-staging-7qth.onrender.com (`/actuator/health`) y que la documentación está disponible en Swagger UI: https://gethics-backend-staging-7qth.onrender.com/swagger-ui/index.html.
 
 #### 4.1.4.3. Aplicación Móvil
 
@@ -292,7 +292,7 @@ La aplicación móvil es un proyecto Android nativo construido con Gradle (Kotli
 **Distribución**
 
 1. [COMPLETAR: indicar el medio de distribución (por ejemplo, GitHub Releases con el APK adjunto o Firebase App Distribution).]
-2. [COMPLETAR: indicar la URL base del backend configurada para el entorno de producción.]
+2. La URL base del backend es https://gethics-backend-staging-7qth.onrender.com/, definida en la constante `BASE_URL` de `Constants.kt`.
 3. El botón "Descargar app" de la Landing Page [COMPLETAR: enlaza al medio de distribución elegido].
 
 #### 4.1.4.4. Flujo general de despliegue
@@ -1504,7 +1504,8 @@ En el Sprint 2 se mantuvieron los ambientes de despliegue configurados en el Spr
 | Producto | Ambiente | Plataforma | Origen del despliegue | URL pública | Estado al 11/11/2026 |
 |---|---|---|---|---|---|
 | Landing Page | Producción | Vercel | Rama `main` de `gethics-landing-page` | https://gethics-landing-page.vercel.app | Desplegado con el commit `998d28f` (Pull Request #1) |
-| Web Services | Staging | Render (contenedor Docker) con PostgreSQL | Repositorio `gethics-backend` | https://gethics-backend-staging-7qth.onrender.com | Disponible según la validación de `/actuator/health` registrada en 4.2.2.5 |
+| Web Services | Staging | Render (contenedor Docker) | Repositorio `gethics-backend` | https://gethics-backend-staging-7qth.onrender.com (Swagger UI: https://gethics-backend-staging-7qth.onrender.com/swagger-ui/index.html) | Desplegado; disponible según la validación de `/actuator/health` registrada en 4.2.2.5 |
+| Base de datos | Producción | Supabase (PostgreSQL gestionado) | Esquema versionado con Flyway desde `gethics-backend` | Panel de administración, con acceso restringido al equipo: https://supabase.com/dashboard/project/xlcjmzvfdpggluhwkpfp | Desplegado y usado por los Web Services |
 | Aplicación móvil | Desarrollo | Emulador de Android Studio | Rama `develop` de `gethics-mobile-app` | — | Consume los Web Services de staging; aún no se distribuye un APK |
 
 #### 1. Despliegue del Landing Page
@@ -1544,13 +1545,13 @@ El perfil `prod` (`application-prod.yaml`) toma la configuración de variables d
 
 Cambios del Sprint 2 que afectan al despliegue:
 
-- **Base de datos en la nube:** se configuró la conexión JDBC a una base PostgreSQL alojada en Supabase y se añadió el archivo `.env.example` con las variables necesarias (commit `c7f843f`, Pull Request #33, 09/11/2026).
+- **Base de datos en la nube:** se configuró la conexión JDBC a una base PostgreSQL alojada en Supabase (https://supabase.com/dashboard/project/xlcjmzvfdpggluhwkpfp) y se añadió el archivo `.env.example` con las variables necesarias (commit `c7f843f`, Pull Request #33, 09/11/2026).
 - **Versionado del esquema con Flyway:** el esquema se crea con el script `V1__init_schema.sql` (Pull Request #39, 10/11/2026), y Flyway aplica las migraciones al arrancar la aplicación, lo que se verifica con una prueba automatizada (commit `97b798e`, Pull Request #40).
 - **Integración continua:** el workflow `CI` de GitHub Actions se ejecuta en cada push y Pull Request a `develop` y `main`, con Checkstyle, compilación y pruebas, antes de integrar los cambios.
 
 La disponibilidad del servicio de staging se comprobó con `GET /actuator/health`, que respondió `"status": "UP"`, y con el endpoint de alertas (ver 4.2.2.5).
 
-> [COMPLETAR: rama y commit desplegados actualmente en Render, y captura del panel de Render con el último despliegue, guardada como `images/sprint2-render-deploy.png`.]
+La documentación interactiva de los Web Services desplegados está publicada en Swagger UI: https://gethics-backend-staging-7qth.onrender.com/swagger-ui/index.html
 
 #### 3. Aplicación móvil
 
