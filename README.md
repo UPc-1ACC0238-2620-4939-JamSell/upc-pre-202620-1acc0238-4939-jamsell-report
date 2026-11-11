@@ -145,6 +145,10 @@ Durante la elaboración del AV2, el equipo completó el Capítulo IV del informe
 
 ### Evidencia de colaboración
 
+![GitHub Collaboration Insights AV2](images/commiters-av2.png)
+
+*Contributors de GitHub sobre la rama `main` (periodo completo del proyecto, sin contar los merges). La actividad de octubre y noviembre corresponde al AV2.*
+
 Commits registrados en el repositorio del informe entre el 29/09/2026 y el 11/11/2026, sin contar los merges y agrupando los distintos nombres de autor que usa cada integrante (fuente: `git log`):
 
 | Integrante | Commits | Periodo de aportes |
