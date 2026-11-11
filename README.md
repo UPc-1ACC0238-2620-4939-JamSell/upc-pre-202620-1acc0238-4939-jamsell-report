@@ -124,6 +124,24 @@ Durante la elaboración del AV1, el equipo organizó y distribuyó las actividad
 | Raymundo Villarroel, Nadhim Abigail | U202318001 | Dirigió el diseño arquitectónico de software a nivel estratégico, estableciendo los límites de dominio (Bounded Contexts), el flujo de mensajes de dominio (Domain Storytelling), el mapa de contextos y los esquemas de arquitectura bajo el modelo C4 (Contexto, Contenedor y Despliegue). |
 | Meza Huanacune, Juan José | U202320574 | Estructuró la arquitectura de software a nivel táctico y de persistencia, especificando el diseño por capas de los Bounded Contexts, los diagramas de componentes, los diagramas de clases del dominio y el modelo relacional de la base de datos. |
 
+## AV2
+
+Durante la elaboración del AV2, el equipo completó el Capítulo IV del informe con la evidencia del Sprint 2 y corrigió artefactos de los capítulos anteriores. Cada integrante evidencia sus aportes mediante commits y participación en el repositorio del informe en GitHub.
+
+### Evidencia de colaboración
+
+*(Captura pendiente: `images/commiters-av2.png`.)*
+
+### Participación del equipo
+
+| Integrante | Código | Insight / Aporte |
+|---|---|---|
+| Castillo Yataco, Mauricio Sebastian | U202113229 | <<COMPLETAR: aportes de Mauricio al informe en AV2>> |
+| Pillaca Vidal, Luis Angel | U202315654 | <<COMPLETAR: aportes de Luis al informe en AV2>> |
+| Salazar Miranda, Mateo Paolo | U202315171 | <<COMPLETAR: aportes de Mateo al informe en AV2>> |
+| Raymundo Villarroel, Nadhim Abigail | U202318001 | Consolidó la evidencia del Sprint 2 a partir de los commits y Pull Requests de todos los repositorios del equipo, redactó las secciones de evidencia de ejecución y de colaboración del Sprint 2, y corrigió las herramientas de configuración del entorno, los nombres del menú en las entrevistas de validación y los términos y códigos de integrantes en el README. |
+| Meza Huanacune, Juan José | U202320574 | <<COMPLETAR: aportes de Juan José al informe en AV2>> |
+
 <br>
 
 ---
