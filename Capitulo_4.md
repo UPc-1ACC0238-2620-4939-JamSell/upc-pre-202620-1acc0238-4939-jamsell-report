@@ -187,33 +187,6 @@ Se usan minúsculas, guiones para separar palabras y el identificador de la hist
 | `chore` | configuración, CI, estructura | `chore(ci): add lint check` |
 
 **Pull Requests.** El trabajo de cada rama se integra a `develop` mediante Pull Request. El pipeline de CI (Checkstyle, compilación y pruebas) se ejecuta automáticamente sobre cada Pull Request, y el equipo se compromete a no integrar cambios cuyo pipeline falle.
-#### Landing Page (HTML, CSS y JavaScript)
-
-El Landing Page es un sitio estático sin frameworks ni paso de compilación, organizado en `index.html` (estructura y contenido), `styles.css` (estilos, animaciones y breakpoints, con el punto de corte móvil en `max-width: 768px`) y `script.js` (menú, header y animaciones de aparición). Los recursos se guardan en `assets/`, con nombres en minúsculas y separados por guiones (`gethics-icon.png`). Los colores y la tipografía replican los definidos en los Style Guidelines, y se respeta la preferencia `prefers-reduced-motion` del usuario.
-
-#### Control de versiones
-
-**Ramas.** Se aplica GitFlow con `main` (versiones estables) y `develop` (integración). Cada tarea se desarrolla en una rama creada desde `develop`:
-
-| Tipo | Patrón | Ejemplos reales |
-|---|---|---|
-| Funcionalidad | `feature/<historia>-<descripción-corta>` | `feature/US01-US02-auth`, `feature/sanitary-us11-register-event` |
-| Tarea técnica | `feature/<TSxx>-<descripción-corta>` | `feature/TS03-cicd-cloud-deployment`, `feature/TS06-role-access` |
-| Corrección | `fix/<TSxx>-<descripción-corta>` | `fix/TS03-mvnw-permissions` |
-
-Se usan minúsculas, guiones para separar palabras y el identificador de la historia (`US..`) o tarea técnica (`TS..`) del Product Backlog, de modo que cada rama se pueda rastrear hasta el Sprint Backlog.
-
-**Commits.** Se siguen los Conventional Commits, con el formato `tipo(contexto): descripción en infinitivo`:
-
-| Tipo | Uso | Ejemplo real |
-|---|---|---|
-| `feat` | nueva funcionalidad | `feat(sanitary): implement US-12 sanitary calendar` |
-| `fix` | corrección de un error | `fix(sanitary): complete US-13 vaccination reminder flow` |
-| `test` | pruebas | `test(finance): add financial management aggregate tests` |
-| `style` | formato sin cambio de comportamiento | `style(veterinary): fix Checkstyle NewlineAtEndOfFile violations` |
-| `chore` | configuración, CI, estructura | `chore(ci): add lint check` |
-
-**Pull Requests.** El trabajo de cada rama se integra a `develop` mediante Pull Request. El pipeline de CI (Checkstyle, compilación y pruebas) se ejecuta automáticamente sobre cada Pull Request, y el equipo se compromete a no integrar cambios cuyo pipeline falle.
 
 ---
 
