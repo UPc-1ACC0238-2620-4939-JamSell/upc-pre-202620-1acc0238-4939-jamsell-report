@@ -1357,16 +1357,25 @@ El usuario se registra, inicia sesión, recupera su contraseña y edita su perfi
 <div align="center">
   <img src="images/sprint2-app-login.png" alt="Inicio de sesión" width="240">
   <img src="images/sprint2-app-registro.png" alt="Registro de usuario" width="240">
-  <p><i><b>Figura 4.X.</b> Inicio de sesión y registro de usuario. <b>Fuente:</b> Elaboración propia, emulador de Android Studio.</i></p>
+  <img src="images/sprint2-app-perfil-cerrar-sesion.png" alt="Perfil con la opción Cerrar sesión" width="240">
+  <p><i><b>Figura 4.X.</b> Inicio de sesión, registro de usuario y perfil con la opción de cerrar sesión. <b>Fuente:</b> Elaboración propia, emulador de Android Studio.</i></p>
 </div>
 
 #### Gestión del ganado
 
-El ganadero registra animales, los busca en el listado, consulta su ficha, edita sus datos y puede darlos de baja.
+El ganadero registra animales, los busca en el listado (también por su código QR), consulta su ficha con el código QR del animal y edita sus datos. Desde la ficha puede registrar la venta del animal, editar la granja y darlo de baja.
 
 <div align="center">
+  <img src="images/sprint2-app-hato-listado.png" alt="Listado de animales" width="240">
+  <img src="images/sprint2-app-hato-detalle.png" alt="Detalle de un animal" width="240">
   <img src="images/sprint2-app-hato-registro.png" alt="Registro de un animal" width="240">
-  <p><i><b>Figura 4.X.</b> Registro de un animal. <b>Fuente:</b> Elaboración propia, emulador de Android Studio.</i></p>
+  <p><i><b>Figura 4.X.</b> Listado, detalle y registro de animales. <b>Fuente:</b> Elaboración propia, emulador de Android Studio.</i></p>
+</div>
+
+<div align="center">
+  <img src="images/sprint2-app-detalle-animal-acciones.png" alt="Acciones sobre un animal" width="240">
+  <img src="images/sprint2-app-editar-granja.png" alt="Editar granja" width="240">
+  <p><i><b>Figura 4.X.</b> Acciones sobre un animal (venta, edición de granja y baja) y edición de una granja (US-08, US-29, US-30, US-32). <b>Fuente:</b> Elaboración propia, emulador de Android Studio.</i></p>
 </div>
 
 #### Sanidad y alertas
