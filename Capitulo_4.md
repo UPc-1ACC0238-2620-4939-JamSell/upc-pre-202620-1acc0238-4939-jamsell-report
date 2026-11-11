@@ -1478,23 +1478,54 @@ Se deberán documentar los ambientes utilizados y, según corresponda:
 
 ### 4.2.2.9. Team Collaboration Insights during Sprint
 
-**Responsable:** Nadhim Abigail Raymundo Villarroel
+Durante el Sprint 2 el equipo JamSell trabajó con ramas de funcionalidad creadas desde `develop` e integró los cambios mediante Pull Requests en los repositorios de Web Services y de la aplicación móvil. Se registraron 16 Pull Requests integrados en el backend y 11 en la aplicación móvil entre el 05/11/2026 y el 10/11/2026, con participación de los cinco integrantes. El Landing Page no tuvo cambios en esta iteración, porque su versión publicada se completó en el Sprint 1. A continuación se presentan los analíticos de colaboración de GitHub y su interpretación.
 
-En esta sección se presentarán las evidencias y conclusiones relacionadas con la colaboración del equipo durante el Sprint 2.
+#### 1. Analíticos de colaboración y commits en GitHub
 
-Se podrán considerar:
+La gráfica Contributors de GitHub solo contabiliza los commits de la rama principal (`main`), que aún no recibe los cambios del Sprint 2. Por eso se presentan los grafos Network de cada repositorio, que muestran las ramas y su integración a `develop`, y el conteo de commits se obtuvo con git sobre `develop`.
 
-- Coordinación entre los integrantes.
-- Distribución de tareas.
-- Participación en los repositorios.
-- Commits realizados.
-- Pull Requests.
-- Revisión e integración de cambios.
-- Comunicación durante el Sprint.
-- Principales dificultades de coordinación.
-- Acciones realizadas para resolver dependencias entre integrantes.
+<div align="center">
+  <p><b>Figura 4.X.</b> Grafo Network del Sprint 2 — gethics-backend (07/11 al 10/11).</p>
+  <img src="images/sprint2-insights-backend.png" alt="Network del backend, Sprint 2, parte 1" width="800">
+  <p><i><b>Fuente:</b> GitHub Insights, repositorio gethics-backend.</i></p>
+</div>
 
-> Pendiente de completar por Nadhim Abigail Raymundo Villarroel.
+<div align="center">
+  <p><b>Figura 4.X.</b> Grafo Network del Sprint 2 — gethics-backend (09/11 al 10/11, continuación).</p>
+  <img src="images/sprint2-insights-backend-2.png" alt="Network del backend, Sprint 2, parte 2" width="800">
+  <p><i><b>Fuente:</b> GitHub Insights, repositorio gethics-backend.</i></p>
+</div>
+
+<div align="center">
+  <p><b>Figura 4.X.</b> Grafo Network del Sprint 2 — gethics-mobile-app.</p>
+  <img src="images/sprint2-insights-app.png" alt="Network de la app móvil, Sprint 2" width="800">
+  <p><i><b>Fuente:</b> GitHub Insights, repositorio gethics-mobile-app.</i></p>
+</div>
+
+#### 2. Interpretación de los analíticos por integrante
+
+Commits (sin contar merges) registrados en `develop` desde el inicio del Sprint 2 (05/11/2026) hasta el 11/11/2026, agrupando los distintos nombres de autor que usa cada integrante:
+
+| Integrante | Web Services | Aplicación móvil | Aportes principales |
+|---|---:|---:|---|
+| Castillo Yataco, Mauricio Sebastian | 1 | 1 | Módulo IAM: registro, inicio de sesión con JWT y control de acceso por rol en el backend, y recuperación de contraseña y edición de perfil en la aplicación. |
+| Salazar Miranda, Mateo Paolo | 7 | 3 | Baja lógica de animales; venta, búsqueda por código QR y edición de granja en el backend; documentación OpenAPI de toda la API e integración del veterinario con animales y sanidad; y baja de animal en la aplicación. |
+| Meza Huanacune, Juan José | 6 | 4 | Alertas por tendencias, cancelación de eventos sanitarios y registro sin conexión con sincronización, tanto en el backend como en la aplicación, y ajustes del módulo IAM. |
+| Pillaca Vidal, Luis Angel | 7 | 2 | Anulación de movimientos financieros y desasignación de clientes del veterinario, en el backend y en la aplicación, versionado de la base de datos con Flyway y conexión a la base de datos en la nube. |
+| Raymundo Villarroel, Nadhim Abigail | 4 | 5 | Reportes, exportación en CSV, dispositivos IoT con lecturas paginadas, notificaciones, balance económico, navegación e idiomas y finanzas en la aplicación. |
+| **Total** | **25** | **15** | |
+
+Los analíticos muestran que el trabajo del Sprint 2 se concentró en dos frentes: los Web Services, donde se integraron los módulos de IAM, finanzas, reportes, notificaciones, IoT, ganado y sanidad, y la aplicación móvil, donde se implementaron las pantallas que consumen esos servicios. La cantidad de commits no refleja por sí sola el tamaño del aporte, porque algunos integrantes agruparon su trabajo en commits más grandes y parte del código integrado en este Sprint se había escrito antes del 05/11/2026. Además, parte del trabajo de la aplicación permanece en ramas propias pendientes de integración (ver 4.2.2.4).
+
+#### 3. Dificultades de coordinación y acciones realizadas
+
+La principal dificultad fue que varias ramas de la aplicación modificaban los mismos archivos compartidos (`AppContainer`, `Routes`, `GethicsNavHost` y los archivos de textos `strings.xml`), lo que producía conflictos al integrar. Otra dificultad fue que algunas funcionalidades dependían de otras ramas, por ejemplo las alertas, que necesitaban la navegación base. El equipo aplicó las siguientes acciones:
+
+- Se acordó actualizar `develop` antes de iniciar cada rama y mantener una rama por historia de usuario, con nombre `feature/US<número>-<descripción>`.
+- Los textos compartidos se integraron en la primera rama en entrar a `develop`, para que las siguientes ramas no los volvieran a modificar.
+- Cuando `develop` cambió antes de integrar una rama, se actualizó la rama con `develop` resolviendo los conflictos sin perder los cambios de los demás integrantes, o se rehízo el cambio sobre la versión actualizada.
+- Las dependencias entre ramas se resolvieron integrando primero la rama base (por ejemplo, navegación e idiomas antes de alertas).
+- En el backend, cada Pull Request pasó el pipeline de integración continua (Checkstyle, compilación y pruebas) antes de integrarse. La aplicación móvil todavía no tiene un pipeline de integración continua; los errores de compilación detectados en `develop` se corrigieron en el Pull Request #24.
 
 ---
 
