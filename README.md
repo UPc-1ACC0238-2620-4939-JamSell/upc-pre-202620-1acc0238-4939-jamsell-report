@@ -118,10 +118,10 @@ Durante la elaboración del AV1, el equipo organizó y distribuyó las actividad
 | Integrante | Código | Insight / Aporte |
 |---|---|---|
 | Castillo Yataco, Mauricio Sebastian | U202113229 | Lideró la formulación estratégica de la Startup y la propuesta de solución, articulando el diagnóstico del problema y coordinando la estructuración del marco Lean UX y la caracterización de los segmentos objetivos. |
-| Pillaca Vidal, Luis Angel | U202114758 | Encabezó la investigación de mercado mediante el análisis competitivo de la solución, la estructuración y ejecución del proceso de entrevistas, el procesamiento estadístico de los hallazgos y la construcción de los User Personas y la User Task Matrix. |
-| Salazar Miranda, Mateo Paolo | U202320574 | Gestionó el modelado de la experiencia de usuario y la especificación de requerimientos del sistema, liderando los artefactos de UX (Journey Maps, Empathy Maps), la dinámica de Big Picture EventStorming y la articulación del Product Backlog mediante User Stories e Impact Mapping. |
+| Pillaca Vidal, Luis Angel | U202315654 | Encabezó la investigación de mercado mediante el análisis competitivo de la solución, la estructuración y ejecución del proceso de entrevistas, el procesamiento estadístico de los hallazgos y la construcción de los User Personas y la User Task Matrix. |
+| Salazar Miranda, Mateo Paolo | U202315171 | Gestionó el modelado de la experiencia de usuario y la especificación de requerimientos del sistema, liderando los artefactos de UX (Journey Maps, Empathy Maps), la dinámica de Big Picture EventStorming y la articulación del Product Backlog mediante User Stories e Impact Mapping. |
 | Raymundo Villarroel, Nadhim Abigail | U202318001 | Dirigió el diseño arquitectónico de software a nivel estratégico, estableciendo los límites de dominio (Bounded Contexts), el flujo de mensajes de dominio (Domain Storytelling), el mapa de contextos y los esquemas de arquitectura bajo el modelo C4 (Contexto, Contenedor y Despliegue). |
-| Meza Huanacune, Juan José | U202315654 | Estructuró la arquitectura de software a nivel táctico y de persistencia, especificando el diseño por capas de los Bounded Contexts, los diagramas de componentes, los diagramas de clases del dominio y el modelo relacional de la base de datos. |
+| Meza Huanacune, Juan José | U202320574 | Estructuró la arquitectura de software a nivel táctico y de persistencia, especificando el diseño por capas de los Bounded Contexts, los diagramas de componentes, los diagramas de clases del dominio y el modelo relacional de la base de datos. |
 
 <br>
 
