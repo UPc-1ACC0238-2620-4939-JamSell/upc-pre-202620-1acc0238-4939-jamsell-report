@@ -17,13 +17,17 @@ A continuación se especifica cada producto de software utilizado por el equipo 
 | Project Management | Trello | Tablero Kanban del equipo (To Do / In Progress / Done) para organizar y dar seguimiento a las tareas de cada Sprint. | https://trello.com |
 | Requirements Management | Trello | Mismo tablero del equipo, utilizado también para registrar y priorizar el backlog de historias de usuario del producto. | https://trello.com |
 | Product UX/UI Design | Figma | Diseño de los wireframes y mock-ups de las pantallas de la aplicación móvil y del Landing Page, y definición del Design System (Style Guidelines: color, tipografía, iconografía) del equipo. | https://www.figma.com |
-| Software Development | Android Studio | IDE utilizado por el equipo tanto para el desarrollo de la aplicación móvil (Flutter/Dart) como del backend (Spring Boot/Java). | https://developer.android.com/studio |
-| Software Development | Flutter SDK | Framework utilizado para construir la aplicación móvil multiplataforma de Gethics. | https://flutter.dev |
+| Software Development | Android Studio | IDE utilizado para el desarrollo de las aplicaciones móviles (Kotlin y Jetpack Compose, y Flutter/Dart), su ejecución en emulador y la compilación con Gradle. | https://developer.android.com/studio |
+| Software Development | Kotlin y Jetpack Compose | Lenguaje y herramienta de interfaz con los que se construye la aplicación móvil Android nativa de Gethics (`gethics-mobile-app`). | https://developer.android.com/compose |
+| Software Development | Flutter SDK | Framework para la aplicación móvil multiplataforma de Gethics, actualmente en desarrollo. | https://flutter.dev |
+| Software Development | IntelliJ IDEA | IDE utilizado para el desarrollo del backend (Java 21 y Spring Boot) y la ejecución de sus pruebas con Maven. | https://www.jetbrains.com/idea |
+| Software Development | Docker | Contenedor `gethics-db` con PostgreSQL 16 para el entorno de desarrollo local del backend. | https://www.docker.com |
 | Software Development | PostgreSQL | Motor de base de datos relacional del backend, donde se persiste la información del hato, los usuarios y los eventos sanitarios. | https://www.postgresql.org |
 | Software Development | GitHub | Control de versiones y colaboración sobre el código fuente de los tres productos del equipo (Landing Page, Web Services y Mobile App). | https://github.com |
 | Software Testing | Postman | Pruebas manuales y colecciones de pruebas sobre los endpoints del backend (Web Services), antes de integrarlos con la aplicación móvil. | https://www.postman.com |
 | Software Deployment | Vercel | Despliegue del Landing Page como sitio estático. | https://vercel.com |
 | Software Deployment | Render | Despliegue del backend (Web Services) y de la base de datos PostgreSQL gestionada. | https://render.com |
+| Software Documentation | Swagger UI (OpenAPI) | Documentación interactiva de los Web Services, usada también para probar los endpoints antes de integrarlos en las aplicaciones móviles. | https://swagger.io/tools/swagger-ui |
 | Software Documentation | GitHub | Repositorio del informe del proyecto, redactado en Markdown y versionado junto con el resto de productos del equipo. | https://github.com |
 
 Como se observa, el equipo prioriza herramientas de modelo SaaS (Trello, Figma, GitHub, Postman, Vercel, Render) para facilitar la colaboración remota entre los miembros del equipo, reservando las instalaciones locales (Android Studio, Flutter SDK, PostgreSQL) a los productos que efectivamente requieren ejecutarse en el computador de cada desarrollador.
@@ -156,33 +160,6 @@ com.jamsell.gethics/
 
 **Criterios de diseño.** Los colores, la tipografía (Roboto) y el espaciado salen exclusivamente de `shared/ui/theme`, de modo que la aplicación respeta los Style Guidelines de la sección 3.1.1. Las dependencias se centralizan en `gradle/libs.versions.toml` (Version Catalog). Las dependencias se crean en `AppContainer` y los ViewModels se construyen con `ViewModelFactory`, lo que permite inyectar dobles de prueba (por ejemplo, un `Clock` fijo para probar validaciones de fecha).
 
-#### Landing Page (HTML, CSS y JavaScript)
-
-El Landing Page es un sitio estático sin frameworks ni paso de compilación, organizado en `index.html` (estructura y contenido), `styles.css` (estilos, animaciones y breakpoints, con el punto de corte móvil en `max-width: 768px`) y `script.js` (menú, header y animaciones de aparición). Los recursos se guardan en `assets/`, con nombres en minúsculas y separados por guiones (`gethics-icon.png`). Los colores y la tipografía replican los definidos en los Style Guidelines, y se respeta la preferencia `prefers-reduced-motion` del usuario.
-
-#### Control de versiones
-
-**Ramas.** Se aplica GitFlow con `main` (versiones estables) y `develop` (integración). Cada tarea se desarrolla en una rama creada desde `develop`:
-
-| Tipo | Patrón | Ejemplos reales |
-|---|---|---|
-| Funcionalidad | `feature/<historia>-<descripción-corta>` | `feature/US01-US02-auth`, `feature/sanitary-us11-register-event` |
-| Tarea técnica | `feature/<TSxx>-<descripción-corta>` | `feature/TS03-cicd-cloud-deployment`, `feature/TS06-role-access` |
-| Corrección | `fix/<TSxx>-<descripción-corta>` | `fix/TS03-mvnw-permissions` |
-
-Se usan minúsculas, guiones para separar palabras y el identificador de la historia (`US..`) o tarea técnica (`TS..`) del Product Backlog, de modo que cada rama se pueda rastrear hasta el Sprint Backlog.
-
-**Commits.** Se siguen los Conventional Commits, con el formato `tipo(contexto): descripción en infinitivo`:
-
-| Tipo | Uso | Ejemplo real |
-|---|---|---|
-| `feat` | nueva funcionalidad | `feat(sanitary): implement US-12 sanitary calendar` |
-| `fix` | corrección de un error | `fix(sanitary): complete US-13 vaccination reminder flow` |
-| `test` | pruebas | `test(finance): add financial management aggregate tests` |
-| `style` | formato sin cambio de comportamiento | `style(veterinary): fix Checkstyle NewlineAtEndOfFile violations` |
-| `chore` | configuración, CI, estructura | `chore(ci): add lint check` |
-
-**Pull Requests.** El trabajo de cada rama se integra a `develop` mediante Pull Request. El pipeline de CI (Checkstyle, compilación y pruebas) se ejecuta automáticamente sobre cada Pull Request, y el equipo se compromete a no integrar cambios cuyo pipeline falle.
 #### Landing Page (HTML, CSS y JavaScript)
 
 El Landing Page es un sitio estático sin frameworks ni paso de compilación, organizado en `index.html` (estructura y contenido), `styles.css` (estilos, animaciones y breakpoints, con el punto de corte móvil en `max-width: 768px`) y `script.js` (menú, header y animaciones de aparición). Los recursos se guardan en `assets/`, con nombres en minúsculas y separados por guiones (`gethics-icon.png`). Los colores y la tipografía replican los definidos en los Style Guidelines, y se respeta la preferencia `prefers-reduced-motion` del usuario.
@@ -780,10 +757,45 @@ La aplicación móvil desarrollada en **Kotlin y Jetpack Compose** fue compilada
 * **Paso 2:** Ejecución del comando de construcción del paquete ejecutable:
   ```bash
   ./gradlew assembleRelease
+  ```
+
 #### 4.2.1.9. Team Collaboration Insights during Sprint
 Durante el desarrollo del presente Sprint, el equipo **JamSell** mantuvo una dinámica de trabajo altamente colaborativa y distribuida de manera equitativa entre los tres productos digitales principales de la solución **Gethics**: la **Landing Page**, los **Web Services (Backend)** y la **Aplicación Móvil**.
 
 Para garantizar la transparencia, trazabilidad y sincronización en la ejecución de las tareas, la gestión del código fuente y el flujo de integración se respaldaron mediante analíticos de colaboración, métricas de commits y Pull Requests dentro de los repositorios de GitHub.
+
+#### 1. Analíticos de Colaboración y Commits en GitHub
+
+Las métricas e historial de commits reflejan la participación activa y constante de los integrantes del equipo en los repositorios de cada producto digital durante las fases de desarrollo, integración y despliegue del Sprint.
+
+![Historial de Commits - Landing Page](images/CommitsLanding.png)
+*Figura 4.X. Historial de commits y contribuciones en el repositorio de la Landing Page.*
+
+![Historial de Commits - Web Services (Backend)](images/CommitsBackend.png)
+*Figura 4.X. Historial de commits y flujo de integración en el repositorio del Backend (Spring Boot).*
+
+![Historial de Commits - Aplicación Móvil](images/CommitsAppMobile.png)
+*Figura 4.X. Historial de commits y desarrollo de funcionalidades en el repositorio de la Aplicación Móvil (Android).*
+
+---
+
+#### 2. Interpretación de los Analíticos por Integrante
+
+A partir de los analíticos y registros registrados en las plataformas de control de versiones, se detalla el aporte específico de cada miembro del equipo en los distintos frentes de trabajo:
+
+| Integrante | Código Student | Responsabilidades y Aportes en la Implementación |
+| :--- | :--- | :--- |
+| **Castillo Yataco, Mauricio Sebastian** | U202113229 | Lideró la maquetación responsive, estructuración HTML/CSS y despliegue continuo de la **Landing Page** en Vercel, asegurando la alineación con la propuesta de valor y las secciones informativas. |
+| **Pillaca Vidal, Luis Angel** | U202315654 | Estructuró los pipelines de **Deployment**, aprovisionamiento de servicios cloud (Render), configuración de variables de entorno de producción y apoyo en la arquitectura del **Backend Spring Boot**. |
+| **Salazar Miranda, Mateo Paolo** | U202315171 | Implementó las capas del **Backend (Web Services)** en Spring Boot, incluyendo controladores REST, servicios y persistencia de datos con PostgreSQL para los módulos de ganado y eventos sanitarios. |
+| **Raymundo Villarroel, Nadhim Abigail** | U202318001 | Desarrolló vistas y componentes UI en la **Aplicación Móvil (Kotlin & Jetpack Compose)**, integrando la navegación principal, consumo de API REST y manejo de estados del cliente. |
+| **Meza Huanacune, Juan José** | U202320574 | Diseñó la lógica de negocio y validaciones en la **Aplicación Móvil**, la generación del paquete ejecutable (`.apk`) y la configuración del flujo de releases en GitHub. |
+
+---
+
+#### 3. Conclusión del Desempeño del Equipo
+
+El análisis cuantitativo de los repositorios evidencia un trabajo sinérgico y equilibrado. Se logró cumplir con los criterios de aceptación establecidos en el Sprint Backlog mediante la integración fluida entre el frontend, backend y la aplicación móvil, garantizando la estabilidad de las entregas y la correcta implementación de las funcionalidades planificadas.
 
 ---
 
@@ -1339,38 +1351,6 @@ Se podrán considerar:
 
 ---
 
-#### 1. Analíticos de Colaboración y Commits en GitHub
-
-Las métricas e historial de commits reflejan la participación activa y constante de los integrantes del equipo en los repositorios de cada producto digital durante las fases de desarrollo, integración y despliegue del Sprint.
-
-![Historial de Commits - Landing Page](images/CommitsLanding.png)
-*Figura 4.X. Historial de commits y contribuciones en el repositorio de la Landing Page.*
-
-![Historial de Commits - Web Services (Backend)](images/CommitsBackend.png)
-*Figura 4.X. Historial de commits y flujo de integración en el repositorio del Backend (Spring Boot).*
-
-![Historial de Commits - Aplicación Móvil](images/CommitsAppMobile.png)
-*Figura 4.X. Historial de commits y desarrollo de funcionalidades en el repositorio de la Aplicación Móvil (Android).*
-
----
-
-#### 2. Interpretación de los Analíticos por Integrante
-
-A partir de los analíticos y registros registrados en las plataformas de control de versiones, se detalla el aporte específico de cada miembro del equipo en los distintos frentes de trabajo:
-
-| Integrante | Código Student | Responsabilidades y Aportes en la Implementación |
-| :--- | :--- | :--- |
-| **Castillo Yataco, Mauricio Sebastian** | U202113229 | Lideró la maquetación responsive, estructuración HTML/CSS y despliegue continuo de la **Landing Page** en Vercel, asegurando la alineación con la propuesta de valor y las secciones informativas. |
-| **Pillaca Vidal, Luis Angel** | U202315654 | Estructuró los pipelines de **Deployment**, aprovisionamiento de servicios cloud (Render), configuración de variables de entorno de producción y apoyo en la arquitectura del **Backend Spring Boot**. |
-| **Salazar Miranda, Mateo Paolo** | U202315171 | Implementó las capas del **Backend (Web Services)** en Spring Boot, incluyendo controladores REST, servicios y persistencia de datos con PostgreSQL para los módulos de ganado y eventos sanitarios. |
-| **Raymundo Villarroel, Nadhim Abigail** | U202318001 | Desarrolló vistas y componentes UI en la **Aplicación Móvil (Kotlin & Jetpack Compose)**, integrando la navegación principal, consumo de API REST y manejo de estados del cliente. |
-| **Meza Huanacune, Juan José** | U202320574 | Diseñó la lógica de negocio y validaciones en la **Aplicación Móvil**, la generación del paquete ejecutable (`.apk`) y la configuración del flujo de releases en GitHub. |
-
----
-
-#### 3. Conclusión del Desempeño del Equipo
-
-El análisis cuantitativo de los repositorios evidencia un trabajo sinérgico y equilibrado. Se logró cumplir con los criterios de aceptación establecidos en el Sprint Backlog mediante la integración fluida entre el frontend, backend y la aplicación móvil, garantizando la estabilidad de las entregas y la correcta implementación de las funcionalidades planificadas.
 ## 4.3. Validation Interviews
 
 ### 4.3.1. Diseño de Entrevistas
@@ -1382,7 +1362,7 @@ Para esta validación se consideran los dos segmentos principales definidos para
 - Pequeños y medianos ganaderos.
 - Veterinarios y técnicos agropecuarios.
 
-La dinámica de la entrevista consiste en presentar primero el Landing Page de Gethics, para observar si el usuario comprende el problema que busca resolver la solución, la confianza que transmite y la claridad de sus secciones. Posteriormente, se muestra la aplicación móvil, revisando el Inicio, el menú de navegación inferior y los módulos principales (Inventario, Tareas, Perfil) según corresponda al rol del entrevistado.
+La dinámica de la entrevista consiste en presentar primero el Landing Page de Gethics, para observar si el usuario comprende el problema que busca resolver la solución, la confianza que transmite y la claridad de sus secciones. Posteriormente, se muestra la aplicación móvil, revisando el menú de navegación inferior (Hato, Calendario, Finanzas, Reportes y Perfil) y los módulos principales según corresponda al rol del entrevistado.
 
 En el caso del segmento ganadero, la evaluación se orienta al registro de animales, el calendario sanitario (vacunas y tratamientos), las alertas automáticas y el control económico del hato. En el caso del segmento veterinario/técnico, se evalúa la revisión de clientes asignados, la consulta de pacientes (animales), el historial clínico, el registro de eventos sanitarios en campo y el comportamiento de la aplicación sin conexión. Al finalizar la demostración, el entrevistado responde un conjunto de preguntas diseñadas para recoger sus opiniones, dificultades y recomendaciones de mejora.
 
@@ -1395,13 +1375,13 @@ En el caso del segmento ganadero, la evaluación se orienta al registro de anima
 5. ¿Qué sección del Landing Page le pareció más útil o clara?
 6. ¿Hubo alguna parte del Landing Page que le pareció confusa, innecesaria o poco creíble?
 7. Al abrir la aplicación, ¿le resultó claro hacia dónde debía ir primero?
-8. ¿La pantalla de Inicio le muestra información útil para tomar decisiones rápidas sobre su ganado?
-9. ¿Los nombres de las opciones del menú (Inicio, Inventario, Tareas, Perfil) le resultan comprensibles?
+8. ¿La pantalla principal del Hato le muestra información útil para tomar decisiones rápidas sobre su ganado?
+9. ¿Los nombres de las opciones del menú (Hato, Calendario, Finanzas, Reportes, Perfil) le resultan comprensibles?
 10. ¿Le resultó fácil encontrar y buscar un animal dentro del Inventario?
 11. ¿El formulario para registrar o editar un animal le parece claro y completo (raza, edad, sexo, estado de salud)?
 12. ¿Qué dato importante sobre un animal cree que falta registrar?
 13. ¿Le resulta útil registrar una vacuna o un tratamiento desde la ficha del animal?
-14. ¿La sección de Tareas le ayudaría a no olvidar vacunas, desparasitaciones u otros eventos sanitarios?
+14. ¿El Calendario sanitario le ayudaría a no olvidar vacunas, desparasitaciones u otros eventos sanitarios?
 15. ¿Las alertas que muestra la aplicación le parecen oportunas y fáciles de entender?
 16. ¿La sección de reportes le parece útil para controlar ingresos, egresos o la rentabilidad de su hato?
 17. ¿Qué tan importante es para usted que la aplicación funcione sin conexión a internet, dado el lugar donde trabaja?
@@ -1416,14 +1396,14 @@ En el caso del segmento ganadero, la evaluación se orienta al registro de anima
 3. Al ver el Landing Page de Gethics, ¿queda claro que también está pensada para veterinarios y técnicos?
 4. ¿Qué información del Landing Page le ayudó más a entender el valor de la aplicación para su trabajo?
 5. ¿Qué información agregaría al Landing Page para que un veterinario confíe más en Gethics?
-6. Al abrir la aplicación, ¿la pantalla de Inicio le permite entender rápidamente qué requiere su atención?
+6. Al abrir la aplicación, ¿la pantalla principal le permite entender rápidamente qué requiere su atención?
 7. ¿Le resultó fácil encontrar y revisar a sus clientes (ganaderos) asignados?
 8. ¿La vista de pacientes (animales) por cliente le ayuda a encontrar rápidamente a quién debe revisar?
 9. ¿Le parece adecuado el flujo de buscar primero un animal o cliente antes de ver su información clínica?
 10. ¿El historial clínico de cada animal es suficiente para hacer una revisión veterinaria básica?
 11. ¿El formulario para registrar un evento sanitario (chequeo, vacuna, tratamiento) le permite registrar lo que necesita?
 12. ¿Qué campos clínicos considera que faltan en el registro sanitario?
-13. ¿La sección de Tareas le serviría para organizar sus visitas, controles o seguimientos pendientes?
+13. ¿El Calendario sanitario le serviría para organizar sus visitas, controles o seguimientos pendientes?
 14. ¿Qué tan clara le resultó la forma de priorizar entre varios animales o productores pendientes de atención?
 15. Al probar el registro sin conexión, ¿la aplicación le dio la confianza de que no perdería la información ingresada?
 16. ¿Qué tan importante es para usted no depender de señal para registrar un chequeo en campo?
