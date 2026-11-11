@@ -1021,22 +1021,75 @@ Una vez integradas las ramas que contienen dichas modificaciones, la funcionalid
 
 #### Consolidación de evidencias del Sprint 2
 
-Además de US21, durante el Sprint 2 los demás integrantes continuaron trabajando sobre las User Stories correspondientes a sus respectivos módulos.
+Al cierre del registro de evidencias, el equipo integró a `develop` los cambios de los cinco integrantes mediante Pull Requests. La siguiente tabla resume, por integrante, las funcionalidades integradas en los Web Services (`gethics-backend`) y en la aplicación móvil (`gethics-mobile-app`) durante el Sprint 2 (desde el 05/11/2026), con sus commits y Pull Requests. La columna Integración indica la fecha en que cada Pull Request se integró a `develop`.
 
-La siguiente tabla resume el estado actual conocido de las principales áreas de trabajo:
+| Integrante | Producto | Funcionalidad | Commit | Pull Request | Integración |
+|---|---|---|---|---|---|
+| Castillo Yataco, Mauricio Sebastian | Web Services | IAM: registro, inicio de sesión con JWT y control de acceso por rol (US01, US02, TS06) | `159af0d` | #28 | 08/11/2026 |
+| Castillo Yataco, Mauricio Sebastian | Aplicación móvil | Recuperación de contraseña y edición de perfil conectadas al backend (US03, US04) | `918304a` | #18 | 09/11/2026 |
+| Salazar Miranda, Mateo Paolo | Web Services | Baja lógica de animales (US08) | `02ef731` | #37 | 10/11/2026 |
+| Salazar Miranda, Mateo Paolo | Web Services | Venta de un animal, búsqueda por código QR y edición de granja (US29, US30, US32) | `e524dfc` | #40 | 10/11/2026 |
+| Salazar Miranda, Mateo Paolo | Web Services | Integración del veterinario con animales y sanidad mediante fachadas ACL (TS07) | `b8910bd`, `81db4bb` | #40 | 10/11/2026 |
+| Salazar Miranda, Mateo Paolo | Web Services | Documentación OpenAPI de todos los controllers y Swagger UI en `/docs` (TS04), configuración de pruebas y verificación de Flyway al arrancar (TS09) | `1c19887`, `5feb349`, `97b798e` | #40 | 10/11/2026 |
+| Salazar Miranda, Mateo Paolo | Aplicación móvil | Baja de animal con diálogo de confirmación y textos ES / EN en las pantallas de animales (US08) | `7a8cdaa`, `3f5ce10`, `031db5d` | #24 | 10/11/2026 |
+| Meza Huanacune, Juan José | Web Services | Alertas por tendencias (US21) | `923d60d` | #27 | 07/11/2026 |
+| Meza Huanacune, Juan José | Web Services | Ajustes del módulo IAM: preservar el acceso a la API durante la migración a JWT y respaldo del servicio de correo | `8585d16`, `682952c`, `9c27f22` | #28, #29 | 08/11/2026 |
+| Meza Huanacune, Juan José | Web Services | Cancelación de eventos sanitarios (US33) | `8dddcb9` | #35 | 09/11/2026 |
+| Meza Huanacune, Juan José | Web Services | Registro idempotente de eventos sanitarios para la sincronización sin conexión (US35) | `5406844` | #36 | 09/11/2026 |
+| Meza Huanacune, Juan José | Aplicación móvil | Flujo de alertas por tendencias (US21) | `0a2a785`, `d6aedfa` | #17 | 08/11/2026 |
+| Meza Huanacune, Juan José | Aplicación móvil | Cancelación de eventos sanitarios (US33) | `0ed374d` | #19 | 09/11/2026 |
+| Meza Huanacune, Juan José | Aplicación móvil | Sincronización de eventos sanitarios sin conexión (US35) | `94d6c97` | #20 | 10/11/2026 |
+| Pillaca Vidal, Luis Angel | Web Services | Anulación de movimientos financieros (US31) y configuración de Flyway y de la conexión a la base de datos en la nube | `c588934`, `c7f843f` | #33 | 09/11/2026 |
+| Pillaca Vidal, Luis Angel | Web Services | Desasignación de clientes del veterinario (US34) | `96af8c9` | #38 | 10/11/2026 |
+| Pillaca Vidal, Luis Angel | Web Services | Versionado de la base de datos con Flyway y script inicial de migración (TS09) | `8f559ff` | #39 | 10/11/2026 |
+| Pillaca Vidal, Luis Angel | Aplicación móvil | Desasignación de clientes del veterinario (US34) | `a97b71c` | #22 | 10/11/2026 |
+| Pillaca Vidal, Luis Angel | Aplicación móvil | Anulación de movimientos financieros (US31) | `e5a9032` | #23 | 10/11/2026 |
+| Raymundo Villarroel, Nadhim Abigail | Web Services | Edición de animal, balance económico por periodo, reportes y estadísticas, notificaciones push e integración IoT (US07, US16, US20, US22, US23) | `66c2bff`, `1e07fa3`, `fa1d5ba`, `a1257cc`, `3c391eb` | #21 a #25 | 06/11/2026 |
+| Raymundo Villarroel, Nadhim Abigail | Web Services | Lecturas de un dispositivo con paginación (US37) y exportación del reporte en CSV (US39) | `5423cdf`, `304ecf1` | #34 | 09/11/2026 |
+| Raymundo Villarroel, Nadhim Abigail | Aplicación móvil | Navegación, idiomas (ES / EN), ajustes de notificaciones, finanzas y reportes (US15, US16, US20, US22) | `fc6b276`, `0c229d0`, `06fe970` | #14, #15, #16 | 08/11/2026 |
+| Raymundo Villarroel, Nadhim Abigail | Aplicación móvil | Dispositivos IoT con lecturas paginadas (US23, US37) y exportación del reporte en CSV (US39) | `39bc722`, `52cc396` | #21 | 10/11/2026 |
 
-| Producto | Funcionalidad | Responsable | Evidencia / Estado |
-|---|---|---|---|
-| Web Services | US21 - Alertas automáticas por tendencias | Juan José Meza Huanacune | Commit `923d60d`, PR #27 e integración en `develop` |
-| Mobile Application | US21 - Visualización de alertas por tendencias | Juan José Meza Huanacune | Commit `0a2a785` en `feature/US21-trend-alerts` |
-| Web Services / Mobile | Identity & Access Management | Mauricio Sebastian Castillo Yataco | Pendiente de consolidación al cierre del Sprint |
-| Web Services / Mobile | Gestión de animales y granjas | Mateo Paolo Salazar Miranda | Pendiente de consolidación al cierre del Sprint |
-| Web Services / Mobile | Gestión financiera y veterinaria | Luis Angel Pillaca Vidal | Pendiente de consolidación al cierre del Sprint |
-| Mobile Application | Reportes, navegación, idiomas, notificaciones y funcionalidades relacionadas | Nadhim Abigail Raymundo Villarroel | Pendiente de consolidación al cierre del Sprint |
+Las pantallas de registro de usuario, inicio de sesión, registro, listado y edición de animales, calendario sanitario, historial clínico y registro de eventos sanitarios se integraron a `develop` al cierre del Sprint 1 (05/10/2026), y durante el Sprint 2 se conectaron con los Web Services y se ampliaron con los cambios de la tabla anterior.
 
-Las filas pendientes deberán actualizarse con los commits, Pull Requests y estados definitivos de integración una vez que los integrantes completen sus respectivos procesos de desarrollo.
+**Elementos del Sprint 2 pendientes de integración en `develop` al 11/11/2026**
 
-De esta manera, las evidencias de desarrollo del Sprint 2 mantienen la trazabilidad entre las User Stories del Product Backlog, las feature branches utilizadas, los commits realizados y los cambios efectivamente integrados en los repositorios de Gethics.
+| Elemento | Responsable | Estado en `develop` |
+|---|---|---|
+| US-29, US-30, US-32 · Identificar un animal con código QR, registrar su venta y editar una granja (aplicación móvil) | Salazar Miranda, Mateo Paolo | Pendiente. Los Web Services ya están integrados (#40); las pantallas están en la rama `feature/US29-US30-US32-US36-app-animales`, aún sin integrar. |
+| US-36 · Consultar los animales sin conexión | Salazar Miranda, Mateo Paolo | Pendiente. En la rama `feature/US29-US30-US32-US36-app-animales`, aún sin integrar. |
+| TS08 · Proteger los endpoints con JWT | Castillo Yataco, Mauricio Sebastian | Pendiente. En `develop` los endpoints `/api/v1/**` siguen accesibles sin token. |
+| US-38 · Cerrar sesión | Castillo Yataco, Mauricio Sebastian | Pendiente de confirmar. La aplicación tiene el botón "Cerrar sesión" en Perfil, que borra la sesión local, pero no hay un endpoint de cierre de sesión en los Web Services. |
+| Ajuste de pruebas de US19 (rama `feature/US19-register-vet-care`) | Pillaca Vidal, Luis Angel | Pendiente. Un commit del 09/11/2026 sin integrar. |
+
+En `develop`, las pantallas de clientes asignados y pacientes del veterinario, y la de planes de suscripción, son todavía provisionales.
+
+Con esta consolidación, las evidencias del Sprint 2 mantienen la trazabilidad entre las User Stories del Product Backlog, las ramas de funcionalidad, los commits realizados y los cambios efectivamente integrados en los repositorios de Gethics.
+
+<div align="center">
+  <p><b>Figura 4.X.</b> Pull Requests del repositorio gethics-backend (página 1).</p>
+  <img src="images/sprint2-backend-pull-requests.png" alt="Pull Requests del backend, página 1" width="800">
+  <p><i><b>Fuente:</b> GitHub, repositorio gethics-backend.</i></p>
+</div>
+
+<div align="center">
+  <p><b>Figura 4.X.</b> Pull Requests del repositorio gethics-backend (página 2, Pull Requests del Sprint 1).</p>
+  <img src="images/sprint2-backend-pull-requests-pagina2.png" alt="Pull Requests del backend, página 2" width="800">
+  <p><i><b>Fuente:</b> GitHub, repositorio gethics-backend.</i></p>
+</div>
+
+<div align="center">
+  <p><b>Figura 4.X.</b> Pull Requests del repositorio gethics-mobile-app.</p>
+  <img src="images/sprint2-app-pull-requests.png" alt="Pull Requests de la app móvil" width="800">
+  <p><i><b>Fuente:</b> GitHub, repositorio gethics-mobile-app.</i></p>
+</div>
+
+En el tablero, algunas tarjetas figuran como terminadas aunque su código aún no está integrado en `develop`; el estado indicado en esta sección corresponde a `develop`.
+
+<div align="center">
+  <p><b>Figura 4.X.</b> Tablero del Sprint 2.</p>
+  <img src="images/sprint2-trello-board.png" alt="Tablero Trello del Sprint 2" width="500">
+  <p><i><b>Fuente:</b> Trello, tablero JamSell - Backlog & Sprints.</i></p>
+</div>
 
 ---
 
@@ -1282,22 +1335,116 @@ Por este motivo, antes de la entrega final se realizará una nueva ejecución de
 
 ### 4.2.2.6. Execution Evidence for Sprint Review
 
-**Responsable:** Nadhim Abigail Raymundo Villarroel
+Durante el Sprint 2 el equipo logró que la aplicación móvil consuma los Web Services en los módulos de autenticación, ganado, sanidad, alertas, finanzas, reportes, dispositivos IoT y exportación, además de la navegación con barra inferior y el cambio de idioma entre español e inglés. Las pantallas se ejecutaron en el emulador de Android Studio (Medium Phone, API 36) conectadas al backend, y los casos sin datos se comprobaron con periodos sin registros y con dispositivos sin lecturas. Las pantallas de clientes y pacientes del veterinario y de planes de suscripción siguen siendo provisionales y no se incluyen como evidencia.
 
-En esta sección se presentarán evidencias de ejecución de los productos desarrollados durante el Sprint 2.
+**Video de ejecución del Sprint 2:** [Video App Execution Sprint 2](ENLACE_PENDIENTE) · Duración: *(pendiente)*
 
-Se podrán incluir evidencias de:
+| Módulo | Historias | Pantallas implementadas | Pull Requests (aplicación móvil) |
+|---|---|---|---|
+| Identity & Access | US01, US02, US03, US04 | Registro, inicio de sesión, recuperación y restablecimiento de contraseña, perfil | #4, #5, #18 |
+| Gestión del ganado | US05, US06, US07, US08 | Registro, listado con búsqueda, detalle, edición y baja de animales | #10, #12, #13, #24 |
+| Sanidad | US11, US12, US13, US14, US33, US35 | Registro de evento sanitario, calendario sanitario, programación de vacunación, historial clínico, cancelación de eventos y registro sin conexión con sincronización | #1, #2, #3, #6, #7, #8, #9, #19, #20 |
+| Alertas | US21 | Listado de alertas por tendencias con estados de carga, vacío y error | #17 |
+| Finanzas | US15, US16, US31 | Resumen de ingresos, gastos y resultado neto, registro y anulación de movimientos | #11, #15, #23 |
+| Reportes | US20, US39 | Reporte del ganado por rango de fechas y exportación en CSV | #16, #21 |
+| Dispositivos IoT | US23, US37 | Vinculación de dispositivos y lecturas paginadas del sensor | #21 |
+| Navegación e idiomas | US22 | Barra de navegación inferior, idioma ES / EN y ajustes de notificaciones | #14 |
 
-- Ejecución de la aplicación móvil.
-- Principales pantallas funcionales.
-- Interacción entre las diferentes funcionalidades.
-- Consumo de servicios backend.
-- Ejecución de los servicios desplegados.
-- Comportamiento observable de las User Stories desarrolladas.
+#### Identity & Access
 
-Las evidencias deberán corresponder al estado real del producto al finalizar el Sprint.
+El usuario se registra, inicia sesión, recupera su contraseña y edita su perfil. Cada pantalla se conecta con los endpoints de autenticación del backend.
 
-> Pendiente de completar por Nadhim Abigail Raymundo Villarroel.
+<div align="center">
+  <img src="images/sprint2-app-login.png" alt="Inicio de sesión" width="240">
+  <img src="images/sprint2-app-registro.png" alt="Registro de usuario" width="240">
+  <p><i><b>Figura 4.X.</b> Inicio de sesión y registro de usuario. <b>Fuente:</b> Elaboración propia, emulador de Android Studio.</i></p>
+</div>
+
+#### Gestión del ganado
+
+El ganadero registra animales, los busca en el listado, consulta su ficha, edita sus datos y puede darlos de baja.
+
+<div align="center">
+  <img src="images/sprint2-app-hato-registro.png" alt="Registro de un animal" width="240">
+  <p><i><b>Figura 4.X.</b> Registro de un animal. <b>Fuente:</b> Elaboración propia, emulador de Android Studio.</i></p>
+</div>
+
+#### Sanidad y alertas
+
+El usuario registra eventos sanitarios, consulta el calendario y el historial clínico de cada animal, programa vacunaciones y puede cancelar un evento. Cuando no hay conexión, el evento se guarda en el dispositivo y se sincroniza al recuperar la señal. La aplicación también lista las alertas por tendencias generadas por el backend.
+
+<div align="center">
+  <img src="images/sprint2-app-calendario.png" alt="Calendario sanitario" width="240">
+  <img src="images/sprint2-app-historial.png" alt="Historial clínico" width="240">
+  <img src="images/sprint2-app-alertas.png" alt="Alertas por tendencias" width="240">
+  <p><i><b>Figura 4.X.</b> Calendario sanitario, historial clínico y alertas, en su estado sin registros. <b>Fuente:</b> Elaboración propia, emulador de Android Studio.</i></p>
+</div>
+
+#### Finanzas y reportes
+
+La pantalla de Finanzas muestra los ingresos, gastos y el resultado neto, y permite registrar un movimiento. La pantalla de Reportes genera el resumen del ganado para el rango de fechas elegido (finanzas, salud del hato y productividad). Cuando el periodo no tiene información suficiente, cada tarjeta lo indica con un mensaje.
+
+<div align="center">
+  <img src="images/sprint2-app-finanzas.png" alt="Resumen de finanzas" width="240">
+  <img src="images/sprint2-app-reportes.png" alt="Reportes del ganado" width="240">
+  <p><i><b>Figura 4.X.</b> Resumen de finanzas y reportes del ganado. <b>Fuente:</b> Elaboración propia, emulador de Android Studio.</i></p>
+</div>
+
+#### Dispositivos IoT y exportación del reporte
+
+Desde el ícono de sensor en Reportes se accede a los dispositivos IoT. El ganadero vincula un dispositivo con su código (por ejemplo, `COLLAR-001`) y al abrirlo ve sus lecturas recientes, con carga de más registros al desplazarse; si el dispositivo aún no reportó datos, la pantalla lo indica. El botón **Exportar reporte** descarga el reporte del rango seleccionado como archivo CSV y abre el menú de compartir; si no hay información en el periodo, la aplicación muestra el aviso del servidor y no genera archivo.
+
+<div align="center">
+  <img src="images/sprint2-app-dispositivos.png" alt="Dispositivos IoT" width="240">
+  <img src="images/sprint2-app-lecturas.png" alt="Lecturas del dispositivo" width="240">
+  <img src="images/sprint2-app-lecturas-vacio.png" alt="Dispositivo sin lecturas" width="240">
+  <p><i><b>Figura 4.X.</b> Dispositivos vinculados, lecturas del sensor y estado sin lecturas. <b>Fuente:</b> Elaboración propia, emulador de Android Studio.</i></p>
+</div>
+
+<div align="center">
+  <img src="images/sprint2-app-exportar-compartir.png" alt="Exportación con menú de compartir" width="240">
+  <img src="images/sprint2-app-exportar-sin-datos.png" alt="Exportación sin datos" width="240">
+  <p><i><b>Figura 4.X.</b> Exportación exitosa y aviso cuando el periodo no tiene información. <b>Fuente:</b> Elaboración propia, emulador de Android Studio.</i></p>
+</div>
+
+#### Navegación e idiomas
+
+La aplicación cuenta con barra de navegación inferior (Hato, Calendario, Finanzas, Reportes y Perfil) y permite cambiar el idioma entre español e inglés. Las opciones de notificaciones se gestionan desde los ajustes.
+
+<div align="center">
+  <img src="images/sprint2-app-idioma-en.png" alt="Aplicación en inglés" width="240">
+  <img src="images/sprint2-app-ajustes-notificaciones.png" alt="Ajustes de notificaciones" width="240">
+  <p><i><b>Figura 4.X.</b> Aplicación en inglés y ajustes de notificaciones. <b>Fuente:</b> Elaboración propia, emulador de Android Studio.</i></p>
+</div>
+
+#### Web Services en ejecución
+
+Los endpoints se verificaron en Swagger UI antes de probarlos desde la aplicación. Las capturas corresponden al backend ejecutado en el entorno local.
+
+<div align="center">
+  <img src="images/sprint2-swagger-lista-endpoints.png" alt="Swagger, lista de endpoints" width="800">
+  <p><i><b>Figura 4.X.</b> Endpoints de los módulos Analytics, Finance, IoT y Livestock. <b>Fuente:</b> Swagger UI del backend de Gethics.</i></p>
+</div>
+
+<div align="center">
+  <img src="images/sprint2-swagger-devices-readings.png" alt="Swagger, lecturas de dispositivo" width="800">
+  <p><i><b>Figura 4.X.</b> Consulta de lecturas de un dispositivo (US37). <b>Fuente:</b> Swagger UI del backend de Gethics.</i></p>
+</div>
+
+<div align="center">
+  <img src="images/sprint2-swagger-export.png" alt="Swagger, exportación CSV" width="800">
+  <p><i><b>Figura 4.X.</b> Exportación del reporte en CSV (US39). <b>Fuente:</b> Swagger UI del backend de Gethics.</i></p>
+</div>
+
+<div align="center">
+  <img src="images/sprint2-swagger-registrar-granja.png" alt="Swagger, registrar granja" width="800">
+  <p><i><b>Figura 4.X.</b> Registro de una granja. <b>Fuente:</b> Swagger UI del backend de Gethics.</i></p>
+</div>
+
+<div align="center">
+  <img src="images/sprint2-swagger-asignar-granja.png" alt="Swagger, asignar granja" width="800">
+  <p><i><b>Figura 4.X.</b> Asignación de un animal a una granja. <b>Fuente:</b> Swagger UI del backend de Gethics.</i></p>
+</div>
 
 ### 4.2.2.7. Services Documentation Evidence for Sprint Review
 
@@ -1331,23 +1478,54 @@ Se deberán documentar los ambientes utilizados y, según corresponda:
 
 ### 4.2.2.9. Team Collaboration Insights during Sprint
 
-**Responsable:** Nadhim Abigail Raymundo Villarroel
+Durante el Sprint 2 el equipo JamSell trabajó con ramas de funcionalidad creadas desde `develop` e integró los cambios mediante Pull Requests en los repositorios de Web Services y de la aplicación móvil. Se registraron 16 Pull Requests integrados en el backend y 11 en la aplicación móvil entre el 05/11/2026 y el 10/11/2026, con participación de los cinco integrantes. El Landing Page no tuvo cambios en esta iteración, porque su versión publicada se completó en el Sprint 1. A continuación se presentan los analíticos de colaboración de GitHub y su interpretación.
 
-En esta sección se presentarán las evidencias y conclusiones relacionadas con la colaboración del equipo durante el Sprint 2.
+#### 1. Analíticos de colaboración y commits en GitHub
 
-Se podrán considerar:
+La gráfica Contributors de GitHub solo contabiliza los commits de la rama principal (`main`), que aún no recibe los cambios del Sprint 2. Por eso se presentan los grafos Network de cada repositorio, que muestran las ramas y su integración a `develop`, y el conteo de commits se obtuvo con git sobre `develop`.
 
-- Coordinación entre los integrantes.
-- Distribución de tareas.
-- Participación en los repositorios.
-- Commits realizados.
-- Pull Requests.
-- Revisión e integración de cambios.
-- Comunicación durante el Sprint.
-- Principales dificultades de coordinación.
-- Acciones realizadas para resolver dependencias entre integrantes.
+<div align="center">
+  <p><b>Figura 4.X.</b> Grafo Network del Sprint 2 — gethics-backend (07/11 al 10/11).</p>
+  <img src="images/sprint2-insights-backend.png" alt="Network del backend, Sprint 2, parte 1" width="800">
+  <p><i><b>Fuente:</b> GitHub Insights, repositorio gethics-backend.</i></p>
+</div>
 
-> Pendiente de completar por Nadhim Abigail Raymundo Villarroel.
+<div align="center">
+  <p><b>Figura 4.X.</b> Grafo Network del Sprint 2 — gethics-backend (09/11 al 10/11, continuación).</p>
+  <img src="images/sprint2-insights-backend-2.png" alt="Network del backend, Sprint 2, parte 2" width="800">
+  <p><i><b>Fuente:</b> GitHub Insights, repositorio gethics-backend.</i></p>
+</div>
+
+<div align="center">
+  <p><b>Figura 4.X.</b> Grafo Network del Sprint 2 — gethics-mobile-app.</p>
+  <img src="images/sprint2-insights-app.png" alt="Network de la app móvil, Sprint 2" width="800">
+  <p><i><b>Fuente:</b> GitHub Insights, repositorio gethics-mobile-app.</i></p>
+</div>
+
+#### 2. Interpretación de los analíticos por integrante
+
+Commits (sin contar merges) registrados en `develop` desde el inicio del Sprint 2 (05/11/2026) hasta el 11/11/2026, agrupando los distintos nombres de autor que usa cada integrante:
+
+| Integrante | Web Services | Aplicación móvil | Aportes principales |
+|---|---:|---:|---|
+| Castillo Yataco, Mauricio Sebastian | 1 | 1 | Módulo IAM: registro, inicio de sesión con JWT y control de acceso por rol en el backend, y recuperación de contraseña y edición de perfil en la aplicación. |
+| Salazar Miranda, Mateo Paolo | 7 | 3 | Baja lógica de animales; venta, búsqueda por código QR y edición de granja en el backend; documentación OpenAPI de toda la API e integración del veterinario con animales y sanidad; y baja de animal en la aplicación. |
+| Meza Huanacune, Juan José | 6 | 4 | Alertas por tendencias, cancelación de eventos sanitarios y registro sin conexión con sincronización, tanto en el backend como en la aplicación, y ajustes del módulo IAM. |
+| Pillaca Vidal, Luis Angel | 7 | 2 | Anulación de movimientos financieros y desasignación de clientes del veterinario, en el backend y en la aplicación, versionado de la base de datos con Flyway y conexión a la base de datos en la nube. |
+| Raymundo Villarroel, Nadhim Abigail | 4 | 5 | Reportes, exportación en CSV, dispositivos IoT con lecturas paginadas, notificaciones, balance económico, navegación e idiomas y finanzas en la aplicación. |
+| **Total** | **25** | **15** | |
+
+Los analíticos muestran que el trabajo del Sprint 2 se concentró en dos frentes: los Web Services, donde se integraron los módulos de IAM, finanzas, reportes, notificaciones, IoT, ganado y sanidad, y la aplicación móvil, donde se implementaron las pantallas que consumen esos servicios. La cantidad de commits no refleja por sí sola el tamaño del aporte, porque algunos integrantes agruparon su trabajo en commits más grandes y parte del código integrado en este Sprint se había escrito antes del 05/11/2026. Además, parte del trabajo de la aplicación permanece en ramas propias pendientes de integración (ver 4.2.2.4).
+
+#### 3. Dificultades de coordinación y acciones realizadas
+
+La principal dificultad fue que varias ramas de la aplicación modificaban los mismos archivos compartidos (`AppContainer`, `Routes`, `GethicsNavHost` y los archivos de textos `strings.xml`), lo que producía conflictos al integrar. Otra dificultad fue que algunas funcionalidades dependían de otras ramas, por ejemplo las alertas, que necesitaban la navegación base. El equipo aplicó las siguientes acciones:
+
+- Se acordó actualizar `develop` antes de iniciar cada rama y mantener una rama por historia de usuario, con nombre `feature/US<número>-<descripción>`.
+- Los textos compartidos se integraron en la primera rama en entrar a `develop`, para que las siguientes ramas no los volvieran a modificar.
+- Cuando `develop` cambió antes de integrar una rama, se actualizó la rama con `develop` resolviendo los conflictos sin perder los cambios de los demás integrantes, o se rehízo el cambio sobre la versión actualizada.
+- Las dependencias entre ramas se resolvieron integrando primero la rama base (por ejemplo, navegación e idiomas antes de alertas).
+- En el backend, cada Pull Request pasó el pipeline de integración continua (Checkstyle, compilación y pruebas) antes de integrarse. La aplicación móvil todavía no tiene un pipeline de integración continua; los errores de compilación detectados en `develop` se corrigieron en el Pull Request #24.
 
 ---
 
@@ -1564,11 +1742,45 @@ Los errores serán puntuados tomando en cuenta la siguiente escala de severidad:
 
 # Video App Validation
 
+En esta sección se documenta la evaluación de la aplicación Gethics Mobile mediante la prueba con usuarios de los dos segmentos objetivo. Cada participante usó la aplicación con tareas guiadas (registro de animal, consulta del historial sanitario, registro de un tratamiento y resumen financiero) y sus observaciones se registraron con el formato de evaluación según heurísticas de la sección 4.3.3.
+
+| Dato | Detalle |
+|---|---|
+| Archivo | `upc-pre-202620-1acc0238-4939-jamsell-productvalidation-av2.mp4` |
+| Enlace (OneDrive) | ENLACE_PENDIENTE |
+| Duración | *(pendiente)* |
+| Distribución de la aplicación | *(pendiente: Firebase App Distribution u otro servicio similar)* |
+
 
 # Video About the Product
 
+En esta sección se presenta el video About-the-Product, dirigido a quienes visitan el Landing Page y desean conocer el modelo de negocio y las funciones principales de Gethics, así como a los usuarios de la aplicación. El video mantiene el tono serio y directo definido en los Style Guidelines e incluye un testimonio de un usuario que participó en las entrevistas de validación.
+
+| Dato | Detalle |
+|---|---|
+| Archivo | `upc-pre-202620-1acc0238-4939-jamsell-aboutthe-product-av2.mp4` |
+| Enlace (OneDrive) | ENLACE_PENDIENTE |
+| Enlace (YouTube, para el Landing Page) | ENLACE_PENDIENTE |
+| Duración | *(pendiente)* |
+
 
 # Video About the Team
+
+En esta sección se resume el video About-the-Team, que presenta el proceso de trabajo del equipo JamSell con escenas de sesiones reales, narración en voz en off y el testimonio ante cámara de cada integrante sobre las actividades realizadas, el logro del Student Outcome y las competencias desarrolladas.
+
+| Dato | Detalle |
+|---|---|
+| Archivo | `upc-pre-202620-1acc0238-4939-jamsell-aboutthe-team-av2.mp4` |
+| Enlace (Microsoft Stream) | ENLACE_PENDIENTE |
+| Enlace (YouTube, para el Landing Page) | ENLACE_PENDIENTE |
+| Duración | *(pendiente)* |
+
+| Sección del video | Inicio (hh:mm:ss) |
+|---|---|
+| Presentación del equipo y del proyecto | *(pendiente)* |
+| Proceso de trabajo | *(pendiente)* |
+| Testimonio de cada integrante | *(pendiente)* |
+| Cierre | *(pendiente)* |
 
 
 ---
