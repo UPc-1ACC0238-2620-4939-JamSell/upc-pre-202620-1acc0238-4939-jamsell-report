@@ -391,6 +391,25 @@ El bloque "Mockup de la app (pantalla real)" dentro del Hero queda como marcador
   <p><i><b>Fuente</b>: Elaboración propia.</i></p>
 </div>
 
+**Actualización en el Sprint 2:** durante el Sprint 2 se rediseñó la versión publicada del Landing Page (Pull Request #1 del repositorio `gethics-landing-page`, integrado en `main` el 11/11/2026 y publicado en Vercel). Los mock-ups anteriores se mantienen como referencia del diseño original. Los cambios aplicados fueron:
+
+- **Hero:** la portada deja la tarjeta blanca flotante y ocupa todo el ancho de la pantalla, con la fotografía de ganado de fondo y un degradado oscuro de tono granate que asegura el contraste del texto blanco. El botón "Ver funcionalidades" se adaptó al fondo oscuro.
+- **Logo:** se reemplazó por una versión en alta resolución, tomada del logo de la aplicación móvil, y se mostró en mayor tamaño en el header, en el bloque final de descarga y en el footer.
+- **Secciones:** se mejoraron la legibilidad y las proporciones de las secciones (espaciado, tamaño de los textos y ancho de las tarjetas) y los pasos de "Cómo funciona". La tarjeta destacada del Modelo de negocio pasa a fondo oscuro. El bloque final de descarga incluye el logo, un texto de apoyo y los botones "Descargar app" y "Conversemos", y el footer suma una franja inferior con el año y la universidad.
+- **Versión móvil:** el menú desplegable ocupa todo el ancho de la pantalla, corrigiendo el desplazamiento que tenía antes.
+
+<div align="center">
+  <p><b>Gráfico</b>: Landing Page publicado tras el rediseño del Sprint 2 — Desktop Web Browser</p>
+  <img src="images/sprint2-landing-desktop.png" alt="Landing Page rediseñado, escritorio" width="700">
+  <p><i><b>Fuente</b>: Elaboración propia, https://gethics-landing-page.vercel.app.</i></p>
+</div>
+
+<div align="center">
+  <p><b>Gráfico</b>: Landing Page publicado tras el rediseño del Sprint 2 — Mobile Web Browser</p>
+  <img src="images/sprint2-landing-movil.png" alt="Landing Page rediseñado, móvil" width="260">
+  <p><i><b>Fuente</b>: Elaboración propia, https://gethics-landing-page.vercel.app.</i></p>
+</div>
+
 ---
 
 
