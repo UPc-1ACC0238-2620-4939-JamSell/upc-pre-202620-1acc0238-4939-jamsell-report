@@ -1021,7 +1021,7 @@ Una vez integradas las ramas que contienen dichas modificaciones, la funcionalid
 
 #### Consolidación de evidencias del Sprint 2
 
-Al cierre del registro de evidencias, el equipo integró a `develop` los cambios de los cinco integrantes mediante Pull Requests. La siguiente tabla resume, por integrante, las funcionalidades integradas en los Web Services (`gethics-backend`) y en la aplicación móvil (`gethics-mobile-app`) durante el Sprint 2 (desde el 05/11/2026), con sus commits y Pull Requests. La columna Integración indica la fecha en que cada Pull Request se integró a `develop`.
+Al cierre del registro de evidencias, el equipo integró a `develop` los cambios de los cinco integrantes mediante Pull Requests. La siguiente tabla resume, por integrante, las funcionalidades integradas en los Web Services (`gethics-backend`), en la aplicación móvil (`gethics-mobile-app`) y en el Landing Page (`gethics-landing-page`) durante el Sprint 2 (desde el 05/11/2026), con sus commits y Pull Requests. La columna Integración indica la fecha en que cada Pull Request se integró a `develop`; en el Landing Page, que se publica desde `main`, indica la fecha de integración a `main`.
 
 | Integrante | Producto | Funcionalidad | Commit | Pull Request | Integración |
 |---|---|---|---|---|---|
@@ -1048,6 +1048,7 @@ Al cierre del registro de evidencias, el equipo integró a `develop` los cambios
 | Raymundo Villarroel, Nadhim Abigail | Web Services | Lecturas de un dispositivo con paginación (US37) y exportación del reporte en CSV (US39) | `5423cdf`, `304ecf1` | #34 | 09/11/2026 |
 | Raymundo Villarroel, Nadhim Abigail | Aplicación móvil | Navegación, idiomas (ES / EN), ajustes de notificaciones, finanzas y reportes (US15, US16, US20, US22) | `fc6b276`, `0c229d0`, `06fe970` | #14, #15, #16 | 08/11/2026 |
 | Raymundo Villarroel, Nadhim Abigail | Aplicación móvil | Dispositivos IoT con lecturas paginadas (US23, US37) y exportación del reporte en CSV (US39) | `39bc722`, `52cc396` | #21 | 10/11/2026 |
+| Raymundo Villarroel, Nadhim Abigail | Landing Page | Rediseño de la versión publicada: portada a todo el ancho con degradado oscuro, logo en alta resolución, legibilidad y proporciones de las secciones y menú móvil a todo el ancho | `0f48602`, `01a9a18`, `e0d0f95`, `cb7c425`, `5d6f7ca`, `06de857` | #1 | 11/11/2026 |
 
 Las pantallas de registro de usuario, inicio de sesión, registro, listado y edición de animales, calendario sanitario, historial clínico y registro de eventos sanitarios se integraron a `develop` al cierre del Sprint 1 (05/10/2026), y durante el Sprint 2 se conectaron con los Web Services y se ampliaron con los cambios de la tabla anterior.
 
@@ -1426,6 +1427,15 @@ La aplicación cuenta con barra de navegación inferior (Hato, Calendario, Finan
   <p><i><b>Figura 4.X.</b> Aplicación en inglés y ajustes de notificaciones. <b>Fuente:</b> Elaboración propia, emulador de Android Studio.</i></p>
 </div>
 
+#### Landing Page
+
+Durante el Sprint 2 se rediseñó el Landing Page (Pull Request #1 de `gethics-landing-page`, integrado en `main` el 11/11/2026). Vercel publica la rama `main`, por lo que la nueva versión está disponible en https://gethics-landing-page.vercel.app. La captura corresponde a la página completa en un navegador de escritorio; el detalle de los cambios de diseño se describe en la sección 3.1.3.2.
+
+<div align="center">
+  <img src="images/sprint2-landing-pagina-completa.png" alt="Landing Page rediseñado, página completa" width="500">
+  <p><i><b>Figura 4.X.</b> Landing Page rediseñado, página completa. <b>Fuente:</b> Elaboración propia, rama main de gethics-landing-page.</i></p>
+</div>
+
 #### Web Services en ejecución
 
 Los endpoints se verificaron en Swagger UI antes de probarlos desde la aplicación. Las capturas corresponden al backend ejecutado en el entorno local.
@@ -1487,7 +1497,7 @@ Se deberán documentar los ambientes utilizados y, según corresponda:
 
 ### 4.2.2.9. Team Collaboration Insights during Sprint
 
-Durante el Sprint 2 el equipo JamSell trabajó con ramas de funcionalidad creadas desde `develop` e integró los cambios mediante Pull Requests en los repositorios de Web Services y de la aplicación móvil. Se registraron 16 Pull Requests integrados en el backend y 11 en la aplicación móvil entre el 05/11/2026 y el 10/11/2026, con participación de los cinco integrantes. El Landing Page no tuvo cambios en esta iteración, porque su versión publicada se completó en el Sprint 1. A continuación se presentan los analíticos de colaboración de GitHub y su interpretación.
+Durante el Sprint 2 el equipo JamSell trabajó con ramas de funcionalidad creadas desde `develop` e integró los cambios mediante Pull Requests en los repositorios de Web Services, de la aplicación móvil y del Landing Page. Se registraron 16 Pull Requests integrados en el backend y 11 en la aplicación móvil entre el 05/11/2026 y el 10/11/2026, con participación de los cinco integrantes. En el Landing Page se integró 1 Pull Request en `main` el 11/11/2026, con el rediseño de la versión publicada. A continuación se presentan los analíticos de colaboración de GitHub y su interpretación.
 
 #### 1. Analíticos de colaboración y commits en GitHub
 
@@ -1513,18 +1523,18 @@ La gráfica Contributors de GitHub solo contabiliza los commits de la rama princ
 
 #### 2. Interpretación de los analíticos por integrante
 
-Commits (sin contar merges) registrados en `develop` desde el inicio del Sprint 2 (05/11/2026) hasta el 11/11/2026, agrupando los distintos nombres de autor que usa cada integrante:
+Commits (sin contar merges) registrados en `develop` (en el Landing Page, en `main`) desde el inicio del Sprint 2 (05/11/2026) hasta el 11/11/2026, agrupando los distintos nombres de autor que usa cada integrante:
 
-| Integrante | Web Services | Aplicación móvil | Aportes principales |
-|---|---:|---:|---|
-| Castillo Yataco, Mauricio Sebastian | 1 | 1 | Módulo IAM: registro, inicio de sesión con JWT y control de acceso por rol en el backend, y recuperación de contraseña y edición de perfil en la aplicación. |
-| Salazar Miranda, Mateo Paolo | 7 | 3 | Baja lógica de animales; venta, búsqueda por código QR y edición de granja en el backend; documentación OpenAPI de toda la API e integración del veterinario con animales y sanidad; y baja de animal en la aplicación. |
-| Meza Huanacune, Juan José | 6 | 4 | Alertas por tendencias, cancelación de eventos sanitarios y registro sin conexión con sincronización, tanto en el backend como en la aplicación, y ajustes del módulo IAM. |
-| Pillaca Vidal, Luis Angel | 7 | 2 | Anulación de movimientos financieros y desasignación de clientes del veterinario, en el backend y en la aplicación, versionado de la base de datos con Flyway y conexión a la base de datos en la nube. |
-| Raymundo Villarroel, Nadhim Abigail | 4 | 5 | Reportes, exportación en CSV, dispositivos IoT con lecturas paginadas, notificaciones, balance económico, navegación e idiomas y finanzas en la aplicación. |
-| **Total** | **25** | **15** | |
+| Integrante | Web Services | Aplicación móvil | Landing Page | Aportes principales |
+|---|---:|---:|---:|---|
+| Castillo Yataco, Mauricio Sebastian | 1 | 1 | 0 | Módulo IAM: registro, inicio de sesión con JWT y control de acceso por rol en el backend, y recuperación de contraseña y edición de perfil en la aplicación. |
+| Salazar Miranda, Mateo Paolo | 7 | 3 | 0 | Baja lógica de animales; venta, búsqueda por código QR y edición de granja en el backend; documentación OpenAPI de toda la API e integración del veterinario con animales y sanidad; y baja de animal en la aplicación. |
+| Meza Huanacune, Juan José | 6 | 4 | 0 | Alertas por tendencias, cancelación de eventos sanitarios y registro sin conexión con sincronización, tanto en el backend como en la aplicación, y ajustes del módulo IAM. |
+| Pillaca Vidal, Luis Angel | 7 | 2 | 0 | Anulación de movimientos financieros y desasignación de clientes del veterinario, en el backend y en la aplicación, versionado de la base de datos con Flyway y conexión a la base de datos en la nube. |
+| Raymundo Villarroel, Nadhim Abigail | 4 | 5 | 6 | Reportes, exportación en CSV, dispositivos IoT con lecturas paginadas, notificaciones, balance económico, navegación e idiomas y finanzas en la aplicación, y rediseño del Landing Page. |
+| **Total** | **25** | **15** | **6** | |
 
-Los analíticos muestran que el trabajo del Sprint 2 se concentró en dos frentes: los Web Services, donde se integraron los módulos de IAM, finanzas, reportes, notificaciones, IoT, ganado y sanidad, y la aplicación móvil, donde se implementaron las pantallas que consumen esos servicios. La cantidad de commits no refleja por sí sola el tamaño del aporte, porque algunos integrantes agruparon su trabajo en commits más grandes y parte del código integrado en este Sprint se había escrito antes del 05/11/2026. Además, parte del trabajo de la aplicación permanece en ramas propias pendientes de integración (ver 4.2.2.4).
+Los analíticos muestran que el trabajo del Sprint 2 se concentró en dos frentes: los Web Services, donde se integraron los módulos de IAM, finanzas, reportes, notificaciones, IoT, ganado y sanidad, y la aplicación móvil, donde se implementaron las pantallas que consumen esos servicios. Al cierre del Sprint también se rediseñó el Landing Page publicado. La cantidad de commits no refleja por sí sola el tamaño del aporte, porque algunos integrantes agruparon su trabajo en commits más grandes y parte del código integrado en este Sprint se había escrito antes del 05/11/2026. Además, parte del trabajo de la aplicación permanece en ramas propias pendientes de integración (ver 4.2.2.4).
 
 #### 3. Dificultades de coordinación y acciones realizadas
 
