@@ -1479,21 +1479,61 @@ También se deberá indicar la URL pública utilizada para acceder a la document
 
 ### 4.2.2.8. Software Deployment Evidence for Sprint Review
 
-**Responsable:** Luis Angel Pillaca Vidal
+**Responsable:** Nadhim Abigail Raymundo Villarroel
 
-En esta sección se presentarán las evidencias correspondientes al despliegue de los productos desarrollados durante el Sprint 2.
+En el Sprint 2 se mantuvieron los ambientes de despliegue configurados en el Sprint 1 (ver 4.2.1.8). El Landing Page se volvió a desplegar en producción con su rediseño, y los Web Services incorporaron la conexión a la base de datos en la nube y el versionado del esquema con Flyway. La siguiente tabla resume el estado de cada producto al 11/11/2026.
 
-Se deberán documentar los ambientes utilizados y, según corresponda:
+| Producto | Ambiente | Plataforma | Origen del despliegue | URL pública | Estado al 11/11/2026 |
+|---|---|---|---|---|---|
+| Landing Page | Producción | Vercel | Rama `main` de `gethics-landing-page` | https://gethics-landing-page.vercel.app | Desplegado con el commit `998d28f` (Pull Request #1) |
+| Web Services | Staging | Render (contenedor Docker) con PostgreSQL | Repositorio `gethics-backend` | https://gethics-backend-staging-7qth.onrender.com | Disponible según la validación de `/actuator/health` registrada en 4.2.2.5 |
+| Aplicación móvil | Desarrollo | Emulador de Android Studio | Rama `develop` de `gethics-mobile-app` | — | Consume los Web Services de staging; aún no se distribuye un APK |
 
-- Despliegue público del backend.
-- Base de datos utilizada en staging.
-- Configuración del ambiente de producción o staging.
-- Despliegue del Landing Page.
-- URLs públicas.
-- Estado de disponibilidad de los servicios.
-- Evidencias de ejecución posteriores al despliegue.
+#### 1. Despliegue del Landing Page
 
-> Pendiente de completar por Luis Angel Pillaca Vidal.
+Vercel está vinculado al repositorio `gethics-landing-page`. Cada push a una rama genera un despliegue de vista previa (Preview) sobre el último commit enviado, y cada integración en `main` genera el despliegue de producción (Production) en el dominio público. Durante el Sprint 2 se registraron los siguientes despliegues, según los estados que Vercel reporta en GitHub:
+
+| Commit | Cambio | Tipo de despliegue | Fecha y hora (Lima, UTC-5) | Estado |
+|---|---|---|---|---|
+| `e0d0f95` | Logo en alta resolución, legibilidad de las secciones y menú móvil a todo el ancho (incluye `0f48602` y `01a9a18`) | Preview | 11/11/2026 06:05 | Exitoso |
+| `cb7c425` | Rediseño con portada a todo el ancho | Preview | 11/11/2026 06:15 | Exitoso |
+| `5d6f7ca` | Ajuste del degradado de la portada | Preview | 11/11/2026 06:19 | Exitoso |
+| `06de857` | Restauración del degradado oscuro de la portada | Preview | 11/11/2026 06:25 | Exitoso |
+| `998d28f` | Integración del Pull Request #1 en `main` | Production | 11/11/2026 06:28 | Exitoso |
+
+Los despliegues de vista previa permitieron revisar cada ajuste del diseño antes de integrarlo en `main`. La versión publicada se muestra en las capturas de las secciones 3.1.3.2 y 4.2.2.6.
+
+> [COMPLETAR: captura del panel de Vercel con el despliegue de producción del 11/11/2026, guardada como `images/sprint2-vercel-deploy.png`.]
+
+#### 2. Despliegue de los Web Services
+
+El backend se despliega en Render como contenedor a partir del `Dockerfile` del repositorio, que tiene dos etapas:
+
+- **Compilación:** imagen `eclipse-temurin:21-jdk`, que descarga las dependencias y genera el `.jar` con `./mvnw -B package -DskipTests -Dcheckstyle.skip=true`. Las pruebas y Checkstyle no se repiten en esta etapa porque ya los ejecuta el pipeline de integración continua.
+- **Ejecución:** imagen `eclipse-temurin:21-jre`, que expone el puerto 8080 y arranca la aplicación con `java -jar app.jar`.
+
+El perfil `prod` (`application-prod.yaml`) toma la configuración de variables de entorno definidas en el panel de Render, de modo que las credenciales no se guardan en el repositorio:
+
+| Variable | Uso |
+|---|---|
+| `SPRING_PROFILES_ACTIVE` | Activa el perfil `prod` |
+| `DB_URL`, `DB_USER`, `DB_PASSWORD` | Conexión a la base de datos PostgreSQL |
+| `JWT_SECRET` | Firma de los tokens de autenticación |
+| `PORT` | Puerto del servicio (8080 por defecto) |
+
+Cambios del Sprint 2 que afectan al despliegue:
+
+- **Base de datos en la nube:** se configuró la conexión JDBC a una base PostgreSQL alojada en Supabase y se añadió el archivo `.env.example` con las variables necesarias (commit `c7f843f`, Pull Request #33, 09/11/2026).
+- **Versionado del esquema con Flyway:** el esquema se crea con el script `V1__init_schema.sql` (Pull Request #39, 10/11/2026), y Flyway aplica las migraciones al arrancar la aplicación, lo que se verifica con una prueba automatizada (commit `97b798e`, Pull Request #40).
+- **Integración continua:** el workflow `CI` de GitHub Actions se ejecuta en cada push y Pull Request a `develop` y `main`, con Checkstyle, compilación y pruebas, antes de integrar los cambios.
+
+La disponibilidad del servicio de staging se comprobó con `GET /actuator/health`, que respondió `"status": "UP"`, y con el endpoint de alertas (ver 4.2.2.5).
+
+> [COMPLETAR: rama y commit desplegados actualmente en Render, y captura del panel de Render con el último despliegue, guardada como `images/sprint2-render-deploy.png`.]
+
+#### 3. Aplicación móvil
+
+La aplicación apunta a los Web Services de staging mediante la constante `BASE_URL` (`https://gethics-backend-staging-7qth.onrender.com/`), por lo que las pantallas mostradas en 4.2.2.6 consumen el backend desplegado. En el Sprint 2 la aplicación se ejecutó desde Android Studio y todavía no se distribuye un APK: el botón "Descargar app" del Landing Page lleva a la sección de descarga del mismo sitio y aún no enlaza a un instalador.
 
 ### 4.2.2.9. Team Collaboration Insights during Sprint
 
