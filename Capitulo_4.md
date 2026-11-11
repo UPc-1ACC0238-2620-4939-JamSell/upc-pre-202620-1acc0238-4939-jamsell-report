@@ -1503,7 +1503,10 @@ Vercel está vinculado al repositorio `gethics-landing-page`. Cada push a una ra
 
 Los despliegues de vista previa permitieron revisar cada ajuste del diseño antes de integrarlo en `main`. La versión publicada se muestra en las capturas de las secciones 3.1.3.2 y 4.2.2.6.
 
-> [COMPLETAR: captura del panel de Vercel con el despliegue de producción del 11/11/2026, guardada como `images/sprint2-vercel-deploy.png`.]
+<div align="center">
+  <img src="images/sprint2-vercel-deploy.png" alt="Despliegue de producción del Landing Page en Vercel" width="800">
+  <p><i><b>Figura 4.X.</b> Despliegue de producción del Landing Page en Vercel: estado Ready, rama <code>main</code>, commit <code>998d28f</code> (Pull Request #1) y dominio público gethics-landing-page.vercel.app. <b>Fuente:</b> Panel de Vercel, proyecto gethics-landing-page.</i></p>
+</div>
 
 #### 2. Despliegue de los Web Services
 
