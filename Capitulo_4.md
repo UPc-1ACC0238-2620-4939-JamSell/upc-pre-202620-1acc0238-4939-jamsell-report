@@ -836,13 +836,31 @@ Durante la ejecución del Sprint, algunas responsabilidades fueron ajustándose 
 
 ---
 
-### 4.2.2.2. Aspect Leaders and Collaborators
+4.2.2.2. Aspect Leaders and Collaborators
 
-**Responsable:** Mauricio Sebastian Castillo Yataco
+Para garantizar un flujo de trabajo ágil, transparente y con líneas claras de responsabilidad durante el Sprint 2, el equipo JamSell mantuvo la matriz de liderazgo y colaboración Leadership-and-Collaboration Matrix (LACX). Este artefacto asigna de manera explícita a un integrante del equipo como Líder (L) de un aspecto técnico o funcional específico, acompañado por uno o varios Colaboradores (C), optimizando así la toma de decisiones y la comunicación interna.
 
-En esta sección se presentarán los responsables y colaboradores de los diferentes aspectos del proyecto durante el Sprint 2, detallando la participación de cada integrante en las actividades planificadas.
+Para el Sprint 2, los aspectos considerados corresponden a las áreas clave dentro del alcance de la solución Gethics:
 
-> Pendiente de completar por Mauricio Sebastian Castillo Yataco.
+Identity & Access Management (IAM) / Auth & Subscriptions: Comprende el registro de usuarios, el inicio de sesión (JWT), la protección de endpoints con JWT, el control de acceso por rol, el cierre de sesión, la recuperación de contraseñas y la edición de perfil.
+Domain Architecture & Core Animal Management: Involucra la baja lógica y edición de animales, la documentación de la API con Swagger y las pantallas de gestión del inventario ganadero en la aplicación.
+Veterinary & Sanitary Management: Abarca el calendario sanitario, el registro de eventos, el historial clínico, las alertas por tendencia y la integración del veterinario con animales y sanidad (clientes asignados, pacientes y atención veterinaria).
+Analytics, Financials & Notifications: Incluye el balance financiero, los reportes y estadísticas del ganado, la exportación del reporte y el sistema de notificaciones push.
+IoT Monitoring & Technical Infrastructure: Comprende el versionado de la base de datos con Flyway, el despliegue en la nube, el release v1.0.0, el CI/CD y la integración de dispositivos IoT para la consulta de lecturas.
+
+A continuación, se presenta la matriz Leadership-and-Collaboration Matrix (LACX) correspondiente al Sprint 2:
+
+| Team Member (Last Name, First Name) | GitHub Username | Identity & Access Management (IAM) / Auth & Subscriptions | Domain Architecture & Core Animal Management | Veterinary & Sanitary Management | Analytics, Financials & Notifications | IoT Monitoring & Technical Infrastructure |
+|---|---|---|---|---|---|---|
+| Castillo Yataco, Mauricio Sebastian | M4uricioCastillo | L | C | C | C | C |
+| Salazar Miranda, Mateo Paolo | mateossm | C | L | C | C | C |
+| Meza Huanacune, Juan Jose | JuanMHZ12 | C | C | L | C | C |
+| Pillaca Vidal, Luis Angel | luispillacavidal | C | C | C | C | L |
+| Raymundo Villarroel, Nadhim Abigail | AbigailRV | C | C | C | L | C |
+
+Leyenda: L = Leader (Líder del aspecto) | C = Collaborator (Colaborador)
+
+La distribución definida en la matriz guarda directa concordancia con la asignación de User Stories y Technical Stories registradas en el Sprint Backlog 2, asegurando que cada integrante lidere las tareas centrales de su respectivo aspecto.
 
 ### 4.2.2.3. Sprint Backlog 2
 
