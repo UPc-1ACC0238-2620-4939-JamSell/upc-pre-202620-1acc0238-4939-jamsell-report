@@ -356,11 +356,11 @@ A continuación, se presenta la matriz **Leadership-and-Collaboration Matrix (LA
 
 | Team Member (Last Name, First Name) | GitHub Username | Identity & Access Management (IAM) / Auth & Subscriptions | Domain Architecture & Core Animal Management | Veterinary & Sanitary Management | Analytics, Financials & Notifications | IoT Monitoring & Technical Infrastructure |
 |---|---|:---:|:---:|:---:|:---:|:---:|
-| Castillo Yataco, Mauricio Sebastian | mcastilloy | **L** | C | C | C | C |
-| Salazar Miranda, Mateo Paolo | msalazarm | C | **L** | C | C | C |
-| Meza Huanacune, Juan Jose | jmezah | C | C | **L** | C | C |
+| Castillo Yataco, Mauricio Sebastian | M4uricioCastillo | **L** | C | C | C | C |
+| Salazar Miranda, Mateo Paolo | mateossm | C | **L** | C | C | C |
+| Meza Huanacune, Juan Jose | JuanMHZ12 | C | C | **L** | C | C |
 | Pillaca Vidal, Luis Angel | luispillacavidal | C | C | C | **L** | C |
-| Raymundo Villarroel, Nadhim Abigail | nraymundov | C | C | C | C | **L** |
+| Raymundo Villarroel, Nadhim Abigail | AbigailRV | C | C | C | C | **L** |
 
 *Leyenda: **L** = Leader (Líder del aspecto) | **C** = Collaborator (Colaborador)*
 
