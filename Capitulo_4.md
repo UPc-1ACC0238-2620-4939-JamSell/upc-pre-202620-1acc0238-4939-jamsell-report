@@ -1335,22 +1335,116 @@ Por este motivo, antes de la entrega final se realizará una nueva ejecución de
 
 ### 4.2.2.6. Execution Evidence for Sprint Review
 
-**Responsable:** Nadhim Abigail Raymundo Villarroel
+Durante el Sprint 2 el equipo logró que la aplicación móvil consuma los Web Services en los módulos de autenticación, ganado, sanidad, alertas, finanzas, reportes, dispositivos IoT y exportación, además de la navegación con barra inferior y el cambio de idioma entre español e inglés. Las pantallas se ejecutaron en el emulador de Android Studio (Medium Phone, API 36) conectadas al backend, y los casos sin datos se comprobaron con periodos sin registros y con dispositivos sin lecturas. Las pantallas de clientes y pacientes del veterinario y de planes de suscripción siguen siendo provisionales y no se incluyen como evidencia.
 
-En esta sección se presentarán evidencias de ejecución de los productos desarrollados durante el Sprint 2.
+**Video de ejecución del Sprint 2:** [Video App Execution Sprint 2](ENLACE_PENDIENTE) · Duración: *(pendiente)*
 
-Se podrán incluir evidencias de:
+| Módulo | Historias | Pantallas implementadas | Pull Requests (aplicación móvil) |
+|---|---|---|---|
+| Identity & Access | US01, US02, US03, US04 | Registro, inicio de sesión, recuperación y restablecimiento de contraseña, perfil | #4, #5, #18 |
+| Gestión del ganado | US05, US06, US07, US08 | Registro, listado con búsqueda, detalle, edición y baja de animales | #10, #12, #13, #24 |
+| Sanidad | US11, US12, US13, US14, US33, US35 | Registro de evento sanitario, calendario sanitario, programación de vacunación, historial clínico, cancelación de eventos y registro sin conexión con sincronización | #1, #2, #3, #6, #7, #8, #9, #19, #20 |
+| Alertas | US21 | Listado de alertas por tendencias con estados de carga, vacío y error | #17 |
+| Finanzas | US15, US16, US31 | Resumen de ingresos, gastos y resultado neto, registro y anulación de movimientos | #11, #15, #23 |
+| Reportes | US20, US39 | Reporte del ganado por rango de fechas y exportación en CSV | #16, #21 |
+| Dispositivos IoT | US23, US37 | Vinculación de dispositivos y lecturas paginadas del sensor | #21 |
+| Navegación e idiomas | US22 | Barra de navegación inferior, idioma ES / EN y ajustes de notificaciones | #14 |
 
-- Ejecución de la aplicación móvil.
-- Principales pantallas funcionales.
-- Interacción entre las diferentes funcionalidades.
-- Consumo de servicios backend.
-- Ejecución de los servicios desplegados.
-- Comportamiento observable de las User Stories desarrolladas.
+#### Identity & Access
 
-Las evidencias deberán corresponder al estado real del producto al finalizar el Sprint.
+El usuario se registra, inicia sesión, recupera su contraseña y edita su perfil. Cada pantalla se conecta con los endpoints de autenticación del backend.
 
-> Pendiente de completar por Nadhim Abigail Raymundo Villarroel.
+<div align="center">
+  <img src="images/sprint2-app-login.png" alt="Inicio de sesión" width="240">
+  <img src="images/sprint2-app-registro.png" alt="Registro de usuario" width="240">
+  <p><i><b>Figura 4.X.</b> Inicio de sesión y registro de usuario. <b>Fuente:</b> Elaboración propia, emulador de Android Studio.</i></p>
+</div>
+
+#### Gestión del ganado
+
+El ganadero registra animales, los busca en el listado, consulta su ficha, edita sus datos y puede darlos de baja.
+
+<div align="center">
+  <img src="images/sprint2-app-hato-registro.png" alt="Registro de un animal" width="240">
+  <p><i><b>Figura 4.X.</b> Registro de un animal. <b>Fuente:</b> Elaboración propia, emulador de Android Studio.</i></p>
+</div>
+
+#### Sanidad y alertas
+
+El usuario registra eventos sanitarios, consulta el calendario y el historial clínico de cada animal, programa vacunaciones y puede cancelar un evento. Cuando no hay conexión, el evento se guarda en el dispositivo y se sincroniza al recuperar la señal. La aplicación también lista las alertas por tendencias generadas por el backend.
+
+<div align="center">
+  <img src="images/sprint2-app-calendario.png" alt="Calendario sanitario" width="240">
+  <img src="images/sprint2-app-historial.png" alt="Historial clínico" width="240">
+  <img src="images/sprint2-app-alertas.png" alt="Alertas por tendencias" width="240">
+  <p><i><b>Figura 4.X.</b> Calendario sanitario, historial clínico y alertas, en su estado sin registros. <b>Fuente:</b> Elaboración propia, emulador de Android Studio.</i></p>
+</div>
+
+#### Finanzas y reportes
+
+La pantalla de Finanzas muestra los ingresos, gastos y el resultado neto, y permite registrar un movimiento. La pantalla de Reportes genera el resumen del ganado para el rango de fechas elegido (finanzas, salud del hato y productividad). Cuando el periodo no tiene información suficiente, cada tarjeta lo indica con un mensaje.
+
+<div align="center">
+  <img src="images/sprint2-app-finanzas.png" alt="Resumen de finanzas" width="240">
+  <img src="images/sprint2-app-reportes.png" alt="Reportes del ganado" width="240">
+  <p><i><b>Figura 4.X.</b> Resumen de finanzas y reportes del ganado. <b>Fuente:</b> Elaboración propia, emulador de Android Studio.</i></p>
+</div>
+
+#### Dispositivos IoT y exportación del reporte
+
+Desde el ícono de sensor en Reportes se accede a los dispositivos IoT. El ganadero vincula un dispositivo con su código (por ejemplo, `COLLAR-001`) y al abrirlo ve sus lecturas recientes, con carga de más registros al desplazarse; si el dispositivo aún no reportó datos, la pantalla lo indica. El botón **Exportar reporte** descarga el reporte del rango seleccionado como archivo CSV y abre el menú de compartir; si no hay información en el periodo, la aplicación muestra el aviso del servidor y no genera archivo.
+
+<div align="center">
+  <img src="images/sprint2-app-dispositivos.png" alt="Dispositivos IoT" width="240">
+  <img src="images/sprint2-app-lecturas.png" alt="Lecturas del dispositivo" width="240">
+  <img src="images/sprint2-app-lecturas-vacio.png" alt="Dispositivo sin lecturas" width="240">
+  <p><i><b>Figura 4.X.</b> Dispositivos vinculados, lecturas del sensor y estado sin lecturas. <b>Fuente:</b> Elaboración propia, emulador de Android Studio.</i></p>
+</div>
+
+<div align="center">
+  <img src="images/sprint2-app-exportar-compartir.png" alt="Exportación con menú de compartir" width="240">
+  <img src="images/sprint2-app-exportar-sin-datos.png" alt="Exportación sin datos" width="240">
+  <p><i><b>Figura 4.X.</b> Exportación exitosa y aviso cuando el periodo no tiene información. <b>Fuente:</b> Elaboración propia, emulador de Android Studio.</i></p>
+</div>
+
+#### Navegación e idiomas
+
+La aplicación cuenta con barra de navegación inferior (Hato, Calendario, Finanzas, Reportes y Perfil) y permite cambiar el idioma entre español e inglés. Las opciones de notificaciones se gestionan desde los ajustes.
+
+<div align="center">
+  <img src="images/sprint2-app-idioma-en.png" alt="Aplicación en inglés" width="240">
+  <img src="images/sprint2-app-ajustes-notificaciones.png" alt="Ajustes de notificaciones" width="240">
+  <p><i><b>Figura 4.X.</b> Aplicación en inglés y ajustes de notificaciones. <b>Fuente:</b> Elaboración propia, emulador de Android Studio.</i></p>
+</div>
+
+#### Web Services en ejecución
+
+Los endpoints se verificaron en Swagger UI antes de probarlos desde la aplicación. Las capturas corresponden al backend ejecutado en el entorno local.
+
+<div align="center">
+  <img src="images/sprint2-swagger-lista-endpoints.png" alt="Swagger, lista de endpoints" width="800">
+  <p><i><b>Figura 4.X.</b> Endpoints de los módulos Analytics, Finance, IoT y Livestock. <b>Fuente:</b> Swagger UI del backend de Gethics.</i></p>
+</div>
+
+<div align="center">
+  <img src="images/sprint2-swagger-devices-readings.png" alt="Swagger, lecturas de dispositivo" width="800">
+  <p><i><b>Figura 4.X.</b> Consulta de lecturas de un dispositivo (US37). <b>Fuente:</b> Swagger UI del backend de Gethics.</i></p>
+</div>
+
+<div align="center">
+  <img src="images/sprint2-swagger-export.png" alt="Swagger, exportación CSV" width="800">
+  <p><i><b>Figura 4.X.</b> Exportación del reporte en CSV (US39). <b>Fuente:</b> Swagger UI del backend de Gethics.</i></p>
+</div>
+
+<div align="center">
+  <img src="images/sprint2-swagger-registrar-granja.png" alt="Swagger, registrar granja" width="800">
+  <p><i><b>Figura 4.X.</b> Registro de una granja. <b>Fuente:</b> Swagger UI del backend de Gethics.</i></p>
+</div>
+
+<div align="center">
+  <img src="images/sprint2-swagger-asignar-granja.png" alt="Swagger, asignar granja" width="800">
+  <p><i><b>Figura 4.X.</b> Asignación de un animal a una granja. <b>Fuente:</b> Swagger UI del backend de Gethics.</i></p>
+</div>
 
 ### 4.2.2.7. Services Documentation Evidence for Sprint Review
 
