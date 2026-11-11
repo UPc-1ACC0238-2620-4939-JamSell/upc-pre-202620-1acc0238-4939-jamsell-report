@@ -199,7 +199,7 @@ Se usan minúsculas, guiones para separar palabras y el identificador de la hist
 | Landing Page | `gethics-landing-page` | HTML, CSS y JavaScript (sin framework ni build step) | Vercel | Desplegado: https://gethics-landing-page.vercel.app |
 | Backend | `gethics-backend` | Java 21, Spring Boot 4.1.1, Spring Data JPA, Maven | Render | Desplegado en staging: https://gethics-backend-staging-7qth.onrender.com (Swagger UI: https://gethics-backend-staging-7qth.onrender.com/swagger-ui/index.html) |
 | Base de datos | `gethics-backend` | PostgreSQL 16 | Docker Compose (local) y Supabase en la nube | Local operativo y desplegado en Supabase: https://supabase.com/dashboard/project/xlcjmzvfdpggluhwkpfp |
-| Aplicación Móvil | `gethics-mobile-app` | Android nativo (Kotlin, Jetpack Compose, Gradle Kotlin DSL) | [COMPLETAR: GitHub Releases (APK) / Firebase App Distribution] | [COMPLETAR] |
+| Aplicación Móvil | `gethics-mobile-app` | Android nativo (Kotlin, Jetpack Compose, Gradle Kotlin DSL) | GitHub Releases (APK) | Publicada: versión v1.0.0, https://github.com/UPc-1ACC0238-2620-4939-JamSell/gethics-mobile-app/releases/tag/v1.0.0 |
 
 #### 4.1.4.1. Landing Page
 
@@ -291,9 +291,9 @@ La aplicación móvil es un proyecto Android nativo construido con Gradle (Kotli
 
 **Distribución**
 
-1. [COMPLETAR: indicar el medio de distribución (por ejemplo, GitHub Releases con el APK adjunto o Firebase App Distribution).]
+1. La aplicación se distribuye como APK mediante GitHub Releases. La versión v1.0.0 se publicó el 11/11/2026 a partir de la rama `develop` (commit `4db53eb`), con el archivo `gethics-v1.0.apk`: https://github.com/UPc-1ACC0238-2620-4939-JamSell/gethics-mobile-app/releases/tag/v1.0.0
 2. La URL base del backend es https://gethics-backend-staging-7qth.onrender.com/, definida en la constante `BASE_URL` de `Constants.kt`.
-3. El botón "Descargar app" de la Landing Page [COMPLETAR: enlaza al medio de distribución elegido].
+3. El botón "Descargar app" de la Landing Page todavía lleva a la sección de descarga del mismo sitio; el enlace de descarga del APK es https://github.com/UPc-1ACC0238-2620-4939-JamSell/gethics-mobile-app/releases/download/v1.0.0/gethics-v1.0.apk.
 
 #### 4.1.4.4. Flujo general de despliegue
 
@@ -1506,7 +1506,7 @@ En el Sprint 2 se mantuvieron los ambientes de despliegue configurados en el Spr
 | Landing Page | Producción | Vercel | Rama `main` de `gethics-landing-page` | https://gethics-landing-page.vercel.app | Desplegado con el commit `998d28f` (Pull Request #1) |
 | Web Services | Staging | Render (contenedor Docker) | Repositorio `gethics-backend` | https://gethics-backend-staging-7qth.onrender.com (Swagger UI: https://gethics-backend-staging-7qth.onrender.com/swagger-ui/index.html) | Desplegado; disponible según la validación de `/actuator/health` registrada en 4.2.2.5 |
 | Base de datos | Producción | Supabase (PostgreSQL gestionado) | Esquema versionado con Flyway desde `gethics-backend` | Panel de administración, con acceso restringido al equipo: https://supabase.com/dashboard/project/xlcjmzvfdpggluhwkpfp | Desplegado y usado por los Web Services |
-| Aplicación móvil | Desarrollo | Emulador de Android Studio | Rama `develop` de `gethics-mobile-app` | — | Consume los Web Services de staging; aún no se distribuye un APK |
+| Aplicación móvil | Distribución | GitHub Releases (APK) | Rama `develop` de `gethics-mobile-app` (commit `4db53eb`) | https://github.com/UPc-1ACC0238-2620-4939-JamSell/gethics-mobile-app/releases/tag/v1.0.0 | Publicada la versión v1.0.0 con el APK `gethics-v1.0.apk`; consume los Web Services de staging |
 
 #### 1. Despliegue del Landing Page
 
@@ -1555,7 +1555,17 @@ La documentación interactiva de los Web Services desplegados está publicada en
 
 #### 3. Aplicación móvil
 
-La aplicación apunta a los Web Services de staging mediante la constante `BASE_URL` (`https://gethics-backend-staging-7qth.onrender.com/`), por lo que las pantallas mostradas en 4.2.2.6 consumen el backend desplegado. En el Sprint 2 la aplicación se ejecutó desde Android Studio y todavía no se distribuye un APK: el botón "Descargar app" del Landing Page lleva a la sección de descarga del mismo sitio y aún no enlaza a un instalador.
+La aplicación apunta a los Web Services de staging mediante la constante `BASE_URL` (`https://gethics-backend-staging-7qth.onrender.com/`), por lo que las pantallas mostradas en 4.2.2.6 consumen el backend desplegado.
+
+Al cierre del Sprint 2 se generó el APK de la aplicación desde Android Studio y se publicó como la versión **v1.0.0** en GitHub Releases el 11/11/2026, a partir de la rama `develop` (commit `4db53eb`). La release incluye el archivo `gethics-v1.0.apk` (43.7 MB), una descripción de los módulos incluidos, los pasos de instalación y las funcionalidades pendientes para el siguiente Sprint.
+
+| Elemento | Valor |
+|---|---|
+| Versión | v1.0.0 (`versionName` 1.0, `versionCode` 1) |
+| Página de la release | https://github.com/UPc-1ACC0238-2620-4939-JamSell/gethics-mobile-app/releases/tag/v1.0.0 |
+| Descarga directa del APK | https://github.com/UPc-1ACC0238-2620-4939-JamSell/gethics-mobile-app/releases/download/v1.0.0/gethics-v1.0.apk |
+
+Para instalarla, se descarga el APK en un celular Android y se permite la instalación de aplicaciones de orígenes desconocidos cuando el sistema lo solicita. El botón "Descargar app" del Landing Page todavía lleva a la sección de descarga del mismo sitio y no enlaza al APK.
 
 ### 4.2.2.9. Team Collaboration Insights during Sprint
 
