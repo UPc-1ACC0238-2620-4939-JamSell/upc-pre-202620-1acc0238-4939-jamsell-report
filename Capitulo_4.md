@@ -1742,11 +1742,45 @@ Los errores serán puntuados tomando en cuenta la siguiente escala de severidad:
 
 # Video App Validation
 
+En esta sección se documenta la evaluación de la aplicación Gethics Mobile mediante la prueba con usuarios de los dos segmentos objetivo. Cada participante usó la aplicación con tareas guiadas (registro de animal, consulta del historial sanitario, registro de un tratamiento y resumen financiero) y sus observaciones se registraron con el formato de evaluación según heurísticas de la sección 4.3.3.
+
+| Dato | Detalle |
+|---|---|
+| Archivo | `upc-pre-202620-1acc0238-4939-jamsell-productvalidation-av2.mp4` |
+| Enlace (OneDrive) | ENLACE_PENDIENTE |
+| Duración | *(pendiente)* |
+| Distribución de la aplicación | *(pendiente: Firebase App Distribution u otro servicio similar)* |
+
 
 # Video About the Product
 
+En esta sección se presenta el video About-the-Product, dirigido a quienes visitan el Landing Page y desean conocer el modelo de negocio y las funciones principales de Gethics, así como a los usuarios de la aplicación. El video mantiene el tono serio y directo definido en los Style Guidelines e incluye un testimonio de un usuario que participó en las entrevistas de validación.
+
+| Dato | Detalle |
+|---|---|
+| Archivo | `upc-pre-202620-1acc0238-4939-jamsell-aboutthe-product-av2.mp4` |
+| Enlace (OneDrive) | ENLACE_PENDIENTE |
+| Enlace (YouTube, para el Landing Page) | ENLACE_PENDIENTE |
+| Duración | *(pendiente)* |
+
 
 # Video About the Team
+
+En esta sección se resume el video About-the-Team, que presenta el proceso de trabajo del equipo JamSell con escenas de sesiones reales, narración en voz en off y el testimonio ante cámara de cada integrante sobre las actividades realizadas, el logro del Student Outcome y las competencias desarrolladas.
+
+| Dato | Detalle |
+|---|---|
+| Archivo | `upc-pre-202620-1acc0238-4939-jamsell-aboutthe-team-av2.mp4` |
+| Enlace (Microsoft Stream) | ENLACE_PENDIENTE |
+| Enlace (YouTube, para el Landing Page) | ENLACE_PENDIENTE |
+| Duración | *(pendiente)* |
+
+| Sección del video | Inicio (hh:mm:ss) |
+|---|---|
+| Presentación del equipo y del proyecto | *(pendiente)* |
+| Proceso de trabajo | *(pendiente)* |
+| Testimonio de cada integrante | *(pendiente)* |
+| Cierre | *(pendiente)* |
 
 
 ---
