@@ -198,7 +198,7 @@ Se usan minúsculas, guiones para separar palabras y el identificador de la hist
 | --- | --- | --- | --- | --- |
 | Landing Page | `gethics-landing-page` | HTML, CSS y JavaScript (sin framework ni build step) | Vercel | Desplegado: https://gethics-landing-page.vercel.app |
 | Backend | `gethics-backend` | Java 21, Spring Boot 4.1.1, Spring Data JPA, Maven | Render | Desplegado en staging: https://gethics-backend-staging-7qth.onrender.com (Swagger UI: https://gethics-backend-staging-7qth.onrender.com/swagger-ui/index.html) |
-| Base de datos | `gethics-backend` | PostgreSQL 16 | Docker Compose (local) y Supabase en la nube | Local operativo y desplegado en Supabase |
+| Base de datos | `gethics-backend` | PostgreSQL 16 | Docker Compose (local) y Supabase en la nube | Local operativo y desplegado en Supabase: https://supabase.com/dashboard/project/xlcjmzvfdpggluhwkpfp |
 | Aplicación Móvil | `gethics-mobile-app` | Android nativo (Kotlin, Jetpack Compose, Gradle Kotlin DSL) | [COMPLETAR: GitHub Releases (APK) / Firebase App Distribution] | [COMPLETAR] |
 
 #### 4.1.4.1. Landing Page
