@@ -1021,22 +1021,75 @@ Una vez integradas las ramas que contienen dichas modificaciones, la funcionalid
 
 #### Consolidación de evidencias del Sprint 2
 
-Además de US21, durante el Sprint 2 los demás integrantes continuaron trabajando sobre las User Stories correspondientes a sus respectivos módulos.
+Al cierre del registro de evidencias, el equipo integró a `develop` los cambios de los cinco integrantes mediante Pull Requests. La siguiente tabla resume, por integrante, las funcionalidades integradas en los Web Services (`gethics-backend`) y en la aplicación móvil (`gethics-mobile-app`) durante el Sprint 2 (desde el 05/11/2026), con sus commits y Pull Requests. La columna Integración indica la fecha en que cada Pull Request se integró a `develop`.
 
-La siguiente tabla resume el estado actual conocido de las principales áreas de trabajo:
+| Integrante | Producto | Funcionalidad | Commit | Pull Request | Integración |
+|---|---|---|---|---|---|
+| Castillo Yataco, Mauricio Sebastian | Web Services | IAM: registro, inicio de sesión con JWT y control de acceso por rol (US01, US02, TS06) | `159af0d` | #28 | 08/11/2026 |
+| Castillo Yataco, Mauricio Sebastian | Aplicación móvil | Recuperación de contraseña y edición de perfil conectadas al backend (US03, US04) | `918304a` | #18 | 09/11/2026 |
+| Salazar Miranda, Mateo Paolo | Web Services | Baja lógica de animales (US08) | `02ef731` | #37 | 10/11/2026 |
+| Salazar Miranda, Mateo Paolo | Web Services | Venta de un animal, búsqueda por código QR y edición de granja (US29, US30, US32) | `e524dfc` | #40 | 10/11/2026 |
+| Salazar Miranda, Mateo Paolo | Web Services | Integración del veterinario con animales y sanidad mediante fachadas ACL (TS07) | `b8910bd`, `81db4bb` | #40 | 10/11/2026 |
+| Salazar Miranda, Mateo Paolo | Web Services | Documentación OpenAPI de todos los controllers y Swagger UI en `/docs` (TS04), configuración de pruebas y verificación de Flyway al arrancar (TS09) | `1c19887`, `5feb349`, `97b798e` | #40 | 10/11/2026 |
+| Salazar Miranda, Mateo Paolo | Aplicación móvil | Baja de animal con diálogo de confirmación y textos ES / EN en las pantallas de animales (US08) | `7a8cdaa`, `3f5ce10`, `031db5d` | #24 | 10/11/2026 |
+| Meza Huanacune, Juan José | Web Services | Alertas por tendencias (US21) | `923d60d` | #27 | 07/11/2026 |
+| Meza Huanacune, Juan José | Web Services | Ajustes del módulo IAM: preservar el acceso a la API durante la migración a JWT y respaldo del servicio de correo | `8585d16`, `682952c`, `9c27f22` | #28, #29 | 08/11/2026 |
+| Meza Huanacune, Juan José | Web Services | Cancelación de eventos sanitarios (US33) | `8dddcb9` | #35 | 09/11/2026 |
+| Meza Huanacune, Juan José | Web Services | Registro idempotente de eventos sanitarios para la sincronización sin conexión (US35) | `5406844` | #36 | 09/11/2026 |
+| Meza Huanacune, Juan José | Aplicación móvil | Flujo de alertas por tendencias (US21) | `0a2a785`, `d6aedfa` | #17 | 08/11/2026 |
+| Meza Huanacune, Juan José | Aplicación móvil | Cancelación de eventos sanitarios (US33) | `0ed374d` | #19 | 09/11/2026 |
+| Meza Huanacune, Juan José | Aplicación móvil | Sincronización de eventos sanitarios sin conexión (US35) | `94d6c97` | #20 | 10/11/2026 |
+| Pillaca Vidal, Luis Angel | Web Services | Anulación de movimientos financieros (US31) y configuración de Flyway y de la conexión a la base de datos en la nube | `c588934`, `c7f843f` | #33 | 09/11/2026 |
+| Pillaca Vidal, Luis Angel | Web Services | Desasignación de clientes del veterinario (US34) | `96af8c9` | #38 | 10/11/2026 |
+| Pillaca Vidal, Luis Angel | Web Services | Versionado de la base de datos con Flyway y script inicial de migración (TS09) | `8f559ff` | #39 | 10/11/2026 |
+| Pillaca Vidal, Luis Angel | Aplicación móvil | Desasignación de clientes del veterinario (US34) | `a97b71c` | #22 | 10/11/2026 |
+| Pillaca Vidal, Luis Angel | Aplicación móvil | Anulación de movimientos financieros (US31) | `e5a9032` | #23 | 10/11/2026 |
+| Raymundo Villarroel, Nadhim Abigail | Web Services | Edición de animal, balance económico por periodo, reportes y estadísticas, notificaciones push e integración IoT (US07, US16, US20, US22, US23) | `66c2bff`, `1e07fa3`, `fa1d5ba`, `a1257cc`, `3c391eb` | #21 a #25 | 06/11/2026 |
+| Raymundo Villarroel, Nadhim Abigail | Web Services | Lecturas de un dispositivo con paginación (US37) y exportación del reporte en CSV (US39) | `5423cdf`, `304ecf1` | #34 | 09/11/2026 |
+| Raymundo Villarroel, Nadhim Abigail | Aplicación móvil | Navegación, idiomas (ES / EN), ajustes de notificaciones, finanzas y reportes (US15, US16, US20, US22) | `fc6b276`, `0c229d0`, `06fe970` | #14, #15, #16 | 08/11/2026 |
+| Raymundo Villarroel, Nadhim Abigail | Aplicación móvil | Dispositivos IoT con lecturas paginadas (US23, US37) y exportación del reporte en CSV (US39) | `39bc722`, `52cc396` | #21 | 10/11/2026 |
 
-| Producto | Funcionalidad | Responsable | Evidencia / Estado |
-|---|---|---|---|
-| Web Services | US21 - Alertas automáticas por tendencias | Juan José Meza Huanacune | Commit `923d60d`, PR #27 e integración en `develop` |
-| Mobile Application | US21 - Visualización de alertas por tendencias | Juan José Meza Huanacune | Commit `0a2a785` en `feature/US21-trend-alerts` |
-| Web Services / Mobile | Identity & Access Management | Mauricio Sebastian Castillo Yataco | Pendiente de consolidación al cierre del Sprint |
-| Web Services / Mobile | Gestión de animales y granjas | Mateo Paolo Salazar Miranda | Pendiente de consolidación al cierre del Sprint |
-| Web Services / Mobile | Gestión financiera y veterinaria | Luis Angel Pillaca Vidal | Pendiente de consolidación al cierre del Sprint |
-| Mobile Application | Reportes, navegación, idiomas, notificaciones y funcionalidades relacionadas | Nadhim Abigail Raymundo Villarroel | Pendiente de consolidación al cierre del Sprint |
+Las pantallas de registro de usuario, inicio de sesión, registro, listado y edición de animales, calendario sanitario, historial clínico y registro de eventos sanitarios se integraron a `develop` al cierre del Sprint 1 (05/10/2026), y durante el Sprint 2 se conectaron con los Web Services y se ampliaron con los cambios de la tabla anterior.
 
-Las filas pendientes deberán actualizarse con los commits, Pull Requests y estados definitivos de integración una vez que los integrantes completen sus respectivos procesos de desarrollo.
+**Elementos del Sprint 2 pendientes de integración en `develop` al 11/11/2026**
 
-De esta manera, las evidencias de desarrollo del Sprint 2 mantienen la trazabilidad entre las User Stories del Product Backlog, las feature branches utilizadas, los commits realizados y los cambios efectivamente integrados en los repositorios de Gethics.
+| Elemento | Responsable | Estado en `develop` |
+|---|---|---|
+| US-29, US-30, US-32 · Identificar un animal con código QR, registrar su venta y editar una granja (aplicación móvil) | Salazar Miranda, Mateo Paolo | Pendiente. Los Web Services ya están integrados (#40); las pantallas están en la rama `feature/US29-US30-US32-US36-app-animales`, aún sin integrar. |
+| US-36 · Consultar los animales sin conexión | Salazar Miranda, Mateo Paolo | Pendiente. En la rama `feature/US29-US30-US32-US36-app-animales`, aún sin integrar. |
+| TS08 · Proteger los endpoints con JWT | Castillo Yataco, Mauricio Sebastian | Pendiente. En `develop` los endpoints `/api/v1/**` siguen accesibles sin token. |
+| US-38 · Cerrar sesión | Castillo Yataco, Mauricio Sebastian | Pendiente de confirmar. La aplicación tiene el botón "Cerrar sesión" en Perfil, que borra la sesión local, pero no hay un endpoint de cierre de sesión en los Web Services. |
+| Ajuste de pruebas de US19 (rama `feature/US19-register-vet-care`) | Pillaca Vidal, Luis Angel | Pendiente. Un commit del 09/11/2026 sin integrar. |
+
+En `develop`, las pantallas de clientes asignados y pacientes del veterinario, y la de planes de suscripción, son todavía provisionales.
+
+Con esta consolidación, las evidencias del Sprint 2 mantienen la trazabilidad entre las User Stories del Product Backlog, las ramas de funcionalidad, los commits realizados y los cambios efectivamente integrados en los repositorios de Gethics.
+
+<div align="center">
+  <p><b>Figura 4.X.</b> Pull Requests del repositorio gethics-backend (página 1).</p>
+  <img src="images/sprint2-backend-pull-requests.png" alt="Pull Requests del backend, página 1" width="800">
+  <p><i><b>Fuente:</b> GitHub, repositorio gethics-backend.</i></p>
+</div>
+
+<div align="center">
+  <p><b>Figura 4.X.</b> Pull Requests del repositorio gethics-backend (página 2, Pull Requests del Sprint 1).</p>
+  <img src="images/sprint2-backend-pull-requests-pagina2.png" alt="Pull Requests del backend, página 2" width="800">
+  <p><i><b>Fuente:</b> GitHub, repositorio gethics-backend.</i></p>
+</div>
+
+<div align="center">
+  <p><b>Figura 4.X.</b> Pull Requests del repositorio gethics-mobile-app.</p>
+  <img src="images/sprint2-app-pull-requests.png" alt="Pull Requests de la app móvil" width="800">
+  <p><i><b>Fuente:</b> GitHub, repositorio gethics-mobile-app.</i></p>
+</div>
+
+En el tablero, algunas tarjetas figuran como terminadas aunque su código aún no está integrado en `develop`; el estado indicado en esta sección corresponde a `develop`.
+
+<div align="center">
+  <p><b>Figura 4.X.</b> Tablero del Sprint 2.</p>
+  <img src="images/sprint2-trello-board.png" alt="Tablero Trello del Sprint 2" width="500">
+  <p><i><b>Fuente:</b> Trello, tablero JamSell - Backlog & Sprints.</i></p>
+</div>
 
 ---
 
