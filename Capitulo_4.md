@@ -1362,7 +1362,7 @@ Para esta validación se consideran los dos segmentos principales definidos para
 - Pequeños y medianos ganaderos.
 - Veterinarios y técnicos agropecuarios.
 
-La dinámica de la entrevista consiste en presentar primero el Landing Page de Gethics, para observar si el usuario comprende el problema que busca resolver la solución, la confianza que transmite y la claridad de sus secciones. Posteriormente, se muestra la aplicación móvil, revisando el Inicio, el menú de navegación inferior y los módulos principales (Inventario, Tareas, Perfil) según corresponda al rol del entrevistado.
+La dinámica de la entrevista consiste en presentar primero el Landing Page de Gethics, para observar si el usuario comprende el problema que busca resolver la solución, la confianza que transmite y la claridad de sus secciones. Posteriormente, se muestra la aplicación móvil, revisando el menú de navegación inferior (Hato, Calendario, Finanzas, Reportes y Perfil) y los módulos principales según corresponda al rol del entrevistado.
 
 En el caso del segmento ganadero, la evaluación se orienta al registro de animales, el calendario sanitario (vacunas y tratamientos), las alertas automáticas y el control económico del hato. En el caso del segmento veterinario/técnico, se evalúa la revisión de clientes asignados, la consulta de pacientes (animales), el historial clínico, el registro de eventos sanitarios en campo y el comportamiento de la aplicación sin conexión. Al finalizar la demostración, el entrevistado responde un conjunto de preguntas diseñadas para recoger sus opiniones, dificultades y recomendaciones de mejora.
 
@@ -1375,13 +1375,13 @@ En el caso del segmento ganadero, la evaluación se orienta al registro de anima
 5. ¿Qué sección del Landing Page le pareció más útil o clara?
 6. ¿Hubo alguna parte del Landing Page que le pareció confusa, innecesaria o poco creíble?
 7. Al abrir la aplicación, ¿le resultó claro hacia dónde debía ir primero?
-8. ¿La pantalla de Inicio le muestra información útil para tomar decisiones rápidas sobre su ganado?
-9. ¿Los nombres de las opciones del menú (Inicio, Inventario, Tareas, Perfil) le resultan comprensibles?
+8. ¿La pantalla principal del Hato le muestra información útil para tomar decisiones rápidas sobre su ganado?
+9. ¿Los nombres de las opciones del menú (Hato, Calendario, Finanzas, Reportes, Perfil) le resultan comprensibles?
 10. ¿Le resultó fácil encontrar y buscar un animal dentro del Inventario?
 11. ¿El formulario para registrar o editar un animal le parece claro y completo (raza, edad, sexo, estado de salud)?
 12. ¿Qué dato importante sobre un animal cree que falta registrar?
 13. ¿Le resulta útil registrar una vacuna o un tratamiento desde la ficha del animal?
-14. ¿La sección de Tareas le ayudaría a no olvidar vacunas, desparasitaciones u otros eventos sanitarios?
+14. ¿El Calendario sanitario le ayudaría a no olvidar vacunas, desparasitaciones u otros eventos sanitarios?
 15. ¿Las alertas que muestra la aplicación le parecen oportunas y fáciles de entender?
 16. ¿La sección de reportes le parece útil para controlar ingresos, egresos o la rentabilidad de su hato?
 17. ¿Qué tan importante es para usted que la aplicación funcione sin conexión a internet, dado el lugar donde trabaja?
@@ -1396,14 +1396,14 @@ En el caso del segmento ganadero, la evaluación se orienta al registro de anima
 3. Al ver el Landing Page de Gethics, ¿queda claro que también está pensada para veterinarios y técnicos?
 4. ¿Qué información del Landing Page le ayudó más a entender el valor de la aplicación para su trabajo?
 5. ¿Qué información agregaría al Landing Page para que un veterinario confíe más en Gethics?
-6. Al abrir la aplicación, ¿la pantalla de Inicio le permite entender rápidamente qué requiere su atención?
+6. Al abrir la aplicación, ¿la pantalla principal le permite entender rápidamente qué requiere su atención?
 7. ¿Le resultó fácil encontrar y revisar a sus clientes (ganaderos) asignados?
 8. ¿La vista de pacientes (animales) por cliente le ayuda a encontrar rápidamente a quién debe revisar?
 9. ¿Le parece adecuado el flujo de buscar primero un animal o cliente antes de ver su información clínica?
 10. ¿El historial clínico de cada animal es suficiente para hacer una revisión veterinaria básica?
 11. ¿El formulario para registrar un evento sanitario (chequeo, vacuna, tratamiento) le permite registrar lo que necesita?
 12. ¿Qué campos clínicos considera que faltan en el registro sanitario?
-13. ¿La sección de Tareas le serviría para organizar sus visitas, controles o seguimientos pendientes?
+13. ¿El Calendario sanitario le serviría para organizar sus visitas, controles o seguimientos pendientes?
 14. ¿Qué tan clara le resultó la forma de priorizar entre varios animales o productores pendientes de atención?
 15. Al probar el registro sin conexión, ¿la aplicación le dio la confianza de que no perdería la información ingresada?
 16. ¿Qué tan importante es para usted no depender de señal para registrar un chequeo en campo?
