@@ -293,7 +293,7 @@ La aplicación móvil es un proyecto Android nativo construido con Gradle (Kotli
 
 1. La aplicación se distribuye como APK mediante GitHub Releases. La versión v1.0.0 se publicó el 11/11/2026 a partir de la rama `develop` (commit `4db53eb`), con el archivo `gethics-v1.0.apk`: https://github.com/UPc-1ACC0238-2620-4939-JamSell/gethics-mobile-app/releases/tag/v1.0.0
 2. La URL base del backend es https://gethics-backend-staging-7qth.onrender.com/, definida en la constante `BASE_URL` de `Constants.kt`.
-3. El botón "Descargar app" de la Landing Page todavía lleva a la sección de descarga del mismo sitio; el enlace de descarga del APK es https://github.com/UPc-1ACC0238-2620-4939-JamSell/gethics-mobile-app/releases/download/v1.0.0/gethics-v1.0.apk.
+3. Los botones "Descargar app" de la Landing Page descargan directamente el APK de la release: https://github.com/UPc-1ACC0238-2620-4939-JamSell/gethics-mobile-app/releases/download/v1.0.0/gethics-v1.0.apk (Pull Request #2 de `gethics-landing-page`, 11/11/2026).
 
 #### 4.1.4.4. Flujo general de despliegue
 
@@ -1067,6 +1067,7 @@ Al cierre del registro de evidencias, el equipo integró a `develop` los cambios
 | Raymundo Villarroel, Nadhim Abigail | Aplicación móvil | Navegación, idiomas (ES / EN), ajustes de notificaciones, finanzas y reportes (US15, US16, US20, US22) | `fc6b276`, `0c229d0`, `06fe970` | #14, #15, #16 | 08/11/2026 |
 | Raymundo Villarroel, Nadhim Abigail | Aplicación móvil | Dispositivos IoT con lecturas paginadas (US23, US37) y exportación del reporte en CSV (US39) | `39bc722`, `52cc396` | #21 | 10/11/2026 |
 | Raymundo Villarroel, Nadhim Abigail | Landing Page | Rediseño de la versión publicada: portada a todo el ancho con degradado oscuro, logo en alta resolución, legibilidad y proporciones de las secciones y menú móvil a todo el ancho | `0f48602`, `01a9a18`, `e0d0f95`, `cb7c425`, `5d6f7ca`, `06de857` | #1 | 11/11/2026 |
+| Raymundo Villarroel, Nadhim Abigail | Landing Page | Botones "Descargar app" conectados con el APK de la versión v1.0.0 publicada en GitHub Releases | `f943300` | #2 | 11/11/2026 |
 
 Las pantallas de registro de usuario, inicio de sesión, registro, listado y edición de animales, calendario sanitario, historial clínico y registro de eventos sanitarios se integraron a `develop` al cierre del Sprint 1 (05/10/2026), y durante el Sprint 2 se conectaron con los Web Services y se ampliaron con los cambios de la tabla anterior.
 
@@ -1503,7 +1504,7 @@ En el Sprint 2 se mantuvieron los ambientes de despliegue configurados en el Spr
 
 | Producto | Ambiente | Plataforma | Origen del despliegue | URL pública | Estado al 11/11/2026 |
 |---|---|---|---|---|---|
-| Landing Page | Producción | Vercel | Rama `main` de `gethics-landing-page` | https://gethics-landing-page.vercel.app | Desplegado con el commit `998d28f` (Pull Request #1) |
+| Landing Page | Producción | Vercel | Rama `main` de `gethics-landing-page` | https://gethics-landing-page.vercel.app | Desplegado con el commit `efd30a7` (Pull Request #2) |
 | Web Services | Staging | Render (contenedor Docker) | Repositorio `gethics-backend` | https://gethics-backend-staging-7qth.onrender.com (Swagger UI: https://gethics-backend-staging-7qth.onrender.com/swagger-ui/index.html) | Desplegado; disponible según la validación de `/actuator/health` registrada en 4.2.2.5 |
 | Base de datos | Producción | Supabase (PostgreSQL gestionado) | Esquema versionado con Flyway desde `gethics-backend` | Panel de administración, con acceso restringido al equipo: https://supabase.com/dashboard/project/xlcjmzvfdpggluhwkpfp | Desplegado y usado por los Web Services |
 | Aplicación móvil | Distribución | GitHub Releases (APK) | Rama `develop` de `gethics-mobile-app` (commit `4db53eb`) | https://github.com/UPc-1ACC0238-2620-4939-JamSell/gethics-mobile-app/releases/tag/v1.0.0 | Publicada la versión v1.0.0 con el APK `gethics-v1.0.apk`; consume los Web Services de staging |
@@ -1519,6 +1520,8 @@ Vercel está vinculado al repositorio `gethics-landing-page`. Cada push a una ra
 | `5d6f7ca` | Ajuste del degradado de la portada | Preview | 11/11/2026 06:19 | Exitoso |
 | `06de857` | Restauración del degradado oscuro de la portada | Preview | 11/11/2026 06:25 | Exitoso |
 | `998d28f` | Integración del Pull Request #1 en `main` | Production | 11/11/2026 06:28 | Exitoso |
+| `f943300` | Botones "Descargar app" conectados con el APK de la aplicación | Preview | 11/11/2026 13:28 | Exitoso |
+| `efd30a7` | Integración del Pull Request #2 en `main` | Production | 11/11/2026 13:29 | Exitoso |
 
 Los despliegues de vista previa permitieron revisar cada ajuste del diseño antes de integrarlo en `main`. La versión publicada se muestra en las capturas de las secciones 3.1.3.2 y 4.2.2.6.
 
@@ -1565,11 +1568,11 @@ Al cierre del Sprint 2 se generó el APK de la aplicación desde Android Studio 
 | Página de la release | https://github.com/UPc-1ACC0238-2620-4939-JamSell/gethics-mobile-app/releases/tag/v1.0.0 |
 | Descarga directa del APK | https://github.com/UPc-1ACC0238-2620-4939-JamSell/gethics-mobile-app/releases/download/v1.0.0/gethics-v1.0.apk |
 
-Para instalarla, se descarga el APK en un celular Android y se permite la instalación de aplicaciones de orígenes desconocidos cuando el sistema lo solicita. El botón "Descargar app" del Landing Page todavía lleva a la sección de descarga del mismo sitio y no enlaza al APK.
+Para instalarla, se descarga el APK en un celular Android y se permite la instalación de aplicaciones de orígenes desconocidos cuando el sistema lo solicita. Los cuatro botones "Descargar app" del Landing Page (menú, portada, modelo de negocio y bloque final) descargan este APK desde el Pull Request #2 de `gethics-landing-page`, integrado en `main` y publicado en Vercel el 11/11/2026.
 
 ### 4.2.2.9. Team Collaboration Insights during Sprint
 
-Durante el Sprint 2 el equipo JamSell trabajó con ramas de funcionalidad creadas desde `develop` e integró los cambios mediante Pull Requests en los repositorios de Web Services, de la aplicación móvil y del Landing Page. Se registraron 16 Pull Requests integrados en el backend y 11 en la aplicación móvil entre el 05/11/2026 y el 10/11/2026, con participación de los cinco integrantes. En el Landing Page se integró 1 Pull Request en `main` el 11/11/2026, con el rediseño de la versión publicada. A continuación se presentan los analíticos de colaboración de GitHub y su interpretación.
+Durante el Sprint 2 el equipo JamSell trabajó con ramas de funcionalidad creadas desde `develop` e integró los cambios mediante Pull Requests en los repositorios de Web Services, de la aplicación móvil y del Landing Page. Se registraron 16 Pull Requests integrados en el backend y 11 en la aplicación móvil entre el 05/11/2026 y el 10/11/2026, con participación de los cinco integrantes. En el Landing Page se integraron 2 Pull Requests en `main` el 11/11/2026, con el rediseño de la versión publicada y la conexión de los botones de descarga con el APK de la aplicación. A continuación se presentan los analíticos de colaboración de GitHub y su interpretación.
 
 #### 1. Analíticos de colaboración y commits en GitHub
 
@@ -1603,8 +1606,8 @@ Commits (sin contar merges) registrados en `develop` (en el Landing Page, en `ma
 | Salazar Miranda, Mateo Paolo | 7 | 3 | 0 | Baja lógica de animales; venta, búsqueda por código QR y edición de granja en el backend; documentación OpenAPI de toda la API e integración del veterinario con animales y sanidad; y baja de animal en la aplicación. |
 | Meza Huanacune, Juan José | 6 | 4 | 0 | Alertas por tendencias, cancelación de eventos sanitarios y registro sin conexión con sincronización, tanto en el backend como en la aplicación, y ajustes del módulo IAM. |
 | Pillaca Vidal, Luis Angel | 7 | 2 | 0 | Anulación de movimientos financieros y desasignación de clientes del veterinario, en el backend y en la aplicación, versionado de la base de datos con Flyway y conexión a la base de datos en la nube. |
-| Raymundo Villarroel, Nadhim Abigail | 4 | 5 | 6 | Reportes, exportación en CSV, dispositivos IoT con lecturas paginadas, notificaciones, balance económico, navegación e idiomas y finanzas en la aplicación, y rediseño del Landing Page. |
-| **Total** | **25** | **15** | **6** | |
+| Raymundo Villarroel, Nadhim Abigail | 4 | 5 | 7 | Reportes, exportación en CSV, dispositivos IoT con lecturas paginadas, notificaciones, balance económico, navegación e idiomas y finanzas en la aplicación, y rediseño del Landing Page con la descarga del APK. |
+| **Total** | **25** | **15** | **7** | |
 
 Los analíticos muestran que el trabajo del Sprint 2 se concentró en dos frentes: los Web Services, donde se integraron los módulos de IAM, finanzas, reportes, notificaciones, IoT, ganado y sanidad, y la aplicación móvil, donde se implementaron las pantallas que consumen esos servicios. Al cierre del Sprint también se rediseñó el Landing Page publicado. La cantidad de commits no refleja por sí sola el tamaño del aporte, porque algunos integrantes agruparon su trabajo en commits más grandes y parte del código integrado en este Sprint se había escrito antes del 05/11/2026. Además, parte del trabajo de la aplicación permanece en ramas propias pendientes de integración (ver 4.2.2.4).
 
@@ -1845,7 +1848,7 @@ Los errores serán puntuados tomando en cuenta la siguiente escala de severidad:
 3. Configurar un pipeline de integración continua para la aplicación móvil que compile y ejecute las pruebas en cada Pull Request, como ya ocurre en el backend.
 4. Cambiar `ddl-auto` a `validate` en el perfil `prod`, para que el esquema de la base de datos lo administre únicamente Flyway.
 5. Integrar `develop` en `main` al cierre de cada Sprint, para que la rama estable y los analíticos de GitHub reflejen el avance real del equipo.
-6. Enlazar el botón "Descargar app" del Landing Page con el APK publicado en GitHub Releases y conservar fuera del repositorio la llave de firma del APK, que se necesitará para publicar las siguientes versiones.
+6. Actualizar el enlace de los botones "Descargar app" del Landing Page con cada nueva versión publicada en GitHub Releases y conservar fuera del repositorio la llave de firma del APK, que se necesitará para publicar las siguientes versiones.
 7. Ejecutar las entrevistas de validación con el Landing Page y la aplicación móvil, completar la entrevista pendiente del segmento de veterinarios y corregir los problemas de usabilidad que siguen abiertos: la iconografía inconsistente, los gráficos que solo se distinguen por color y la falta de retorno desde el registro de tratamiento.
 
 

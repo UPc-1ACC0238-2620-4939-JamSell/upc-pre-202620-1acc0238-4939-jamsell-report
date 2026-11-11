@@ -101,6 +101,7 @@
 | 2.4 | 11/11/2026 | Raymundo Villarroel, Nadhim Abigail | Registro de la distribución de la aplicación móvil mediante GitHub Releases (versión v1.0.0 con el APK `gethics-v1.0.apk`) en las secciones 4.1.3, 4.1.4.3 y 4.2.2.8. |
 | 2.5 | 11/11/2026 | Raymundo Villarroel, Nadhim Abigail | Completado del flujo general de despliegue (sección 4.1.4.4): integración, publicación y verificación de los Web Services y de la aplicación móvil. |
 | 2.6 | 11/11/2026 | Raymundo Villarroel, Nadhim Abigail | Redacción de las secciones Conclusiones y recomendaciones, Glosario, Bibliografía y Anexos, y enlaces a estas secciones en la tabla de contenidos. |
+| 2.7 | 11/11/2026 | Raymundo Villarroel, Nadhim Abigail | Registro de la conexión de los botones "Descargar app" del Landing Page con el APK v1.0.0 (Pull Request #2 de `gethics-landing-page`) en las secciones 4.1.4.3, 4.2.2.4, 4.2.2.8, 4.2.2.9 y en las recomendaciones. |
 
 <br>
 
