@@ -836,7 +836,7 @@ Durante la ejecución del Sprint, algunas responsabilidades fueron ajustándose 
 
 ---
 
-4.2.2.2. Aspect Leaders and Collaborators
+## 4.2.2.2. Aspect Leaders and Collaborators
 
 Para garantizar un flujo de trabajo ágil, transparente y con líneas claras de responsabilidad durante el Sprint 2, el equipo JamSell mantuvo la matriz de liderazgo y colaboración Leadership-and-Collaboration Matrix (LACX). Este artefacto asigna de manera explícita a un integrante del equipo como Líder (L) de un aspecto técnico o funcional específico, acompañado por uno o varios Colaboradores (C), optimizando así la toma de decisiones y la comunicación interna.
 
