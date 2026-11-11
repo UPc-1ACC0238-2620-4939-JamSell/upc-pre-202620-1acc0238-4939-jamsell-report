@@ -17,13 +17,17 @@ A continuación se especifica cada producto de software utilizado por el equipo 
 | Project Management | Trello | Tablero Kanban del equipo (To Do / In Progress / Done) para organizar y dar seguimiento a las tareas de cada Sprint. | https://trello.com |
 | Requirements Management | Trello | Mismo tablero del equipo, utilizado también para registrar y priorizar el backlog de historias de usuario del producto. | https://trello.com |
 | Product UX/UI Design | Figma | Diseño de los wireframes y mock-ups de las pantallas de la aplicación móvil y del Landing Page, y definición del Design System (Style Guidelines: color, tipografía, iconografía) del equipo. | https://www.figma.com |
-| Software Development | Android Studio | IDE utilizado por el equipo tanto para el desarrollo de la aplicación móvil (Flutter/Dart) como del backend (Spring Boot/Java). | https://developer.android.com/studio |
-| Software Development | Flutter SDK | Framework utilizado para construir la aplicación móvil multiplataforma de Gethics. | https://flutter.dev |
+| Software Development | Android Studio | IDE utilizado para el desarrollo de las aplicaciones móviles (Kotlin y Jetpack Compose, y Flutter/Dart), su ejecución en emulador y la compilación con Gradle. | https://developer.android.com/studio |
+| Software Development | Kotlin y Jetpack Compose | Lenguaje y herramienta de interfaz con los que se construye la aplicación móvil Android nativa de Gethics (`gethics-mobile-app`). | https://developer.android.com/compose |
+| Software Development | Flutter SDK | Framework para la aplicación móvil multiplataforma de Gethics, actualmente en desarrollo. | https://flutter.dev |
+| Software Development | IntelliJ IDEA | IDE utilizado para el desarrollo del backend (Java 21 y Spring Boot) y la ejecución de sus pruebas con Maven. | https://www.jetbrains.com/idea |
+| Software Development | Docker | Contenedor `gethics-db` con PostgreSQL 16 para el entorno de desarrollo local del backend. | https://www.docker.com |
 | Software Development | PostgreSQL | Motor de base de datos relacional del backend, donde se persiste la información del hato, los usuarios y los eventos sanitarios. | https://www.postgresql.org |
 | Software Development | GitHub | Control de versiones y colaboración sobre el código fuente de los tres productos del equipo (Landing Page, Web Services y Mobile App). | https://github.com |
 | Software Testing | Postman | Pruebas manuales y colecciones de pruebas sobre los endpoints del backend (Web Services), antes de integrarlos con la aplicación móvil. | https://www.postman.com |
 | Software Deployment | Vercel | Despliegue del Landing Page como sitio estático. | https://vercel.com |
 | Software Deployment | Render | Despliegue del backend (Web Services) y de la base de datos PostgreSQL gestionada. | https://render.com |
+| Software Documentation | Swagger UI (OpenAPI) | Documentación interactiva de los Web Services, usada también para probar los endpoints antes de integrarlos en las aplicaciones móviles. | https://swagger.io/tools/swagger-ui |
 | Software Documentation | GitHub | Repositorio del informe del proyecto, redactado en Markdown y versionado junto con el resto de productos del equipo. | https://github.com |
 
 Como se observa, el equipo prioriza herramientas de modelo SaaS (Trello, Figma, GitHub, Postman, Vercel, Render) para facilitar la colaboración remota entre los miembros del equipo, reservando las instalaciones locales (Android Studio, Flutter SDK, PostgreSQL) a los productos que efectivamente requieren ejecutarse en el computador de cada desarrollador.
