@@ -100,6 +100,7 @@
 | 2.3 | 11/11/2026 | Raymundo Villarroel, Nadhim Abigail | Actualización de los ambientes desplegados en las secciones 4.1.3, 4.1.4 y 4.2.2.8: Landing Page en Vercel, Web Services en Render con Swagger UI y base de datos en Supabase, y URL base del backend usada por la aplicación móvil. |
 | 2.4 | 11/11/2026 | Raymundo Villarroel, Nadhim Abigail | Registro de la distribución de la aplicación móvil mediante GitHub Releases (versión v1.0.0 con el APK `gethics-v1.0.apk`) en las secciones 4.1.3, 4.1.4.3 y 4.2.2.8. |
 | 2.5 | 11/11/2026 | Raymundo Villarroel, Nadhim Abigail | Completado del flujo general de despliegue (sección 4.1.4.4): integración, publicación y verificación de los Web Services y de la aplicación móvil. |
+| 2.6 | 11/11/2026 | Raymundo Villarroel, Nadhim Abigail | Redacción de las secciones Conclusiones y recomendaciones, Glosario, Bibliografía y Anexos, y enlaces a estas secciones en la tabla de contenidos. |
 
 <br>
 
@@ -272,6 +273,15 @@ Durante la elaboración del AV2, el equipo completó el Capítulo IV del informe
     - [4.2.1.9. Team Collaboration Insights during Sprint](Capitulo_4.md#4219-team-collaboration-insights-during-sprint)
 
 - [4.3. Validation Interviews](Capitulo_4.md#43-validation-interviews)
+
+- [Conclusiones](Capitulo_4.md#conclusiones)
+  - [Conclusiones y recomendaciones](Capitulo_4.md#conclusiones-y-recomendaciones)
+
+- [Glosario](Capitulo_4.md#glosario)
+
+- [Bibliografía](Capitulo_4.md#bibliografía)
+
+- [Anexos](Capitulo_4.md#anexos)
   - [4.3.1. Diseño de Entrevistas](Capitulo_4.md#431-diseño-de-entrevistas)
   - [4.3.2. Registro de Entrevistas](Capitulo_4.md#432-registro-de-entrevistas)
   - [4.3.3. Evaluaciones según heurísticas](Capitulo_4.md#433-evaluaciones-según-heurísticas)

@@ -1828,6 +1828,26 @@ Los errores serán puntuados tomando en cuenta la siguiente escala de severidad:
 
 ## Conclusiones y recomendaciones
 
+### Conclusiones
+
+1. Las entrevistas a ganaderos, veterinarios y técnicos agropecuarios confirmaron que el registro del hato todavía se lleva en cuadernos y notas sueltas, y que el historial sanitario no está disponible en el campo. Gethics responde a ese problema con una aplicación móvil que concentra el registro de animales, el calendario sanitario y las alertas, y que permite registrar eventos sin conexión.
+2. El diseño con Domain-Driven Design permitió dividir la solución en los bounded contexts `iam`, `livestock`, `sanitary`, `veterinary`, `finance`, `analytics`, `subscription` y `shared`. Esta división facilitó que cada integrante trabajara en un módulo distinto con pocos conflictos en el backend.
+3. Al cierre del Sprint 2 la aplicación móvil consume los Web Services en los módulos de autenticación, ganado, sanidad, alertas, finanzas, reportes, dispositivos IoT y exportación en CSV, con navegación inferior y cambio de idioma entre español e inglés. Se integraron 16 Pull Requests en el backend y 11 en la aplicación móvil, con participación de los cinco integrantes.
+4. Los tres productos de la solución están publicados: el Landing Page en Vercel, los Web Services en Render con la base de datos PostgreSQL en Supabase y el esquema versionado con Flyway, y la aplicación móvil como APK en la versión v1.0.0 de GitHub Releases.
+5. El pipeline de integración continua del backend, con Checkstyle, compilación y pruebas en cada Pull Request, evitó integrar cambios con errores en `develop`. La aplicación móvil todavía no cuenta con un pipeline equivalente, y los errores de compilación detectados en `develop` se corrigieron de forma manual.
+6. La mayor dificultad de coordinación se presentó en la aplicación móvil, donde varias ramas modificaban los mismos archivos compartidos. Trabajar con una rama por historia de usuario y actualizar `develop` antes de cada integración redujo esos conflictos.
+7. La evaluación heurística identificó cinco problemas de usabilidad, dos de ellos de severidad 3. Durante el Sprint 2 se atendieron dos de ellos: la baja de animales ahora pide confirmación y las pantallas sin registros muestran un mensaje de estado vacío.
+
+### Recomendaciones
+
+1. Completar las historias pendientes de integración en la aplicación móvil: identificación de animales con código QR, registro de ventas, edición de granja y consulta de animales sin conexión.
+2. Proteger los endpoints `/api/v1/**` con JWT (TS08) e implementar el cierre de sesión en los Web Services (US38), ya que hoy los endpoints son accesibles sin token.
+3. Configurar un pipeline de integración continua para la aplicación móvil que compile y ejecute las pruebas en cada Pull Request, como ya ocurre en el backend.
+4. Cambiar `ddl-auto` a `validate` en el perfil `prod`, para que el esquema de la base de datos lo administre únicamente Flyway.
+5. Integrar `develop` en `main` al cierre de cada Sprint, para que la rama estable y los analíticos de GitHub reflejen el avance real del equipo.
+6. Enlazar el botón "Descargar app" del Landing Page con el APK publicado en GitHub Releases y conservar fuera del repositorio la llave de firma del APK, que se necesitará para publicar las siguientes versiones.
+7. Ejecutar las entrevistas de validación con el Landing Page y la aplicación móvil, completar la entrevista pendiente del segmento de veterinarios y corregir los problemas de usabilidad que siguen abiertos: la iconografía inconsistente, los gráficos que solo se distinguen por color y la falta de retorno desde el registro de tratamiento.
+
 
 ---
 
@@ -1878,8 +1898,128 @@ En esta sección se resume el video About-the-Team, que presenta el proceso de t
 
 # Glosario
 
+| Término | Definición |
+|---|---|
+| ACL (Anti-Corruption Layer) | Capa que traduce los modelos de un bounded context para que otro pueda usarlos sin depender de su estructura interna. En Gethics se implementa mediante fachadas. |
+| API REST | Interfaz que expone los recursos de los Web Services mediante URLs y métodos HTTP (GET, POST, PUT, PATCH, DELETE). |
+| APK | Paquete de instalación de una aplicación Android. |
+| Bounded Context | Límite dentro del cual un modelo de dominio y su lenguaje tienen un significado único y consistente. |
+| C4 Model | Notación para documentar la arquitectura de software en cuatro niveles: contexto, contenedores, componentes y código. |
+| Checkstyle | Herramienta que verifica que el código Java cumpla las convenciones de estilo definidas por el equipo. |
+| Context Mapping | Técnica de DDD que representa las relaciones entre los bounded contexts de una solución. |
+| CSV | Formato de archivo de texto con valores separados por comas, usado para exportar los reportes. |
+| Despliegue continuo | Práctica de publicar automáticamente una nueva versión de un producto cada vez que se integran cambios en la rama configurada. |
+| Docker | Plataforma que empaqueta una aplicación y sus dependencias en contenedores que se ejecutan igual en cualquier entorno. |
+| Domain-Driven Design (DDD) | Enfoque de diseño de software que organiza el código alrededor del dominio del negocio y de su lenguaje. |
+| Domain Storytelling | Técnica colaborativa que representa, mediante historias visuales, cómo los actores del dominio realizan su trabajo. |
+| EventStorming | Taller colaborativo para descubrir los eventos, comandos y actores de un dominio. |
+| Flyway | Herramienta que versiona el esquema de la base de datos mediante scripts de migración aplicados en orden. |
+| GitFlow | Estrategia de ramas que separa el trabajo en `main`, `develop` y ramas de funcionalidad. |
+| GitHub Actions | Servicio de GitHub que ejecuta flujos automatizados, como el pipeline de integración continua del backend. |
+| GitHub Releases | Funcionalidad de GitHub para publicar versiones de un proyecto con archivos adjuntos, como el APK de la aplicación. |
+| Hato | Conjunto de animales de ganado que pertenecen a un mismo productor. |
+| Impact Mapping | Técnica que relaciona los objetivos del negocio con los actores, los impactos esperados y los entregables del producto. |
+| Integración continua | Práctica de integrar los cambios con frecuencia y validarlos automáticamente con compilación y pruebas. |
+| IoT (Internet of Things) | Dispositivos físicos, como los collares con sensores, que envían lecturas a los Web Services. |
+| Jetpack Compose | Kit de herramientas de Android para construir interfaces de forma declarativa con Kotlin. |
+| JWT (JSON Web Token) | Token firmado que identifica al usuario autenticado en las solicitudes a la API. |
+| Landing Page | Sitio web de presentación del producto, orientado a captar usuarios. |
+| Lean UX | Marco de trabajo que valida hipótesis sobre el usuario mediante ciclos cortos de diseño y aprendizaje. |
+| MVVM | Patrón de arquitectura (Model-View-ViewModel) que separa la interfaz de la lógica de presentación. |
+| OpenAPI / Swagger UI | Especificación para describir una API REST y la interfaz web que permite consultarla y probar sus endpoints. |
+| Product Backlog | Lista priorizada de historias de usuario y tareas técnicas pendientes del producto. |
+| Pull Request | Solicitud para revisar e integrar los cambios de una rama en otra. |
+| Render | Plataforma en la nube donde se despliegan los Web Services de Gethics. |
+| Retrofit | Cliente HTTP para Android que la aplicación usa para consumir la API REST. |
+| Spring Boot | Framework de Java con el que se construyen los Web Services de Gethics. |
+| Sprint | Iteración de duración fija en la que el equipo desarrolla un conjunto de historias de usuario. |
+| Staging | Ambiente desplegado que replica la configuración de producción y se usa para probar la solución. |
+| Supabase | Plataforma que aloja la base de datos PostgreSQL de los Web Services. |
+| Ubiquitous Language | Lenguaje común entre el equipo y los expertos del dominio, usado en el código y la documentación. |
+| User Story | Descripción breve de una funcionalidad desde la perspectiva del usuario que la necesita. |
+| Vercel | Plataforma en la que se publica el Landing Page. |
+
+---
 
 # Bibliografía
 
+Adzic, G. (2012). *Impact mapping: Making a big impact with software products and projects*. Provoking Thoughts.
+
+Android Developers. (s.f.). *Guide to app architecture*. Recuperado el 11 de noviembre de 2026, de https://developer.android.com/topic/architecture
+
+Android Developers. (s.f.). *Jetpack Compose*. Recuperado el 11 de noviembre de 2026, de https://developer.android.com/compose
+
+Brandolini, A. (s.f.). *Introducing EventStorming*. Leanpub. https://leanpub.com/introducing_eventstorming
+
+Brown, S. (s.f.). *The C4 model for visualising software architecture*. Recuperado el 11 de noviembre de 2026, de https://c4model.com
+
+Cohn, M. (2004). *User stories applied: For agile software development*. Addison-Wesley.
+
+Conventional Commits. (s.f.). *Conventional Commits 1.0.0*. Recuperado el 11 de noviembre de 2026, de https://www.conventionalcommits.org/en/v1.0.0/
+
+Driessen, V. (2010). *A successful Git branching model*. https://nvie.com/posts/a-successful-git-branching-model/
+
+Evans, E. (2003). *Domain-driven design: Tackling complexity in the heart of software*. Addison-Wesley.
+
+GitHub. (s.f.). *About releases*. GitHub Docs. Recuperado el 11 de noviembre de 2026, de https://docs.github.com/en/repositories/releasing-projects-on-github/about-releases
+
+Gothelf, J., & Seiden, J. (2021). *Lean UX: Creating great products with agile teams* (3.ª ed.). O'Reilly Media.
+
+Hofer, S., & Schwentner, H. (2021). *Domain storytelling: A collaborative, visual, and agile way to build domain-driven software*. Addison-Wesley.
+
+Microsoft. (s.f.). *Inclusive design*. Recuperado el 11 de noviembre de 2026, de https://inclusive.microsoft.design/
+
+Nielsen, J. (2024). *10 usability heuristics for user interface design*. Nielsen Norman Group. https://www.nngroup.com/articles/ten-usability-heuristics/
+
+OpenAPI Initiative. (s.f.). *OpenAPI Specification*. Recuperado el 11 de noviembre de 2026, de https://spec.openapis.org/oas/latest.html
+
+Red Gate Software. (s.f.). *Flyway documentation*. Recuperado el 11 de noviembre de 2026, de https://documentation.red-gate.com/flyway
+
+Render. (s.f.). *Render documentation*. Recuperado el 11 de noviembre de 2026, de https://render.com/docs
+
+Schwaber, K., & Sutherland, J. (2020). *The Scrum Guide*. https://scrumguides.org/scrum-guide.html
+
+Spring. (s.f.). *Spring Boot reference documentation*. Recuperado el 11 de noviembre de 2026, de https://docs.spring.io/spring-boot/
+
+Square. (s.f.). *Retrofit*. Recuperado el 11 de noviembre de 2026, de https://square.github.io/retrofit/
+
+Supabase. (s.f.). *Supabase documentation*. Recuperado el 11 de noviembre de 2026, de https://supabase.com/docs
+
+Vercel. (s.f.). *Vercel documentation*. Recuperado el 11 de noviembre de 2026, de https://vercel.com/docs
+
+Vernon, V. (2013). *Implementing domain-driven design*. Addison-Wesley.
+
+---
 
 # Anexos
+
+### Anexo A. Productos publicados
+
+| Producto | Enlace |
+|---|---|
+| Landing Page | https://gethics-landing-page.vercel.app |
+| Web Services (Swagger UI) | https://gethics-backend-staging-7qth.onrender.com/swagger-ui/index.html |
+| Aplicación móvil (release v1.0.0) | https://github.com/UPc-1ACC0238-2620-4939-JamSell/gethics-mobile-app/releases/tag/v1.0.0 |
+| Descarga directa del APK | https://github.com/UPc-1ACC0238-2620-4939-JamSell/gethics-mobile-app/releases/download/v1.0.0/gethics-v1.0.apk |
+| Base de datos (panel de Supabase, acceso restringido al equipo) | https://supabase.com/dashboard/project/xlcjmzvfdpggluhwkpfp |
+
+### Anexo B. Repositorios del proyecto
+
+| Repositorio | Enlace |
+|---|---|
+| Informe del proyecto | https://github.com/UPc-1ACC0238-2620-4939-JamSell/upc-pre-202620-1acc0238-4939-jamsell-report |
+| Landing Page | https://github.com/UPc-1ACC0238-2620-4939-JamSell/gethics-landing-page |
+| Web Services | https://github.com/UPc-1ACC0238-2620-4939-JamSell/gethics-backend |
+| Aplicación móvil | https://github.com/UPc-1ACC0238-2620-4939-JamSell/gethics-mobile-app |
+
+### Anexo C. Gestión del proyecto y diseño
+
+| Recurso | Enlace |
+|---|---|
+| Tablero de Trello (Backlog y Sprints) | https://trello.com/invite/b/6abbfed00c437e902d9811f6/ATTI228a577e76ea799efc4fc42ab8619a372B80494F/jamsell-backlog-sprints-4939 |
+| Wireframes de la aplicación móvil (Figma) | https://www.figma.com/design/ge1sEWNd24ywwpYcSb3bRX/GETHICS-%E2%80%94-Mobile-UX-UI?node-id=1-3&t=ef2OCrXj7Nzp0ImN-1 |
+| Prototipo de la aplicación móvil (Figma) | https://www.figma.com/proto/6s1sDsX9Z6apr5q1APEUk8/Untitled?node-id=59-3&p=f&t=69FUs3pA82ELGxLM-1&scaling=min-zoom&content-scaling=fixed&page-id=59%3A2&starting-point-node-id=59%3A3&show-proto-sidebar=1 |
+
+### Anexo D. Videos del proyecto
+
+Los enlaces de los videos se registran en las secciones Video App Validation, Video About the Product y Video About the Team de este capítulo, y los de las entrevistas en las secciones 2.2.2 y 4.3.2.
