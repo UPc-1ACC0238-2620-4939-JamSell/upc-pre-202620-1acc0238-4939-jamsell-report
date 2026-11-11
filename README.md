@@ -42,8 +42,8 @@
 <table align="center">
   <thead>
     <tr>
-      <th>u202113229</th>
-      <th>Castillo Yataco, Mauricio Sebastian</th>
+      <th>Código</th>
+      <th>Nombre</th>
     </tr>
   </thead>
   <tbody>
