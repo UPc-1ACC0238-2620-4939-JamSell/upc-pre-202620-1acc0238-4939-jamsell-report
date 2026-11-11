@@ -99,6 +99,7 @@
 | 2.2 | 11/11/2026 | Raymundo Villarroel, Nadhim Abigail | Redacción de la sección 4.2.2.8 (Software Deployment Evidence del Sprint 2): estado de los ambientes de cada producto, despliegues del Landing Page en Vercel, configuración del despliegue de los Web Services en Render (Docker, perfil `prod`, base de datos en la nube y Flyway) y conexión de la aplicación móvil con el ambiente de staging. |
 | 2.3 | 11/11/2026 | Raymundo Villarroel, Nadhim Abigail | Actualización de los ambientes desplegados en las secciones 4.1.3, 4.1.4 y 4.2.2.8: Landing Page en Vercel, Web Services en Render con Swagger UI y base de datos en Supabase, y URL base del backend usada por la aplicación móvil. |
 | 2.4 | 11/11/2026 | Raymundo Villarroel, Nadhim Abigail | Registro de la distribución de la aplicación móvil mediante GitHub Releases (versión v1.0.0 con el APK `gethics-v1.0.apk`) en las secciones 4.1.3, 4.1.4.3 y 4.2.2.8. |
+| 2.5 | 11/11/2026 | Raymundo Villarroel, Nadhim Abigail | Completado del flujo general de despliegue (sección 4.1.4.4): integración, publicación y verificación de los Web Services y de la aplicación móvil. |
 
 <br>
 

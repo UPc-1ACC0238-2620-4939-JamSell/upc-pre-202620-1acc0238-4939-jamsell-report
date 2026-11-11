@@ -301,10 +301,10 @@ El flujo de entrega sigue la estrategia de ramas definida en la sección 4.1.2: 
 
 | Etapa | Landing Page | Backend | Aplicación Móvil |
 | --- | --- | --- | --- |
-| Integración | Pull Request hacia `main` | Pull Request hacia `develop` | [COMPLETAR] |
+| Integración | Pull Request hacia `main` | Pull Request hacia `develop` | Pull Request hacia `develop` |
 | Construcción | No requiere | `./mvnw clean package` | `./gradlew assemble<Variante>` |
-| Publicación | Despliegue automático de Vercel | [COMPLETAR] | [COMPLETAR] |
-| Verificación | Revisión de la URL pública | [COMPLETAR] | [COMPLETAR] |
+| Publicación | Despliegue automático de Vercel | Despliegue del servicio de staging en Render a partir del `Dockerfile`, con las variables de entorno del perfil `prod` y la base de datos en Supabase | APK generado desde Android Studio y publicado como release en GitHub Releases (versión v1.0.0) |
+| Verificación | Revisión de la URL pública | `GET /actuator/health` con estado `UP` y prueba de los endpoints en Swagger UI | Descarga del APK desde la release y ejecución de la aplicación contra los Web Services de staging |
 ---
 
 ## 4.2. Landing Page & Mobile Application Implementation
