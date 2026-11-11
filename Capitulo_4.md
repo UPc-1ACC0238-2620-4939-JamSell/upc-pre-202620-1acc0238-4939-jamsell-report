@@ -784,6 +784,8 @@ La aplicación móvil desarrollada en **Kotlin y Jetpack Compose** fue compilada
 * **Paso 2:** Ejecución del comando de construcción del paquete ejecutable:
   ```bash
   ./gradlew assembleRelease
+  ```
+
 #### 4.2.1.9. Team Collaboration Insights during Sprint
 Durante el desarrollo del presente Sprint, el equipo **JamSell** mantuvo una dinámica de trabajo altamente colaborativa y distribuida de manera equitativa entre los tres productos digitales principales de la solución **Gethics**: la **Landing Page**, los **Web Services (Backend)** y la **Aplicación Móvil**.
 
