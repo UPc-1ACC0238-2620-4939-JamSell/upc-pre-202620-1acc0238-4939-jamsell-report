@@ -1623,6 +1623,131 @@ La principal dificultad fue que varias ramas de la aplicación modificaban los m
 
 ---
 
+## 4.2.3. Sprint 3
+
+<!-- Las secciones 4.2.3.1 a 4.2.3.5, 4.2.3.7 y 4.2.3.8 las completan los demás integrantes según el reparto del equipo. Aquí solo van 4.2.3.6 y 4.2.3.9 (Nadhim). -->
+
+### 4.2.3.6. Execution Evidence for Sprint Review
+
+Durante el Sprint 3 el equipo trabajó la aplicación móvil en Android Studio (Kotlin y Jetpack Compose) y en Flutter. Las historias de usuario de Nadhim fueron US-46 (visualizar alertas de eventos sanitarios próximos) y US-47 (reprogramar un evento sanitario pendiente), ambas para los segmentos Ganadero y Veterinario. Juan José implementó US-48 (filtrar lecturas de dispositivo por rango de fechas) y US-49 (filtrar el reporte de ganado antes de exportar). En el flujo veterinario de la aplicación Flutter, Nadhim no tuvo historias en los Sprints 1 y 2, y su aporte comenzó en el Sprint 3. Las pantallas se ejecutaron en el emulador de Android Studio y en un dispositivo físico Android, conectadas al backend desplegado.
+
+**Video de ejecución del Sprint 3:** [Video App Execution Sprint 3](ENLACE_PENDIENTE) · Duración: *(pendiente)*
+
+| Historia | Descripción | Segmento | Responsable | Aplicación Android | Aplicación Flutter | Pull Request |
+|---|---|---|---|---|---|---|
+| US-46 | Visualizar alertas de eventos sanitarios próximos | Ganadero y Veterinario | Raymundo Villarroel, Nadhim Abigail | <<COMPLETAR: implementada / en curso>> | <<COMPLETAR>> | <<N_PR_US46>> |
+| US-47 | Reprogramar un evento sanitario pendiente | Ganadero y Veterinario | Raymundo Villarroel, Nadhim Abigail | <<COMPLETAR>> | <<COMPLETAR>> | <<N_PR_US47>> |
+| US-48 | Filtrar lecturas de dispositivo por rango de fechas | IoT / Monitoreo | Meza Huanacune, Juan José | <<COMPLETAR>> | <<COMPLETAR>> | <<N_PR_US48>> |
+| US-49 | Filtrar reporte de ganado antes de exportar | Ganadero | Meza Huanacune, Juan José | <<COMPLETAR>> | <<COMPLETAR>> | <<N_PR_US49>> |
+
+#### Ejecución en el emulador
+
+##### US-46 · Alertas de eventos sanitarios próximos
+
+La aplicación muestra al usuario la lista de eventos sanitarios que se aproximan, para que pueda anticiparse a vacunaciones y tratamientos pendientes. <<COMPLETAR: describir en una frase qué muestra cada alerta y desde qué pantalla se accede, según la implementación final.>>
+
+<div align="center">
+  <img src="images/sprint3-android-us46-alertas.png" alt="Android, alertas de eventos próximos" width="240">
+  <img src="images/sprint3-flutter-us46-alertas.png" alt="Flutter, alertas de eventos próximos" width="240">
+  <p><i><b>Figura 4.X.</b> Alertas de eventos sanitarios próximos (US-46), en Android Studio y en Flutter. <b>Fuente:</b> Elaboración propia, emulador de Android Studio.</i></p>
+</div>
+
+##### US-47 · Reprogramar un evento sanitario pendiente
+
+El usuario puede cambiar la fecha de un evento sanitario que aún no se realizó, sin tener que cancelarlo y volver a registrarlo. <<COMPLETAR: describir los campos editables y la validación de la nueva fecha, según la implementación final.>>
+
+<div align="center">
+  <img src="images/sprint3-android-us47-antes.png" alt="Android, evento antes de reprogramar" width="240">
+  <img src="images/sprint3-android-us47-reprogramar.png" alt="Android, formulario de reprogramación" width="240">
+  <img src="images/sprint3-android-us47-despues.png" alt="Android, evento reprogramado" width="240">
+  <p><i><b>Figura 4.X.</b> Reprogramación de un evento sanitario (US-47): estado inicial, formulario y resultado. <b>Fuente:</b> Elaboración propia, emulador de Android Studio.</i></p>
+</div>
+
+<div align="center">
+  <img src="images/sprint3-flutter-us47-antes.png" alt="Flutter, evento antes de reprogramar" width="240">
+  <img src="images/sprint3-flutter-us47-reprogramar.png" alt="Flutter, formulario de reprogramación" width="240">
+  <img src="images/sprint3-flutter-us47-despues.png" alt="Flutter, evento reprogramado" width="240">
+  <p><i><b>Figura 4.X.</b> Reprogramación de un evento sanitario (US-47) en Flutter. <b>Fuente:</b> Elaboración propia, emulador de Android Studio.</i></p>
+</div>
+
+#### Ejecución en dispositivo físico Android
+
+Las mismas pantallas se probaron en un dispositivo físico Android con la aplicación instalada desde el APK publicado, conectada al backend desplegado. <<COMPLETAR: modelo del dispositivo y versión de Android.>>
+
+<div align="center">
+  <img src="images/sprint3-fisico-us46.png" alt="Dispositivo físico, alertas" width="240">
+  <img src="images/sprint3-fisico-us47.png" alt="Dispositivo físico, reprogramación" width="240">
+  <p><i><b>Figura 4.X.</b> US-46 y US-47 en dispositivo físico Android. <b>Fuente:</b> Elaboración propia, dispositivo físico Android.</i></p>
+</div>
+
+#### Productos desplegados
+
+| Producto | Enlace | Estado en el Sprint 3 |
+|---|---|---|
+| Web Services (Swagger UI) | https://gethics-backend-staging-7qth.onrender.com/swagger-ui/index.html | Desplegado en Render. |
+| Landing Page | https://gethics-landing-page.vercel.app | Desplegada en Vercel. <<COMPLETAR: confirmar que incluye los videos About the Product y About the Team>>. |
+| Aplicación móvil (APK) | https://github.com/UPc-1ACC0238-2620-4939-JamSell/gethics-mobile-app/releases | <<COMPLETAR: versión publicada del Sprint 3>> |
+
+<div align="center">
+  <img src="images/sprint3-landing-videos.png" alt="Landing Page con los videos" width="800">
+  <p><i><b>Figura 4.X.</b> Landing Page con los videos About the Product y About the Team. <b>Fuente:</b> Elaboración propia, Landing Page publicada en Vercel.</i></p>
+</div>
+
+---
+
+### 4.2.3.9. Team Collaboration Insights during Sprint
+
+Durante el Sprint 3 el equipo JamSell mantuvo el flujo de ramas de funcionalidad desde `develop` e integró los cambios mediante Pull Requests en los repositorios de Web Services, de la aplicación móvil en Android Studio, de la aplicación Flutter y del Landing Page. Se registraron <<N_PR_BE_S3>> Pull Requests integrados en el backend, <<N_PR_APP_S3>> en la aplicación móvil, <<N_PR_FLUTTER_S3>> en la aplicación Flutter y <<N_PR_LAND_S3>> en el Landing Page entre el <<FECHA_INICIO_S3>> y el <<FECHA_FIN_S3>>, con participación de los cinco integrantes.
+
+#### 1. Analíticos de colaboración y commits en GitHub
+
+La gráfica Contributors de GitHub solo contabiliza los commits de la rama principal. Por eso se presentan los grafos Network de cada repositorio, que muestran las ramas y su integración a `develop`, y el conteo de commits se obtuvo con git.
+
+<div align="center">
+  <p><b>Figura 4.X.</b> Grafo Network del Sprint 3: gethics-backend.</p>
+  <img src="images/sprint3-insights-backend.png" alt="Network del backend, Sprint 3" width="800">
+  <p><i><b>Fuente:</b> GitHub Insights, repositorio gethics-backend.</i></p>
+</div>
+
+<div align="center">
+  <p><b>Figura 4.X.</b> Grafo Network del Sprint 3: gethics-mobile-app.</p>
+  <img src="images/sprint3-insights-app.png" alt="Network de la app móvil, Sprint 3" width="800">
+  <p><i><b>Fuente:</b> GitHub Insights, repositorio gethics-mobile-app.</i></p>
+</div>
+
+<div align="center">
+  <p><b>Figura 4.X.</b> Grafo Network del Sprint 3: aplicación Flutter.</p>
+  <img src="images/sprint3-insights-flutter.png" alt="Network de la app Flutter, Sprint 3" width="800">
+  <p><i><b>Fuente:</b> GitHub Insights, repositorio de la aplicación Flutter.</i></p>
+</div>
+
+#### 2. Interpretación de los analíticos por integrante
+
+Commits (sin contar merges) registrados en `develop` desde el inicio del Sprint 3 (<<FECHA_INICIO_S3>>) hasta el <<FECHA_FIN_S3>>, agrupando los distintos nombres de autor que usa cada integrante:
+
+| Integrante | Web Services | Aplicación Android | Aplicación Flutter | Landing Page | Aportes principales |
+|---|---:|---:|---:|---:|---|
+| Castillo Yataco, Mauricio Sebastian | <<N>> | <<N>> | <<N>> | <<N>> | <<COMPLETAR>> |
+| Salazar Miranda, Mateo Paolo | <<N>> | <<N>> | <<N>> | <<N>> | <<COMPLETAR>> |
+| Meza Huanacune, Juan José | <<N>> | <<N>> | <<N>> | <<N>> | US-48 (filtro de lecturas por rango de fechas) y US-49 (filtro del reporte de ganado antes de exportar). <<COMPLETAR>> |
+| Pillaca Vidal, Luis Angel | <<N>> | <<N>> | <<N>> | <<N>> | <<COMPLETAR>> |
+| Raymundo Villarroel, Nadhim Abigail | <<N>> | <<N>> | <<N>> | <<N>> | US-46 (alertas de eventos sanitarios próximos) y US-47 (reprogramación de eventos pendientes) en Android y Flutter, videos About the Product y About the Team en el Landing Page. <<COMPLETAR>> |
+| **Total** | **<<N>>** | **<<N>>** | **<<N>>** | **<<N>>** | |
+
+<<COMPLETAR: interpretación en un párrafo, indicando en qué frentes se concentró el trabajo del Sprint 3 y aclarando que la cantidad de commits no refleja por sí sola el tamaño del aporte.>>
+
+#### 3. Validación UX/UI
+
+<<COMPLETAR: resumen de la validación de la interfaz del Sprint 3 (qué pantallas se revisaron, con qué criterios, en qué dispositivo) y los ajustes realizados a partir de ella. Referenciar la sección 4.3.3.>>
+
+#### 4. Dificultades de coordinación y cierre del Sprint 3
+
+<<COMPLETAR: dificultades de coordinación del Sprint 3 y acciones tomadas>>
+
+El Sprint 3 se cerró con las historias US-46, US-47, US-48 y US-49 <<COMPLETAR: estado final de cada una>>, y con los productos desplegados indicados en la sección 4.2.3.6.
+
+---
+
 ## 4.3. Validation Interviews
 
 ### 4.3.1. Diseño de Entrevistas
