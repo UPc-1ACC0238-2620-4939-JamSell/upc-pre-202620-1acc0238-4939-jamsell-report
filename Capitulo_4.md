@@ -1697,7 +1697,7 @@ Las mismas pantallas se probaron en un dispositivo físico Android con la aplica
 
 ### 4.2.3.9. Team Collaboration Insights during Sprint
 
-Durante el Sprint 3 el equipo JamSell mantuvo el flujo de ramas de funcionalidad desde `develop` e integró los cambios mediante Pull Requests en los repositorios de Web Services, de la aplicación móvil en Android Studio, de la aplicación Flutter y del Landing Page. Se registraron 3 Pull Requests integrados en el backend, 5 en la aplicación móvil, 3 en la aplicación Flutter y 0 en el Landing Page entre el 12/11/2026 y el 26/11/2026, con participación de los cinco integrantes.
+Durante el Sprint 3 el equipo JamSell mantuvo el flujo de ramas de funcionalidad desde `develop` e integró los cambios mediante Pull Requests en los repositorios de Web Services, de la aplicación móvil en Android Studio, de la aplicación Flutter y del Landing Page. Se registraron 3 Pull Requests integrados en el backend, 5 en la aplicación móvil, 3 en la aplicación Flutter y 0 en el Landing Page entre el 12/11/2026 y el 26/11/2026, con participación de los cinco integrantes <<PENDIENTE: confirmar, en git solo hay commits de dos integrantes en el periodo>>.
 
 #### 1. Analíticos de colaboración y commits en GitHub
 
@@ -1731,7 +1731,7 @@ Commits (sin contar merges) registrados en `develop` desde el inicio del Sprint 
 | Salazar Miranda, Mateo Paolo | 0 | 0 | 0 | 0 | Sin commits integrados en `develop` en el periodo. <<COMPLETAR: otros aportes>> |
 | Meza Huanacune, Juan José | 0 | 0 | 0 | 0 | US-48 (filtro de lecturas por rango de fechas) y US-49 (filtro del reporte de ganado antes de exportar). <<COMPLETAR>> |
 | Pillaca Vidal, Luis Angel | 0 | 0 | 0 | 0 | Sin commits integrados en `develop` en el periodo; la rama `feature/sanitary-us40-retry-offline-sync` del backend queda pendiente de integración. <<COMPLETAR: otros aportes>> |
-| Raymundo Villarroel, Nadhim Abigail | 6 | 11 | 19 | 0 | US-46 (alertas de eventos sanitarios próximos) y US-47 (reprogramación de eventos pendientes) en el backend, Android y Flutter, proyecto base de la aplicación Flutter (flujo Veterinario) con su pipeline de integración continua, videos About the Product y About the Team en el Landing Page. |
+| Raymundo Villarroel, Nadhim Abigail | 6 | 11 | 19 | 0 | US-46 (alertas de eventos sanitarios próximos) y US-47 (reprogramación de eventos pendientes) en el backend, Android y Flutter, proyecto base de la aplicación Flutter (flujo Veterinario) con su pipeline de integración continua, videos About the Product y About the Team en el Landing Page <<PENDIENTE: confirmar, el Landing Page no tiene commits en el Sprint 3>>. |
 | **Total** | **8** | **27** | **19** | **0** | |
 
 Los analíticos muestran que el trabajo del Sprint 3 se concentró en la aplicación móvil: en Android se integraron el filtro y el detalle de animales (US-42 y US-43) y las alertas y la reprogramación de eventos sanitarios (US-46 y US-47), y en Flutter se creó el proyecto del flujo Veterinario con esas mismas dos historias. En el backend se agregaron los endpoints que consumen esas pantallas, y el Landing Page no tuvo commits en el periodo. La cantidad de commits no refleja por sí sola el tamaño del aporte, porque cada integrante agrupa su trabajo de forma distinta y parte del trabajo del Sprint permanece en ramas pendientes de integración.
