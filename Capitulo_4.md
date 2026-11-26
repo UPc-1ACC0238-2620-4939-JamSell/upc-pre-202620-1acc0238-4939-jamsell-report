@@ -1635,8 +1635,8 @@ Durante el Sprint 3 el equipo trabajó la aplicación móvil en Android Studio (
 
 | Historia | Descripción | Segmento | Responsable | Aplicación Android | Aplicación Flutter | Pull Request |
 |---|---|---|---|---|---|---|
-| US-46 | Visualizar alertas de eventos sanitarios próximos | Ganadero y Veterinario | Raymundo Villarroel, Nadhim Abigail | <<COMPLETAR: implementada / en curso>> | <<COMPLETAR>> | <<N_PR_US46>> |
-| US-47 | Reprogramar un evento sanitario pendiente | Ganadero y Veterinario | Raymundo Villarroel, Nadhim Abigail | <<COMPLETAR>> | <<COMPLETAR>> | <<N_PR_US47>> |
+| US-46 | Visualizar alertas de eventos sanitarios próximos | Ganadero y Veterinario | Raymundo Villarroel, Nadhim Abigail | Implementada (flujo Ganadero) | Implementada (flujo Veterinario) | Backend #43, Android #28, Flutter #3 |
+| US-47 | Reprogramar un evento sanitario pendiente | Ganadero y Veterinario | Raymundo Villarroel, Nadhim Abigail | Implementada (flujo Ganadero) | Implementada (flujo Veterinario) | Backend #44, Android #29, Flutter #4 |
 | US-48 | Filtrar lecturas de dispositivo por rango de fechas | IoT / Monitoreo | Meza Huanacune, Juan José | <<COMPLETAR>> | <<COMPLETAR>> | <<N_PR_US48>> |
 | US-49 | Filtrar reporte de ganado antes de exportar | Ganadero | Meza Huanacune, Juan José | <<COMPLETAR>> | <<COMPLETAR>> | <<N_PR_US49>> |
 
@@ -1644,7 +1644,7 @@ Durante el Sprint 3 el equipo trabajó la aplicación móvil en Android Studio (
 
 ##### US-46 · Alertas de eventos sanitarios próximos
 
-La aplicación muestra al usuario la lista de eventos sanitarios que se aproximan, para que pueda anticiparse a vacunaciones y tratamientos pendientes. <<COMPLETAR: describir en una frase qué muestra cada alerta y desde qué pantalla se accede, según la implementación final.>>
+La aplicación muestra al usuario la lista de eventos sanitarios que se aproximan, para que pueda anticiparse a vacunaciones y tratamientos pendientes. En Android se accede desde el ícono de campana del Calendario sanitario y en Flutter desde la pestaña Calendario del veterinario. Cada alerta muestra el tipo de evento, el animal, la fecha y los días que faltan (o si vence hoy o ya venció), con la etiqueta Urgente cuando faltan dos días o menos y Próximo en los demás casos; un aviso superior indica cuántos eventos requieren atención. La lista incluye los eventos programados de los próximos 7 días y los vencidos.
 
 <div align="center">
   <img src="images/sprint3-android-us46-alertas.png" alt="Android, alertas de eventos próximos" width="240">
@@ -1654,7 +1654,7 @@ La aplicación muestra al usuario la lista de eventos sanitarios que se aproxima
 
 ##### US-47 · Reprogramar un evento sanitario pendiente
 
-El usuario puede cambiar la fecha de un evento sanitario que aún no se realizó, sin tener que cancelarlo y volver a registrarlo. <<COMPLETAR: describir los campos editables y la validación de la nueva fecha, según la implementación final.>>
+El usuario puede cambiar la fecha de un evento sanitario que aún no se realizó, sin tener que cancelarlo y volver a registrarlo. El formulario permite elegir la nueva fecha y editar las notas del evento. El selector no permite fechas pasadas, el backend valida que la fecha sea hoy o posterior y solo se pueden reprogramar los eventos en estado programado. En la prueba en Flutter, un evento del 26/11/2026 (Vence hoy, Urgente) se reprogramó al 30/11/2026 y pasó a Próximo, con lo que el aviso bajó de 2 a 1 evento que requiere atención.
 
 <div align="center">
   <img src="images/sprint3-android-us47-antes.png" alt="Android, evento antes de reprogramar" width="240">
