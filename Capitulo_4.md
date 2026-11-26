@@ -1697,7 +1697,7 @@ Las mismas pantallas se probaron en un dispositivo físico Android con la aplica
 
 ### 4.2.3.9. Team Collaboration Insights during Sprint
 
-Durante el Sprint 3 el equipo JamSell mantuvo el flujo de ramas de funcionalidad desde `develop` e integró los cambios mediante Pull Requests en los repositorios de Web Services, de la aplicación móvil en Android Studio, de la aplicación Flutter y del Landing Page. Se registraron <<N_PR_BE_S3>> Pull Requests integrados en el backend, <<N_PR_APP_S3>> en la aplicación móvil, <<N_PR_FLUTTER_S3>> en la aplicación Flutter y <<N_PR_LAND_S3>> en el Landing Page entre el <<FECHA_INICIO_S3>> y el <<FECHA_FIN_S3>>, con participación de los cinco integrantes.
+Durante el Sprint 3 el equipo JamSell mantuvo el flujo de ramas de funcionalidad desde `develop` e integró los cambios mediante Pull Requests en los repositorios de Web Services, de la aplicación móvil en Android Studio, de la aplicación Flutter y del Landing Page. Se registraron 3 Pull Requests integrados en el backend, 5 en la aplicación móvil, 3 en la aplicación Flutter y 0 en el Landing Page entre el 12/11/2026 y el 26/11/2026, con participación de los cinco integrantes.
 
 #### 1. Analíticos de colaboración y commits en GitHub
 
@@ -1723,18 +1723,18 @@ La gráfica Contributors de GitHub solo contabiliza los commits de la rama princ
 
 #### 2. Interpretación de los analíticos por integrante
 
-Commits (sin contar merges) registrados en `develop` desde el inicio del Sprint 3 (<<FECHA_INICIO_S3>>) hasta el <<FECHA_FIN_S3>>, agrupando los distintos nombres de autor que usa cada integrante:
+Commits (sin contar merges) registrados en `develop` desde el inicio del Sprint 3 (12/11/2026) hasta el 26/11/2026, agrupando los distintos nombres de autor que usa cada integrante:
 
 | Integrante | Web Services | Aplicación Android | Aplicación Flutter | Landing Page | Aportes principales |
 |---|---:|---:|---:|---:|---|
-| Castillo Yataco, Mauricio Sebastian | <<N>> | <<N>> | <<N>> | <<N>> | <<COMPLETAR>> |
-| Salazar Miranda, Mateo Paolo | <<N>> | <<N>> | <<N>> | <<N>> | <<COMPLETAR>> |
-| Meza Huanacune, Juan José | <<N>> | <<N>> | <<N>> | <<N>> | US-48 (filtro de lecturas por rango de fechas) y US-49 (filtro del reporte de ganado antes de exportar). <<COMPLETAR>> |
-| Pillaca Vidal, Luis Angel | <<N>> | <<N>> | <<N>> | <<N>> | <<COMPLETAR>> |
-| Raymundo Villarroel, Nadhim Abigail | <<N>> | <<N>> | <<N>> | <<N>> | US-46 (alertas de eventos sanitarios próximos) y US-47 (reprogramación de eventos pendientes) en Android y Flutter, videos About the Product y About the Team en el Landing Page. <<COMPLETAR>> |
-| **Total** | **<<N>>** | **<<N>>** | **<<N>>** | **<<N>>** | |
+| Castillo Yataco, Mauricio Sebastian | 2 | 16 | 0 | 0 | US-42 (estado del animal en la lista del hato) y US-43 (detalle del animal con su granja asignada), con el endpoint `GET /api/v1/farms/{id}` en el backend y las pantallas en la aplicación Android. |
+| Salazar Miranda, Mateo Paolo | 0 | 0 | 0 | 0 | Sin commits integrados en `develop` en el periodo. <<COMPLETAR: otros aportes>> |
+| Meza Huanacune, Juan José | 0 | 0 | 0 | 0 | US-48 (filtro de lecturas por rango de fechas) y US-49 (filtro del reporte de ganado antes de exportar). <<COMPLETAR>> |
+| Pillaca Vidal, Luis Angel | 0 | 0 | 0 | 0 | Sin commits integrados en `develop` en el periodo; la rama `feature/sanitary-us40-retry-offline-sync` del backend queda pendiente de integración. <<COMPLETAR: otros aportes>> |
+| Raymundo Villarroel, Nadhim Abigail | 6 | 11 | 19 | 0 | US-46 (alertas de eventos sanitarios próximos) y US-47 (reprogramación de eventos pendientes) en el backend, Android y Flutter, proyecto base de la aplicación Flutter (flujo Veterinario) con su pipeline de integración continua, videos About the Product y About the Team en el Landing Page. |
+| **Total** | **8** | **27** | **19** | **0** | |
 
-<<COMPLETAR: interpretación en un párrafo, indicando en qué frentes se concentró el trabajo del Sprint 3 y aclarando que la cantidad de commits no refleja por sí sola el tamaño del aporte.>>
+Los analíticos muestran que el trabajo del Sprint 3 se concentró en la aplicación móvil: en Android se integraron el filtro y el detalle de animales (US-42 y US-43) y las alertas y la reprogramación de eventos sanitarios (US-46 y US-47), y en Flutter se creó el proyecto del flujo Veterinario con esas mismas dos historias. En el backend se agregaron los endpoints que consumen esas pantallas, y el Landing Page no tuvo commits en el periodo. La cantidad de commits no refleja por sí sola el tamaño del aporte, porque cada integrante agrupa su trabajo de forma distinta y parte del trabajo del Sprint permanece en ramas pendientes de integración.
 
 #### 3. Validación UX/UI
 
